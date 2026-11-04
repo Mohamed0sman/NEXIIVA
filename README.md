@@ -133,3 +133,4 @@ npm run preview
 
 © 2026 NEXIIVA Simulation Technologies. All rights reserved.  
 Official Showcase Project for the **Entrepreneurs Investment Program (EIP)** · **GEF 2026 Cairo**.
+
