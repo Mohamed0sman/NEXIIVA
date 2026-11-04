@@ -24,6 +24,8 @@ interface SimulationJourneyContextType {
   setVideoModalOpen: (open: boolean) => void;
   pilotDrawerOpen: boolean;
   setPilotDrawerOpen: (open: boolean) => void;
+  simulatorModalOpen: boolean;
+  setSimulatorModalOpen: (open: boolean) => void;
   activeFaceplate: string | null;
   setActiveFaceplate: (tag: string | null) => void;
   activeStage: number; // 1, 2, 3, 4
@@ -69,6 +71,7 @@ export const SimulationJourneyProvider: React.FC<{ children: React.ReactNode }> 
   const [language, setLanguage] = useState<'EN' | 'AR'>('EN');
   const [videoModalOpen, setVideoModalOpen] = useState(false);
   const [pilotDrawerOpen, setPilotDrawerOpen] = useState(false);
+  const [simulatorModalOpen, setSimulatorModalOpen] = useState(false);
   const [activeFaceplate, setActiveFaceplate] = useState<string | null>(null);
   const [activeStage, setActiveStage] = useState(1);
 
@@ -216,6 +219,8 @@ export const SimulationJourneyProvider: React.FC<{ children: React.ReactNode }> 
         setVideoModalOpen,
         pilotDrawerOpen,
         setPilotDrawerOpen,
+        simulatorModalOpen,
+        setSimulatorModalOpen,
         activeFaceplate,
         setActiveFaceplate,
         activeStage,

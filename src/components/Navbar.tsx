@@ -6,7 +6,7 @@ import { dcsAudio } from '../utils/audio';
 import { Play, Menu, X, ArrowRight } from 'lucide-react';
 
 export const Navbar: React.FC = () => {
-  const { setVideoModalOpen, setPilotDrawerOpen, language, setLanguage } = useSimulationJourney();
+  const { setVideoModalOpen, setPilotDrawerOpen, setSimulatorModalOpen, language, setLanguage } = useSimulationJourney();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const t = translations[language].nav;
@@ -39,10 +39,16 @@ export const Navbar: React.FC = () => {
       {/* Navigation Links: Modern Engineering Spec Style */}
       <div className="hidden lg:flex items-center space-x-8 text-[15px] font-sans font-medium text-slate-700">
         <button
-          onClick={() => scrollTo('simulator-stage')}
-          className="hover:text-[#4F46E5] transition-colors cursor-pointer"
+          onClick={() => {
+            dcsAudio.playClick();
+            setSimulatorModalOpen(true);
+          }}
+          className="hover:text-[#4F46E5] transition-colors cursor-pointer flex items-center space-x-1.5"
         >
-          {t.simulator}
+          <span>{t.simulator}</span>
+          <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-purple-100 text-[#4F46E5] font-mono font-bold">
+            LIVE
+          </span>
         </button>
 
         <button
@@ -149,10 +155,17 @@ export const Navbar: React.FC = () => {
       {mobileMenuOpen && (
         <div className="absolute top-20 left-0 w-full bg-white border-b border-slate-200 p-6 flex flex-col space-y-4 lg:hidden shadow-lg z-50 text-left font-sans">
           <button
-            onClick={() => scrollTo('simulator-stage')}
-            className="text-left text-base text-[#0B1120] hover:text-[#4F46E5] py-1"
+            onClick={() => {
+              setMobileMenuOpen(false);
+              dcsAudio.playClick();
+              setSimulatorModalOpen(true);
+            }}
+            className="text-left text-base text-[#0B1120] hover:text-[#4F46E5] py-1 flex items-center justify-between"
           >
-            {t.simulator}
+            <span>{t.simulator}</span>
+            <span className="text-[10px] px-2 py-0.5 rounded-full bg-purple-100 text-[#4F46E5] font-mono font-bold">
+              LIVE
+            </span>
           </button>
           <button
             onClick={() => scrollTo('economics')}

@@ -3,7 +3,7 @@ import { NexiivaLogo } from './NexiivaLogo';
 import { useSimulationJourney } from '../context/SimulationJourneyContext';
 
 export const Footer: React.FC = () => {
-  const { setPilotDrawerOpen, language } = useSimulationJourney();
+  const { setPilotDrawerOpen, setSimulatorModalOpen, language } = useSimulationJourney();
   const isRTL = language === 'AR';
 
   const scrollTo = (id: string) => {
@@ -34,8 +34,11 @@ export const Footer: React.FC = () => {
               {isRTL ? 'أقسام المنصة الهندسية' : 'Platform Specification'}
             </div>
             <div className="flex flex-col space-y-2 text-[#64748B] font-sans text-xs">
-              <button onClick={() => scrollTo('simulator-stage')} className="text-left hover:text-[#4F46E5] transition-colors cursor-pointer">
-                01. {isRTL ? 'محطة التحكم والتدريب' : 'DCS Crisis Console'}
+              <button
+                onClick={() => setSimulatorModalOpen(true)}
+                className="text-left hover:text-[#4F46E5] transition-colors cursor-pointer"
+              >
+                01. {isRTL ? 'محطة التحكم والتدريب (نافذة كاملة)' : 'DCS Crisis Console (Modal)'}
               </button>
               <button onClick={() => scrollTo('economics')} className="text-left hover:text-[#4F46E5] transition-colors cursor-pointer">
                 02. {isRTL ? 'الجدوى الاقتصادية والوفر' : 'Economics & ROI'}

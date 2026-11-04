@@ -10,6 +10,7 @@ import { Section_PricingLeadership } from './components/Section_PricingLeadershi
 import { Footer } from './components/Footer';
 import { VideoModal } from './components/VideoModal';
 import { PilotDrawer } from './components/PilotDrawer';
+import { SimulatorModal } from './components/SimulatorModal';
 
 const AppContent: React.FC = () => {
   const { language } = useSimulationJourney();
@@ -23,7 +24,7 @@ const AppContent: React.FC = () => {
       {/* 1. Sticky Navbar sitting cleanly at top-0 */}
       <Navbar />
 
-      {/* 3. SECTION 1: Editorial Serif Hero + Floating DCS Simulator Artifact */}
+      {/* 3. SECTION 1: Hero Section with Clean Product Showcase */}
       <HeroSection />
 
       {/* 4. SECTION 2: Boardroom Business Case & Refinery Outage Economics */}
@@ -47,6 +48,7 @@ const AppContent: React.FC = () => {
       {/* Modals & Interactive Drawers */}
       <VideoModal />
       <PilotDrawer />
+      <SimulatorModal />
     </div>
   );
 };
