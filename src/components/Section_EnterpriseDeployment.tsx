@@ -19,24 +19,24 @@ export const Section_EnterpriseDeployment: React.FC = () => {
             <div className="text-xs font-sans text-[#979799] uppercase tracking-wider">
               {isRTL ? 'معيار الحماية السيبرانية الصناعية ISA/IEC 62443' : 'SEC_04 // INDUSTRIAL CYBER-DEFENSE & PURDUE MODEL'}
             </div>
-            <h2
-              className={`text-4xl sm:text-5xl font-normal text-[#17191c] tracking-[-0.02em] leading-[1.2] ${
-                isRTL ? 'font-serif-ar' : 'font-serif'
-              }`}
-            >
+            <h2 className="text-4xl sm:text-5xl font-bold text-[#0B1120] tracking-[-0.02em] leading-[1.2] font-sans">
               {isRTL ? (
                 <>
                   بنية تشغيل معزولة تماماً{' '}
-                  <span className="italic text-[#5d2a1a]">عن شبكة المصفاة الحية.</span>
+                  <span className="italic bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] bg-clip-text text-transparent">
+                    عن شبكة المصفاة الحية.
+                  </span>
                 </>
               ) : (
                 <>
                   Zero-Risk Industrial Deployment.{' '}
-                  <span className="italic text-[#5d2a1a]">Complete P&ID Sovereignty.</span>
+                  <span className="italic bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] bg-clip-text text-transparent">
+                    Complete P&ID Sovereignty.
+                  </span>
                 </>
               )}
             </h2>
-            <p className="text-base sm:text-lg text-[#777b86] font-sans font-normal leading-[1.45]">
+            <p className="text-base sm:text-lg text-[#64748B] font-sans font-normal leading-[1.45]">
               {isRTL
                 ? 'لا نلمس شبكة التحكم الحي (DCS) أبداً. محاكي نكسيفا يعمل كمنظومة مستقلة ومحمية لا تتطلب أي اتصال بالإنترنت، مع سرية تامة لمخططات الإنتاج.'
                 : 'NEXIIVA operates strictly in Level 3 Simulation DMZ with zero connection to live Level 1/2 DCS controllers. Your plant data, proprietary yields, and tag nomenclatures never leave the refinery fence.'}
@@ -44,7 +44,7 @@ export const Section_EnterpriseDeployment: React.FC = () => {
           </div>
 
           {/* Architecture Mode Pill Toggle */}
-          <div className="flex items-center bg-[#f2f2f3] p-1 rounded-full self-start md:self-end shrink-0">
+          <div className="flex items-center bg-[#F1F5F9] p-1 rounded-full self-start md:self-end shrink-0 border border-slate-200">
             <button
               onClick={() => {
                 setActiveDeploymentTab('AIR_GAPPED');
@@ -52,8 +52,8 @@ export const Section_EnterpriseDeployment: React.FC = () => {
               }}
               className={`flex items-center space-x-2 px-4 py-2 rounded-full text-xs font-sans transition-all cursor-pointer ${
                 activeDeploymentTab === 'AIR_GAPPED'
-                  ? 'bg-[#17191c] text-white font-medium shadow-sm'
-                  : 'text-[#777b86] hover:text-[#17191c]'
+                  ? 'bg-gradient-to-r from-[#7C3AED] to-[#2563EB] text-white font-semibold shadow-sm'
+                  : 'text-[#64748B] hover:text-[#0B1120]'
               }`}
             >
               <Server className="w-3.5 h-3.5" />
@@ -66,8 +66,8 @@ export const Section_EnterpriseDeployment: React.FC = () => {
               }}
               className={`flex items-center space-x-2 px-4 py-2 rounded-full text-xs font-sans transition-all cursor-pointer ${
                 activeDeploymentTab === 'PRIVATE_CLOUD'
-                  ? 'bg-[#17191c] text-white font-medium shadow-sm'
-                  : 'text-[#777b86] hover:text-[#17191c]'
+                  ? 'bg-gradient-to-r from-[#7C3AED] to-[#2563EB] text-white font-semibold shadow-sm'
+                  : 'text-[#64748B] hover:text-[#0B1120]'
               }`}
             >
               <Cloud className="w-3.5 h-3.5" />
@@ -107,10 +107,10 @@ export const Section_EnterpriseDeployment: React.FC = () => {
               </div>
             </div>
 
-            {/* Level 3: Simulation Academy (NEXIIVA HIGHLIGHT in Steep Style) */}
-            <div className="p-6 rounded-[16px] bg-[#fafafb] border-2 border-[#17191c] text-left space-y-3 relative shadow-subtle md:col-span-2">
+            {/* Level 3: Simulation Academy (NEXIIVA HIGHLIGHT) */}
+            <div className="p-6 rounded-[16px] bg-gradient-to-b from-purple-500/5 via-indigo-500/5 to-blue-500/5 border-2 border-[#4F46E5] text-left space-y-3 relative shadow-[0_12px_30px_-10px_rgba(79,70,229,0.15)] md:col-span-2">
               <div className="flex items-center justify-between">
-                <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-[#17191c] text-white font-medium">
+                <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-gradient-to-r from-[#7C3AED] to-[#2563EB] text-white font-semibold">
                   LEVEL 3 // SIMULATION DMZ
                 </span>
                 <span className="text-[10px] font-mono text-[#059669] font-bold flex items-center space-x-1">
@@ -118,12 +118,12 @@ export const Section_EnterpriseDeployment: React.FC = () => {
                   <span>NEXIIVA RUNTIME ENGINE</span>
                 </span>
               </div>
-              <div className="text-base font-medium text-[#17191c] font-sans">
+              <div className="text-base font-semibold text-[#0B1120] font-sans">
                 {activeDeploymentTab === 'AIR_GAPPED'
                   ? 'Air-Gapped Training Center Server (1 Host + 3 Trainee Stations)'
                   : 'Isolated Private VPC with Client-Controlled Encryption Keys'}
               </div>
-              <p className="text-xs text-[#777b86] leading-relaxed font-sans">
+              <p className="text-xs text-[#64748B] leading-relaxed font-sans">
                 {activeDeploymentTab === 'AIR_GAPPED'
                   ? (isRTL
                       ? 'مخدم محلي يوضع داخل قاعة التدريب. لا يحتاج لأي اتصال خارجي. بيانات المصفاة ومخططات P&ID مشفرة داخلياً بـ AES-256 ولا تغادر جدران المصفاة.'
@@ -132,10 +132,10 @@ export const Section_EnterpriseDeployment: React.FC = () => {
                       ? 'مثالي لمراكز التدريب الإقليمية والمشغلين المتنقلين. يعمل داخل سحابة سريعة خاصة مع عزل كامل للبيانات وتحديثات لحظية للسيناريوهات.'
                       : 'Zero hardware footprint. Accessible via modern browser over corporate SSO / VPN. Instant scenario updates and automated scorecards.')}
               </p>
-              <div className="flex flex-wrap gap-2 pt-2 border-t border-[#ececec] text-[10px] font-mono text-[#777b86]">
-                <span className="bg-[#f2f2f3] px-2 py-0.5 rounded">Air-Gap Verification</span>
-                <span className="bg-[#f2f2f3] px-2 py-0.5 rounded">Zero Cloud Telemetry</span>
-                <span className="bg-[#f2f2f3] px-2 py-0.5 rounded">Perpetual Offline License</span>
+              <div className="flex flex-wrap gap-2 pt-2 border-t border-purple-500/10 text-[10px] font-mono text-[#64748B]">
+                <span className="bg-white/80 border border-slate-200 px-2 py-0.5 rounded">Air-Gap Verification</span>
+                <span className="bg-white/80 border border-slate-200 px-2 py-0.5 rounded">Zero Cloud Telemetry</span>
+                <span className="bg-white/80 border border-slate-200 px-2 py-0.5 rounded">Perpetual Offline License</span>
               </div>
             </div>
 
@@ -184,7 +184,7 @@ export const Section_EnterpriseDeployment: React.FC = () => {
 
             <div className="space-y-1.5">
               <div className="text-xs font-sans text-[#17191c] font-medium flex items-center space-x-2">
-                <Network className="w-4 h-4 text-[#5d2a1a]" />
+                <Network className="w-4 h-4 text-[#4F46E5]" />
                 <span>FAST PILOT VALIDATION</span>
               </div>
               <p className="text-xs text-[#777b86] leading-relaxed font-sans">
@@ -207,7 +207,7 @@ export const Section_EnterpriseDeployment: React.FC = () => {
                 dcsAudio.playClick();
                 setPilotDrawerOpen(true);
               }}
-              className="btn-pill-filled text-xs py-3 px-6 cursor-pointer"
+              className="px-6 py-3 rounded-full bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] text-white font-semibold text-xs shadow-[0_8px_25px_-4px_rgba(79,70,229,0.45)] hover:shadow-[0_12px_30px_-4px_rgba(79,70,229,0.6)] transition-all cursor-pointer flex items-center space-x-1.5"
             >
               <span>{isRTL ? 'طلب وثيقة الأمان والحزم الهندسية' : 'Request Architecture Whitepaper'}</span>
               <span className="ml-1.5">→</span>

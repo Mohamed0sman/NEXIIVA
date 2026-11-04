@@ -77,32 +77,32 @@ export const Section_PIDScanner: React.FC = () => {
   };
 
   return (
-    <section id="pid-scanner" className="py-24 px-6 lg:px-12 relative bg-white border-t border-[#ececec]">
+    <section id="pid-scanner" className="py-24 px-6 lg:px-12 relative bg-white border-t border-slate-200">
       <div className="max-w-[1200px] mx-auto space-y-12">
         {/* Section Header */}
-        <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-6 border-b border-[#f2f2f3] pb-8 text-left" dir={isRTL ? 'rtl' : 'ltr'}>
+        <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-6 border-b border-slate-100 pb-8 text-left" dir={isRTL ? 'rtl' : 'ltr'}>
           <div className="space-y-3 max-w-3xl">
-            <div className="text-xs font-sans text-[#979799] uppercase tracking-wider">
+            <div className="text-xs font-mono font-bold text-[#4F46E5] uppercase tracking-wider">
               {isRTL ? 'محرك التوليف الآلي لمخططات P&ID' : 'PROPRIETARY AUTOMATED FLOWSHEET SYNTHESIS'}
             </div>
-            <h2
-              className={`text-4xl sm:text-5xl font-normal text-[#17191c] tracking-[-0.02em] leading-[1.2] ${
-                isRTL ? 'font-serif-ar' : 'font-serif'
-              }`}
-            >
+            <h2 className="text-4xl sm:text-5xl font-extrabold text-[#0B1120] tracking-tight leading-[1.2] font-sans">
               {isRTL ? (
                 <>
                   من مخططات P&ID إلى محاكٍ ديناميكي كامل{' '}
-                  <span className="italic text-[#5d2a1a]">في أسبوع واحد.</span>
+                  <span className="italic font-normal bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] bg-clip-text text-transparent">
+                    في أسبوع واحد.
+                  </span>
                 </>
               ) : (
                 <>
                   From scanned P&ID to running OTS{' '}
-                  <span className="italic text-[#5d2a1a]">in ~7 business days.</span>
+                  <span className="italic font-normal bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] bg-clip-text text-transparent">
+                    in ~7 business days.
+                  </span>
                 </>
               )}
             </h2>
-            <p className="text-base sm:text-lg text-[#777b86] font-sans font-normal leading-[1.45]">
+            <p className="text-base sm:text-lg text-slate-600 font-sans font-normal leading-relaxed">
               {isRTL
                 ? 'الشركات التقليدية تحتاج 6 إلى 9 أشهر من البرمجة اليدوية بتكلفة 110 ألف دولار. نكسيفا تحلل مخططات P&ID الخاصة بمصفاتك آلياً وتولد المعادلات الديناميكية ومكتبة الـ 387 معدة في 7 أيام فقط.'
                 : 'Legacy vendors spend 6 to 9 months manually hardcoding equations. NEXIIVA parses your refinery P&IDs to auto-compile dynamic mass & energy balances across 387 equipment types in ~7 days.'}
@@ -110,13 +110,13 @@ export const Section_PIDScanner: React.FC = () => {
           </div>
 
           {/* Unit Selector Pill Tabs */}
-          <div className="flex items-center gap-1.5 bg-[#f2f2f3] p-1 rounded-full shrink-0">
+          <div className="flex items-center gap-1.5 bg-[#F1F5F9] p-1 rounded-full shrink-0 border border-slate-200">
             <button
               onClick={() => triggerScan('CDU')}
               className={`px-4 py-1.5 rounded-full text-xs font-sans transition-all cursor-pointer ${
                 selectedPreset === 'CDU'
-                  ? 'bg-[#17191c] text-white font-medium shadow-sm'
-                  : 'text-[#777b86] hover:text-[#17191c]'
+                  ? 'bg-gradient-to-r from-[#7C3AED] to-[#2563EB] text-white font-semibold shadow-sm'
+                  : 'text-slate-600 hover:text-[#0B1120]'
               }`}
             >
               CDU-100 (Atmospheric)
@@ -125,8 +125,8 @@ export const Section_PIDScanner: React.FC = () => {
               onClick={() => triggerScan('VDU')}
               className={`px-4 py-1.5 rounded-full text-xs font-sans transition-all cursor-pointer ${
                 selectedPreset === 'VDU'
-                  ? 'bg-[#17191c] text-white font-medium shadow-sm'
-                  : 'text-[#777b86] hover:text-[#17191c]'
+                  ? 'bg-gradient-to-r from-[#7C3AED] to-[#2563EB] text-white font-semibold shadow-sm'
+                  : 'text-slate-600 hover:text-[#0B1120]'
               }`}
             >
               VDU-200 (Vacuum)
@@ -135,8 +135,8 @@ export const Section_PIDScanner: React.FC = () => {
               onClick={() => triggerScan('REFORMER')}
               className={`px-4 py-1.5 rounded-full text-xs font-sans transition-all cursor-pointer ${
                 selectedPreset === 'REFORMER'
-                  ? 'bg-[#17191c] text-white font-medium shadow-sm'
-                  : 'text-[#777b86] hover:text-[#17191c]'
+                  ? 'bg-gradient-to-r from-[#7C3AED] to-[#2563EB] text-white font-semibold shadow-sm'
+                  : 'text-slate-600 hover:text-[#0B1120]'
               }`}
             >
               CRU-300 (Reformer)
@@ -284,22 +284,22 @@ export const Section_PIDScanner: React.FC = () => {
                 <div className="text-[10px] text-[#777b86] uppercase">EQUIPMENT SPECS</div>
               </div>
               <div className="p-2.5 rounded-[12px] bg-[#f8fafc] border border-[#e2e8f0]">
-                <div className="text-lg font-bold text-[#5d2a1a]">100%</div>
-                <div className="text-[10px] text-[#777b86] uppercase">P&ID TAG FIDELITY</div>
+                <div className="text-lg font-bold text-[#4F46E5]">100%</div>
+                <div className="text-[10px] text-slate-500 uppercase">P&ID TAG FIDELITY</div>
               </div>
               <div className="p-2.5 rounded-[12px] bg-[#f8fafc] border border-[#e2e8f0]">
                 <div className="text-lg font-bold text-[#059669]">0.00ms</div>
-                <div className="text-[10px] text-[#777b86] uppercase">JITTER LATENCY</div>
+                <div className="text-[10px] text-slate-500 uppercase">JITTER LATENCY</div>
               </div>
             </div>
           </div>
 
           {/* Right: The Thermodynamic Equation Dossier & 387 Codex (5 Cols) */}
-          <div className="lg:col-span-5 rounded-[24px] bg-[#f2f2f3] p-6 flex flex-col justify-between space-y-6 text-left" dir={isRTL ? 'rtl' : 'ltr'}>
+          <div className="lg:col-span-5 rounded-2xl bg-[#F8FAFC] border border-slate-200 p-6 flex flex-col justify-between space-y-6 text-left shadow-sm" dir={isRTL ? 'rtl' : 'ltr'}>
             <div className="space-y-4">
-              <div className="flex items-center justify-between border-b border-[#e2e2e4] pb-3">
-                <span className="text-xs font-sans text-[#777b86] uppercase">THERMODYNAMIC SOLVER DOSSIER</span>
-                <span className="px-2.5 py-0.5 rounded-full bg-white text-[#17191c] font-mono text-xs font-bold border border-[#ececec]">
+              <div className="flex items-center justify-between border-b border-slate-200 pb-3">
+                <span className="text-xs font-mono font-bold text-slate-600 uppercase">THERMODYNAMIC SOLVER DOSSIER</span>
+                <span className="px-2.5 py-0.5 rounded-full bg-white text-[#0B1120] font-mono text-xs font-bold border border-slate-200 shadow-xs">
                   TAG: {activeTag}
                 </span>
               </div>
@@ -307,35 +307,35 @@ export const Section_PIDScanner: React.FC = () => {
               {activeTag && tagDetails[activeTag] && (
                 <div className="space-y-4 animate-fadeIn">
                   <div>
-                    <h3 className="text-lg font-normal text-[#17191c] font-sans">
+                    <h3 className="text-lg font-bold text-[#0B1120] font-sans">
                       {tagDetails[activeTag].name}
                     </h3>
-                    <p className="text-xs font-mono text-[#0284c7] mt-0.5">
+                    <p className="text-xs font-mono text-[#4F46E5] font-semibold mt-0.5">
                       {tagDetails[activeTag].type}
                     </p>
                   </div>
 
-                  <div className="p-3.5 rounded-[16px] bg-white border border-[#ececec] space-y-1.5">
-                    <span className="text-[10px] font-sans text-[#777b86] uppercase tracking-wider block">
+                  <div className="p-3.5 rounded-xl bg-white border border-slate-200 space-y-1.5 shadow-xs">
+                    <span className="text-[10px] font-mono font-bold text-slate-500 uppercase tracking-wider block">
                       EQUATION OF STATE (EOS):
                     </span>
-                    <div className="text-xs font-mono text-[#059669] bg-[#ecfdf5] p-2 rounded border border-[#a7f3d0]">
+                    <div className="text-xs font-mono text-[#059669] bg-[#ecfdf5] p-2 rounded border border-[#a7f3d0] font-semibold">
                       {tagDetails[activeTag].eos}
                     </div>
                   </div>
 
-                  <p className="text-xs text-[#777b86] leading-relaxed">
+                  <p className="text-xs text-slate-600 leading-relaxed font-sans">
                     {tagDetails[activeTag].desc}
                   </p>
 
-                  <div className="space-y-2 pt-2 border-t border-[#e2e2e4] text-xs font-mono text-[#777b86]">
+                  <div className="space-y-2 pt-2 border-t border-slate-200 text-xs font-mono text-slate-600">
                     <div className="flex justify-between">
                       <span>Standard:</span>
-                      <span className="text-[#17191c] font-medium">API 520 / ISA-5.1</span>
+                      <span className="text-[#0B1120] font-medium">API 520 / ISA-5.1</span>
                     </div>
                     <div className="flex justify-between">
                       <span>Time-Step:</span>
-                      <span className="text-[#17191c] font-medium">100ms Rigorous</span>
+                      <span className="text-[#0B1120] font-medium">100ms Rigorous</span>
                     </div>
                     <div className="flex justify-between">
                       <span>Interlock Safety:</span>
@@ -347,8 +347,8 @@ export const Section_PIDScanner: React.FC = () => {
             </div>
 
             {/* Codex Category Selector */}
-            <div className="pt-4 border-t border-[#e2e2e4] space-y-2 text-xs">
-              <span className="text-[10px] text-[#979799] uppercase font-sans block">
+            <div className="pt-4 border-t border-slate-200 space-y-2 text-xs">
+              <span className="text-[10px] text-slate-500 font-mono uppercase font-semibold block">
                 EXPLORE 387 EQUIPMENT CATEGORIES:
               </span>
               <div className="flex flex-wrap gap-1.5">
@@ -361,8 +361,8 @@ export const Section_PIDScanner: React.FC = () => {
                     }}
                     className={`px-3 py-1 rounded-full text-[11px] font-sans transition-all cursor-pointer ${
                       selectedCat === cat
-                        ? 'bg-[#17191c] text-white font-medium'
-                        : 'bg-white text-[#777b86] hover:text-[#17191c] border border-[#ececec]'
+                        ? 'bg-gradient-to-r from-[#7C3AED] to-[#2563EB] text-white font-semibold shadow-xs'
+                        : 'bg-white text-slate-600 hover:text-[#0B1120] border border-slate-200'
                     }`}
                   >
                     {codexCategories[cat].label} ({codexCategories[cat].count})

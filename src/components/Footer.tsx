@@ -30,26 +30,26 @@ export const Footer: React.FC = () => {
 
           {/* Quick Links (3 Cols) */}
           <div className="md:col-span-3 space-y-3 text-left">
-            <div className="text-xs font-sans font-semibold text-[#17191c] uppercase tracking-wider">
+            <div className="text-xs font-sans font-semibold text-[#0B1120] uppercase tracking-wider">
               {isRTL ? 'أقسام المنصة الهندسية' : 'Platform Specification'}
             </div>
-            <div className="flex flex-col space-y-2 text-[#777b86] font-sans text-xs">
-              <button onClick={() => scrollTo('simulator-stage')} className="text-left hover:text-[#17191c] transition-colors cursor-pointer">
+            <div className="flex flex-col space-y-2 text-[#64748B] font-sans text-xs">
+              <button onClick={() => scrollTo('simulator-stage')} className="text-left hover:text-[#4F46E5] transition-colors cursor-pointer">
                 01. {isRTL ? 'محطة التحكم والتدريب' : 'DCS Crisis Console'}
               </button>
-              <button onClick={() => scrollTo('economics')} className="text-left hover:text-[#17191c] transition-colors cursor-pointer">
+              <button onClick={() => scrollTo('economics')} className="text-left hover:text-[#4F46E5] transition-colors cursor-pointer">
                 02. {isRTL ? 'الجدوى الاقتصادية والوفر' : 'Economics & ROI'}
               </button>
-              <button onClick={() => scrollTo('pid-scanner')} className="text-left hover:text-[#17191c] transition-colors cursor-pointer">
+              <button onClick={() => scrollTo('pid-scanner')} className="text-left hover:text-[#4F46E5] transition-colors cursor-pointer">
                 03. {isRTL ? 'توليف P&ID وموسوعة 387 معدة' : 'P&ID Ingestion & Codex'}
               </button>
-              <button onClick={() => scrollTo('journey')} className="text-left hover:text-[#17191c] transition-colors cursor-pointer">
+              <button onClick={() => scrollTo('journey')} className="text-left hover:text-[#4F46E5] transition-colors cursor-pointer">
                 04. {isRTL ? 'دورة التدريب والشهادات' : 'Training Lifecycle'}
               </button>
-              <button onClick={() => scrollTo('deployment')} className="text-left hover:text-[#17191c] transition-colors cursor-pointer">
+              <button onClick={() => scrollTo('deployment')} className="text-left hover:text-[#4F46E5] transition-colors cursor-pointer">
                 05. {isRTL ? 'الأمان المعزول (Purdue Model)' : 'Air-Gapped Security'}
               </button>
-              <button onClick={() => scrollTo('pricing')} className="text-left hover:text-[#17191c] transition-colors cursor-pointer">
+              <button onClick={() => scrollTo('pricing')} className="text-left hover:text-[#4F46E5] transition-colors cursor-pointer">
                 06. {isRTL ? 'التسعير وسيرة المؤسس' : 'Commercial & Founder'}
               </button>
             </div>
@@ -57,19 +57,19 @@ export const Footer: React.FC = () => {
 
           {/* Leadership & Contact (4 Cols) */}
           <div className="md:col-span-4 space-y-3 text-left">
-            <div className="text-xs font-sans font-semibold text-[#17191c] uppercase tracking-wider">
+            <div className="text-xs font-sans font-semibold text-[#0B1120] uppercase tracking-wider">
               {isRTL ? 'المكتب الفني للمؤسس' : 'Founder & Technical Office'}
             </div>
-            <div className="space-y-1.5 text-[#17191c]">
-              <div className="font-semibold text-[#17191c] text-sm">Eng. Mostafa Adel</div>
-              <div className="text-[#777b86] text-xs">Founder & Chief Process Simulation Architect</div>
-              <div className="text-[#979799] text-[11px]">
+            <div className="space-y-1.5 text-[#0B1120]">
+              <div className="font-bold text-[#0B1120] text-sm">Eng. Mostafa Adel</div>
+              <div className="text-[#64748B] text-xs">Founder & Chief Process Simulation Architect</div>
+              <div className="text-[#94A3B8] text-[11px]">
                 Ex-MIDOR Refinery, Sanmar Chemicals, Agiba Petroleum, Port Harcourt
               </div>
               <div className="pt-3">
                 <button
                   onClick={() => setPilotDrawerOpen(true)}
-                  className="px-5 py-2.5 rounded-full bg-[#17191c] hover:bg-[#2b2f35] text-white text-xs font-medium transition-all shadow-sm cursor-pointer"
+                  className="px-5 py-2.5 rounded-full bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] text-white text-xs font-semibold transition-all shadow-[0_8px_25px_-4px_rgba(79,70,229,0.45)] hover:shadow-[0_12px_30px_-4px_rgba(79,70,229,0.6)] cursor-pointer"
                 >
                   {isRTL ? 'طلب تجربة 90 يوماً ($800) ←' : 'Request 90-Day Pilot ($800) →'}
                 </button>

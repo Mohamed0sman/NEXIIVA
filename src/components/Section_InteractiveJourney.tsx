@@ -15,46 +15,46 @@ export const Section_InteractiveJourney: React.FC = () => {
   };
 
   return (
-    <section id="journey" className="py-24 px-6 lg:px-12 relative bg-[#fafafb] border-t border-[#ececec]">
+    <section id="journey" className="py-24 px-6 lg:px-12 relative bg-[#F8FAFC] border-t border-slate-200">
       <div className="max-w-[1200px] mx-auto space-y-12">
         {/* Section Header */}
-        <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-6 border-b border-[#ececec] pb-8 text-left" dir={isRTL ? 'rtl' : 'ltr'}>
+        <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-6 border-b border-slate-200 pb-8 text-left" dir={isRTL ? 'rtl' : 'ltr'}>
           <div className="space-y-3 max-w-3xl">
-            <div className="text-xs font-sans text-[#979799] uppercase tracking-wider">
+            <div className="text-xs font-mono font-bold text-[#4F46E5] uppercase tracking-wider">
               {isRTL ? 'دورة حياة تدريب المشغلين' : 'THE 3 OPERATIONAL WORKSPACES'}
             </div>
-            <h2
-              className={`text-4xl sm:text-5xl font-normal text-[#17191c] tracking-[-0.02em] leading-[1.2] ${
-                isRTL ? 'font-serif-ar' : 'font-serif'
-              }`}
-            >
+            <h2 className="text-4xl sm:text-5xl font-extrabold text-[#0B1120] tracking-tight leading-[1.2] font-sans">
               {isRTL ? (
                 <>
                   ابنِ. درّب.{' '}
-                  <span className="italic text-[#5d2a1a]">واعتمد الكفاءة.</span>
+                  <span className="italic font-normal bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] bg-clip-text text-transparent">
+                    واعتمد الكفاءة.
+                  </span>
                 </>
               ) : (
                 <>
                   Build. Instruct.{' '}
-                  <span className="italic text-[#5d2a1a]">Certify.</span>
+                  <span className="italic font-normal bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] bg-clip-text text-transparent">
+                    Certify.
+                  </span>
                 </>
               )}
             </h2>
-            <p className="text-base sm:text-lg text-[#777b86] font-sans font-normal leading-[1.45]">
+            <p className="text-base sm:text-lg text-slate-600 font-sans font-normal leading-relaxed">
               {isRTL
                 ? 'شاشات حقيقية من المنظومة المعتمدة: بناء التدفق الهندسي، حقن الأعطال والسيناريوهات الحية، وإصدار شهادات الكفاءة المعتمدة.'
                 : 'Production screens from the running platform: visually wire units, inject live furnace and pump trips, and mint tamper-evident competency credentials.'}
             </p>
           </div>
 
-          {/* Steep Pill Tab Switcher */}
-          <div className="flex items-center gap-1.5 bg-[#f2f2f3] p-1 rounded-full shrink-0">
+          {/* Pill Tab Switcher */}
+          <div className="flex items-center gap-1.5 bg-[#F1F5F9] p-1 rounded-full shrink-0 border border-slate-200">
             <button
               onClick={() => handleTabChange('BUILDER')}
               className={`px-4 py-2 rounded-full text-xs font-sans transition-all cursor-pointer ${
                 activeTab === 'BUILDER'
-                  ? 'bg-[#17191c] text-white font-medium shadow-sm'
-                  : 'text-[#777b86] hover:text-[#17191c]'
+                  ? 'bg-gradient-to-r from-[#7C3AED] to-[#2563EB] text-white font-semibold shadow-sm'
+                  : 'text-slate-600 hover:text-[#0B1120]'
               }`}
             >
               01. {isRTL ? 'بناء التدفق (OTS Builder)' : 'OTS Builder'}
@@ -63,8 +63,8 @@ export const Section_InteractiveJourney: React.FC = () => {
               onClick={() => handleTabChange('INSTRUCTOR')}
               className={`px-4 py-2 rounded-full text-xs font-sans transition-all cursor-pointer ${
                 activeTab === 'INSTRUCTOR'
-                  ? 'bg-[#17191c] text-white font-medium shadow-sm'
-                  : 'text-[#777b86] hover:text-[#17191c]'
+                  ? 'bg-gradient-to-r from-[#7C3AED] to-[#2563EB] text-white font-semibold shadow-sm'
+                  : 'text-slate-600 hover:text-[#0B1120]'
               }`}
             >
               02. {isRTL ? 'لوحة المدرب وحقن الأعطال' : 'Instructor & Faults'}
@@ -73,8 +73,8 @@ export const Section_InteractiveJourney: React.FC = () => {
               onClick={() => handleTabChange('TRAINEE')}
               className={`px-4 py-2 rounded-full text-xs font-sans transition-all cursor-pointer ${
                 activeTab === 'TRAINEE'
-                  ? 'bg-[#17191c] text-white font-medium shadow-sm'
-                  : 'text-[#777b86] hover:text-[#17191c]'
+                  ? 'bg-gradient-to-r from-[#7C3AED] to-[#2563EB] text-white font-semibold shadow-sm'
+                  : 'text-slate-600 hover:text-[#0B1120]'
               }`}
             >
               03. {isRTL ? 'شهادة التقييم الرقمية' : 'Digital Certificate'}

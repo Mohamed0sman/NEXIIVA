@@ -1,6 +1,5 @@
 import React from 'react';
 import { SimulationJourneyProvider, useSimulationJourney } from './context/SimulationJourneyContext';
-import { TelemetryBar } from './components/TelemetryBar';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
 import { Section_ComparisonROI } from './components/Section_ComparisonROI';
@@ -19,12 +18,9 @@ const AppContent: React.FC = () => {
   return (
     <div
       dir={isRTL ? 'rtl' : 'ltr'}
-      className="min-h-screen bg-white text-[#17191c] flex flex-col selection:bg-[#fbe1d1] selection:text-[#5d2a1a] relative"
+      className="min-h-screen bg-white text-[#0B1120] flex flex-col selection:bg-purple-100 selection:text-indigo-900 relative"
     >
-      {/* 1. Whisper-Quiet Telemetry Bar */}
-      <TelemetryBar />
-
-      {/* 2. Editorial Transparent Navbar */}
+      {/* 1. Sticky Navbar sitting cleanly at top-0 */}
       <Navbar />
 
       {/* 3. SECTION 1: Editorial Serif Hero + Floating DCS Simulator Artifact */}

@@ -196,17 +196,18 @@ export const InteractiveRefineryConsole: React.FC = () => {
   const potentialLoss = Math.round((1 - plantHealth / 100) * 2400000);
 
   return (
-    <div className="w-full max-w-6xl mx-auto rounded-xl bg-[#090D16] border border-slate-700/80 shadow-2xl overflow-hidden text-left relative z-20">
+    <div className="w-full max-w-6xl mx-auto rounded-xl bg-[#070B14] border border-purple-500/20 shadow-2xl overflow-hidden text-left relative z-20">
       {/* 1. Control Room Hardware Bezel Header */}
-      <div className="bg-[#0C111E] border-b border-slate-800 px-4 sm:px-6 py-3.5 flex flex-wrap items-center justify-between gap-3">
+      <div className="bg-[#0B1120] border-b border-purple-500/10 px-4 sm:px-6 py-3.5 flex flex-wrap items-center justify-between gap-3 relative">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(99,102,241,0.12),transparent_70%)] pointer-events-none" />
         {/* Left: Unit Identity & Hardware Status */}
-        <div className="flex items-center space-x-3">
+        <div className="flex items-center space-x-3 relative z-10">
           <div className="flex items-center space-x-2">
             <span
               className={`w-3 h-3 rounded-full ${
                 simState === 'FAULT_INJECTED' || gameActive
                   ? 'bg-rose-500 animate-ping'
-                  : 'bg-emerald-400'
+                  : 'bg-[#10B981]'
               }`}
             />
             <span className="font-mono text-xs font-black text-white tracking-widest uppercase">
@@ -228,7 +229,7 @@ export const InteractiveRefineryConsole: React.FC = () => {
         </div>
 
         {/* Right: Quick Action Indicators */}
-        <div className="flex items-center space-x-2 text-xs font-mono">
+        <div className="flex items-center space-x-2 text-xs font-mono relative z-10">
           {gameActive && (
             <div className="px-3 py-1 rounded-full bg-rose-950/80 border border-rose-500 text-rose-300 font-bold animate-pulse flex items-center space-x-2 shadow-[0_0_20px_rgba(244,63,94,0.4)]">
               <Timer className="w-3.5 h-3.5 text-rose-400" />
@@ -249,7 +250,7 @@ export const InteractiveRefineryConsole: React.FC = () => {
       </div>
 
       {/* 2. Bespoke Console Mode Selector */}
-      <div className="bg-[#04060E] border-b border-slate-800 px-4 sm:px-6 py-2.5 flex items-center overflow-x-auto space-x-2 sm:space-x-3 text-xs font-mono scrollbar-none">
+      <div className="bg-[#070B14] border-b border-slate-800/80 px-4 sm:px-6 py-2.5 flex items-center overflow-x-auto space-x-2 sm:space-x-3 text-xs font-mono scrollbar-none">
         <button
           onClick={() => {
             setViewMode('SIMULATOR');
@@ -257,8 +258,8 @@ export const InteractiveRefineryConsole: React.FC = () => {
           }}
           className={`px-4 py-2 rounded-xl transition-all cursor-pointer whitespace-nowrap flex items-center space-x-2 ${
             viewMode === 'SIMULATOR'
-              ? 'bg-blue-600 text-white font-bold shadow-sm'
-              : 'bg-white/5 text-slate-400 hover:text-white hover:bg-white/10'
+              ? 'bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] text-white font-bold shadow-[0_4px_16px_rgba(124,58,237,0.3)]'
+              : 'bg-[#0B1120] text-slate-400 hover:text-white hover:bg-slate-800/60 border border-slate-800'
           }`}
         >
           <Activity className="w-3.5 h-3.5 text-cyan-400" />
@@ -275,13 +276,13 @@ export const InteractiveRefineryConsole: React.FC = () => {
           }}
           className={`px-4 py-2 rounded-xl transition-all cursor-pointer whitespace-nowrap flex items-center space-x-2 ${
             viewMode === 'REAL_SCREENS'
-              ? 'bg-blue-600 text-white font-bold shadow-sm'
-              : 'bg-white/5 text-slate-400 hover:text-white hover:bg-white/10'
+              ? 'bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] text-white font-bold shadow-[0_4px_16px_rgba(124,58,237,0.3)]'
+              : 'bg-[#0B1120] text-slate-400 hover:text-white hover:bg-slate-800/60 border border-slate-800'
           }`}
         >
           <Layers className="w-3.5 h-3.5 text-slate-300" />
           <span>{isRTL ? 'شاشات المنظومة الحقيقية (المعتمدة)' : 'Real Running Software Screens'}</span>
-          <span className="px-1.5 py-0.2 rounded text-[9px] bg-blue-900/40 text-slate-200">
+          <span className="px-1.5 py-0.2 rounded text-[9px] bg-indigo-900/40 text-slate-200">
             PROVEN
           </span>
         </button>
@@ -293,8 +294,8 @@ export const InteractiveRefineryConsole: React.FC = () => {
           }}
           className={`px-4 py-2 rounded-xl transition-all cursor-pointer whitespace-nowrap flex items-center space-x-2 ${
             viewMode === 'EMERGENCY_DRILL'
-              ? 'bg-blue-600 text-white font-bold shadow-sm'
-              : 'bg-white/5 text-slate-400 hover:text-white hover:bg-white/10'
+              ? 'bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] text-white font-bold shadow-[0_4px_16px_rgba(124,58,237,0.3)]'
+              : 'bg-[#0B1120] text-slate-400 hover:text-white hover:bg-slate-800/60 border border-slate-800'
           }`}
         >
           <AlertTriangle className="w-3.5 h-3.5 text-rose-400" />
@@ -308,8 +309,8 @@ export const InteractiveRefineryConsole: React.FC = () => {
           }}
           className={`px-4 py-2 rounded-xl transition-all cursor-pointer whitespace-nowrap flex items-center space-x-2 ${
             viewMode === 'CERTIFICATE'
-              ? 'bg-blue-600 text-white font-bold shadow-sm'
-              : 'bg-white/5 text-slate-400 hover:text-white hover:bg-white/10'
+              ? 'bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] text-white font-bold shadow-[0_4px_16px_rgba(124,58,237,0.3)]'
+              : 'bg-[#0B1120] text-slate-400 hover:text-white hover:bg-slate-800/60 border border-slate-800'
           }`}
         >
           <Award className="w-3.5 h-3.5 text-emerald-400" />
@@ -326,7 +327,7 @@ export const InteractiveRefineryConsole: React.FC = () => {
         {viewMode === 'SIMULATOR' && (
           <div className="space-y-6">
             {/* GAME BANNER & CRISIS MISSION STATUS */}
-            <div className="p-4 sm:p-5 rounded-2xl bg-[#0D1322] border border-slate-700 shadow-xl space-y-4">
+            <div className="p-4 sm:p-5 rounded-2xl bg-[#0B1120] border border-purple-500/20 shadow-xl space-y-4">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800 pb-3">
                 <div className="flex items-center space-x-3">
                   <div className="p-2 rounded-xl bg-blue-900/40 text-slate-300">
@@ -414,7 +415,7 @@ export const InteractiveRefineryConsole: React.FC = () => {
                 </div>
 
                 {/* Economic Loss at Risk (5 Cols) */}
-                <div className="sm:col-span-5 p-2.5 rounded-xl bg-[#04060E] border border-slate-800 flex items-center justify-between">
+                <div className="sm:col-span-5 p-2.5 rounded-xl bg-[#070B14] border border-slate-800 flex items-center justify-between">
                   <span className="text-slate-500 text-[11px]">
                     {isRTL ? 'الخسائر المعرضة للخطر:' : 'FLARING RISK:'}
                   </span>
@@ -437,7 +438,7 @@ export const InteractiveRefineryConsole: React.FC = () => {
                       ? 'bg-emerald-950/40 border-emerald-500/60 text-emerald-200'
                       : gameActive
                       ? 'bg-rose-950/40 border-rose-500/60 text-rose-200 animate-pulse'
-                      : 'bg-[#04060E] border-slate-800 text-slate-400'
+                      : 'bg-[#070B14] border-slate-800 text-slate-400'
                   }`}
                 >
                   <div className="flex items-center justify-between text-[11px] font-mono">
@@ -467,8 +468,8 @@ export const InteractiveRefineryConsole: React.FC = () => {
                     actionStep2Done
                       ? 'bg-emerald-950/40 border-emerald-500/60 text-emerald-200'
                       : actionStep1Done
-                      ? 'bg-blue-950/50 border-blue-500 text-slate-200 animate-pulse'
-                      : 'bg-[#04060E] border-slate-800 text-slate-400'
+                      ? 'bg-[#0B1120] border-purple-500 text-slate-200 animate-pulse'
+                      : 'bg-[#070B14] border-slate-800 text-slate-400'
                   }`}
                 >
                   <div className="flex items-center justify-between text-[11px] font-mono">
@@ -493,8 +494,8 @@ export const InteractiveRefineryConsole: React.FC = () => {
                     actionStep3Done
                       ? 'bg-emerald-950/40 border-emerald-500/60 text-emerald-200'
                       : actionStep2Done
-                      ? 'bg-blue-950/40 border-blue-500/60 text-blue-200 animate-pulse'
-                      : 'bg-[#04060E] border-slate-800 text-slate-400'
+                      ? 'bg-[#0B1120] border-indigo-500 text-indigo-200 animate-pulse'
+                      : 'bg-[#070B14] border-slate-800 text-slate-400'
                   }`}
                 >
                   <div className="flex items-center justify-between text-[11px] font-mono">
@@ -522,7 +523,7 @@ export const InteractiveRefineryConsole: React.FC = () => {
             </div>
 
             {/* LIVE MULTI-PEN OSCILLOSCOPE STRIP CHART */}
-            <div className="p-4 sm:p-5 rounded-2xl bg-[#04060E] border border-slate-700 shadow-inner space-y-3">
+            <div className="p-4 sm:p-5 rounded-2xl bg-[#070B14] border border-slate-800 shadow-inner space-y-3">
               <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-2 text-xs font-mono">
                 <div className="flex items-center space-x-2">
                   <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping" />
@@ -622,7 +623,7 @@ export const InteractiveRefineryConsole: React.FC = () => {
                     ? 'bg-rose-950 border-rose-500 text-rose-200 animate-ping'
                     : telemetry.overheadTemp > 120
                     ? 'bg-rose-950/60 border-rose-500/60 text-rose-300'
-                    : 'bg-[#04060E] border-slate-800 text-slate-500'
+                    : 'bg-[#070B14] border-slate-800 text-slate-500 hover:border-slate-700'
                 }`}
               >
                 <div className="text-[10px] font-bold">TAH-101</div>
@@ -633,7 +634,7 @@ export const InteractiveRefineryConsole: React.FC = () => {
                 className={`p-2.5 rounded-lg border transition-all ${
                   telemetry.refluxFlow < 20
                     ? 'bg-rose-950 border-rose-500 text-rose-200 animate-pulse'
-                    : 'bg-[#04060E] border-slate-800 text-slate-500'
+                    : 'bg-[#070B14] border-slate-800 text-slate-500'
                 }`}
               >
                 <div className="text-[10px] font-bold">FAL-102</div>
@@ -644,7 +645,7 @@ export const InteractiveRefineryConsole: React.FC = () => {
                 className={`p-2.5 rounded-lg border transition-all ${
                   telemetry.columnPressure > 1.6
                     ? 'bg-rose-950 border-rose-500 text-rose-200 animate-pulse'
-                    : 'bg-[#04060E] border-slate-800 text-slate-500'
+                    : 'bg-[#070B14] border-slate-800 text-slate-500'
                 }`}
               >
                 <div className="text-[10px] font-bold">PAH-104</div>
@@ -655,7 +656,7 @@ export const InteractiveRefineryConsole: React.FC = () => {
                 className={`p-2.5 rounded-lg border transition-all ${
                   !telemetry.refluxPumpA_Running
                     ? 'bg-rose-950/70 border-rose-500 text-rose-300'
-                    : 'bg-[#04060E] border-slate-800 text-slate-500'
+                    : 'bg-[#070B14] border-slate-800 text-slate-500'
                 }`}
               >
                 <div className="text-[10px] font-bold">P-1007A</div>
@@ -668,7 +669,7 @@ export const InteractiveRefineryConsole: React.FC = () => {
                 className={`p-2.5 rounded-lg border transition-all ${
                   telemetry.columnPressure > 1.8
                     ? 'bg-amber-950 border-amber-500 text-amber-200 animate-bounce'
-                    : 'bg-[#04060E] border-slate-800 text-slate-500'
+                    : 'bg-[#070B14] border-slate-800 text-slate-500'
                 }`}
               >
                 <div className="text-[10px] font-bold">PSV-102</div>
@@ -682,7 +683,7 @@ export const InteractiveRefineryConsole: React.FC = () => {
             </div>
 
             {/* INTERACTIVE ANIMATED SVG PROCESS SCHEMATIC */}
-            <div className="relative rounded-2xl bg-[#04060E] border border-slate-700 p-4 sm:p-6 shadow-2xl overflow-hidden">
+            <div className="relative rounded-2xl bg-[#070B14] border border-slate-800 p-4 sm:p-6 shadow-2xl overflow-hidden">
               {/* Flare Stack with Dynamic Fire Graphics if overpressurized */}
               <div className="absolute top-4 right-4 flex items-center space-x-2 bg-[#080B1C]/80 px-3 py-1.5 rounded-xl border border-slate-800 text-xs font-mono">
                 <Flame
@@ -942,10 +943,10 @@ export const InteractiveRefineryConsole: React.FC = () => {
             </div>
 
             {/* Bottom Interactive Faceplate: Reflux Control Valve LV-102 */}
-            <div className="p-4 sm:p-5 rounded-2xl bg-[#0D1322] border border-slate-800 font-mono space-y-3">
+            <div className="p-4 sm:p-5 rounded-2xl bg-[#0B1120] border border-purple-500/20 font-mono space-y-3">
               <div className="flex justify-between items-center text-xs">
                 <span className="text-white font-bold flex items-center space-x-2">
-                  <Sliders className="w-4 h-4 text-blue-400" />
+                  <Sliders className="w-4 h-4 text-indigo-400" />
                   <span>DCS FACEPLATE: REFLUX CONTROL VALVE (LV-102)</span>
                 </span>
                 <span className="text-slate-300 font-bold text-sm">
@@ -958,7 +959,7 @@ export const InteractiveRefineryConsole: React.FC = () => {
                 max="100"
                 value={telemetry.refluxControlValvePct}
                 onChange={(e) => handleValveChange(parseFloat(e.target.value))}
-                className="w-full accent-blue-500 bg-slate-800 h-2 cursor-pointer"
+                className="w-full accent-[#4F46E5] bg-slate-800 h-2 cursor-pointer"
               />
               <div className="flex justify-between text-[11px] text-slate-400">
                 <span>0% (Closed - Reflux Starvation)</span>
@@ -1060,7 +1061,7 @@ export const InteractiveRefineryConsole: React.FC = () => {
                   onClick={() => setSelectedRealScreen('CDU')}
                   className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer ${
                     selectedRealScreen === 'CDU'
-                      ? 'bg-blue-600 text-white font-bold'
+                      ? 'bg-gradient-to-r from-[#7C3AED] to-[#2563EB] text-white font-bold shadow-sm'
                       : 'text-slate-400 hover:text-white'
                   }`}
                 >
@@ -1070,7 +1071,7 @@ export const InteractiveRefineryConsole: React.FC = () => {
                   onClick={() => setSelectedRealScreen('BUILDER')}
                   className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer ${
                     selectedRealScreen === 'BUILDER'
-                      ? 'bg-blue-600 text-white font-bold'
+                      ? 'bg-gradient-to-r from-[#7C3AED] to-[#2563EB] text-white font-bold shadow-sm'
                       : 'text-slate-400 hover:text-white'
                   }`}
                 >
@@ -1080,7 +1081,7 @@ export const InteractiveRefineryConsole: React.FC = () => {
                   onClick={() => setSelectedRealScreen('TRENDS')}
                   className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer ${
                     selectedRealScreen === 'TRENDS'
-                      ? 'bg-blue-600 text-white font-bold'
+                      ? 'bg-gradient-to-r from-[#7C3AED] to-[#2563EB] text-white font-bold shadow-sm'
                       : 'text-slate-400 hover:text-white'
                   }`}
                 >
@@ -1149,7 +1150,7 @@ export const InteractiveRefineryConsole: React.FC = () => {
               )}
 
               {selectedRealScreen === 'TRENDS' && (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 bg-[#04060E]">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 bg-[#070B14]">
                   <div className="space-y-2">
                     <div className="text-xs font-mono text-slate-300 font-bold">
                       12 LIVE TREND CHARTS (REAL RUNNING SCREEN):
@@ -1176,7 +1177,7 @@ export const InteractiveRefineryConsole: React.FC = () => {
 
             {/* Hotspot Tooltip */}
             {selectedHotspot && (
-              <div className="p-4 rounded-xl bg-blue-950/50 border border-blue-600/50 font-mono text-xs text-slate-200 flex items-center justify-between">
+              <div className="p-4 rounded-xl bg-[#0B1120] border border-purple-500/40 font-mono text-xs text-slate-200 flex items-center justify-between">
                 <span>
                   <strong>ENGINEERING INSPECTION:</strong> {selectedHotspot}
                 </span>
@@ -1189,7 +1190,7 @@ export const InteractiveRefineryConsole: React.FC = () => {
               </div>
             )}
 
-            <div className="p-4 rounded-xl bg-[#04060E]/60 border border-slate-800 font-mono text-xs text-slate-400 flex flex-wrap items-center justify-between gap-2">
+            <div className="p-4 rounded-xl bg-[#070B14] border border-slate-800 font-mono text-xs text-slate-400 flex flex-wrap items-center justify-between gap-2">
               <span>
                 Source: <strong className="text-white">Nexiiva Official Pitch Deck (Slide 3 & 4)</strong>
               </span>
@@ -1214,7 +1215,7 @@ export const InteractiveRefineryConsole: React.FC = () => {
               {SCENARIOS.map((sc) => (
                 <div
                   key={sc.id}
-                  className="p-6 rounded-2xl bg-[#04060E]/70 border border-slate-800 hover:border-blue-600/50 transition-all flex flex-col justify-between space-y-4"
+                  className="p-6 rounded-2xl bg-[#070B14] border border-slate-800 hover:border-purple-500/50 transition-all flex flex-col justify-between space-y-4"
                 >
                   <div className="space-y-2">
                     <div className="flex justify-between items-center text-xs font-mono">
@@ -1234,7 +1235,7 @@ export const InteractiveRefineryConsole: React.FC = () => {
                         key={idx}
                         className="text-[11px] text-slate-400 flex items-start space-x-1.5"
                       >
-                        <span className="text-blue-400">•</span>
+                        <span className="text-indigo-400">•</span>
                         <span>{act}</span>
                       </div>
                     ))}
@@ -1286,7 +1287,7 @@ export const InteractiveRefineryConsole: React.FC = () => {
               </div>
 
               {/* Right: Digital Trainee Dossier */}
-              <div className="space-y-4 font-mono text-xs text-slate-300 p-6 rounded-2xl bg-[#04060E]/80 border border-slate-800">
+              <div className="space-y-4 font-mono text-xs text-slate-300 p-6 rounded-2xl bg-[#070B14] border border-slate-800">
                 <div className="flex justify-between border-b border-slate-800 pb-2">
                   <span className="text-slate-500">TRAINEE OPERATOR:</span>
                   <span className="text-white font-bold uppercase">{traineeName}</span>
