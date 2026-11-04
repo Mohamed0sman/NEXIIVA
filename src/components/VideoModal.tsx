@@ -27,17 +27,15 @@ export const VideoModal: React.FC = () => {
           </button>
         </div>
 
-        {/* Video Player - Native MP4 with YouTube Mirror */}
+        {/* Video Player - YouTube Embed */}
         <div className="relative aspect-video w-full bg-black flex items-center justify-center">
-          <video
-            controls
-            autoPlay
-            playsInline
-            className="w-full h-full object-contain"
-            src="/assets/nexiiva_demo_walkthrough.mp4"
-          >
-            Your browser does not support the video tag.
-          </video>
+          <iframe
+            src="https://www.youtube.com/embed/hYILfbdodzQ?autoplay=1&rel=0"
+            title="NEXIIVA CDU/VDU Simulator Demo"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+            className="w-full h-full border-0"
+          />
         </div>
 
         {/* Footer Notes */}
@@ -51,12 +49,12 @@ export const VideoModal: React.FC = () => {
             </span>
           </div>
           <a
-            href="https://www.youtube.com/watch?v=hYILfbdodzQ"
+            href="https://youtu.be/hYILfbdodzQ?si=kNXibypwh73je_Th"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[#17191c] font-medium hover:underline font-mono text-xs"
+            className="text-[#4F46E5] font-semibold hover:underline font-mono text-xs flex items-center space-x-1"
           >
-            YouTube Mirror ↗
+            <span>{isRTL ? 'مشاهدة مباشرة على YouTube' : 'Watch on YouTube'} ↗</span>
           </a>
         </div>
       </div>
