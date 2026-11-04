@@ -3,12 +3,14 @@ import { NexiivaLogo } from './NexiivaLogo';
 import { useSimulationJourney } from '../context/SimulationJourneyContext';
 import { translations } from '../data/translations';
 import { dcsAudio } from '../utils/audio';
+import { Play, Shield, Menu, X, ArrowRight, ExternalLink } from 'lucide-react';
 
 export const Navbar: React.FC = () => {
   const { setVideoModalOpen, setPilotDrawerOpen, language, setLanguage } = useSimulationJourney();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const t = translations[language].nav;
+  const isRTL = language === 'AR';
 
   const scrollTo = (id: string) => {
     setMobileMenuOpen(false);
@@ -18,75 +20,85 @@ export const Navbar: React.FC = () => {
   };
 
   return (
-    <nav className="sticky top-0 z-50 h-20 bg-[#04060E]/80 backdrop-blur-xl border-b border-purple-500/10 px-6 lg:px-12 flex items-center justify-between">
-      {/* Brand Wordmark */}
+    <nav className="sticky top-0 z-50 h-20 bg-[#04060E]/90 backdrop-blur-xl border-b border-slate-800/80 px-6 lg:px-12 flex items-center justify-between">
+      {/* Brand Wordmark & Tagline */}
       <div className="flex items-center space-x-5">
-        <a href="#" className="flex items-center space-x-3.5 group">
-          <NexiivaLogo height={26} />
-          <span className="hidden md:inline-block text-[11px] font-mono tracking-wider text-slate-400 uppercase border-l border-slate-700/60 pl-3.5">
-            Operator Training Simulator
-          </span>
+        <a href="#" className="flex items-center space-x-3 group">
+          <NexiivaLogo height={28} />
+          <div className="hidden sm:flex flex-col border-l border-slate-800 pl-3 text-left">
+            <span className="text-[10px] font-mono tracking-widest text-slate-300 uppercase font-bold">
+              {isRTL ? 'محاكي تدريب مشغلي مصافي النفط' : 'REFINERY OPERATOR SIMULATOR'}
+            </span>
+            <span className="text-[9px] font-mono text-purple-400">
+              AIR-GAPPED // ISA-88/95 COMPLIANT
+            </span>
+          </div>
         </a>
       </div>
 
-      {/* Navigation Links */}
-      <div className="hidden lg:flex items-center space-x-6 xl:space-x-8 text-xs xl:text-sm font-medium text-slate-300">
+      {/* Navigation Links: Editorial & High-Craft */}
+      <div className="hidden lg:flex items-center space-x-6 xl:space-x-8 text-xs font-mono font-medium text-slate-300">
         <button
           onClick={() => scrollTo('simulator-stage')}
-          className="hover:text-white transition-colors cursor-pointer"
+          className="hover:text-white transition-colors cursor-pointer flex items-center space-x-1"
         >
-          {t.simulator}
+          <span className="text-purple-400 font-bold">01.</span>
+          <span>{t.simulator}</span>
         </button>
+
+        <button
+          onClick={() => scrollTo('economics')}
+          className="hover:text-white transition-colors cursor-pointer flex items-center space-x-1"
+        >
+          <span className="text-cyan-400 font-bold">02.</span>
+          <span>{t.economics}</span>
+        </button>
+
         <button
           onClick={() => scrollTo('pid-scanner')}
-          className="hover:text-purple-300 transition-colors cursor-pointer font-mono text-purple-300/90"
+          className="hover:text-white transition-colors cursor-pointer flex items-center space-x-1"
         >
-          ⚡ {t.pidEngine}
+          <span className="text-indigo-400 font-bold">03.</span>
+          <span>{t.engineering}</span>
         </button>
-        <button
-          onClick={() => scrollTo('equipment-codex')}
-          className="hover:text-cyan-300 transition-colors cursor-pointer font-mono"
-        >
-          {t.codex}
-        </button>
-        <button
-          onClick={() => scrollTo('metrics')}
-          className="hover:text-white transition-colors cursor-pointer"
-        >
-          {t.performance}
-        </button>
+
         <button
           onClick={() => scrollTo('journey')}
-          className="hover:text-white transition-colors cursor-pointer"
+          className="hover:text-white transition-colors cursor-pointer flex items-center space-x-1"
         >
-          {t.journey}
+          <span className="text-purple-400 font-bold">04.</span>
+          <span>{isRTL ? 'دورة التدريب والشهادات' : 'Training Lifecycle'}</span>
         </button>
+
         <button
-          onClick={() => scrollTo('comparison')}
-          className="hover:text-white transition-colors cursor-pointer"
+          onClick={() => scrollTo('deployment')}
+          className="hover:text-white transition-colors cursor-pointer flex items-center space-x-1"
         >
-          {t.comparison}
+          <span className="text-emerald-400 font-bold">05.</span>
+          <span>{t.architecture}</span>
         </button>
+
         <button
           onClick={() => scrollTo('pricing')}
-          className="hover:text-white transition-colors cursor-pointer"
+          className="hover:text-white transition-colors cursor-pointer flex items-center space-x-1"
         >
-          {t.pricing}
+          <span className="text-slate-400 font-bold">06.</span>
+          <span>{t.leadership}</span>
         </button>
       </div>
 
       {/* Right Actions */}
-      <div className="flex items-center space-x-4">
-        {/* Language Pill */}
-        <div className="flex items-center bg-[#0B0F22] border border-purple-500/20 rounded-full p-0.5 text-xs font-mono">
+      <div className="flex items-center space-x-3 sm:space-x-4">
+        {/* Language Switcher */}
+        <div className="flex items-center bg-[#0B0F1C] border border-slate-800 rounded-lg p-0.5 text-xs font-mono">
           <button
             onClick={() => {
               dcsAudio.playClick();
               setLanguage('EN');
             }}
-            className={`px-2.5 py-1 rounded-full transition-all cursor-pointer ${
+            className={`px-2.5 py-1 rounded-md transition-all cursor-pointer ${
               language === 'EN'
-                ? 'bg-purple-600/30 text-white font-semibold'
+                ? 'bg-purple-600 text-white font-bold'
                 : 'text-slate-400 hover:text-white'
             }`}
           >
@@ -97,26 +109,26 @@ export const Navbar: React.FC = () => {
               dcsAudio.playClick();
               setLanguage('AR');
             }}
-            className={`px-2.5 py-1 rounded-full transition-all cursor-pointer ${
+            className={`px-2.5 py-1 rounded-md transition-all cursor-pointer ${
               language === 'AR'
-                ? 'bg-purple-600/30 text-white font-semibold font-sans'
+                ? 'bg-purple-600 text-white font-bold'
                 : 'text-slate-400 hover:text-white'
             }`}
           >
-            العربية
+            عربي
           </button>
         </div>
 
-        {/* Demo Video CTA */}
+        {/* Video Walkthrough CTA */}
         <button
           onClick={() => {
             dcsAudio.playClick();
             setVideoModalOpen(true);
           }}
-          className="hidden md:inline-flex items-center space-x-2 text-xs font-medium px-4 py-2 rounded-full bg-white/5 hover:bg-white/10 border border-purple-500/20 text-slate-200 hover:text-white transition-all cursor-pointer"
+          className="hidden sm:flex items-center space-x-1.5 px-3.5 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-slate-800 text-slate-200 text-xs font-mono transition-all cursor-pointer"
         >
-          <span className="text-purple-400">▶</span>
-          <span>{t.walkthrough}</span>
+          <Play className="w-3.5 h-3.5 text-purple-400 fill-purple-400/20" />
+          <span>{isRTL ? 'فيديو 15 دقيقة' : 'Walkthrough'}</span>
         </button>
 
         {/* Primary Pilot CTA */}
@@ -125,77 +137,70 @@ export const Navbar: React.FC = () => {
             dcsAudio.playClick();
             setPilotDrawerOpen(true);
           }}
-          className="inline-flex items-center space-x-2 text-xs font-semibold px-5 py-2.5 rounded-full bg-brand-gradient text-white shadow-brand-glow hover:opacity-95 transition-all cursor-pointer"
+          className="flex items-center space-x-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 text-white text-xs font-mono font-bold uppercase tracking-wider shadow-lg hover:shadow-purple-500/25 transition-all cursor-pointer"
         >
           <span>{t.requestPilot}</span>
-          <span>→</span>
+          <ArrowRight className="w-3.5 h-3.5 hidden md:inline-block" />
         </button>
 
-        {/* Mobile Hamburger */}
+        {/* Mobile Menu Trigger */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="lg:hidden p-2 text-slate-400 hover:text-white"
+          className="lg:hidden p-2 rounded-lg bg-white/5 text-slate-300 hover:text-white"
         >
-          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            {mobileMenuOpen ? (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
-            ) : (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 6h16M4 12h16M4 18h16" />
-            )}
-          </svg>
+          {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </button>
       </div>
 
-      {/* Mobile Menu Dropdown */}
+      {/* Mobile Menu Drawer */}
       {mobileMenuOpen && (
-        <div className="absolute top-20 left-0 right-0 bg-[#04060E] border-b border-purple-500/20 p-6 flex flex-col space-y-4 lg:hidden">
+        <div className="absolute top-20 left-0 w-full bg-[#070A14] border-b border-slate-800 p-6 flex flex-col space-y-4 lg:hidden shadow-2xl z-50 text-left font-mono">
           <button
             onClick={() => scrollTo('simulator-stage')}
-            className="text-left text-sm text-slate-200 py-1"
+            className="text-left text-sm text-slate-200 hover:text-white py-1"
           >
-            {t.simulator}
+            01. {t.simulator}
           </button>
           <button
-            onClick={() => scrollTo('metrics')}
-            className="text-left text-sm text-slate-200 py-1"
+            onClick={() => scrollTo('economics')}
+            className="text-left text-sm text-slate-200 hover:text-white py-1"
           >
-            {t.performance}
+            02. {t.economics}
+          </button>
+          <button
+            onClick={() => scrollTo('pid-scanner')}
+            className="text-left text-sm text-slate-200 hover:text-white py-1"
+          >
+            03. {t.engineering}
           </button>
           <button
             onClick={() => scrollTo('journey')}
-            className="text-left text-sm text-slate-200 py-1"
+            className="text-left text-sm text-slate-200 hover:text-white py-1"
           >
-            {t.journey}
+            04. {isRTL ? 'دورة التدريب والشهادات' : 'Training Lifecycle'}
           </button>
           <button
             onClick={() => scrollTo('deployment')}
-            className="text-left text-sm text-slate-200 py-1"
+            className="text-left text-sm text-slate-200 hover:text-white py-1"
           >
-            {t.deployment}
-          </button>
-          <button
-            onClick={() => scrollTo('comparison')}
-            className="text-left text-sm text-slate-200 py-1"
-          >
-            {t.comparison}
+            05. {t.architecture}
           </button>
           <button
             onClick={() => scrollTo('pricing')}
-            className="text-left text-sm text-slate-200 py-1"
+            className="text-left text-sm text-slate-200 hover:text-white py-1"
           >
-            {t.pricing}
+            06. {t.leadership}
           </button>
-          <div className="pt-2 border-t border-slate-800">
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                setVideoModalOpen(true);
-              }}
-              className="w-full text-left text-xs text-purple-400 py-2 flex items-center space-x-2"
-            >
-              <span>▶ {t.walkthrough}</span>
-            </button>
-          </div>
+          <button
+            onClick={() => {
+              setMobileMenuOpen(false);
+              setVideoModalOpen(true);
+            }}
+            className="flex items-center space-x-2 text-left text-sm text-purple-400 py-1"
+          >
+            <Play className="w-3.5 h-3.5" />
+            <span>{isRTL ? 'مشاهدة فيديو الشرح الكامل (15 دقيقة)' : 'Watch 15-Min Walkthrough'}</span>
+          </button>
         </div>
       )}
     </nav>

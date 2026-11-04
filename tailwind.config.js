@@ -36,6 +36,8 @@ export default {
       fontFamily: {
         mono: ['JetBrains Mono', 'IBM Plex Mono', 'Menlo', 'monospace'],
         sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        display: ['Plus Jakarta Sans', 'Inter', 'system-ui', 'sans-serif'],
+        arabic: ['Cairo', 'Inter', 'system-ui', 'sans-serif'],
       },
       boxShadow: {
         'brand-glow': '0 0 35px rgba(123, 60, 252, 0.4)',

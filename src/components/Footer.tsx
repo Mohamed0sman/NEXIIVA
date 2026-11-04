@@ -3,7 +3,8 @@ import { NexiivaLogo } from './NexiivaLogo';
 import { useSimulationJourney } from '../context/SimulationJourneyContext';
 
 export const Footer: React.FC = () => {
-  const { setPilotDrawerOpen } = useSimulationJourney();
+  const { setPilotDrawerOpen, language } = useSimulationJourney();
+  const isRTL = language === 'AR';
 
   const scrollTo = (id: string) => {
     const el = document.getElementById(id);
@@ -11,70 +12,66 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="bg-[#04060E] border-t border-purple-500/10 py-16 px-6 lg:px-12 text-slate-400 font-sans text-xs">
+    <footer className="bg-[#04060E] border-t border-slate-800/80 py-16 px-6 lg:px-12 text-slate-400 font-sans text-xs">
       <div className="max-w-6xl mx-auto space-y-12">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
           {/* Brand Info (5 Cols) */}
-          <div className="md:col-span-5 space-y-4">
+          <div className="md:col-span-5 space-y-4 text-left">
             <NexiivaLogo height={30} />
             <p className="text-slate-400 text-xs sm:text-sm leading-relaxed max-w-sm">
-              Industrial Process Operator Training Simulator (OTS). Built to make plant-specific simulation accessible to every refinery, gas plant, and chemical facility in Egypt, the Gulf, and Africa.
+              {isRTL
+                ? 'المنظومة الصناعية المعتمدة لمحاكاة مشغلي مصافي النفط والغاز. نكسيفا تحول مخططات P&ID إلى نماذج ديناميكية متكاملة في 7 أيام فقط لتأهيل الكفاءات وحماية الأرواح والمنشآت من كوارث الإغلاق غير المخطط له.'
+                : 'Industrial Process Operator Training Simulator (OTS). Built to make plant-specific high-fidelity simulation accessible to every refinery, petrochemical complex, and gas facility in Egypt, the Gulf, and Africa.'}
             </p>
-            <div className="text-purple-300 font-mono text-[11px] font-semibold">
+            <div className="text-purple-400 font-mono text-[11px] font-semibold">
               Entrepreneurs Investment Program (EIP) · GEF 2026 Cairo Official Showcase
             </div>
           </div>
 
           {/* Quick Links (3 Cols) */}
-          <div className="md:col-span-3 space-y-3">
+          <div className="md:col-span-3 space-y-3 text-left">
             <div className="text-xs font-mono font-bold text-white uppercase tracking-wider">
-              NAVIGATION
+              {isRTL ? 'أقسام المنصة الهندسية' : 'NAVIGATION SPECIFICATION'}
             </div>
-            <div className="flex flex-col space-y-2 text-slate-400">
+            <div className="flex flex-col space-y-2 text-slate-400 font-mono text-xs">
               <button onClick={() => scrollTo('simulator-stage')} className="text-left hover:text-white transition-colors cursor-pointer">
-                Simulator Workstation
+                01. {isRTL ? 'محطة التحكم والتدريب' : 'DCS Crisis Console'}
               </button>
-              <button onClick={() => scrollTo('pid-scanner')} className="text-left hover:text-purple-300 transition-colors cursor-pointer text-purple-300">
-                ⚡ AI P&ID Engine
+              <button onClick={() => scrollTo('economics')} className="text-left hover:text-white transition-colors cursor-pointer">
+                02. {isRTL ? 'الجدوى الاقتصادية والوفر' : 'Economics & ROI'}
               </button>
-              <button onClick={() => scrollTo('equipment-codex')} className="text-left hover:text-cyan-300 transition-colors cursor-pointer">
-                387 Equipment Codex
-              </button>
-              <button onClick={() => scrollTo('metrics')} className="text-left hover:text-white transition-colors cursor-pointer">
-                Performance & Economics
+              <button onClick={() => scrollTo('pid-scanner')} className="text-left hover:text-white transition-colors cursor-pointer">
+                03. {isRTL ? 'توليف P&ID وموسوعة 387 معدة' : 'P&ID Ingestion & Codex'}
               </button>
               <button onClick={() => scrollTo('journey')} className="text-left hover:text-white transition-colors cursor-pointer">
-                3-Step Lifecycle
+                04. {isRTL ? 'دورة التدريب والشهادات' : 'Training Lifecycle'}
               </button>
               <button onClick={() => scrollTo('deployment')} className="text-left hover:text-white transition-colors cursor-pointer">
-                Air-Gapped & Cloud
-              </button>
-              <button onClick={() => scrollTo('comparison')} className="text-left hover:text-white transition-colors cursor-pointer">
-                TCO & ROI Calculator
+                05. {isRTL ? 'الأمان المعزول (Purdue Model)' : 'Air-Gapped Security'}
               </button>
               <button onClick={() => scrollTo('pricing')} className="text-left hover:text-white transition-colors cursor-pointer">
-                Commercial Tracks
+                06. {isRTL ? 'التسعير وسيرة المؤسس' : 'Commercial & Founder'}
               </button>
             </div>
           </div>
 
           {/* Leadership & Contact (4 Cols) */}
-          <div className="md:col-span-4 space-y-3">
+          <div className="md:col-span-4 space-y-3 text-left">
             <div className="text-xs font-mono font-bold text-white uppercase tracking-wider">
-              FOUNDER & TECHNICAL OFFICE
+              {isRTL ? 'المكتب الفني للمؤسس' : 'FOUNDER & TECHNICAL OFFICE'}
             </div>
             <div className="space-y-1.5 text-slate-300">
               <div className="font-semibold text-white">Eng. Mostafa Adel</div>
-              <div className="text-slate-400 text-xs">Founder & Lead Process Architect</div>
+              <div className="text-slate-400 text-xs font-mono">Founder & Chief Process Simulation Architect</div>
               <div className="text-slate-500 text-[11px]">
                 Ex-MIDOR Refinery, Sanmar Chemicals, Agiba Petroleum, Port Harcourt
               </div>
               <div className="pt-3">
                 <button
                   onClick={() => setPilotDrawerOpen(true)}
-                  className="px-5 py-2.5 rounded-full bg-brand-gradient text-white text-xs font-semibold shadow-brand-glow hover:opacity-95 transition-all cursor-pointer"
+                  className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 text-white text-xs font-mono font-bold uppercase tracking-wider shadow-lg hover:shadow-purple-500/25 transition-all cursor-pointer"
                 >
-                  Request 90-Day Pilot ($800) →
+                  {isRTL ? 'طلب تجربة 90 يوماً ($800) ←' : 'Request 90-Day Pilot ($800) →'}
                 </button>
               </div>
             </div>
@@ -82,7 +79,7 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Bottom Legal & Security Notice */}
-        <div className="border-t border-purple-500/10 pt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-500 gap-3">
+        <div className="border-t border-slate-800/80 pt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-500 gap-3">
           <div>
             © 2026 NEXIIVA SIMULATION TECHNOLOGIES. ALL RIGHTS RESERVED.
           </div>
