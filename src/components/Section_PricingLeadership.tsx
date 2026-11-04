@@ -7,6 +7,9 @@ import { Check, Shield, User, Building, Mail, Sliders } from 'lucide-react';
 export const Section_PricingLeadership: React.FC = () => {
   const { setPilotDrawerOpen, language } = useSimulationJourney();
   const isRTL = language === 'AR';
+  const tPricing = translations[language].pricing;
+  const tFounder = translations[language].founder;
+  const tForm = translations[language].bottomForm;
 
   const [name, setName] = useState('');
   const [company, setCompany] = useState('');
@@ -20,160 +23,72 @@ export const Section_PricingLeadership: React.FC = () => {
     setSubmitted(true);
   };
 
-  const pricingTiers = [
-    {
-      name: isRTL ? 'البرنامج التجريبي (90 يوماً)' : '90-Day Refinery Pilot',
-      badge: isRTL ? 'نقطة الانطلاق الموصى بها' : 'RECOMMENDED ENTRY POINT',
-      price: '$800',
-      period: isRTL ? 'لمدة 3 أشهر كاملة' : 'flat for 3 months',
-      desc: isRTL
-        ? 'تحقق من دقة النموذج مع مهندسي العمليات في مصفاتك بدون مخاطرة. بناء نموذج وحدة مخصص وأول حزمة سيناريوهات طوارئ.'
-        : 'Risk-free 3-month validation on your plant data. Test custom flowsheet and first emergency scenario pack with your operations team.',
-      features: [
-        isRTL ? 'بناء نموذج وحدة مخصص من مخططات P&ID' : '1 Custom Unit Flowsheet Model from P&ID',
-        isRTL ? 'حزمة سيناريوهات الطوارئ الأولى' : 'First Critical Emergency Scenario Pack',
-        isRTL ? 'حسابات تدريب حتى 8 مشغلين' : 'Up to 8 Trainee Accounts with Telemetry',
-        isRTL ? 'معايرة ديناميكية مع مهندسي المصفاة' : 'Process SME Tuning & Fidelity Calibration',
-        isRTL ? 'يُخصم 100% من قيمة العقد السنوي عند الترقية' : '100% credited toward annual license',
-      ],
-      featured: true,
-      action: isRTL ? 'بدء تجربة الـ 90 يوماً ($800)' : 'Start 90-Day Pilot ($800)',
-    },
-    {
-      name: isRTL ? 'نكسيفا كلاود للمؤسسات' : 'Cloud OTS Enterprise',
-      badge: isRTL ? 'سحابة خاصة' : 'PRIVATE CLOUD',
-      price: '$5,180',
-      period: isRTL ? 'للسنة الأولى ($7,400 الرسمية)' : 'Year-1 launch ($7.4K list)',
-      desc: isRTL
-        ? 'محاكي سحابي خاص وآمن لتدريب المشغلين والمهندسين دون الحاجة لصيانة أجهزة محلية.'
-        : 'Dedicated private cloud simulator for continuous training with zero local hardware maintenance.',
-      features: [
-        isRTL ? '$1,000 إعداد + $1,000 بناء الوحدة' : '$1,000 setup + $1,000 custom unit build',
-        isRTL ? '$600 تدريب المدربين لمدة يومين' : '$600 2-day on-site instructor training',
-        isRTL ? '$800 تجديد سنوي (حتى 8 مستخدمين)' : '$800/yr renewal (up to 8 users)',
-        isRTL ? '$10 لكل ساعة تدريب فعلية' : '$10 per trainee hour metered billing',
-        isRTL ? 'بطاقات تقييم آلية وشهادات فورية' : 'Automatic rubric grading scorecards',
-      ],
-      featured: false,
-      action: isRTL ? 'اختيار المسار السحابي' : 'Select Cloud Track',
-    },
-    {
-      name: isRTL ? 'غرفة التحكم المعزولة (On-Prem)' : 'On-Premise Control Room',
-      badge: isRTL ? 'معزول 100%' : 'AIR-GAPPED PERPETUAL',
-      price: '$5,320',
-      period: isRTL ? 'للسنة الأولى ($7,600 الرسمية)' : 'Year-1 launch ($7.6K list)',
-      desc: isRTL
-        ? 'ترخيص دائم يعمل دون اتصال بالإنترنت تماماً داخل مركز تدريب المصفاة (مخدم محلي + 3 محطات).'
-        : 'Perpetual license running completely offline inside your plant training center (1 Server + 3 Stations).',
-      features: [
-        isRTL ? '$4,000 بناء نموذج الوحدة الدائم' : '$4,000 perpetual unit model build',
-        isRTL ? '3 محطات تشغيل محلية ($1,000/محطة)' : '3 Local operator consoles ($1K/station)',
-        isRTL ? '$600 تدريب المدربين داخل المصفاة' : '$600 2-day on-site plant training',
-        isRTL ? 'صفر اتصال بالإنترنت (أمان تام)' : 'Zero outbound internet connectivity',
-        isRTL ? 'سرية تامة لمخططات P&ID وبيانات الإنتاج' : '100% P&ID & telemetry confidentiality',
-      ],
-      featured: false,
-      action: isRTL ? 'اختيار مسار الأون-بريميس' : 'Select On-Prem Track',
-    },
-    {
-      name: isRTL ? 'أكاديميات ومعاهد البترول' : 'Training Academies',
-      badge: isRTL ? 'تعليم وتأهيل' : 'EDUCATION & CERTIFICATION',
-      price: '$100–$500',
-      period: isRTL ? 'لكل متدرب معتمد' : 'per certified trainee',
-      desc: isRTL
-        ? 'دورات تدريبية مكثفة للمشغلين الجدد والطلاب مع اختبارات آلية وشهادات معتمدة ضد التزوير.'
-        : '5-day intensive operator certification course packs with automatic rubric grading and certified credentials.',
-      features: [
-        isRTL ? '$100/متدرب على وحدة CDU القياسية' : '$100/trainee on Standard CDU/VDU',
-        isRTL ? '$500/متدرب على الوحدات المعقدة' : '$500/trainee on Custom Refinery Units',
-        isRTL ? 'حد أدنى 5 متدربين لكل دفعة' : 'Minimum 5 trainees per training cohort',
-        isRTL ? 'ختم رقمي مقاوم للتزوير برمز QR' : 'Tamper-evident verification stamp with QR',
-        isRTL ? 'مشاركة أرباح للمراكز الأكاديمية الشريكة' : 'Academic partner revenue share model',
-      ],
-      featured: false,
-      action: isRTL ? 'استفسار الأكاديميات' : 'Inquire for Academies',
-    },
-  ];
-
   return (
     <section id="pricing" className="py-24 px-6 lg:px-12 relative border-t border-slate-200 bg-[#F8FAFC]">
-      <div className="max-w-[1200px] mx-auto space-y-16">
+      <div className="max-w-[1240px] mx-auto space-y-16">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-slate-200 pb-8 text-left">
-          <div className="space-y-3 max-w-2xl" dir={isRTL ? 'rtl' : 'ltr'}>
-            <div className="text-xs font-sans text-[#979799] uppercase tracking-wider">
-              {isRTL ? 'التسعير المؤسسي والبرامج المعتمدة' : 'SEC_05 // COMMERCIAL LICENSING & PILOT VALIDATION'}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-slate-200 pb-8 text-left" dir={isRTL ? 'rtl' : 'ltr'}>
+          <div className="space-y-3 max-w-3xl">
+            <div className="text-xs font-sans text-[#4F46E5] font-bold uppercase tracking-wider">
+              {tPricing.eyebrow}
             </div>
-            <h2 className="text-4xl sm:text-5xl font-bold text-[#0B1120] tracking-[-0.02em] leading-[1.2] font-sans">
-              {isRTL ? (
-                <>
-                  مسارات تجارية واضحة.{' '}
-                  <span className="italic bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] bg-clip-text text-transparent">
-                    بدون احتكار أو تكاليف خفية.
-                  </span>
-                </>
-              ) : (
-                <>
-                  Predictable Commercial Tracks.{' '}
-                  <span className="italic bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] bg-clip-text text-transparent">
-                    Fraction of Legacy CapEx.
-                  </span>
-                </>
-              )}
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0B1120] tracking-tight leading-[1.18] font-sans">
+              {tPricing.headingMain}{' '}
+              <span className="italic font-normal bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] bg-clip-text text-transparent">
+                {tPricing.headingItalic}
+              </span>
             </h2>
-            <p className="text-base sm:text-lg text-[#64748B] font-sans font-normal leading-[1.45]">
-              {isRTL
-                ? 'قارن بين استثمار 5 آلاف دولار مع نكسيفا مقابل 110 آلاف دولار من المحتكرين القدامى، مع جاهزية تشغيل في أسبوع واحد.'
-                : 'From an agile $800 90-day plant validation pilot to full on-premise air-gapped academy deployments.'}
+            <p className="text-base sm:text-lg text-[#64748B] font-sans font-normal leading-relaxed">
+              {tPricing.subheading}
             </p>
           </div>
-          <div className="text-right text-xs font-mono text-[#64748B]">
+          <div className="text-right text-xs font-mono text-[#64748B] shrink-0" dir="ltr">
             <div>CONTRACT CODE: B2B-OTS-2026</div>
-            <div>STATUS: PILOTS ACTIVE</div>
+            <div>STATUS: 30% LAUNCH DISCOUNT ACTIVE</div>
           </div>
         </div>
 
         {/* 1. 4 Commercial Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
-          {pricingTiers.map((tier, idx) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch" dir={isRTL ? 'rtl' : 'ltr'}>
+          {tPricing.cards.map((card, idx) => (
             <div
               key={idx}
               className={`p-7 rounded-2xl border transition-all duration-200 flex flex-col justify-between space-y-6 relative text-left ${
-                tier.featured
+                card.featured
                   ? 'bg-white border-2 border-[#4F46E5] shadow-[0_20px_45px_-15px_rgba(79,70,229,0.2)]'
                   : 'bg-white border-slate-200 shadow-sm hover:border-[#4F46E5]/40'
               }`}
             >
-              {tier.featured && (
+              {card.featured && (
                 <div className="absolute -top-3 left-6 bg-gradient-to-r from-[#7C3AED] to-[#2563EB] text-white text-[10px] font-sans font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-md whitespace-nowrap">
-                  {tier.badge}
+                  {card.badge}
                 </div>
               )}
 
               <div className="space-y-4">
-                {!tier.featured && (
+                {!card.featured && (
                   <span className="text-[10px] font-sans text-[#64748B] uppercase tracking-widest block font-medium">
-                    {tier.badge}
+                    {card.badge}
                   </span>
                 )}
 
                 <div>
-                  <h3 className="text-lg font-semibold text-[#0B1120] tracking-tight font-sans">{tier.name}</h3>
-                  <div className="text-3xl font-bold font-sans text-[#0B1120] mt-2 flex items-baseline gap-1">
-                    <span>{tier.price}</span>
+                  <h3 className="text-lg font-bold text-[#0B1120] tracking-tight font-sans">{card.name}</h3>
+                  <div className="text-3xl font-extrabold font-sans text-[#0B1120] mt-2 flex items-baseline gap-1">
+                    <span>{card.price}</span>
                   </div>
-                  <div className="text-xs text-[#64748B] font-sans mt-0.5">{tier.period}</div>
+                  <div className="text-xs text-[#64748B] font-sans mt-0.5 leading-snug">{card.period}</div>
                 </div>
 
                 <p className="text-xs text-[#64748B] leading-relaxed border-t border-slate-100 pt-3 font-sans">
-                  {tier.desc}
+                  {card.desc}
                 </p>
 
                 <div className="space-y-2 pt-2 border-t border-slate-100 text-xs text-[#0B1120]">
-                  {tier.features.map((feat, fi) => (
-                    <div key={fi} className="flex items-start space-x-2">
+                  {card.bullets.map((bullet, bi) => (
+                    <div key={bi} className="flex items-start space-x-2">
                       <Check className="w-3.5 h-3.5 text-[#059669] shrink-0 mt-0.5" />
-                      <span className="leading-tight text-[11px] text-[#64748B]">{feat}</span>
+                      <span className="leading-tight text-[11px] text-[#64748B]">{bullet}</span>
                     </div>
                   ))}
                 </div>
@@ -185,20 +100,19 @@ export const Section_PricingLeadership: React.FC = () => {
                   setPilotDrawerOpen(true);
                 }}
                 className={`w-full py-2.5 rounded-full text-xs font-sans font-semibold transition-all cursor-pointer ${
-                  tier.featured
+                  card.featured
                     ? 'bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] text-white shadow-[0_8px_25px_-4px_rgba(79,70,229,0.45)] hover:shadow-[0_12px_30px_-4px_rgba(79,70,229,0.6)]'
                     : 'bg-white text-[#0B1120] border border-slate-300 hover:border-[#4F46E5] hover:text-[#4F46E5]'
                 }`}
               >
-                {tier.action}
+                {card.cta}
               </button>
             </div>
           ))}
         </div>
 
-        {/* 2. The Founder Dossier (Steep Editorial Style) */}
         {/* 2. The Founder Dossier */}
-        <div className="rounded-2xl bg-white border border-slate-200 shadow-sm p-8 sm:p-10 relative overflow-hidden">
+        <div className="rounded-2xl bg-white border border-slate-200 shadow-sm p-8 sm:p-10 relative overflow-hidden" dir={isRTL ? 'rtl' : 'ltr'}>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             {/* Founder Avatar & Badge */}
             <div className="lg:col-span-3 text-center space-y-3">
@@ -208,73 +122,52 @@ export const Section_PricingLeadership: React.FC = () => {
               </div>
               <div>
                 <h4 className="text-lg font-bold text-[#0B1120] font-sans">Eng. Mostafa Adel</h4>
-                <p className="text-xs text-[#64748B] font-sans">Chief Process Simulation Architect</p>
+                <p className="text-xs text-[#64748B] font-sans">Founder & CEO — Lead Process OTS Architect</p>
               </div>
             </div>
 
             {/* Field Pedigree Narrative */}
-            <div className="lg:col-span-9 space-y-4 text-left border-l border-slate-100 pl-0 lg:pl-8">
+            <div className={`lg:col-span-9 space-y-4 text-left ${isRTL ? 'lg:border-r border-slate-100 lg:pr-8' : 'lg:border-l border-slate-100 lg:pl-8'}`}>
               <div className="flex items-center space-x-2 text-xs font-sans text-[#059669] font-semibold">
                 <Shield className="w-4 h-4" />
-                <span>10+ YEARS ON REFINERY CONSOLES & PETROCHEMICAL COMPLEXES</span>
+                <span>{tFounder.badge}</span>
               </div>
               <h3 className="text-xl sm:text-2xl font-bold text-[#0B1120] tracking-tight font-sans">
-                {isRTL
-                  ? 'صُمم بواسطة مهندس عمليات من داخل غرف التحكم، وليس مبرمجين خلف مكاتب مكيفة.'
-                  : 'Engineered by a frontline refinery DCS specialist, not detached enterprise software coders.'}
+                {tFounder.title}
               </h3>
               <p className="text-sm text-[#64748B] leading-relaxed font-sans">
-                {isRTL
-                  ? 'قضى م. مصطفى عادل أكثر من عقد في تشغيل ومحاكاة أعقد وحدات التكرير في مصفاة الشرق الأوسط لتكرير البترول (ميدور - الإسكندرية)، وشركة سانمار للكيماويات (بورسعيد)، وعجيبة للبترول، ومصفاة بورت هاركورت الدولية. تم تطوير نكسيفا لإنهاء الاحتكار الاستغلالي لشركات المحاكاة القديمة التي تطلب ملايين الدولارات وتستغرق عاماً كاملاً لتسليم نموذج بطيء.'
-                  : 'Over a decade leading console commissioning and complex upsets across Middle East Oil Refinery (MIDOR Alexandria), TCI Sanmar Chemicals (Port Said), Agiba Petroleum Company, and Port Harcourt Refining Company. NEXIIVA was architected out of visceral frustration with obsolete legacy simulator cartels that charge $110,000+ and take 9 to 14 months to deliver closed-box proprietary models.'}
+                {tFounder.body}
               </p>
 
               {/* Verified Plants Ribbon */}
               <div className="pt-2 flex flex-wrap gap-2 text-xs font-sans text-[#64748B]">
-                <span className="px-3 py-1 rounded-full bg-slate-100 text-slate-800 border border-slate-200">
-                  MIDOR (Alexandria)
-                </span>
-                <span className="px-3 py-1 rounded-full bg-slate-100 text-slate-800 border border-slate-200">
-                  TCI Sanmar Chemicals
-                </span>
-                <span className="px-3 py-1 rounded-full bg-slate-100 text-slate-800 border border-slate-200">
-                  Agiba Petroleum Co.
-                </span>
-                <span className="px-3 py-1 rounded-full bg-slate-100 text-slate-800 border border-slate-200">
-                  Port Harcourt Refinery
-                </span>
+                {tFounder.verified.map((plant, pi) => (
+                  <span
+                    key={pi}
+                    className="px-3 py-1 rounded-full bg-slate-100 text-slate-800 border border-slate-200 font-medium"
+                  >
+                    {plant}
+                  </span>
+                ))}
               </div>
             </div>
           </div>
         </div>
 
         {/* 3. Streamlined Fast-Track Pilot Request */}
-        <div className="rounded-2xl bg-white border border-slate-200 shadow-sm p-8 sm:p-12 relative overflow-hidden max-w-3xl mx-auto">
+        <div className="rounded-2xl bg-white border border-slate-200 shadow-sm p-8 sm:p-12 relative overflow-hidden max-w-3xl mx-auto" dir={isRTL ? 'rtl' : 'ltr'}>
           <div className="text-center space-y-2 mb-8">
             <span className="text-xs font-sans text-[#4F46E5] uppercase tracking-widest block font-semibold">
               {isRTL ? 'حجز اختبار تجريبي خلال 24 ساعة' : '24-HOUR PILOT INTAKE'}
             </span>
-            <h3 className="text-2xl sm:text-3xl font-bold text-[#0B1120] tracking-[-0.02em] font-sans">
-              {isRTL ? (
-                <>
-                  اختبر نموذج مصفاتك الحقيقي{' '}
-                  <span className="italic bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] bg-clip-text text-transparent">
-                    مع مهندسي العمليات.
-                  </span>
-                </>
-              ) : (
-                <>
-                  Commission Your Plant Flowsheet{' '}
-                  <span className="italic bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] bg-clip-text text-transparent">
-                    with Eng. Mostafa Adel.
-                  </span>
-                </>
-              )}
+            <h3 className="text-2xl sm:text-3xl font-bold text-[#0B1120] tracking-tight font-sans">
+              {tForm.headingMain}{' '}
+              <span className="italic font-normal bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] bg-clip-text text-transparent">
+                {tForm.headingItalic}
+              </span>
             </h3>
-            <p className="text-sm text-[#64748B] max-w-xl mx-auto font-sans">
-              {isRTL
-                ? 'أرسل مخطط P&ID لوحدة واحدة، وسنقوم بتسليم محاكي تفاعلي كامل خلال 7 أيام عمل.'
-                : 'Submit a single unit P&ID under standard mutual NDA. Receive a running high-fidelity simulation model in ~7 business days.'}
+            <p className="text-sm text-[#64748B] max-w-xl mx-auto font-sans leading-relaxed">
+              {tForm.subheading}
             </p>
           </div>
 
@@ -284,12 +177,12 @@ export const Section_PricingLeadership: React.FC = () => {
                 ✓
               </div>
               <h4 className="text-xl font-bold text-[#0B1120] font-sans">
-                {isRTL ? 'تم استلام طلب التجربة بنجاح' : 'Refinery Pilot Intake Confirmed'}
+                {isRTL ? 'تم استلام طلبك بنجاح' : 'Demo & Pilot Request Received'}
               </h4>
               <p className="text-xs text-[#64748B] max-w-md mx-auto font-sans leading-relaxed">
                 {isRTL
-                  ? 'سيتواصل مكتب م. مصطفى عادل معك مباشرة عبر البريد الإلكتروني خلال 24 ساعة لإرسال اتفاقية عدم الإفصاح (NDA) ورابط رفع المخططات.'
-                  : 'Eng. Mostafa Adel’s technical desk has received your plant parameters. You will receive the Mutual NDA and P&ID intake guidelines within 24 business hours.'}
+                  ? 'سيتواصل معك م. مصطفى عادل أو الفريق الفني خلال 24 ساعة عبر البريد الإلكتروني لتنسيق العرض الحي ومناقشة تفاصيل الوحدة.'
+                  : 'Eng. Mostafa Adel or our technical team will reach out within 24 hours to schedule the live CDU/VDU walkthrough and discuss your unit specifications.'}
               </p>
             </div>
           ) : (
@@ -305,7 +198,7 @@ export const Section_PricingLeadership: React.FC = () => {
                     required
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    placeholder="Eng. Tarek Mansour — Lead DCS Supervisor"
+                    placeholder={isRTL ? 'م. طارق منصور — مشرف غرفة التحكم' : 'Eng. Tarek Mansour — Lead DCS Supervisor'}
                     className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] border border-slate-200 focus:border-[#4F46E5] text-[#0B1120] text-sm outline-none transition-all placeholder:text-slate-400"
                   />
                 </div>
@@ -320,7 +213,7 @@ export const Section_PricingLeadership: React.FC = () => {
                     required
                     value={company}
                     onChange={(e) => setCompany(e.target.value)}
-                    placeholder="Middle East Oil Refinery (MIDOR) / EGPC"
+                    placeholder={isRTL ? 'مصفاة الشرق الأوسط (ميدور) / الهيئة العامة للبترول' : 'Middle East Oil Refinery (MIDOR) / EGPC'}
                     className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] border border-slate-200 focus:border-[#4F46E5] text-[#0B1120] text-sm outline-none transition-all placeholder:text-slate-400"
                   />
                 </div>
@@ -365,7 +258,7 @@ export const Section_PricingLeadership: React.FC = () => {
                 type="submit"
                 className="w-full py-4 rounded-full text-sm font-semibold mt-3 cursor-pointer bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] text-white shadow-[0_8px_25px_-4px_rgba(79,70,229,0.45)] hover:shadow-[0_12px_30px_-4px_rgba(79,70,229,0.6)] transition-all flex items-center justify-center space-x-2"
               >
-                <span>{isRTL ? 'إرسال طلب التحقق الهندسي وتوقيع NDA' : 'Submit Pilot Intake & Request Mutual NDA'}</span>
+                <span>{tForm.button}</span>
                 <span className="ml-2">→</span>
               </button>
             </form>

@@ -218,7 +218,7 @@ export const InteractiveRefineryConsole: React.FC = () => {
           <span className="text-slate-700 hidden sm:inline">|</span>
 
           <span className="text-[11px] font-mono text-slate-300 hidden md:inline">
-            UNIT: CDU-100 (ATM T-22 / VAC T-60)
+            UNIT: CDU - ATM T23 / VDU - T60 PROCESS FLOW
           </span>
 
           <span className="text-slate-700 hidden lg:inline">|</span>
@@ -228,8 +228,42 @@ export const InteractiveRefineryConsole: React.FC = () => {
           </span>
         </div>
 
-        {/* Right: Quick Action Indicators */}
-        <div className="flex items-center space-x-2 text-xs font-mono relative z-10">
+        {/* Right: Fault Triggers & Quick Action Indicators */}
+        <div className="flex flex-wrap items-center gap-2 text-xs font-mono relative z-10">
+          <div className="flex items-center space-x-1.5 font-mono text-[10px]">
+            <span className="text-slate-400 uppercase text-[9px] mr-0.5 hidden xl:inline">INJECT:</span>
+            <button
+              onClick={() => {
+                injectFault('S1');
+                handleStartGameDrill();
+              }}
+              title="Inject Reflux Pump Failure"
+              className="px-2 py-1 rounded bg-rose-950/80 hover:bg-rose-900 border border-rose-500/80 text-rose-300 hover:text-white font-bold transition-colors cursor-pointer text-[10px]"
+            >
+              ⚡ REFLUX LOSS
+            </button>
+            <button
+              onClick={() => {
+                injectFault('S3');
+                handleStartGameDrill();
+              }}
+              title="Inject Vacuum Loss"
+              className="px-2 py-1 rounded bg-rose-950/80 hover:bg-rose-900 border border-rose-500/80 text-rose-300 hover:text-white font-bold transition-colors cursor-pointer text-[10px]"
+            >
+              ⚡ VACUUM LOSS
+            </button>
+            <button
+              onClick={() => {
+                injectFault('S2');
+                handleStartGameDrill();
+              }}
+              title="Inject Furnace Emergency Trip"
+              className="px-2 py-1 rounded bg-rose-950/80 hover:bg-rose-900 border border-rose-500/80 text-rose-300 hover:text-white font-bold transition-colors cursor-pointer text-[10px]"
+            >
+              ⚡ H23 EMERGENCY
+            </button>
+          </div>
+
           {gameActive && (
             <div className="px-3 py-1 rounded-full bg-rose-950/80 border border-rose-500 text-rose-300 font-bold animate-pulse flex items-center space-x-2 shadow-[0_0_20px_rgba(244,63,94,0.4)]">
               <Timer className="w-3.5 h-3.5 text-rose-400" />

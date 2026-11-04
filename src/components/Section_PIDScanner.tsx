@@ -1,20 +1,23 @@
 import React, { useState } from 'react';
 import { useSimulationJourney } from '../context/SimulationJourneyContext';
+import { translations } from '../data/translations';
 import { dcsAudio } from '../utils/audio';
+import { Bot, Cpu, Layers, Sparkles, CheckCircle2, Sliders, ShieldCheck } from 'lucide-react';
 
 type BlueprintPreset = 'CDU' | 'VDU' | 'REFORMER';
 type CategoryKey = 'COLUMNS' | 'HEATERS' | 'ROTATING' | 'CONTROLS' | 'SAFETY';
 
 export const Section_PIDScanner: React.FC = () => {
   const { language } = useSimulationJourney();
+  const t = translations[language].otsBuilder;
+  const isRTL = language === 'AR';
+
   const [selectedPreset, setSelectedPreset] = useState<BlueprintPreset>('CDU');
   const [isScanning, setIsScanning] = useState(false);
   const [scanProgress, setScanProgress] = useState(100);
   const [detectedCount, setDetectedCount] = useState(387);
   const [activeTag, setActiveTag] = useState<string>('C-101');
   const [selectedCat, setSelectedCat] = useState<CategoryKey>('COLUMNS');
-
-  const isRTL = language === 'AR';
 
   const triggerScan = (preset: BlueprintPreset) => {
     setSelectedPreset(preset);
@@ -77,121 +80,129 @@ export const Section_PIDScanner: React.FC = () => {
   };
 
   return (
-    <section id="pid-scanner" className="py-24 px-6 lg:px-12 relative bg-white border-t border-slate-200">
-      <div className="max-w-[1200px] mx-auto space-y-12">
+    <section id="ots-builder" className="py-24 px-6 lg:px-12 relative bg-white border-t border-slate-200">
+      <div className="max-w-[1200px] mx-auto space-y-16">
         {/* Section Header */}
-        <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-6 border-b border-slate-100 pb-8 text-left" dir={isRTL ? 'rtl' : 'ltr'}>
-          <div className="space-y-3 max-w-3xl">
-            <div className="text-xs font-mono font-bold text-[#4F46E5] uppercase tracking-wider">
-              {isRTL ? 'محرك التوليف الآلي لمخططات P&ID' : 'PROPRIETARY AUTOMATED FLOWSHEET SYNTHESIS'}
-            </div>
-            <h2 className="text-4xl sm:text-5xl font-extrabold text-[#0B1120] tracking-tight leading-[1.2] font-sans">
-              {isRTL ? (
-                <>
-                  من مخططات P&ID إلى محاكٍ ديناميكي كامل{' '}
-                  <span className="italic font-normal bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] bg-clip-text text-transparent">
-                    في أسبوع واحد.
-                  </span>
-                </>
-              ) : (
-                <>
-                  From scanned P&ID to running OTS{' '}
-                  <span className="italic font-normal bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] bg-clip-text text-transparent">
-                    in ~7 business days.
-                  </span>
-                </>
-              )}
-            </h2>
-            <p className="text-base sm:text-lg text-slate-600 font-sans font-normal leading-relaxed">
-              {isRTL
-                ? 'الشركات التقليدية تحتاج 6 إلى 9 أشهر من البرمجة اليدوية بتكلفة 110 ألف دولار. نكسيفا تحلل مخططات P&ID الخاصة بمصفاتك آلياً وتولد المعادلات الديناميكية ومكتبة الـ 387 معدة في 7 أيام فقط.'
-                : 'Legacy vendors spend 6 to 9 months manually hardcoding equations. NEXIIVA parses your refinery P&IDs to auto-compile dynamic mass & energy balances across 387 equipment types in ~7 days.'}
-            </p>
+        <div className="max-w-3xl space-y-4 text-left" dir={isRTL ? 'rtl' : 'ltr'}>
+          <div className="text-xs font-mono font-bold text-[#4F46E5] uppercase tracking-wider">
+            {t.eyebrow}
           </div>
-
-          {/* Unit Selector Pill Tabs */}
-          <div className="flex items-center gap-1.5 bg-[#F1F5F9] p-1 rounded-full shrink-0 border border-slate-200">
-            <button
-              onClick={() => triggerScan('CDU')}
-              className={`px-4 py-1.5 rounded-full text-xs font-sans transition-all cursor-pointer ${
-                selectedPreset === 'CDU'
-                  ? 'bg-gradient-to-r from-[#7C3AED] to-[#2563EB] text-white font-semibold shadow-sm'
-                  : 'text-slate-600 hover:text-[#0B1120]'
-              }`}
-            >
-              CDU-100 (Atmospheric)
-            </button>
-            <button
-              onClick={() => triggerScan('VDU')}
-              className={`px-4 py-1.5 rounded-full text-xs font-sans transition-all cursor-pointer ${
-                selectedPreset === 'VDU'
-                  ? 'bg-gradient-to-r from-[#7C3AED] to-[#2563EB] text-white font-semibold shadow-sm'
-                  : 'text-slate-600 hover:text-[#0B1120]'
-              }`}
-            >
-              VDU-200 (Vacuum)
-            </button>
-            <button
-              onClick={() => triggerScan('REFORMER')}
-              className={`px-4 py-1.5 rounded-full text-xs font-sans transition-all cursor-pointer ${
-                selectedPreset === 'REFORMER'
-                  ? 'bg-gradient-to-r from-[#7C3AED] to-[#2563EB] text-white font-semibold shadow-sm'
-                  : 'text-slate-600 hover:text-[#0B1120]'
-              }`}
-            >
-              CRU-300 (Reformer)
-            </button>
-          </div>
+          <h2 className="text-4xl sm:text-5xl font-extrabold text-[#0B1120] tracking-tight leading-[1.2] font-sans">
+            {t.headingMain}{' '}
+            <span className="italic font-normal bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] bg-clip-text text-transparent">
+              {t.headingItalic}
+            </span>
+          </h2>
+          <p className="text-base sm:text-lg text-slate-600 font-sans font-normal leading-relaxed">
+            {t.subheading}
+          </p>
         </div>
 
-        {/* The Engineering Light-Table & Blueprint Canvas */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-          {/* Left: The Scanning Blueprint Viewer (7 Cols) */}
-          <div className="lg:col-span-7 rounded-[24px] bg-white border border-[#ececec] shadow-artifact p-6 flex flex-col justify-between relative overflow-hidden min-h-[460px]">
-            {/* Top Status Banner */}
-            <div className="flex items-center justify-between pb-4 border-b border-[#f2f2f3] text-xs font-sans">
-              <div className="flex items-center space-x-2">
-                <span className={`w-2 h-2 rounded-full ${isScanning ? 'bg-[#0284c7] animate-ping' : 'bg-[#059669]'}`} />
-                <span className="text-[#17191c] font-medium">
-                  {isScanning ? 'SCANNING P&ID SCHEMATIC...' : 'P&ID SYNTHESIS VERIFIED'}
+        {/* 3 Core OTS Builder Feature Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left" dir={isRTL ? 'rtl' : 'ltr'}>
+          {t.features.map((feat, idx) => (
+            <div
+              key={idx}
+              className="p-7 rounded-2xl bg-[#F8FAFC] border border-slate-200/90 hover:border-[#4F46E5]/40 transition-all space-y-3 shadow-xs"
+            >
+              <div className="w-10 h-10 rounded-xl bg-purple-50 border border-purple-200/60 flex items-center justify-center text-[#4F46E5]">
+                {idx === 0 && <Bot className="w-5 h-5" />}
+                {idx === 1 && <Cpu className="w-5 h-5" />}
+                {idx === 2 && <Layers className="w-5 h-5" />}
+              </div>
+              <h3 className="text-lg font-bold text-[#0B1120] font-sans">{feat.title}</h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-sans">{feat.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Interactive P&ID Blueprint Ingestion Studio */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          {/* Left: Interactive Ingestion Canvas (7 Cols) */}
+          <div className="lg:col-span-7 rounded-2xl bg-white border border-slate-200 p-6 space-y-5 shadow-sm text-left" dir={isRTL ? 'rtl' : 'ltr'}>
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-100 gap-3">
+              <div>
+                <span className="text-xs font-mono font-bold text-slate-700 block uppercase">
+                  {isRTL ? 'مختبر فحص مخططات P&ID التفاعلي' : 'P&ID NEURAL INGESTION ENGINE'}
+                </span>
+                <span className="text-[11px] font-sans text-slate-500">
+                  {isRTL ? 'تحليل مسارات التدفق والتوازن الهيدروليكي آلياً' : 'Automated topological graph generation from engineering drawings'}
                 </span>
               </div>
-              <div className="flex items-center space-x-3 text-[#777b86] font-mono text-[11px]">
-                <span className="text-[#17191c] font-bold">{detectedCount} / 387 NODES</span>
-                <span>|</span>
-                <span className="text-[#059669] font-bold">{scanProgress}%</span>
+
+              {/* Preset Selector */}
+              <div className="flex items-center bg-[#F1F5F9] p-1 rounded-full text-xs font-sans shrink-0 border border-slate-200">
+                <button
+                  onClick={() => triggerScan('CDU')}
+                  className={`px-3 py-1 rounded-full transition-all cursor-pointer ${
+                    selectedPreset === 'CDU'
+                      ? 'bg-gradient-to-r from-[#7C3AED] to-[#2563EB] text-white font-semibold shadow-xs'
+                      : 'text-slate-600 hover:text-[#0B1120]'
+                  }`}
+                >
+                  CDU-100
+                </button>
+                <button
+                  onClick={() => triggerScan('VDU')}
+                  className={`px-3 py-1 rounded-full transition-all cursor-pointer ${
+                    selectedPreset === 'VDU'
+                      ? 'bg-gradient-to-r from-[#7C3AED] to-[#2563EB] text-white font-semibold shadow-xs'
+                      : 'text-slate-600 hover:text-[#0B1120]'
+                  }`}
+                >
+                  VDU-200
+                </button>
+                <button
+                  onClick={() => triggerScan('REFORMER')}
+                  className={`px-3 py-1 rounded-full transition-all cursor-pointer ${
+                    selectedPreset === 'REFORMER'
+                      ? 'bg-gradient-to-r from-[#7C3AED] to-[#2563EB] text-white font-semibold shadow-xs'
+                      : 'text-slate-600 hover:text-[#0B1120]'
+                  }`}
+                >
+                  CRU-300
+                </button>
               </div>
             </div>
 
-            {/* The Blueprint Canvas */}
-            <div className="relative flex-1 my-4 rounded-[16px] bg-[#f8fafc] border border-[#e2e8f0] p-4 flex items-center justify-center overflow-hidden">
-              {/* CAD Grid Lines */}
-              <div
-                className="absolute inset-0 opacity-20 pointer-events-none"
-                style={{
-                  backgroundImage: `linear-gradient(to right, #94a3b8 1px, transparent 1px), linear-gradient(to bottom, #94a3b8 1px, transparent 1px)`,
-                  backgroundSize: '24px 24px',
-                }}
-              />
-
-              {/* Laser Scanning Beam */}
-              {isScanning && (
+            {/* Ingestion Scan Status & Progress Bar */}
+            <div className="space-y-2">
+              <div className="flex justify-between text-xs font-mono">
+                <span className="text-slate-600 font-semibold">
+                  {isScanning
+                    ? (isRTL ? 'جاري فحص المخطط واستخراج المعدات...' : 'PARSING P&ID BLUEPRINT NODES IN REAL-TIME...')
+                    : (isRTL ? 'اكتمل التوليف · معادلات توازن الكتلة والطاقة جاهزة' : 'SYNTHESIS COMPLETE · DYNAMIC MASS & ENERGY BALANCE READY')}
+                </span>
+                <span className="text-[#4F46E5] font-bold">
+                  {detectedCount} / 387 {isRTL ? 'معدة' : 'NODES'}
+                </span>
+              </div>
+              <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
                 <div
-                  className="absolute inset-y-0 w-1 bg-[#0284c7] shadow-[0_0_12px_#38bdf8] z-30 transition-all duration-75 pointer-events-none"
-                  style={{ left: `${scanProgress}%` }}
+                  className="h-full bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] transition-all duration-300"
+                  style={{ width: `${scanProgress}%` }}
                 />
-              )}
+              </div>
+            </div>
 
-              {/* Architectural P&ID Layout SVG */}
-              <svg className="w-full h-full max-h-[300px] select-none" viewBox="0 0 800 300" fill="none">
-                {/* Piping lines */}
-                <path d="M 60 150 L 180 150" stroke="#0284c7" strokeWidth="2.5" />
-                <path d="M 260 150 L 360 150" stroke="#d97706" strokeWidth="2.5" />
-                <path d="M 410 70 L 410 40 L 580 40 L 580 70" stroke="#5d2a1a" strokeWidth="2.5" />
-                <path d="M 580 120 L 580 180 L 640 180" stroke="#0284c7" strokeWidth="2" />
-                <path d="M 680 180 L 740 180 L 740 120 L 440 120" stroke="#0284c7" strokeWidth="2" strokeDasharray="6 3" />
+            {/* Interactive Vector CAD Blueprint Canvas */}
+            <div className="h-64 sm:h-72 w-full bg-[#FAFAFA] border border-slate-200 rounded-xl relative overflow-hidden flex items-center justify-center p-4">
+              <svg className="w-full h-full select-none" viewBox="0 0 800 320">
+                {/* Blueprint Grid Lines */}
+                <defs>
+                  <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
+                    <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#e2e8f0" strokeWidth="0.8" />
+                  </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#grid)" />
 
-                {/* Hotspot 1: F-101 Furnace */}
+                {/* Connection Process Lines */}
+                <path d="M 80 180 L 220 180" fill="none" stroke="#94a3b8" strokeWidth="2.5" strokeDasharray="6 3" />
+                <path d="M 320 180 L 440 180" fill="none" stroke="#3b82f6" strokeWidth="3" />
+                <path d="M 520 180 L 640 180" fill="none" stroke="#3b82f6" strokeWidth="3" />
+                <path d="M 480 90 L 480 60 L 640 60 L 640 120" fill="none" stroke="#f43f5e" strokeWidth="2" strokeDasharray="4 2" />
+
+                {/* Equipment Node 1: Fired Heater F-101 */}
                 <g
                   onClick={() => {
                     setActiveTag('F-101');
@@ -200,24 +211,24 @@ export const Section_PIDScanner: React.FC = () => {
                   className="cursor-pointer group"
                 >
                   <rect
-                    x="180"
-                    y="100"
-                    width="80"
+                    x="220"
+                    y="130"
+                    width="100"
                     height="100"
-                    rx="4"
-                    fill={activeTag === 'F-101' ? '#fed7aa' : '#ffffff'}
-                    stroke={activeTag === 'F-101' ? '#ea580c' : '#cbd5e1'}
+                    rx="12"
+                    fill={activeTag === 'F-101' ? '#ede9fe' : '#ffffff'}
+                    stroke={activeTag === 'F-101' ? '#7C3AED' : '#cbd5e1'}
                     strokeWidth={activeTag === 'F-101' ? '2.5' : '1.5'}
                   />
-                  <text x="220" y="145" textAnchor="middle" fill="#17191c" fontSize="11" fontWeight="bold" fontFamily="monospace">
+                  <text x="270" y="175" textAnchor="middle" fill="#0B1120" fontSize="12" fontWeight="bold" fontFamily="monospace">
                     F-101
                   </text>
-                  <text x="220" y="165" textAnchor="middle" fill="#d97706" fontSize="9" fontFamily="monospace">
-                    FURNACE
+                  <text x="270" y="195" textAnchor="middle" fill="#64748B" fontSize="9" fontFamily="sans-serif">
+                    Charge Heater
                   </text>
                 </g>
 
-                {/* Hotspot 2: C-101 Column */}
+                {/* Equipment Node 2: Fractionation Column C-101 */}
                 <g
                   onClick={() => {
                     setActiveTag('C-101');
@@ -226,27 +237,24 @@ export const Section_PIDScanner: React.FC = () => {
                   className="cursor-pointer group"
                 >
                   <rect
-                    x="360"
-                    y="50"
+                    x="440"
+                    y="90"
                     width="80"
-                    height="200"
-                    rx="16"
-                    fill={activeTag === 'C-101' ? '#e0f2fe' : '#ffffff'}
-                    stroke={activeTag === 'C-101' ? '#0284c7' : '#cbd5e1'}
+                    height="180"
+                    rx="18"
+                    fill={activeTag === 'C-101' ? '#ede9fe' : '#ffffff'}
+                    stroke={activeTag === 'C-101' ? '#7C3AED' : '#cbd5e1'}
                     strokeWidth={activeTag === 'C-101' ? '2.5' : '1.5'}
                   />
-                  {[80, 100, 120, 140, 160, 180, 200, 220].map((y, i) => (
-                    <line key={i} x1="370" y1={y} x2="430" y2={y} stroke="#cbd5e1" strokeWidth="1" strokeDasharray="2 2" />
-                  ))}
-                  <text x="400" y="145" textAnchor="middle" fill="#17191c" fontSize="12" fontWeight="bold" fontFamily="monospace">
+                  <text x="480" y="175" textAnchor="middle" fill="#0B1120" fontSize="12" fontWeight="bold" fontFamily="monospace">
                     C-101
                   </text>
-                  <text x="400" y="165" textAnchor="middle" fill="#0284c7" fontSize="9" fontFamily="monospace">
-                    48 TRAYS
+                  <text x="480" y="195" textAnchor="middle" fill="#64748B" fontSize="9" fontFamily="sans-serif">
+                    ATM Column
                   </text>
                 </g>
 
-                {/* Hotspot 3: P-101 Pumps */}
+                {/* Equipment Node 3: Reflux Pump P-101 */}
                 <g
                   onClick={() => {
                     setActiveTag('P-101A/B');
@@ -257,39 +265,39 @@ export const Section_PIDScanner: React.FC = () => {
                   <circle
                     cx="660"
                     cy="180"
-                    r="20"
+                    r="22"
                     fill={activeTag === 'P-101A/B' ? '#dcfce7' : '#ffffff'}
                     stroke={activeTag === 'P-101A/B' ? '#059669' : '#cbd5e1'}
                     strokeWidth={activeTag === 'P-101A/B' ? '2.5' : '1.5'}
                   />
-                  <text x="660" y="184" textAnchor="middle" fill="#17191c" fontSize="9" fontWeight="bold" fontFamily="monospace">
+                  <text x="660" y="184" textAnchor="middle" fill="#0B1120" fontSize="9" fontWeight="bold" fontFamily="monospace">
                     P-101
                   </text>
                 </g>
               </svg>
 
-              <div className="absolute bottom-3 left-3 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-md border border-[#e2e8f0] text-[10px] font-mono text-[#777b86]">
+              <div className="absolute bottom-3 left-3 bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded-lg border border-slate-200 text-[10px] font-mono text-slate-600 shadow-xs">
                 {isRTL ? 'اضغط على أي معدة في المخطط لفحص كود المحاكاة والمعادلات' : 'Click equipment node in drawing to inspect thermodynamic solver'}
               </div>
             </div>
 
             {/* Ingestion KPI Ribbon */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2 border-t border-[#f2f2f3] text-center font-mono">
-              <div className="p-2.5 rounded-[12px] bg-[#f8fafc] border border-[#e2e8f0]">
-                <div className="text-lg font-bold text-[#17191c]">7 DAYS</div>
-                <div className="text-[10px] text-[#777b86] uppercase">CUSTOM DELIVERY</div>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2 border-t border-slate-100 text-center font-mono">
+              <div className="p-2.5 rounded-xl bg-[#F8FAFC] border border-slate-200">
+                <div className="text-lg font-bold text-[#0B1120]">~1 WEEK</div>
+                <div className="text-[10px] text-slate-500 uppercase">RAPID BUILD TARGET</div>
               </div>
-              <div className="p-2.5 rounded-[12px] bg-[#f8fafc] border border-[#e2e8f0]">
-                <div className="text-lg font-bold text-[#0284c7]">387</div>
-                <div className="text-[10px] text-[#777b86] uppercase">EQUIPMENT SPECS</div>
+              <div className="p-2.5 rounded-xl bg-[#F8FAFC] border border-slate-200">
+                <div className="text-lg font-bold text-[#4F46E5]">387</div>
+                <div className="text-[10px] text-slate-500 uppercase">EQUIPMENT SPECS</div>
               </div>
-              <div className="p-2.5 rounded-[12px] bg-[#f8fafc] border border-[#e2e8f0]">
+              <div className="p-2.5 rounded-xl bg-[#F8FAFC] border border-slate-200">
                 <div className="text-lg font-bold text-[#4F46E5]">100%</div>
                 <div className="text-[10px] text-slate-500 uppercase">P&ID TAG FIDELITY</div>
               </div>
-              <div className="p-2.5 rounded-[12px] bg-[#f8fafc] border border-[#e2e8f0]">
+              <div className="p-2.5 rounded-xl bg-[#F8FAFC] border border-slate-200">
                 <div className="text-lg font-bold text-[#059669]">0.00ms</div>
-                <div className="text-[10px] text-slate-500 uppercase">JITTER LATENCY</div>
+                <div className="text-[10px] text-slate-500 uppercase">OFFLINE LATENCY</div>
               </div>
             </div>
           </div>
@@ -305,7 +313,7 @@ export const Section_PIDScanner: React.FC = () => {
               </div>
 
               {activeTag && tagDetails[activeTag] && (
-                <div className="space-y-4 animate-fadeIn">
+                <div className="space-y-4">
                   <div>
                     <h3 className="text-lg font-bold text-[#0B1120] font-sans">
                       {tagDetails[activeTag].name}

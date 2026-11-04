@@ -31,29 +31,29 @@ export const Footer: React.FC = () => {
           {/* Quick Links (3 Cols) */}
           <div className="md:col-span-3 space-y-3 text-left">
             <div className="text-xs font-sans font-semibold text-[#0B1120] uppercase tracking-wider">
-              {isRTL ? 'أقسام المنصة الهندسية' : 'Platform Specification'}
+              {isRTL ? 'أقسام المنصة' : 'Platform Navigation'}
             </div>
             <div className="flex flex-col space-y-2 text-[#64748B] font-sans text-xs">
               <button
-                onClick={() => setSimulatorModalOpen(true)}
+                onClick={() => scrollTo('simulator-stage')}
                 className="text-left hover:text-[#4F46E5] transition-colors cursor-pointer"
               >
-                01. {isRTL ? 'محطة التحكم والتدريب (نافذة كاملة)' : 'DCS Crisis Console (Modal)'}
+                01. {isRTL ? 'محاكي CDU/VDU الحي' : 'Live CDU/VDU Simulator'}
               </button>
-              <button onClick={() => scrollTo('economics')} className="text-left hover:text-[#4F46E5] transition-colors cursor-pointer">
-                02. {isRTL ? 'الجدوى الاقتصادية والوفر' : 'Economics & ROI'}
+              <button onClick={() => scrollTo('operational-reality')} className="text-left hover:text-[#4F46E5] transition-colors cursor-pointer">
+                02. {isRTL ? 'الواقع التشغيلي وبدائل الشركات' : 'The Operational Reality & ROI'}
               </button>
-              <button onClick={() => scrollTo('pid-scanner')} className="text-left hover:text-[#4F46E5] transition-colors cursor-pointer">
-                03. {isRTL ? 'توليف P&ID وموسوعة 387 معدة' : 'P&ID Ingestion & Codex'}
+              <button onClick={() => scrollTo('ots-builder')} className="text-left hover:text-[#4F46E5] transition-colors cursor-pointer">
+                03. {isRTL ? 'منشئ OTS ومكتبة 387 معدة' : 'OTS Builder & 387 Equipment'}
               </button>
               <button onClick={() => scrollTo('journey')} className="text-left hover:text-[#4F46E5] transition-colors cursor-pointer">
-                04. {isRTL ? 'دورة التدريب والشهادات' : 'Training Lifecycle'}
+                04. {isRTL ? 'تجربة المحاكي والشهادات' : 'Simulator Experience & Certification'}
               </button>
               <button onClick={() => scrollTo('deployment')} className="text-left hover:text-[#4F46E5] transition-colors cursor-pointer">
-                05. {isRTL ? 'الأمان المعزول (Purdue Model)' : 'Air-Gapped Security'}
+                05. {isRTL ? 'خيارات النشر السحابي والمحلي' : 'Flexible Deployment & Validation'}
               </button>
               <button onClick={() => scrollTo('pricing')} className="text-left hover:text-[#4F46E5] transition-colors cursor-pointer">
-                06. {isRTL ? 'التسعير وسيرة المؤسس' : 'Commercial & Founder'}
+                06. {isRTL ? 'التسعير الشفاف والبرنامج التجريبي' : 'Transparent Pricing ($800 Pilot)'}
               </button>
             </div>
           </div>
@@ -65,7 +65,7 @@ export const Footer: React.FC = () => {
             </div>
             <div className="space-y-1.5 text-[#0B1120]">
               <div className="font-bold text-[#0B1120] text-sm">Eng. Mostafa Adel</div>
-              <div className="text-[#64748B] text-xs">Founder & Chief Process Simulation Architect</div>
+              <div className="text-[#64748B] text-xs">Founder & CEO — Lead Process Simulation Architect</div>
               <div className="text-[#94A3B8] text-[11px]">
                 Ex-MIDOR Refinery, Sanmar Chemicals, Agiba Petroleum, Port Harcourt
               </div>
@@ -74,7 +74,7 @@ export const Footer: React.FC = () => {
                   onClick={() => setPilotDrawerOpen(true)}
                   className="px-5 py-2.5 rounded-full bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] text-white text-xs font-semibold transition-all shadow-[0_8px_25px_-4px_rgba(79,70,229,0.45)] hover:shadow-[0_12px_30px_-4px_rgba(79,70,229,0.6)] cursor-pointer"
                 >
-                  {isRTL ? 'طلب تجربة 90 يوماً ($800) ←' : 'Request 90-Day Pilot ($800) →'}
+                  {isRTL ? 'بدء برنامج تجريبي مدفوع ($800) ←' : 'Start a Paid Pilot ($800) →'}
                 </button>
               </div>
             </div>

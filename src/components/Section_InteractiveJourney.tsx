@@ -1,129 +1,145 @@
 import React, { useState } from 'react';
 import { useSimulationJourney } from '../context/SimulationJourneyContext';
+import { translations } from '../data/translations';
 import { dcsAudio } from '../utils/audio';
 import { Monitor, ShieldAlert, Award, ArrowRight, Eye, CheckCircle2 } from 'lucide-react';
 
 export const Section_InteractiveJourney: React.FC = () => {
   const { language } = useSimulationJourney();
-  const [activeTab, setActiveTab] = useState<'BUILDER' | 'INSTRUCTOR' | 'TRAINEE'>('BUILDER');
-
+  const t = translations[language].experience;
   const isRTL = language === 'AR';
 
-  const handleTabChange = (tab: 'BUILDER' | 'INSTRUCTOR' | 'TRAINEE') => {
+  const [activeTab, setActiveTab] = useState<'PRACTICE' | 'INSTRUCT' | 'CERTIFY'>('PRACTICE');
+
+  const handleTabChange = (tab: 'PRACTICE' | 'INSTRUCT' | 'CERTIFY') => {
     setActiveTab(tab);
     dcsAudio.playClick();
   };
 
   return (
     <section id="journey" className="py-24 px-6 lg:px-12 relative bg-[#F8FAFC] border-t border-slate-200">
-      <div className="max-w-[1200px] mx-auto space-y-12">
+      <div className="max-w-[1200px] mx-auto space-y-16">
         {/* Section Header */}
         <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-6 border-b border-slate-200 pb-8 text-left" dir={isRTL ? 'rtl' : 'ltr'}>
           <div className="space-y-3 max-w-3xl">
             <div className="text-xs font-mono font-bold text-[#4F46E5] uppercase tracking-wider">
-              {isRTL ? 'دورة حياة تدريب المشغلين' : 'THE 3 OPERATIONAL WORKSPACES'}
+              {t.eyebrow}
             </div>
             <h2 className="text-4xl sm:text-5xl font-extrabold text-[#0B1120] tracking-tight leading-[1.2] font-sans">
-              {isRTL ? (
-                <>
-                  ابنِ. درّب.{' '}
-                  <span className="italic font-normal bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] bg-clip-text text-transparent">
-                    واعتمد الكفاءة.
-                  </span>
-                </>
-              ) : (
-                <>
-                  Build. Instruct.{' '}
-                  <span className="italic font-normal bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] bg-clip-text text-transparent">
-                    Certify.
-                  </span>
-                </>
-              )}
+              {t.headingMain}{' '}
+              <span className="italic font-normal bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] bg-clip-text text-transparent">
+                {t.headingItalic}
+              </span>
             </h2>
             <p className="text-base sm:text-lg text-slate-600 font-sans font-normal leading-relaxed">
-              {isRTL
-                ? 'شاشات حقيقية من المنظومة المعتمدة: بناء التدفق الهندسي، حقن الأعطال والسيناريوهات الحية، وإصدار شهادات الكفاءة المعتمدة.'
-                : 'Production screens from the running platform: visually wire units, inject live furnace and pump trips, and mint tamper-evident competency credentials.'}
+              {t.subheading}
             </p>
           </div>
 
           {/* Pill Tab Switcher */}
           <div className="flex items-center gap-1.5 bg-[#F1F5F9] p-1 rounded-full shrink-0 border border-slate-200">
             <button
-              onClick={() => handleTabChange('BUILDER')}
+              onClick={() => handleTabChange('PRACTICE')}
               className={`px-4 py-2 rounded-full text-xs font-sans transition-all cursor-pointer ${
-                activeTab === 'BUILDER'
+                activeTab === 'PRACTICE'
                   ? 'bg-gradient-to-r from-[#7C3AED] to-[#2563EB] text-white font-semibold shadow-sm'
                   : 'text-slate-600 hover:text-[#0B1120]'
               }`}
             >
-              01. {isRTL ? 'بناء التدفق (OTS Builder)' : 'OTS Builder'}
+              01. {isRTL ? 'التدرب (Trainee DCS)' : 'Practice (DCS Console)'}
             </button>
             <button
-              onClick={() => handleTabChange('INSTRUCTOR')}
+              onClick={() => handleTabChange('INSTRUCT')}
               className={`px-4 py-2 rounded-full text-xs font-sans transition-all cursor-pointer ${
-                activeTab === 'INSTRUCTOR'
+                activeTab === 'INSTRUCT'
                   ? 'bg-gradient-to-r from-[#7C3AED] to-[#2563EB] text-white font-semibold shadow-sm'
                   : 'text-slate-600 hover:text-[#0B1120]'
               }`}
             >
-              02. {isRTL ? 'لوحة المدرب وحقن الأعطال' : 'Instructor & Faults'}
+              02. {isRTL ? 'التدريب (Instructor)' : 'Instruct (Console)'}
             </button>
             <button
-              onClick={() => handleTabChange('TRAINEE')}
+              onClick={() => handleTabChange('CERTIFY')}
               className={`px-4 py-2 rounded-full text-xs font-sans transition-all cursor-pointer ${
-                activeTab === 'TRAINEE'
+                activeTab === 'CERTIFY'
                   ? 'bg-gradient-to-r from-[#7C3AED] to-[#2563EB] text-white font-semibold shadow-sm'
                   : 'text-slate-600 hover:text-[#0B1120]'
               }`}
             >
-              03. {isRTL ? 'شهادة التقييم الرقمية' : 'Digital Certificate'}
+              03. {isRTL ? 'الاعتماد (Certify)' : 'Certify (Evaluation)'}
             </button>
           </div>
         </div>
 
-        {/* Tab 1: OTS Builder Floating Product Artifact */}
-        {activeTab === 'BUILDER' && (
-          <div className="bg-white rounded-[24px] border border-[#ececec] shadow-artifact p-6 sm:p-8 space-y-6 animate-fadeIn text-left">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#f2f2f3] pb-4">
+        {/* 3 Core Pillars Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left" dir={isRTL ? 'rtl' : 'ltr'}>
+          {t.pillars.map((pillar, idx) => (
+            <div
+              key={idx}
+              onClick={() => handleTabChange(idx === 0 ? 'PRACTICE' : idx === 1 ? 'INSTRUCT' : 'CERTIFY')}
+              className={`p-7 rounded-2xl border transition-all cursor-pointer space-y-3 shadow-xs ${
+                (idx === 0 && activeTab === 'PRACTICE') ||
+                (idx === 1 && activeTab === 'INSTRUCT') ||
+                (idx === 2 && activeTab === 'CERTIFY')
+                  ? 'bg-white border-[#4F46E5] ring-2 ring-[#4F46E5]/20 shadow-sm'
+                  : 'bg-white border-slate-200/90 hover:border-slate-300'
+              }`}
+            >
+              <div className="w-10 h-10 rounded-xl bg-purple-50 border border-purple-200/60 flex items-center justify-center text-[#4F46E5]">
+                {idx === 0 && <Monitor className="w-5 h-5" />}
+                {idx === 1 && <ShieldAlert className="w-5 h-5" />}
+                {idx === 2 && <Award className="w-5 h-5" />}
+              </div>
+              <h3 className="text-lg font-bold text-[#0B1120] font-sans">{pillar.title}</h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-sans">{pillar.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Tab 1: Practice (Trainee DCS Console Screen) */}
+        {activeTab === 'PRACTICE' && (
+          <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 sm:p-8 space-y-6 text-left" dir={isRTL ? 'rtl' : 'ltr'}>
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-4">
               <div>
-                <span className="text-[11px] font-mono text-[#059669] font-bold uppercase tracking-widest block">
-                  STAGE 01 // OTS BUILDER WORKSPACE
+                <span className="text-[11px] font-mono text-[#4F46E5] font-bold uppercase tracking-widest block">
+                  PILLAR 01 // TRAINEE DCS CONSOLE
                 </span>
-                <h3 className="text-xl sm:text-2xl font-normal text-[#17191c] font-sans mt-0.5">
-                  {isRTL ? 'بناء وتخصيص وحدات التكرير بالسحب والإفلات' : 'Visual Refinery Flowsheet Assembly & Calibration'}
+                <h3 className="text-xl sm:text-2xl font-bold text-[#0B1120] font-sans mt-0.5">
+                  {isRTL ? 'شاشات تحكم المشغل DCS ومخططات التدفق PFD' : 'Realistic DCS Process Flow Diagrams & Faceplates'}
                 </h3>
               </div>
-              <span className="text-xs font-mono text-[#777b86] bg-[#f2f2f3] px-3 py-1 rounded-full">
-                PRODUCTION SCREEN // DECK SLIDE 04
+              <span className="text-xs font-mono text-slate-500 bg-slate-100 px-3 py-1 rounded-full">
+                PRODUCTION RUNTIME // LIVE CDU/VDU
               </span>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-              <div className="lg:col-span-8 rounded-[16px] overflow-hidden border border-[#e2e8f0] shadow-sm">
+              <div className="lg:col-span-8 rounded-xl overflow-hidden border border-slate-200 shadow-xs">
                 <img
                   src="/assets/image2.png"
-                  alt="NEXIIVA CDU/VDU OTS Builder Screen"
+                  alt="NEXIIVA Trainee DCS Console Screen"
                   className="w-full h-auto object-cover"
                 />
               </div>
 
               <div className="lg:col-span-4 space-y-4 font-sans text-xs">
-                <div className="p-4 rounded-[16px] bg-[#f8fafc] border border-[#e2e8f0] space-y-2">
-                  <div className="text-sm font-medium text-[#17191c]">387 Drag-and-Drop Primitives</div>
-                  <p className="text-[#777b86] leading-relaxed">
-                    {isRTL
-                      ? 'مكتبة شاملة تغطي أعقد معدات المعالجة: أبراج التقطير المجزأ، أفران التسخين، المبادلات الحرارية، وضواغط الغاز مع معادلات التوازن الكيميائي اللحظية.'
-                      : 'Comprehensive library covering crude fractionators, fired heaters, centrifugal pumps, and control valves with real-time Peng-Robinson thermodynamics.'}
+                <div className="p-4 rounded-xl bg-[#F8FAFC] border border-slate-200 space-y-2">
+                  <div className="text-sm font-bold text-[#0B1120]">
+                    {isRTL ? 'واجهات تحكم حقيقية' : 'Realistic DCS Faceplates'}
+                  </div>
+                  <p className="text-slate-600 leading-relaxed">
+                    {t.pillars[0].desc}
                   </p>
                 </div>
 
-                <div className="p-4 rounded-[16px] bg-[#f8fafc] border border-[#e2e8f0] space-y-2">
-                  <div className="text-sm font-medium text-[#17191c]">Fast Calibration Mode</div>
-                  <p className="text-[#777b86] leading-relaxed">
+                <div className="p-4 rounded-xl bg-[#F8FAFC] border border-slate-200 space-y-2">
+                  <div className="text-sm font-bold text-[#0B1120]">
+                    {isRTL ? 'رسام بياني متعدد القنوات' : '12-Channel Live Trends'}
+                  </div>
+                  <p className="text-slate-600 leading-relaxed">
                     {isRTL
-                      ? 'تعديل متغيرات التشغيل ونقاط الغليان ومعدل سريان التغذية مباشرة لمطابقة بيانات مصفاتك الحقيقية بنسبة 100%.'
-                      : 'Match operating temperatures, tray cuts, and reflux ratios directly to your plant laboratory assays.'}
+                      ? 'مراقبة درجات الحرارة والضغوط ومعدلات السريان واستجابة مستويات أوعية الفصل لحظة بلحظة.'
+                      : 'Track column top temperatures, overhead pressure spikes, and reflux flow dynamics in real time.'}
                   </p>
                 </div>
               </div>
@@ -131,25 +147,25 @@ export const Section_InteractiveJourney: React.FC = () => {
           </div>
         )}
 
-        {/* Tab 2: Instructor Console Floating Product Artifact */}
-        {activeTab === 'INSTRUCTOR' && (
-          <div className="bg-white rounded-[24px] border border-[#ececec] shadow-artifact p-6 sm:p-8 space-y-6 animate-fadeIn text-left">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#f2f2f3] pb-4">
+        {/* Tab 2: Instruct (Instructor Console with Fault Injection) */}
+        {activeTab === 'INSTRUCT' && (
+          <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 sm:p-8 space-y-6 text-left" dir={isRTL ? 'rtl' : 'ltr'}>
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-4">
               <div>
-                <span className="text-[11px] font-mono text-[#d97706] font-bold uppercase tracking-widest block">
-                  STAGE 02 // INSTRUCTOR EMERGENCY FAULT INJECTION
+                <span className="text-[11px] font-mono text-[#D97706] font-bold uppercase tracking-widest block">
+                  PILLAR 02 // INSTRUCTOR FAULT INJECTION CONSOLE
                 </span>
-                <h3 className="text-xl sm:text-2xl font-normal text-[#17191c] font-sans mt-0.5">
-                  {isRTL ? 'غرفة عمليات المدرب: حقن الأعطال وحالات الطوارئ الفورية' : 'Instructor Control Room: Real-Time Scenario Orchestration'}
+                <h3 className="text-xl sm:text-2xl font-bold text-[#0B1120] font-sans mt-0.5">
+                  {isRTL ? 'لوحة تحكم المدرب: حقن الأعطال ومحاكاة الطوارئ الميدانية' : 'Instructor Control Room: Real-Time Scenario Orchestration'}
                 </h3>
               </div>
-              <span className="text-xs font-mono text-[#777b86] bg-[#f2f2f3] px-3 py-1 rounded-full">
-                PRODUCTION SCREEN // DECK SLIDE 03
+              <span className="text-xs font-mono text-slate-500 bg-slate-100 px-3 py-1 rounded-full">
+                INSTRUCTOR CONSOLE // FAULT MATRIX
               </span>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-              <div className="lg:col-span-8 rounded-[16px] overflow-hidden border border-[#e2e8f0] shadow-sm">
+              <div className="lg:col-span-8 rounded-xl overflow-hidden border border-slate-200 shadow-xs">
                 <img
                   src="/assets/image1.png"
                   alt="NEXIIVA Instructor Console with Emergency Injection"
@@ -158,21 +174,23 @@ export const Section_InteractiveJourney: React.FC = () => {
               </div>
 
               <div className="lg:col-span-4 space-y-4 font-sans text-xs">
-                <div className="p-4 rounded-[16px] bg-[#fef2f2] border border-[#fecaca] space-y-2">
-                  <div className="text-sm font-medium text-[#dc2626]">Emergency Fault Injection Matrix</div>
-                  <p className="text-[#777b86] leading-relaxed">
-                    {isRTL
-                      ? 'أزرار طوارئ فورية تتيح للمدرب اختبار استجابة المشغل: توقف مضخة الراجع (Reflux Loss)، انقطاع البخار، انطفاء شعلة الفرن، أو انسداد صمامات التغذية.'
-                      : 'Push-button upsets allow instructors to simulate midnight casualties: Reflux Pump Trips, Furnace Flameouts, Instrument Air Loss, and Vacuum Leaks.'}
+                <div className="p-4 rounded-xl bg-red-50/60 border border-red-200 space-y-2">
+                  <div className="text-sm font-bold text-red-700">
+                    {isRTL ? 'حقن الأعطال الفورية' : 'Push-Button Emergency Upsets'}
+                  </div>
+                  <p className="text-slate-600 leading-relaxed">
+                    {t.pillars[1].desc}
                   </p>
                 </div>
 
-                <div className="p-4 rounded-[16px] bg-[#f8fafc] border border-[#e2e8f0] space-y-2">
-                  <div className="text-sm font-medium text-[#17191c]">Live Multi-Trainee Monitoring</div>
-                  <p className="text-[#777b86] leading-relaxed">
+                <div className="p-4 rounded-xl bg-[#F8FAFC] border border-slate-200 space-y-2">
+                  <div className="text-sm font-bold text-[#0B1120]">
+                    {isRTL ? 'مراقبة الجلسات الحية' : 'Live Trainee Mirroring'}
+                  </div>
+                  <p className="text-slate-600 leading-relaxed">
                     {isRTL
-                      ? 'مراقبة حركة كل متدرب على حدة ورصد زمن الاستجابة قبل تفاقم الأزمة ووصول الضغط لصمام الأمان.'
-                      : 'Track each shift trainee in real-time, monitoring alarm acknowledgement latency and valve response curves.'}
+                      ? 'مراقبة زمن استجابة كل مشغل لكتم الإنذار وبدء مضخة الاحتياط قبل تفاقم الأزمة وتوقف الوحدة.'
+                      : 'Mirror trainee screens live, inspect alarm acknowledgement latency, and evaluate corrective actions instantly.'}
                   </p>
                 </div>
               </div>
@@ -180,48 +198,50 @@ export const Section_InteractiveJourney: React.FC = () => {
           </div>
         )}
 
-        {/* Tab 3: Official Certified Achievement Artifact */}
-        {activeTab === 'TRAINEE' && (
-          <div className="bg-white rounded-[24px] border border-[#ececec] shadow-artifact p-6 sm:p-8 space-y-6 animate-fadeIn text-left">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#f2f2f3] pb-4">
+        {/* Tab 3: Certify (Automated Evaluation & Credential) */}
+        {activeTab === 'CERTIFY' && (
+          <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 sm:p-8 space-y-6 text-left" dir={isRTL ? 'rtl' : 'ltr'}>
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-4">
               <div>
                 <span className="text-[11px] font-mono text-[#059669] font-bold uppercase tracking-widest block">
-                  STAGE 03 // AUDIT-READY COMPETENCY CERTIFICATION
+                  PILLAR 03 // AUDIT-READY AUTOMATED EVALUATION
                 </span>
-                <h3 className="text-xl sm:text-2xl font-normal text-[#17191c] font-sans mt-0.5">
-                  {isRTL ? 'شهادة كفاءة معتمدة رقمياً ومقاومة للتزوير' : 'Tamper-Evident Operator Credential & Audit Rubric'}
+                <h3 className="text-xl sm:text-2xl font-bold text-[#0B1120] font-sans mt-0.5">
+                  {isRTL ? 'تقييم كفاءة آلي وشهادة إنجاز معتمدة' : 'Tamper-Evident Operator Credential & Audit Rubric'}
                 </h3>
               </div>
-              <span className="text-xs font-mono text-[#777b86] bg-[#f2f2f3] px-3 py-1 rounded-full">
-                OFFICIAL SYSTEM CERTIFICATE // PAGE 3 DECK
+              <span className="text-xs font-mono text-slate-500 bg-slate-100 px-3 py-1 rounded-full">
+                ACCREDITED CERTIFICATE // QR STAMP
               </span>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-              <div className="lg:col-span-8 rounded-[16px] overflow-hidden border border-[#e2e8f0] shadow-sm bg-white p-2">
+              <div className="lg:col-span-8 rounded-xl overflow-hidden border border-slate-200 shadow-xs bg-white p-2">
                 <img
                   src="/assets/page_3__Image25_Image25.jpg"
                   alt="NEXIIVA Official Certificate of Achievement"
-                  className="w-full h-auto object-contain rounded-[12px]"
+                  className="w-full h-auto object-contain rounded-lg"
                 />
               </div>
 
               <div className="lg:col-span-4 space-y-4 font-sans text-xs">
-                <div className="p-4 rounded-[16px] bg-[#f8fafc] border border-[#e2e8f0] space-y-2">
-                  <div className="text-sm font-medium text-[#17191c]">Objective Rubric Scoring</div>
-                  <p className="text-[#777b86] leading-relaxed">
-                    {isRTL
-                      ? 'تقييم آلي دقيق لخطوات استعادة الوحدة: زمن كتم الإنذار، التحكم في منسوب القاع، وإعادة تشغيل المضخة الاحتياطية بنجاح.'
-                      : 'Automatic rubric grading evaluates every milestone: alarm acknowledge speed, column level safety bounds, and pump changeover sequence.'}
+                <div className="p-4 rounded-xl bg-[#F8FAFC] border border-slate-200 space-y-2">
+                  <div className="text-sm font-bold text-[#0B1120]">
+                    {isRTL ? 'معايير تقييم موضوعية' : 'Objective Milestone Rubric'}
+                  </div>
+                  <p className="text-slate-600 leading-relaxed">
+                    {t.pillars[2].desc}
                   </p>
                 </div>
 
-                <div className="p-4 rounded-[16px] bg-[#f8fafc] border border-[#e2e8f0] space-y-2">
-                  <div className="text-sm font-medium text-[#17191c]">Insurance & Audit Compliance</div>
-                  <p className="text-[#777b86] leading-relaxed">
+                <div className="p-4 rounded-xl bg-[#F8FAFC] border border-slate-200 space-y-2">
+                  <div className="text-sm font-bold text-[#0B1120]">
+                    {isRTL ? 'اعتماد ضد التلاعب' : 'Audit & Compliance Ready'}
+                  </div>
+                  <p className="text-slate-600 leading-relaxed">
                     {isRTL
-                      ? 'سجل تدريب معتمد يقدم لشركات التأمين وجهات التفتيش والسلامة المهنية لإثبات كفاءة مشغلي غرف التحكم.'
-                      : 'Verifiable credentials provide proof of frontline competency for plant insurers, OSHA compliance, and internal operations audits.'}
+                      ? 'سجل تدريب معتمد بختم رقمي يقدم لشركات التأمين وجهات التفتيش والسلامة المهنية لإثبات كفاءة مشغلي غرف التحكم.'
+                      : 'Verifiable credentials provide proof of frontline competency for plant insurers, safety regulators, and internal operations audits.'}
                   </p>
                 </div>
               </div>
