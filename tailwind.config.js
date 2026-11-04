@@ -7,41 +7,49 @@ export default {
   theme: {
     extend: {
       colors: {
-        obsidian: {
-          DEFAULT: '#04060E',
-          surface: '#0B0F22',
-          card: '#0D132D',
-          border: '#1E2548',
+        ink: {
+          black: '#17191c',
         },
-        brand: {
-          violet: '#8E42FE',
-          purple: '#6838F8',
-          cobalt: '#3361FC',
-          cyan: '#38BDF8',
+        paper: {
+          white: '#ffffff',
         },
-        telemetry: {
-          emerald: '#10B981',
-          cyan: '#06B6D4',
-          amber: '#F59E0B',
-          rose: '#F43F5E',
+        mist: {
+          gray: '#f2f2f3',
         },
-        silver: {
-          100: '#FFFFFF',
-          200: '#F1F5F9',
-          300: '#E2E8F0',
-          400: '#94A3B8',
-          500: '#64748B',
+        fog: {
+          white: '#fafafb',
+        },
+        steep: {
+          slate: '#777b86',
+          ash: '#979799',
+          smoke: '#a3a6af',
+          peach: '#fbe1d1',
+          sienna: '#5d2a1a',
+        },
+        // Functional engineering indicators
+        indicator: {
+          red: '#DC2626',
+          amber: '#D97706',
+          green: '#059669',
+          blue: '#2563EB',
         }
       },
       fontFamily: {
+        serif: ['Newsreader', 'Signifier', 'GT Sectra', 'Georgia', 'ui-serif', 'serif'],
+        'serif-ar': ['Amiri', 'Georgia', 'serif'],
+        sans: ['Plus Jakarta Sans', 'Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        'sans-ar': ['Cairo', 'Plus Jakarta Sans', 'sans-serif'],
         mono: ['JetBrains Mono', 'IBM Plex Mono', 'Menlo', 'monospace'],
-        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
-        display: ['Plus Jakarta Sans', 'Inter', 'system-ui', 'sans-serif'],
-        arabic: ['Cairo', 'Inter', 'system-ui', 'sans-serif'],
+      },
+      borderRadius: {
+        'card': '24px',
+        'artifact': '20px',
+        'input': '16px',
+        'pill': '9999px',
       },
       boxShadow: {
-        'brand-glow': '0 0 35px rgba(123, 60, 252, 0.4)',
-        'stage-glow': '0 0 80px rgba(123, 60, 252, 0.22)',
+        'artifact': '0 0 0 1px rgba(4, 23, 43, 0.05), 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.05)',
+        'subtle': '0 0 0 1px rgba(0, 0, 0, 0.05), 0 4px 20px rgba(0, 0, 0, 0.05)',
       }
     },
   },

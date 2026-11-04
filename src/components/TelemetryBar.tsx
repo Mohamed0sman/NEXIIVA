@@ -11,7 +11,7 @@ export const TelemetryBar: React.FC = () => {
     topPress: 1.38,
   });
 
-  // Subtle real-time DCS fluctuations (1Hz)
+  // Real-time DCS fluctuations (1Hz)
   useEffect(() => {
     const timer = setInterval(() => {
       setLiveJitter({
@@ -27,100 +27,93 @@ export const TelemetryBar: React.FC = () => {
   const isRTL = language === 'AR';
 
   return (
-    <div className="h-9 bg-[#03050C] border-b border-purple-500/15 px-4 sm:px-6 flex items-center justify-between text-[11px] font-mono text-slate-400 select-none z-50 relative overflow-hidden">
-      {/* Soft animated background line */}
-      <div className="absolute inset-0 bg-gradient-to-r from-purple-500/5 via-blue-500/5 to-transparent pointer-events-none" />
-
+    <div className="h-9 bg-[#fafafb] border-b border-[#ececec] px-4 sm:px-6 flex items-center justify-between text-[11px] font-mono text-[#777b86] select-none z-50 relative">
       {/* Left: Operational Engine Telemetry */}
-      <div className="flex items-center space-x-3 overflow-x-auto whitespace-nowrap scrollbar-none py-1 relative z-10">
-        <div className="flex items-center space-x-1.5 text-emerald-400">
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-          </span>
-          <span className="font-bold text-slate-200 tracking-wider">
-            {isRTL ? 'محرك نكسيفا الصناعي OTS v2.4' : 'NEXIIVA OTS ENGINE v2.4'}
+      <div className="flex items-center space-x-3 overflow-x-auto whitespace-nowrap scrollbar-none py-1">
+        <div className="flex items-center space-x-1.5 text-[#059669]">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#059669] animate-pulse" />
+          <span className="font-medium text-[#17191c] tracking-tight">
+            {isRTL ? 'نظام المحاكاة نكسيفا v2.4' : 'NEXIIVA OTS v2.4'}
           </span>
         </div>
 
-        <span className="text-slate-700">/</span>
+        <span className="text-[#e2e2e4]">/</span>
 
         <div className="flex items-center space-x-1.5">
-          <span className="text-slate-500">{isRTL ? 'الوحدة:' : 'UNIT:'}</span>
-          <span className="text-purple-300 font-medium">CDU-100 (ATM T-22 / VAC T-60)</span>
+          <span className="text-[#979799]">{isRTL ? 'الوحدة:' : 'UNIT:'}</span>
+          <span className="text-[#17191c] font-medium">CDU-100 (ATM T-22)</span>
         </div>
 
-        <span className="text-slate-700 hidden md:inline">/</span>
+        <span className="text-[#e2e2e4] hidden md:inline">/</span>
 
         <div className="hidden md:flex items-center space-x-1.5">
-          <span className="text-slate-500">{isRTL ? 'التغذية:' : 'CHARGE:'}</span>
-          <span className="text-slate-200">{liveJitter.bpd.toLocaleString()} BPD</span>
+          <span className="text-[#979799]">{isRTL ? 'التغذية:' : 'FEED:'}</span>
+          <span className="text-[#17191c]">{liveJitter.bpd.toLocaleString()} BPD</span>
         </div>
 
-        <span className="text-slate-700 hidden lg:inline">/</span>
+        <span className="text-[#e2e2e4] hidden lg:inline">/</span>
 
         <div className="hidden lg:flex items-center space-x-1.5">
-          <span className="text-slate-500">F-101 COT:</span>
-          <span className="text-cyan-400">{liveJitter.cot}°C</span>
+          <span className="text-[#979799]">F-101 COT:</span>
+          <span className="text-[#5d2a1a] font-medium">{liveJitter.cot}°C</span>
         </div>
 
-        <span className="text-slate-700 hidden lg:inline">/</span>
+        <span className="text-[#e2e2e4] hidden lg:inline">/</span>
 
         <div className="hidden lg:flex items-center space-x-1.5">
-          <span className="text-slate-500">TOP P:</span>
-          <span className="text-cyan-400">{liveJitter.topPress} bar</span>
+          <span className="text-[#979799]">TOP P:</span>
+          <span className="text-[#17191c] font-medium">{liveJitter.topPress} bar</span>
         </div>
 
-        <span className="text-slate-700 hidden sm:inline">/</span>
+        <span className="text-[#e2e2e4] hidden sm:inline">/</span>
 
         <div className="hidden sm:flex items-center space-x-1.5">
-          <span className="text-slate-500">{isRTL ? 'الأمان:' : 'SAFETY:'}</span>
-          <span className="text-emerald-400 bg-emerald-950/40 border border-emerald-500/30 px-1.5 py-0.2 rounded text-[10px]">
+          <span className="text-[#979799]">{isRTL ? 'الأمان:' : 'SAFETY:'}</span>
+          <span className="text-[#059669] bg-[#ecfdf5] border border-[#a7f3d0] px-1.5 py-0.2 rounded text-[10px] font-medium">
             SIL-3 VERIFIED
           </span>
         </div>
 
         {simState === 'FAULT_INJECTED' && (
           <>
-            <span className="text-slate-700">/</span>
-            <div className="text-rose-400 font-bold animate-pulse flex items-center space-x-1 bg-rose-950/50 border border-rose-500/40 px-2 py-0.2 rounded">
+            <span className="text-[#e2e2e4]">/</span>
+            <div className="text-[#dc2626] font-bold animate-pulse flex items-center space-x-1 bg-[#fef2f2] border border-[#fecaca] px-2 py-0.5 rounded text-[10px]">
               <span>⚠️ TAH-101 OVERPRESSURE ({telemetry.overheadTemp}°C)</span>
             </div>
           </>
         )}
       </div>
 
-      {/* Right: Cairo Showcase & Language Switcher */}
-      <div className="flex items-center space-x-3 shrink-0 pl-3 relative z-10">
-        <div className="hidden xl:flex items-center space-x-1.5 border border-purple-500/30 px-2 py-0.5 rounded bg-purple-500/10 text-purple-300">
-          <span className="text-[9px] uppercase tracking-wider font-bold">GEF 2026</span>
-          <span className="text-slate-600">·</span>
-          <span className="text-slate-200">CAIRO OFFICIAL SHOWCASE</span>
+      {/* Right: Audio & Language */}
+      <div className="flex items-center space-x-3 shrink-0 pl-3">
+        <div className="hidden xl:flex items-center space-x-1 text-[#979799] text-[10px]">
+          <span className="text-[#17191c] font-medium">GEF 2026 CAIRO</span>
+          <span>·</span>
+          <span>EIP PROGRAM</span>
         </div>
 
-        {/* Audio Mute/Unmute */}
+        {/* Audio Toggle */}
         <button
           onClick={() => {
             dcsAudio.toggleMute();
             dcsAudio.playClick();
           }}
-          title="Toggle DCS Audio"
-          className="text-slate-400 hover:text-slate-200 px-2 py-0.5 rounded border border-slate-800 hover:border-slate-700 transition-colors"
+          className="text-[#777b86] hover:text-[#17191c] px-2 py-0.5 rounded bg-white border border-[#ececec] text-[10px] transition-colors cursor-pointer"
         >
-          🔊 DCS AUDIO
+          DCS AUDIO
         </button>
 
         {/* Language Switcher */}
-        <div className="flex items-center border border-purple-500/30 bg-[#0B0F24] rounded text-[10px] p-0.5">
+        <div className="flex items-center bg-[#f2f2f3] rounded-full p-0.5 text-[10px]">
           <button
             onClick={() => {
               dcsAudio.playClick();
               setLanguage('EN');
             }}
-            className={`px-2 py-0.5 rounded transition-all ${
+            className={`px-2 py-0.5 rounded-full transition-all cursor-pointer ${
               language === 'EN'
-                ? 'bg-gradient-to-r from-purple-600 to-blue-600 text-white font-bold shadow-sm'
-                : 'text-slate-400 hover:text-white'
+                ? 'bg-[#17191c] text-white font-medium shadow-sm'
+                : 'text-[#777b86] hover:text-[#17191c]'
             }`}
           >
             EN
@@ -130,13 +123,13 @@ export const TelemetryBar: React.FC = () => {
               dcsAudio.playClick();
               setLanguage('AR');
             }}
-            className={`px-2 py-0.5 rounded transition-all font-sans ${
+            className={`px-2 py-0.5 rounded-full transition-all cursor-pointer font-sans ${
               language === 'AR'
-                ? 'bg-gradient-to-r from-purple-600 to-blue-600 text-white font-bold shadow-sm'
-                : 'text-slate-400 hover:text-white'
+                ? 'bg-[#17191c] text-white font-medium shadow-sm'
+                : 'text-[#777b86] hover:text-[#17191c]'
             }`}
           >
-            العربية
+            عربي
           </button>
         </div>
       </div>

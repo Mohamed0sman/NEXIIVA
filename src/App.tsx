@@ -19,19 +19,15 @@ const AppContent: React.FC = () => {
   return (
     <div
       dir={isRTL ? 'rtl' : 'ltr'}
-      className={`min-h-screen bg-[#04060E] text-slate-100 flex flex-col selection:bg-purple-500/30 selection:text-white relative font-sans`}
+      className="min-h-screen bg-white text-[#17191c] flex flex-col selection:bg-[#fbe1d1] selection:text-[#5d2a1a] relative"
     >
-      {/* Subtle Precision Atmospheric Vignette */}
-      <div className="fixed top-0 left-1/3 w-[800px] h-[500px] bg-purple-600/5 rounded-full blur-[180px] pointer-events-none -z-10" />
-      <div className="fixed bottom-1/3 right-1/4 w-[700px] h-[600px] bg-blue-600/5 rounded-full blur-[180px] pointer-events-none -z-10" />
-
-      {/* 1. Real-Time Refinery Operational Telemetry Bar */}
+      {/* 1. Whisper-Quiet Telemetry Bar */}
       <TelemetryBar />
 
-      {/* 2. Architectural Navbar */}
+      {/* 2. Editorial Transparent Navbar */}
       <Navbar />
 
-      {/* 3. SECTION 1: Centered Cinematic Hero + Master DCS Crisis Control Station */}
+      {/* 3. SECTION 1: Editorial Serif Hero + Floating DCS Simulator Artifact */}
       <HeroSection />
 
       {/* 4. SECTION 2: Boardroom Business Case & Refinery Outage Economics */}
@@ -49,7 +45,7 @@ const AppContent: React.FC = () => {
       {/* 8. SECTION 6: Commercial Licensing, Founder Dossier & Fast-Track Pilot */}
       <Section_PricingLeadership />
 
-      {/* 9. Sleek Modern Industrial Footer */}
+      {/* 9. Minimal Editorial Footer */}
       <Footer />
 
       {/* Modals & Interactive Drawers */}

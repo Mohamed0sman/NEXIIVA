@@ -1,10 +1,9 @@
 import React from 'react';
-import { NexiivaLogo } from './NexiivaLogo';
 import { useSimulationJourney } from '../context/SimulationJourneyContext';
 import { translations } from '../data/translations';
 import { dcsAudio } from '../utils/audio';
 import { InteractiveRefineryConsole } from './InteractiveRefineryConsole';
-import { Play, ArrowRight, ShieldCheck, Zap, HardHat, Award } from 'lucide-react';
+import { ArrowRight, Play, CheckCircle2, TrendingDown, Shield } from 'lucide-react';
 
 export const HeroSection: React.FC = () => {
   const { setVideoModalOpen, setPilotDrawerOpen, language } = useSimulationJourney();
@@ -18,126 +17,137 @@ export const HeroSection: React.FC = () => {
   };
 
   return (
-    <section className="relative pt-12 pb-24 px-4 sm:px-6 lg:px-12 overflow-hidden bg-[#080A10] border-b border-slate-800/80">
-      {/* Subtle Technical Grid Lines */}
-      <div
-        className="absolute inset-0 opacity-[0.03] pointer-events-none"
-        style={{
-          backgroundImage: `linear-gradient(to right, #FFFFFF 1px, transparent 1px), linear-gradient(to bottom, #FFFFFF 1px, transparent 1px)`,
-          backgroundSize: '48px 48px',
-        }}
-      />
+    <section className="relative pt-16 pb-28 px-6 lg:px-12 overflow-hidden bg-white">
+      <div className="max-w-[1200px] mx-auto space-y-16 relative z-10 text-center">
+        {/* Top Tag: Quiet Category Marker */}
+        <div className="inline-flex items-center space-x-2 text-[#979799] text-sm font-sans tracking-tight">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#17191c]" />
+          <span>{isRTL ? 'منظومة محاكاة وتشغيل المصافي البترولية' : 'PROCESS OPERATOR TRAINING SIMULATOR (OTS)'}</span>
+        </div>
 
-      <div className="max-w-7xl mx-auto space-y-12 relative z-10">
-        {/* Top Editorial & Narrative Block */}
-        <div className="flex flex-col lg:flex-row items-start justify-between gap-10 pt-4">
-          {/* Left Column: Headline & Human Engineering Story */}
-          <div className="max-w-3xl space-y-6 text-left" dir={isRTL ? 'rtl' : 'ltr'}>
-            {/* Technical Identifier Tag */}
-            <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-md bg-[#121722] border border-slate-700/60 text-slate-300 text-xs font-mono tracking-wider">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span>{t.tag}</span>
-            </div>
+        {/* The Signature Steep Serif Headline: Weight 400 whispering authority with italic phrase */}
+        <div className="max-w-4xl mx-auto space-y-6">
+          <h1
+            className={`text-5xl sm:text-6xl lg:text-[76px] font-normal text-[#17191c] tracking-[-0.025em] leading-[1.12] ${
+              isRTL ? 'font-serif-ar' : 'font-serif'
+            }`}
+          >
+            {isRTL ? (
+              <>
+                درّب مشغلي العمليات على طوارئ الفجر..{' '}
+                <span className="italic font-normal text-[#5d2a1a]">قبل لمس المحطة الحقيقية.</span>
+              </>
+            ) : (
+              <>
+                Train for the 03:00 AM blackouts,{' '}
+                <span className="italic font-normal text-[#5d2a1a]">before you touch the live plant.</span>
+              </>
+            )}
+          </h1>
 
-            {/* Authoritative Human Headline */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.08] font-display">
-              {t.title1}
-              <span className="block text-slate-400 font-extrabold mt-1">
-                {t.title2}
-              </span>
-            </h1>
+          <p className="text-lg sm:text-[20px] text-[#777b86] font-sans font-normal leading-[1.45] max-w-2xl mx-auto">
+            {isRTL
+              ? 'أكثر من 80% من مصافي النفط تعمل بدون محاكيات بسبب تكلفة الشركات القديمة الفلكية (110 ألف دولار و9 أشهر). نكسيفا تبني لك محاكياً مطابقاً لمخططات مصفاتك في 7 أيام وبتكلفة أقل 90%، يعمل معزولاً 100% داخل منشأتك.'
+              : 'Over 80% of refinery units operate without simulators because legacy software costs $110,000+ and takes 9 months. NEXIIVA synthesizes plant-specific dynamic simulators from your exact P&IDs in ~7 days—at 90% lower cost, running 100% air-gapped.'}
+          </p>
 
-            {/* Human Engineering Subtitle */}
-            <p className="text-slate-300 text-base sm:text-lg leading-relaxed font-sans max-w-2xl">
-              {t.subtitle}
-            </p>
+          {/* Steep Paired Pill Buttons: Filled Ink Black + Ghost Pill */}
+          <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
+            <button
+              onClick={scrollToSimulator}
+              className="btn-pill-filled px-8 py-3.5 text-base cursor-pointer shadow-sm hover:opacity-90"
+            >
+              <span>{isRTL ? 'بدء تحدي طوارئ المصفاة' : 'Launch Crisis Drill Challenge'}</span>
+              <span className="ml-2">→</span>
+            </button>
 
-            {/* Action Buttons */}
-            <div className="flex flex-wrap items-center gap-4 pt-2">
-              <button
-                onClick={scrollToSimulator}
-                className="px-7 py-3.5 rounded-xl bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-white font-mono font-bold text-xs uppercase tracking-wider shadow-lg transition-all cursor-pointer flex items-center space-x-2"
-              >
-                <span>⚡</span>
-                <span>{t.ctaPrimary}</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
+            <button
+              onClick={() => {
+                dcsAudio.playClick();
+                setPilotDrawerOpen(true);
+              }}
+              className="btn-pill-ghost px-7 py-3.5 text-base cursor-pointer"
+            >
+              {isRTL ? 'طلب تجربة 90 يوماً ($800)' : 'Request 90-Day Pilot ($800)'}
+            </button>
 
-              <button
-                onClick={() => {
-                  dcsAudio.playClick();
-                  setPilotDrawerOpen(true);
-                }}
-                className="px-6 py-3.5 rounded-xl bg-[#141926] hover:bg-[#1B2232] border border-slate-700/80 text-white font-mono font-bold text-xs uppercase tracking-wider transition-all cursor-pointer"
-              >
-                {t.ctaPilot}
-              </button>
-
-              <button
-                onClick={() => {
-                  dcsAudio.playClick();
-                  setVideoModalOpen(true);
-                }}
-                className="px-5 py-3.5 rounded-xl text-slate-300 hover:text-white font-mono text-xs font-medium transition-all cursor-pointer flex items-center space-x-2"
-              >
-                <Play className="w-3.5 h-3.5 text-purple-400 fill-current" />
-                <span>{t.ctaVideo}</span>
-              </button>
-            </div>
-
-            {/* Founder Authority Footnote */}
-            <div className="flex items-center space-x-2 pt-2 text-xs font-mono text-slate-400">
-              <HardHat className="w-4 h-4 text-purple-400 shrink-0" />
-              <span>{t.badgePedigree}</span>
-            </div>
-          </div>
-
-          {/* Right Column: High-Density Trust Telemetry Box */}
-          <div className="w-full lg:w-80 shrink-0 p-6 rounded-2xl bg-[#0D111A] border border-slate-800 space-y-4 font-mono text-xs">
-            <div className="text-slate-400 text-[11px] pb-2 border-b border-slate-800 flex justify-between">
-              <span>SPECIFICATION SUMMARY</span>
-              <span className="text-emerald-400 font-bold">VERIFIED</span>
-            </div>
-
-            <div className="space-y-3">
-              <div>
-                <span className="text-slate-500 text-[10px] block uppercase">CAPEX REDUCTION</span>
-                <span className="text-white font-bold text-sm text-emerald-400">
-                  {t.statCost}
-                </span>
-              </div>
-
-              <div>
-                <span className="text-slate-500 text-[10px] block uppercase">CUSTOM P&ID DEPLOYMENT</span>
-                <span className="text-white font-bold text-sm text-cyan-400">
-                  {t.statSpeed}
-                </span>
-              </div>
-
-              <div>
-                <span className="text-slate-500 text-[10px] block uppercase">PROCESS EQUIPMENT LIBRARY</span>
-                <span className="text-white font-bold text-sm text-purple-300">
-                  {t.statCatalog}
-                </span>
-              </div>
-
-              <div>
-                <span className="text-slate-500 text-[10px] block uppercase">CYBERSECURITY ISOLATION</span>
-                <span className="text-white font-bold text-sm text-slate-200">
-                  {t.statSecurity}
-                </span>
-              </div>
-            </div>
-
-            <div className="pt-3 border-t border-slate-800 text-[10px] text-slate-500">
-              Purdue Model Level 2/3 · ISA-88 Batch / ISA-106 Continuous Standard
-            </div>
+            <button
+              onClick={() => {
+                dcsAudio.playClick();
+                setVideoModalOpen(true);
+              }}
+              className="link-editorial text-[15px] px-3 py-2 cursor-pointer ml-2 text-[#777b86] hover:text-[#17191c]"
+            >
+              <Play className="w-4 h-4 fill-current text-[#17191c]" />
+              <span>{isRTL ? 'فيديو الشرح (15 دقيقة)' : 'Watch 15-Min Walkthrough'}</span>
+            </button>
           </div>
         </div>
 
-        {/* The Master DCS Workstation & Crisis Simulator Centerpiece */}
-        <div id="simulator-stage" className="w-full pt-4 relative z-10">
-          <InteractiveRefineryConsole />
+        {/* 3 Floating Product Stat Artifacts Overlapping the Canvas */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto text-left">
+          {/* Artifact 1: CapEx Reduction */}
+          <div className="bg-white rounded-[20px] p-6 shadow-artifact border border-[#ececec]/60 transition-all hover:translate-y-[-2px]">
+            <div className="flex items-center justify-between text-xs text-[#979799] font-sans">
+              <span>CAPEX REDUCTION</span>
+              <span className="text-[#059669] font-medium font-mono">~$5K vs $110K</span>
+            </div>
+            <div className="text-3xl font-normal font-sans text-[#17191c] mt-2 tracking-tight">
+              90% Lower
+            </div>
+            <p className="text-xs text-[#777b86] mt-1 leading-relaxed">
+              {isRTL ? 'توفير فوري لرأس المال مقابل احتكار الشركات القديمة' : 'Direct capital saved compared to AspenTech / Honeywell quotes.'}
+            </p>
+          </div>
+
+          {/* Artifact 2: Build Velocity (Accent Blush Peach Wash) */}
+          <div className="bg-[#fbe1d1] rounded-[20px] p-6 border border-[#f5cbb3] transition-all hover:translate-y-[-2px]">
+            <div className="flex items-center justify-between text-xs text-[#5d2a1a]/70 font-sans">
+              <span>DEPLOYMENT SPEED</span>
+              <span className="text-[#5d2a1a] font-medium font-mono">7 DAYS</span>
+            </div>
+            <div className="text-3xl font-normal font-sans text-[#5d2a1a] mt-2 tracking-tight">
+              ~1 Week Delivery
+            </div>
+            <p className="text-xs text-[#5d2a1a]/80 mt-1 leading-relaxed">
+              {isRTL ? 'توليف آلي من مخططات P&ID بدون شهور من البرمجة اليدوية' : 'Auto-synthesized from your engineering P&IDs vs 9 months legacy consulting.'}
+            </p>
+          </div>
+
+          {/* Artifact 3: Model Library */}
+          <div className="bg-white rounded-[20px] p-6 shadow-artifact border border-[#ececec]/60 transition-all hover:translate-y-[-2px]">
+            <div className="flex items-center justify-between text-xs text-[#979799] font-sans">
+              <span>EQUIPMENT MODELS</span>
+              <span className="text-[#17191c] font-medium font-mono">19 DOMAINS</span>
+            </div>
+            <div className="text-3xl font-normal font-sans text-[#17191c] mt-2 tracking-tight">
+              387 Types
+            </div>
+            <p className="text-xs text-[#777b86] mt-1 leading-relaxed">
+              {isRTL ? 'معادلات Peng-Robinson متكاملة مع حقن الأعطال الديناميكي' : 'Validated mass & energy balances with dynamic fault injection.'}
+            </p>
+          </div>
+        </div>
+
+        {/* The Centerpiece: Master DCS Crisis Console as a Floating Product Artifact */}
+        <div id="simulator-stage" className="pt-6 relative z-10">
+          <div className="bg-white rounded-[24px] p-3 sm:p-5 shadow-artifact border border-[#ececec] text-left">
+            <div className="flex items-center justify-between px-4 py-2.5 border-b border-[#f2f2f3] text-xs font-sans text-[#777b86]">
+              <div className="flex items-center space-x-2">
+                <span className="w-2.5 h-2.5 rounded-full bg-[#10b981]" />
+                <span className="font-medium text-[#17191c]">
+                  {isRTL ? 'شاشة التحكم الصناعي المباشر — محاكاة وحدة CDU-100' : 'Live Industrial Control Console — CDU-100 Simulation Model'}
+                </span>
+              </div>
+              <span className="font-mono text-[11px] text-[#979799]">
+                LEVEL 3 AIR-GAPPED APPLIANCE
+              </span>
+            </div>
+
+            <div className="mt-2">
+              <InteractiveRefineryConsole />
+            </div>
+          </div>
         </div>
       </div>
     </section>

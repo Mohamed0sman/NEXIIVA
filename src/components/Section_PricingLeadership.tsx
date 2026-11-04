@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSimulationJourney } from '../context/SimulationJourneyContext';
 import { translations } from '../data/translations';
 import { dcsAudio } from '../utils/audio';
-import { Check, Shield, Award, Terminal, ArrowRight, Building, Mail, User, Sliders } from 'lucide-react';
+import { Check, Shield, User, Building, Mail, Sliders } from 'lucide-react';
 
 export const Section_PricingLeadership: React.FC = () => {
   const { setPilotDrawerOpen, language } = useSimulationJourney();
@@ -96,71 +96,84 @@ export const Section_PricingLeadership: React.FC = () => {
   ];
 
   return (
-    <section id="pricing" className="py-24 px-6 lg:px-12 relative border-t border-slate-800/80 bg-[#04060E]">
-      <div className="max-w-6xl mx-auto space-y-20">
+    <section id="pricing" className="py-24 px-6 lg:px-12 relative border-t border-[#ececec] bg-[#fafafb]">
+      <div className="max-w-[1200px] mx-auto space-y-16">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-slate-800 pb-8">
-          <div className="space-y-2 max-w-2xl">
-            <div className="flex items-center space-x-2 text-xs font-mono text-purple-400 uppercase tracking-widest">
-              <span className="w-2 h-2 rounded-full bg-purple-500 animate-pulse" />
-              <span>{isRTL ? 'التسعير المؤسسي والبرامج المعتمدة' : 'SEC_05 // COMMERCIAL LICENSING & PILOT VALIDATION'}</span>
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-[#ececec] pb-8 text-left">
+          <div className="space-y-3 max-w-2xl" dir={isRTL ? 'rtl' : 'ltr'}>
+            <div className="text-xs font-sans text-[#979799] uppercase tracking-wider">
+              {isRTL ? 'التسعير المؤسسي والبرامج المعتمدة' : 'SEC_05 // COMMERCIAL LICENSING & PILOT VALIDATION'}
             </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight font-display">
-              {isRTL ? 'مسارات تجارية واضحة. بدون احتكار أو تكاليف خفية.' : 'Predictable Commercial Tracks. Fraction of Legacy CapEx.'}
+            <h2
+              className={`text-4xl sm:text-5xl font-normal text-[#17191c] tracking-[-0.02em] leading-[1.2] ${
+                isRTL ? 'font-serif-ar' : 'font-serif'
+              }`}
+            >
+              {isRTL ? (
+                <>
+                  مسارات تجارية واضحة.{' '}
+                  <span className="italic text-[#5d2a1a]">بدون احتكار أو تكاليف خفية.</span>
+                </>
+              ) : (
+                <>
+                  Predictable Commercial Tracks.{' '}
+                  <span className="italic text-[#5d2a1a]">Fraction of Legacy CapEx.</span>
+                </>
+              )}
             </h2>
-            <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
+            <p className="text-base sm:text-lg text-[#777b86] font-sans font-normal leading-[1.45]">
               {isRTL
                 ? 'قارن بين استثمار 5 آلاف دولار مع نكسيفا مقابل 110 آلاف دولار من المحتكرين القدامى، مع جاهزية تشغيل في أسبوع واحد.'
                 : 'From an agile $800 90-day plant validation pilot to full on-premise air-gapped academy deployments.'}
             </p>
           </div>
-          <div className="text-right text-xs font-mono text-slate-500">
+          <div className="text-right text-xs font-mono text-[#979799]">
             <div>CONTRACT CODE: B2B-OTS-2026</div>
             <div>STATUS: PILOTS ACTIVE</div>
           </div>
         </div>
 
-        {/* 1. 4 Architectural Commercial Cards */}
+        {/* 1. 4 Steep Editorial Commercial Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
           {pricingTiers.map((tier, idx) => (
             <div
               key={idx}
-              className={`p-6 rounded-2xl border transition-all duration-300 flex flex-col justify-between space-y-6 relative ${
+              className={`p-7 rounded-[24px] border transition-all duration-200 flex flex-col justify-between space-y-6 relative text-left ${
                 tier.featured
-                  ? 'bg-[#0E1326] border-purple-500/80 shadow-[0_0_50px_rgba(123,60,252,0.25)] ring-1 ring-purple-500/50'
-                  : 'bg-[#080B16] border-slate-800 hover:border-slate-700'
+                  ? 'bg-white border-2 border-[#17191c] shadow-artifact'
+                  : 'bg-white border-[#ececec] shadow-subtle hover:border-[#17191c]/40'
               }`}
             >
               {tier.featured && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 text-white text-[10px] font-mono font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-md whitespace-nowrap">
+                <div className="absolute -top-3 left-6 bg-[#17191c] text-white text-[10px] font-sans font-medium px-3 py-0.5 rounded-full uppercase tracking-wider shadow-sm whitespace-nowrap">
                   {tier.badge}
                 </div>
               )}
 
               <div className="space-y-4">
                 {!tier.featured && (
-                  <span className="text-[10px] font-mono text-slate-400 uppercase tracking-widest block">
+                  <span className="text-[10px] font-sans text-[#979799] uppercase tracking-widest block font-medium">
                     {tier.badge}
                   </span>
                 )}
 
                 <div>
-                  <h3 className="text-lg font-bold text-white tracking-tight">{tier.name}</h3>
-                  <div className="text-3xl font-black font-mono text-white mt-1.5 flex items-baseline gap-1">
+                  <h3 className="text-lg font-normal text-[#17191c] tracking-tight font-sans">{tier.name}</h3>
+                  <div className="text-3xl font-normal font-sans text-[#17191c] mt-2 flex items-baseline gap-1">
                     <span>{tier.price}</span>
                   </div>
-                  <div className="text-[11px] text-slate-400 font-mono mt-0.5">{tier.period}</div>
+                  <div className="text-xs text-[#777b86] font-sans mt-0.5">{tier.period}</div>
                 </div>
 
-                <p className="text-slate-300 text-xs leading-relaxed border-t border-slate-800/80 pt-3">
+                <p className="text-xs text-[#777b86] leading-relaxed border-t border-[#f2f2f3] pt-3 font-sans">
                   {tier.desc}
                 </p>
 
-                <div className="space-y-2 pt-2 border-t border-slate-800/60 text-xs text-slate-300">
+                <div className="space-y-2 pt-2 border-t border-[#f2f2f3] text-xs text-[#17191c]">
                   {tier.features.map((feat, fi) => (
                     <div key={fi} className="flex items-start space-x-2">
-                      <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
-                      <span className="leading-tight text-[11px] text-slate-300">{feat}</span>
+                      <Check className="w-3.5 h-3.5 text-[#059669] shrink-0 mt-0.5" />
+                      <span className="leading-tight text-[11px] text-[#777b86]">{feat}</span>
                     </div>
                   ))}
                 </div>
@@ -171,10 +184,10 @@ export const Section_PricingLeadership: React.FC = () => {
                   dcsAudio.playClick();
                   setPilotDrawerOpen(true);
                 }}
-                className={`w-full py-3 rounded-xl text-xs font-bold font-mono uppercase tracking-wider transition-all cursor-pointer ${
+                className={`w-full py-2.5 rounded-full text-xs font-sans font-medium transition-all cursor-pointer ${
                   tier.featured
-                    ? 'bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 text-white shadow-lg hover:shadow-purple-500/30'
-                    : 'bg-white/5 hover:bg-white/10 text-white border border-slate-800 hover:border-slate-700'
+                    ? 'btn-pill-filled'
+                    : 'btn-pill-ghost'
                 }`}
               >
                 {tier.action}
@@ -183,52 +196,50 @@ export const Section_PricingLeadership: React.FC = () => {
           ))}
         </div>
 
-        {/* 2. The Founder Dossier (Human Industrial Pedigree) */}
-        <div className="rounded-2xl bg-[#080B16] border border-slate-800 p-8 lg:p-10 relative overflow-hidden shadow-2xl">
+        {/* 2. The Founder Dossier (Steep Editorial Style) */}
+        <div className="rounded-[24px] bg-white border border-[#ececec] shadow-artifact p-8 sm:p-10 relative overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             {/* Founder Avatar & Badge */}
-            <div className="lg:col-span-3 text-center space-y-4">
-              <div className="w-28 h-28 mx-auto rounded-2xl bg-gradient-to-br from-purple-600 via-indigo-600 to-blue-600 p-0.5 shadow-[0_0_40px_rgba(123,60,252,0.3)]">
-                <div className="w-full h-full rounded-2xl bg-[#0B0F1C] flex flex-col items-center justify-center text-white">
-                  <span className="text-3xl font-black font-mono">MA</span>
-                  <span className="text-[10px] font-mono text-purple-400 font-bold mt-1">FOUNDER & CEO</span>
-                </div>
+            <div className="lg:col-span-3 text-center space-y-3">
+              <div className="w-24 h-24 mx-auto rounded-full bg-[#f2f2f3] border border-[#ececec] flex flex-col items-center justify-center text-[#17191c]">
+                <span className="text-2xl font-normal font-sans">MA</span>
+                <span className="text-[9px] font-sans text-[#777b86] uppercase tracking-wider font-medium">FOUNDER</span>
               </div>
               <div>
-                <h4 className="text-lg font-bold text-white">Eng. Mostafa Adel</h4>
-                <p className="text-xs font-mono text-slate-400">Chief Process Simulation Architect</p>
+                <h4 className="text-lg font-normal text-[#17191c] font-sans">Eng. Mostafa Adel</h4>
+                <p className="text-xs text-[#777b86] font-sans">Chief Process Simulation Architect</p>
               </div>
             </div>
 
             {/* Field Pedigree Narrative */}
-            <div className="lg:col-span-9 space-y-4 text-left border-l border-slate-800/80 pl-0 lg:pl-8">
-              <div className="flex items-center space-x-2 text-xs font-mono text-emerald-400 font-bold">
+            <div className="lg:col-span-9 space-y-4 text-left border-l border-[#f2f2f3] pl-0 lg:pl-8">
+              <div className="flex items-center space-x-2 text-xs font-sans text-[#059669] font-medium">
                 <Shield className="w-4 h-4" />
                 <span>10+ YEARS ON REFINERY CONSOLES & PETROCHEMICAL COMPLEXES</span>
               </div>
-              <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
+              <h3 className="text-xl sm:text-2xl font-normal text-[#17191c] tracking-tight font-sans">
                 {isRTL
                   ? 'صُمم بواسطة مهندس عمليات من داخل غرف التحكم، وليس مبرمجين خلف مكاتب مكيفة.'
                   : 'Engineered by a frontline refinery DCS specialist, not detached enterprise software coders.'}
               </h3>
-              <p className="text-slate-300 text-sm leading-relaxed">
+              <p className="text-sm text-[#777b86] leading-relaxed font-sans">
                 {isRTL
                   ? 'قضى م. مصطفى عادل أكثر من عقد في تشغيل ومحاكاة أعقد وحدات التكرير في مصفاة الشرق الأوسط لتكرير البترول (ميدور - الإسكندرية)، وشركة سانمار للكيماويات (بورسعيد)، وعجيبة للبترول، ومصفاة بورت هاركورت الدولية. تم تطوير نكسيفا لإنهاء الاحتكار الاستغلالي لشركات المحاكاة القديمة التي تطلب ملايين الدولارات وتستغرق عاماً كاملاً لتسليم نموذج بطيء.'
                   : 'Over a decade leading console commissioning and complex upsets across Middle East Oil Refinery (MIDOR Alexandria), TCI Sanmar Chemicals (Port Said), Agiba Petroleum Company, and Port Harcourt Refining Company. NEXIIVA was architected out of visceral frustration with obsolete legacy simulator cartels that charge $110,000+ and take 9 to 14 months to deliver closed-box proprietary models.'}
               </p>
 
               {/* Verified Plants Ribbon */}
-              <div className="pt-2 flex flex-wrap gap-2 text-[11px] font-mono text-slate-400">
-                <span className="px-2.5 py-1 rounded bg-[#0D1222] border border-slate-800 text-slate-200">
+              <div className="pt-2 flex flex-wrap gap-2 text-xs font-sans text-[#777b86]">
+                <span className="px-3 py-1 rounded-full bg-[#f2f2f3] text-[#17191c]">
                   MIDOR (Alexandria)
                 </span>
-                <span className="px-2.5 py-1 rounded bg-[#0D1222] border border-slate-800 text-slate-200">
+                <span className="px-3 py-1 rounded-full bg-[#f2f2f3] text-[#17191c]">
                   TCI Sanmar Chemicals
                 </span>
-                <span className="px-2.5 py-1 rounded bg-[#0D1222] border border-slate-800 text-slate-200">
+                <span className="px-3 py-1 rounded-full bg-[#f2f2f3] text-[#17191c]">
                   Agiba Petroleum Co.
                 </span>
-                <span className="px-2.5 py-1 rounded bg-[#0D1222] border border-slate-800 text-slate-200">
+                <span className="px-3 py-1 rounded-full bg-[#f2f2f3] text-[#17191c]">
                   Port Harcourt Refinery
                 </span>
               </div>
@@ -236,16 +247,30 @@ export const Section_PricingLeadership: React.FC = () => {
           </div>
         </div>
 
-        {/* 3. Streamlined Fast-Track Pilot Request */}
-        <div className="rounded-2xl bg-[#080B16] border border-slate-800 p-8 lg:p-12 relative overflow-hidden shadow-2xl max-w-4xl mx-auto">
+        {/* 3. Streamlined Fast-Track Pilot Request (Input / Composer in Steep Style) */}
+        <div className="rounded-[24px] bg-white border border-[#ececec] shadow-artifact p-8 sm:p-12 relative overflow-hidden max-w-3xl mx-auto">
           <div className="text-center space-y-2 mb-8">
-            <span className="text-xs font-mono text-purple-400 font-bold uppercase tracking-widest block">
+            <span className="text-xs font-sans text-[#979799] uppercase tracking-widest block font-medium">
               {isRTL ? 'حجز اختبار تجريبي خلال 24 ساعة' : '24-HOUR PILOT INTAKE'}
             </span>
-            <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-              {isRTL ? 'اختبر نموذج مصفاتك الحقيقي مع مهندسيك' : 'Commission Your Plant Flowsheet with Eng. Mostafa Adel'}
+            <h3
+              className={`text-2xl sm:text-3xl font-normal text-[#17191c] tracking-[-0.02em] ${
+                isRTL ? 'font-serif-ar' : 'font-serif'
+              }`}
+            >
+              {isRTL ? (
+                <>
+                  اختبر نموذج مصفاتك الحقيقي{' '}
+                  <span className="italic text-[#5d2a1a]">مع مهندسي العمليات.</span>
+                </>
+              ) : (
+                <>
+                  Commission Your Plant Flowsheet{' '}
+                  <span className="italic text-[#5d2a1a]">with Eng. Mostafa Adel.</span>
+                </>
+              )}
             </h3>
-            <p className="text-slate-400 text-sm max-w-xl mx-auto">
+            <p className="text-sm text-[#777b86] max-w-xl mx-auto font-sans">
               {isRTL
                 ? 'أرسل مخطط P&ID لوحدة واحدة، وسنقوم بتسليم محاكي تفاعلي كامل خلال 7 أيام عمل.'
                 : 'Submit a single unit P&ID under standard mutual NDA. Receive a running high-fidelity simulation model in ~7 business days.'}
@@ -253,25 +278,25 @@ export const Section_PricingLeadership: React.FC = () => {
           </div>
 
           {submitted ? (
-            <div className="p-8 rounded-xl bg-emerald-950/30 border border-emerald-500/40 text-center space-y-4">
-              <div className="w-12 h-12 mx-auto rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-2xl">
+            <div className="p-8 rounded-[20px] bg-[#ecfdf5] border border-[#a7f3d0] text-center space-y-3">
+              <div className="w-12 h-12 mx-auto rounded-full bg-[#059669] text-white flex items-center justify-center font-bold text-2xl">
                 ✓
               </div>
-              <h4 className="text-xl font-bold text-white">
+              <h4 className="text-xl font-normal text-[#17191c] font-sans">
                 {isRTL ? 'تم استلام طلب التجربة بنجاح' : 'Refinery Pilot Intake Confirmed'}
               </h4>
-              <p className="text-xs font-mono text-slate-300 max-w-md mx-auto">
+              <p className="text-xs text-[#777b86] max-w-md mx-auto font-sans leading-relaxed">
                 {isRTL
                   ? 'سيتواصل مكتب م. مصطفى عادل معك مباشرة عبر البريد الإلكتروني خلال 24 ساعة لإرسال اتفاقية عدم الإفصاح (NDA) ورابط رفع المخططات.'
                   : 'Eng. Mostafa Adel’s technical desk has received your plant parameters. You will receive the Mutual NDA and P&ID intake guidelines within 24 business hours.'}
               </p>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-4 text-left">
+            <form onSubmit={handleSubmit} className="space-y-4 text-left font-sans">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1.5">
-                  <label className="text-xs font-mono text-slate-400 flex items-center space-x-1.5">
-                    <User className="w-3.5 h-3.5 text-purple-400" />
+                  <label className="text-xs text-[#777b86] flex items-center space-x-1.5">
+                    <User className="w-3.5 h-3.5 text-[#17191c]" />
                     <span>{isRTL ? 'الاسم الكامل والمنصب الفني' : 'Full Name & Operational Title'}</span>
                   </label>
                   <input
@@ -280,13 +305,13 @@ export const Section_PricingLeadership: React.FC = () => {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="Eng. Tarek Mansour — Lead DCS Supervisor"
-                    className="w-full px-4 py-3 rounded-xl bg-[#0B0F1C] border border-slate-800 focus:border-purple-500 text-white text-xs font-mono outline-none transition-all"
+                    className="w-full px-4 py-3 rounded-[16px] bg-[#f8fafc] border border-[#ececec] focus:border-[#17191c] text-[#17191c] text-sm outline-none transition-all placeholder:text-[#a3a6af]"
                   />
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-mono text-slate-400 flex items-center space-x-1.5">
-                    <Building className="w-3.5 h-3.5 text-purple-400" />
+                  <label className="text-xs text-[#777b86] flex items-center space-x-1.5">
+                    <Building className="w-3.5 h-3.5 text-[#17191c]" />
                     <span>{isRTL ? 'اسم المصفاة أو الشركة' : 'Refinery / Operating Entity'}</span>
                   </label>
                   <input
@@ -295,15 +320,15 @@ export const Section_PricingLeadership: React.FC = () => {
                     value={company}
                     onChange={(e) => setCompany(e.target.value)}
                     placeholder="Middle East Oil Refinery (MIDOR) / EGPC"
-                    className="w-full px-4 py-3 rounded-xl bg-[#0B0F1C] border border-slate-800 focus:border-purple-500 text-white text-xs font-mono outline-none transition-all"
+                    className="w-full px-4 py-3 rounded-[16px] bg-[#f8fafc] border border-[#ececec] focus:border-[#17191c] text-[#17191c] text-sm outline-none transition-all placeholder:text-[#a3a6af]"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1.5">
-                  <label className="text-xs font-mono text-slate-400 flex items-center space-x-1.5">
-                    <Mail className="w-3.5 h-3.5 text-purple-400" />
+                  <label className="text-xs text-[#777b86] flex items-center space-x-1.5">
+                    <Mail className="w-3.5 h-3.5 text-[#17191c]" />
                     <span>{isRTL ? 'البريد الإلكتروني للعمل' : 'Corporate / Plant Work Email'}</span>
                   </label>
                   <input
@@ -312,19 +337,19 @@ export const Section_PricingLeadership: React.FC = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="tarek.mansour@refinery.com"
-                    className="w-full px-4 py-3 rounded-xl bg-[#0B0F1C] border border-slate-800 focus:border-purple-500 text-white text-xs font-mono outline-none transition-all"
+                    className="w-full px-4 py-3 rounded-[16px] bg-[#f8fafc] border border-[#ececec] focus:border-[#17191c] text-[#17191c] text-sm outline-none transition-all placeholder:text-[#a3a6af]"
                   />
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-mono text-slate-400 flex items-center space-x-1.5">
-                    <Sliders className="w-3.5 h-3.5 text-purple-400" />
+                  <label className="text-xs text-[#777b86] flex items-center space-x-1.5">
+                    <Sliders className="w-3.5 h-3.5 text-[#17191c]" />
                     <span>{isRTL ? 'الوحدة المستهدفة للاختبار' : 'Target Refinery Unit for Pilot'}</span>
                   </label>
                   <select
                     value={unit}
                     onChange={(e) => setUnit(e.target.value)}
-                    className="w-full px-4 py-3 rounded-xl bg-[#0B0F1C] border border-slate-800 focus:border-purple-500 text-white text-xs font-mono outline-none transition-all"
+                    className="w-full px-4 py-3 rounded-[16px] bg-[#f8fafc] border border-[#ececec] focus:border-[#17191c] text-[#17191c] text-sm outline-none transition-all cursor-pointer"
                   >
                     <option>CDU/VDU (Crude & Vacuum Distillation)</option>
                     <option>Hydrocracker Unit (HCU)</option>
@@ -337,9 +362,10 @@ export const Section_PricingLeadership: React.FC = () => {
 
               <button
                 type="submit"
-                className="w-full py-4 rounded-xl bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 text-white text-xs font-bold font-mono uppercase tracking-wider shadow-lg hover:shadow-purple-500/25 transition-all cursor-pointer mt-3"
+                className="btn-pill-filled w-full py-4 text-sm mt-3 shadow-sm cursor-pointer"
               >
-                {isRTL ? 'إرسال طلب التحقق الهندسي وتوقيع NDA' : 'Submit Pilot Intake & Request Mutual NDA'}
+                <span>{isRTL ? 'إرسال طلب التحقق الهندسي وتوقيع NDA' : 'Submit Pilot Intake & Request Mutual NDA'}</span>
+                <span className="ml-2">→</span>
               </button>
             </form>
           )}

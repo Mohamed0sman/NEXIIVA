@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSimulationJourney } from '../context/SimulationJourneyContext';
 import { translations } from '../data/translations';
 import { dcsAudio } from '../utils/audio';
-import { TrendingDown, Zap, Database, ArrowRight, ShieldAlert, DollarSign } from 'lucide-react';
+import { ArrowRight, ShieldAlert, TrendingDown } from 'lucide-react';
 
 export const Section_ComparisonROI: React.FC = () => {
   const { setPilotDrawerOpen, language } = useSimulationJourney();
@@ -26,123 +26,127 @@ export const Section_ComparisonROI: React.FC = () => {
   const downtimeAverted = numUnits * 420000;
 
   return (
-    <section id="economics" className="py-24 px-4 sm:px-6 lg:px-12 relative bg-[#0D111A] border-b border-slate-800/80">
-      <div className="max-w-7xl mx-auto space-y-16">
-        {/* Section Header */}
-        <div className="space-y-3 max-w-3xl" dir={isRTL ? 'rtl' : 'ltr'}>
-          <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-md bg-[#161D2B] border border-slate-700/60 text-slate-300 text-xs font-mono">
-            <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
-            <span>{t.tag}</span>
+    <section id="economics" className="py-24 px-6 lg:px-12 relative bg-[#fafafb] border-t border-[#ececec]">
+      <div className="max-w-[1200px] mx-auto space-y-16">
+        {/* Section Header: Steep Editorial Serif Headline */}
+        <div className="max-w-3xl space-y-4 text-left" dir={isRTL ? 'rtl' : 'ltr'}>
+          <div className="text-xs font-sans text-[#979799] tracking-wider uppercase">
+            {isRTL ? 'الجدوى الاقتصادية والوفر المالي' : 'ECONOMIC CASUALTY & BOARDROOM ANALYSIS'}
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight font-display">
-            {t.title}
+          <h2
+            className={`text-4xl sm:text-5xl font-normal text-[#17191c] tracking-[-0.02em] leading-[1.2] ${
+              isRTL ? 'font-serif-ar' : 'font-serif'
+            }`}
+          >
+            {isRTL ? (
+              <>
+                لماذا تعمل 80% من مصافي النفط والغاز{' '}
+                <span className="italic text-[#5d2a1a]">بدون محاكيات تشغيل؟</span>
+              </>
+            ) : (
+              <>
+                Why 80% of refinery units operate{' '}
+                <span className="italic text-[#5d2a1a]">without simulators.</span>
+              </>
+            )}
           </h2>
-          <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
+          <p className="text-base sm:text-lg text-[#777b86] font-sans font-normal leading-[1.45]">
             {t.subtitle}
           </p>
         </div>
 
-        {/* 2-Column Boardroom Layout: Left Narrative & Fact, Right Interactive ROI Calculator */}
+        {/* 2-Column Editorial Spread */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          {/* Left Column: The Problem & The 3 Performance Pillars (5 Cols) */}
-          <div className="lg:col-span-5 space-y-6" dir={isRTL ? 'rtl' : 'ltr'}>
-            {/* The Harsh Reality Card */}
-            <div className="p-6 rounded-2xl bg-[#121724] border border-slate-800 space-y-4">
-              <div className="flex items-center space-x-2 text-rose-400 text-xs font-mono font-bold">
-                <ShieldAlert className="w-4 h-4" />
-                <span>{t.legacyProblemTitle}</span>
+          {/* Left Column: The Signature Steep Accent Peach Card (5 Cols) */}
+          <div className="lg:col-span-5 space-y-6 text-left" dir={isRTL ? 'rtl' : 'ltr'}>
+            {/* The Accent Peach Card: kraft-paper effect, exactly as in Steep reference */}
+            <div className="bg-[#fbe1d1] rounded-[24px] p-8 sm:p-10 border border-[#f5cbb3] space-y-6">
+              <div className="text-xs font-sans text-[#5d2a1a]/70 uppercase tracking-widest font-medium">
+                {isRTL ? 'حقيقة قطاع التكرير الميدانية' : 'THE UNPLANNED OUTAGE CASUALTY'}
               </div>
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                {t.legacyProblemDesc}
+
+              <div className="text-2xl sm:text-[26px] font-sans font-normal text-[#5d2a1a] leading-tight tracking-[-0.015em]">
+                {isRTL
+                  ? '«ساعة التوقف الواحدة تكلف بين 35 إلى 50 ألف دولار من الإنتاج المهدور وغرامات الشعلة.»'
+                  : '"Unplanned refinery downtime costs $35,000 to $50,000 every single hour in lost throughput and flaring penalties."'}
+              </div>
+
+              <p className="text-sm text-[#5d2a1a]/85 leading-relaxed font-sans">
+                {isRTL
+                  ? 'شركات المحاكاة القديمة تفرض 110 ألف دولار وفترة انتظار 9 أشهر لكل وحدة. في الثالثة فجراً، عندما تتعطل مضخة خام حيوية، يضطر المشغل للتعلم عبر أخطاء كارثية تؤدي لتوقف اضطراري. استثمار نكسيفا يسترد قيمته بالكامل من أول حادثة يتم تفاديها.'
+                  : 'Legacy simulation cartels force plants to choose between extreme consulting costs ($110K+) or training new operators on live, hazardous hydrocarbons. NEXIIVA pays for itself tenfold on the very first emergency trip your operators successfully manage.'}
               </p>
-              <div className="p-3.5 rounded-xl bg-black/40 border border-slate-800 text-xs font-mono text-amber-300">
-                ⚠️ {t.downtimeFact}
+
+              <div className="pt-4 border-t border-[#5d2a1a]/20 flex items-center justify-between text-xs font-mono text-[#5d2a1a]">
+                <span>PAYBACK PERIOD</span>
+                <span className="font-bold underline decoration-[#5d2a1a]">
+                  {isRTL ? 'من أول أزمة يتم تفاديها' : 'FIRST AVERTED UPSET'}
+                </span>
               </div>
             </div>
 
-            {/* 3 High-Density Performance Stats */}
-            <div className="grid grid-cols-1 gap-3 font-mono">
-              <div className="p-4 rounded-xl bg-[#121724] border border-slate-800 flex items-center justify-between">
-                <div>
-                  <span className="text-slate-400 text-[10px] block uppercase">TCO REDUCTION</span>
-                  <span className="text-2xl font-black text-emerald-400">~90% LOWER</span>
-                  <span className="text-[11px] text-slate-400 block mt-0.5">~$5K vs $110K legacy unit</span>
-                </div>
-                <div className="p-2.5 rounded-lg bg-emerald-500/10 text-emerald-400">
-                  <TrendingDown className="w-5 h-5" />
-                </div>
-              </div>
-
-              <div className="p-4 rounded-xl bg-[#121724] border border-slate-800 flex items-center justify-between">
-                <div>
-                  <span className="text-slate-400 text-[10px] block uppercase">DELIVERY VELOCITY</span>
-                  <span className="text-2xl font-black text-cyan-400">~7 DAYS</span>
-                  <span className="text-[11px] text-slate-400 block mt-0.5">vs 6–9 months legacy consulting</span>
-                </div>
-                <div className="p-2.5 rounded-lg bg-cyan-500/10 text-cyan-400">
-                  <Zap className="w-5 h-5" />
-                </div>
-              </div>
-
-              <div className="p-4 rounded-xl bg-[#121724] border border-slate-800 flex items-center justify-between">
-                <div>
-                  <span className="text-slate-400 text-[10px] block uppercase">MODELING RIGOR</span>
-                  <span className="text-2xl font-black text-purple-300">387 MODELS</span>
-                  <span className="text-[11px] text-slate-400 block mt-0.5">19 process domains with failure injection</span>
-                </div>
-                <div className="p-2.5 rounded-lg bg-purple-500/10 text-purple-300">
-                  <Database className="w-5 h-5" />
-                </div>
-              </div>
+            {/* Quiet Feature Callout */}
+            <div className="bg-white rounded-[24px] p-6 border border-[#ececec] shadow-subtle space-y-2">
+              <span className="text-xs text-[#979799] font-sans block uppercase">CAPEX DISRUPTION</span>
+              <div className="text-2xl font-normal text-[#17191c]">90% Capital Saved</div>
+              <p className="text-xs text-[#777b86] leading-relaxed">
+                {isRTL
+                  ? 'توليد النماذج آلياً يقضي على رسوم الاستشارات المرهقة ويوفر التدريب لكل مهندس ومشغل في المصفاة.'
+                  : 'Automated flowsheet compilation eliminates months of billable manual coding.'}
+              </p>
             </div>
           </div>
 
-          {/* Right Column: Comparison Matrix & Interactive ROI Calculator (7 Cols) */}
+          {/* Right Column: Clean White Artifact Cards for Comparison & Sliders (7 Cols) */}
           <div className="lg:col-span-7 space-y-6">
-            {/* The Clean Comparison Matrix */}
-            <div className="rounded-2xl bg-[#121724] border border-slate-800 overflow-hidden shadow-xl">
-              <div className="p-4 bg-[#161D2D] border-b border-slate-800 text-xs font-mono font-bold text-white flex justify-between items-center">
-                <span>COMMERCIAL & TECHNICAL BENCHMARK</span>
-                <span className="text-emerald-400">VERIFIED DATA</span>
+            {/* Table Artifact */}
+            <div className="bg-white rounded-[24px] border border-[#ececec] shadow-artifact overflow-hidden">
+              <div className="px-6 py-4 border-b border-[#f2f2f3] flex items-center justify-between">
+                <span className="text-xs font-sans text-[#777b86] uppercase tracking-wider">
+                  COMMERCIAL & TECHNICAL BENCHMARK
+                </span>
+                <span className="text-[11px] font-mono text-[#059669] font-medium bg-[#ecfdf5] px-2 py-0.5 rounded-full">
+                  VERIFIED DATA
+                </span>
               </div>
 
               <div className="overflow-x-auto">
-                <table className="w-full text-left font-sans text-xs border-collapse min-w-[500px]">
+                <table className="w-full text-left font-sans text-xs border-collapse min-w-[480px]">
                   <thead>
-                    <tr className="border-b border-slate-800 text-slate-400 text-[11px] font-mono">
-                      <th className="p-4">SPECIFICATION</th>
-                      <th className="p-4">LEGACY VENDORS</th>
-                      <th className="p-4 text-emerald-400 font-bold bg-[#1A2234]">
+                    <tr className="border-b border-[#ececec] text-[#777b86] text-[11px]">
+                      <th className="p-4 font-normal">SPECIFICATION</th>
+                      <th className="p-4 font-normal">LEGACY VENDORS</th>
+                      <th className="p-4 font-medium text-[#17191c] bg-[#fafafb]">
                         NEXIIVA PLATFORM
                       </th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-800/80 text-slate-300 font-mono text-[11px]">
+                  <tbody className="divide-y divide-[#f2f2f3] text-[#17191c] text-xs">
                     <tr>
-                      <td className="p-4 font-bold text-white">First-Year Cost Model</td>
-                      <td className="p-4 text-rose-400">~$110,000+ / unit</td>
-                      <td className="p-4 font-bold text-emerald-400 bg-[#1A2234]">
+                      <td className="p-4 font-medium text-[#17191c]">First-Year CapEx</td>
+                      <td className="p-4 text-[#777b86]">~$110,000+ / unit</td>
+                      <td className="p-4 font-medium text-[#059669] bg-[#fafafb]">
                         ~$5,180 total (or $800 Pilot)
                       </td>
                     </tr>
                     <tr>
-                      <td className="p-4 font-bold text-white">Custom Build Velocity</td>
-                      <td className="p-4 text-slate-400">6 to 9 Months</td>
-                      <td className="p-4 font-bold text-cyan-400 bg-[#1A2234]">
+                      <td className="p-4 font-medium text-[#17191c]">Build Velocity</td>
+                      <td className="p-4 text-[#777b86]">6 to 9 Months</td>
+                      <td className="p-4 font-medium text-[#17191c] bg-[#fafafb]">
                         ~1 Week (7 Days)
                       </td>
                     </tr>
                     <tr>
-                      <td className="p-4 font-bold text-white">Refinery Air-Gap Mode</td>
-                      <td className="p-4 text-slate-400">Complex proprietary lock-in</td>
-                      <td className="p-4 font-bold text-white bg-[#1A2234]">
-                        100% Offline Local 2U Server
+                      <td className="p-4 font-medium text-[#17191c]">Refinery Air-Gap</td>
+                      <td className="p-4 text-[#777b86]">Complex vendor lock-in</td>
+                      <td className="p-4 font-medium text-[#17191c] bg-[#fafafb]">
+                        100% Offline 2U Server
                       </td>
                     </tr>
                     <tr>
-                      <td className="p-4 font-bold text-white">Annual Maintenance Fee</td>
-                      <td className="p-4 text-rose-400">$25,000+ / year</td>
-                      <td className="p-4 font-bold text-purple-300 bg-[#1A2234]">
+                      <td className="p-4 font-medium text-[#17191c]">Annual Maintenance</td>
+                      <td className="p-4 text-[#777b86]">$25,000+ / year</td>
+                      <td className="p-4 font-medium text-[#5d2a1a] bg-[#fafafb]">
                         $800 / year flat
                       </td>
                     </tr>
@@ -151,24 +155,26 @@ export const Section_ComparisonROI: React.FC = () => {
               </div>
             </div>
 
-            {/* The Interactive Boardroom ROI Simulator */}
-            <div className="p-6 sm:p-8 rounded-2xl bg-[#121724] border border-slate-800 shadow-xl space-y-6">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800 pb-3">
+            {/* Interactive ROI Calculator Card */}
+            <div className="bg-white rounded-[24px] border border-[#ececec] shadow-artifact p-6 sm:p-8 space-y-6 text-left">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#f2f2f3] pb-4">
                 <div>
-                  <h3 className="text-lg font-bold text-white tracking-tight">{t.calcTitle}</h3>
-                  <p className="text-slate-400 text-xs mt-0.5">{t.calcSub}</p>
+                  <h3 className="text-xl font-normal text-[#17191c] tracking-tight font-sans">
+                    {t.calcTitle}
+                  </h3>
+                  <p className="text-xs text-[#777b86] mt-0.5">{t.calcSub}</p>
                 </div>
-                <span className="text-xs font-mono px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-bold shrink-0">
+                <span className="text-xs font-sans px-3 py-1 rounded-full bg-[#ecfdf5] text-[#059669] font-medium border border-[#a7f3d0] shrink-0">
                   {percentSaved}% CAPEX SAVED
                 </span>
               </div>
 
-              {/* Sliders */}
+              {/* Sliders in Steep Clean Style */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div className="p-4 rounded-xl bg-black/40 border border-slate-800 space-y-2">
-                  <div className="flex justify-between text-xs font-mono">
-                    <span className="text-slate-300">{t.sliderUnits}</span>
-                    <span className="font-bold text-purple-300 text-sm">{numUnits} Units</span>
+                <div className="bg-[#f2f2f3] rounded-[16px] p-4 space-y-2">
+                  <div className="flex justify-between text-xs font-sans">
+                    <span className="text-[#17191c] font-medium">{t.sliderUnits}</span>
+                    <span className="font-mono text-[#5d2a1a] font-bold">{numUnits} Units</span>
                   </div>
                   <input
                     type="range"
@@ -179,19 +185,19 @@ export const Section_ComparisonROI: React.FC = () => {
                       setNumUnits(parseInt(e.target.value));
                       dcsAudio.playClick();
                     }}
-                    className="w-full accent-purple-500 bg-slate-800 h-1.5 cursor-pointer"
+                    className="w-full accent-[#17191c] bg-[#e2e2e4] h-1.5 cursor-pointer rounded-full"
                   />
-                  <div className="flex justify-between text-[10px] font-mono text-slate-500">
-                    <span>1 Unit (CDU)</span>
+                  <div className="flex justify-between text-[10px] text-[#979799]">
+                    <span>1 Unit</span>
                     <span>5 Units</span>
                     <span>10 Units</span>
                   </div>
                 </div>
 
-                <div className="p-4 rounded-xl bg-black/40 border border-slate-800 space-y-2">
-                  <div className="flex justify-between text-xs font-mono">
-                    <span className="text-slate-300">{t.sliderOperators}</span>
-                    <span className="font-bold text-blue-300 text-sm">{numOperators} Operators</span>
+                <div className="bg-[#f2f2f3] rounded-[16px] p-4 space-y-2">
+                  <div className="flex justify-between text-xs font-sans">
+                    <span className="text-[#17191c] font-medium">{t.sliderOperators}</span>
+                    <span className="font-mono text-[#17191c] font-bold">{numOperators} Operators</span>
                   </div>
                   <input
                     type="range"
@@ -202,35 +208,35 @@ export const Section_ComparisonROI: React.FC = () => {
                       setNumOperators(parseInt(e.target.value));
                       dcsAudio.playClick();
                     }}
-                    className="w-full accent-blue-500 bg-slate-800 h-1.5 cursor-pointer"
+                    className="w-full accent-[#17191c] bg-[#e2e2e4] h-1.5 cursor-pointer rounded-full"
                   />
-                  <div className="flex justify-between text-[10px] font-mono text-slate-500">
-                    <span>4 Operators</span>
+                  <div className="flex justify-between text-[10px] text-[#979799]">
+                    <span>4 Shifts</span>
                     <span>25 Operators</span>
                     <span>50 Operators</span>
                   </div>
                 </div>
               </div>
 
-              {/* Live Impact Readout Row */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 p-4 rounded-xl bg-black/60 border border-slate-800 text-center font-mono">
+              {/* Readout Metrics */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 bg-[#f2f2f3] p-4 rounded-[16px] text-center font-sans">
                 <div>
-                  <div className="text-[10px] text-slate-500 uppercase">{t.legacyCost}</div>
-                  <div className="text-lg font-bold text-rose-400 line-through mt-0.5">
+                  <div className="text-[11px] text-[#777b86] uppercase">{t.legacyCost}</div>
+                  <div className="text-lg font-normal text-[#979799] line-through mt-0.5 font-mono">
                     ${totalLegacy.toLocaleString()}
                   </div>
                 </div>
 
                 <div>
-                  <div className="text-[10px] text-emerald-400 uppercase font-bold">{t.capexSaved}</div>
-                  <div className="text-2xl font-black text-emerald-400 mt-0.5">
+                  <div className="text-[11px] text-[#059669] uppercase font-medium">{t.capexSaved}</div>
+                  <div className="text-2xl font-normal text-[#059669] mt-0.5 font-mono">
                     ${capexSaved.toLocaleString()}
                   </div>
                 </div>
 
                 <div>
-                  <div className="text-[10px] text-cyan-400 uppercase font-bold">DOWNTIME RISK AVERTED</div>
-                  <div className="text-lg font-black text-cyan-400 mt-0.5">
+                  <div className="text-[11px] text-[#5d2a1a] uppercase font-medium">DOWNTIME RISK AVERTED</div>
+                  <div className="text-lg font-normal text-[#5d2a1a] mt-0.5 font-mono">
                     ${downtimeAverted.toLocaleString()}
                   </div>
                 </div>
@@ -241,10 +247,10 @@ export const Section_ComparisonROI: React.FC = () => {
                   dcsAudio.playClick();
                   setPilotDrawerOpen(true);
                 }}
-                className="w-full py-3.5 rounded-xl bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 text-white font-mono font-bold text-xs uppercase tracking-wider shadow-lg hover:opacity-95 transition-all cursor-pointer flex items-center justify-center space-x-2"
+                className="btn-pill-filled w-full py-3.5 text-[15px] cursor-pointer"
               >
                 <span>Request Boardroom Pilot Proposal ($800)</span>
-                <ArrowRight className="w-4 h-4" />
+                <span className="ml-2">→</span>
               </button>
             </div>
           </div>
