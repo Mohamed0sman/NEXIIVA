@@ -13,17 +13,7 @@ export const Section_ComparisonROI: React.FC = () => {
   const [numUnits, setNumUnits] = useState(2);
   const [numOperators, setNumOperators] = useState(15);
 
-  // Financial Calculations from real Nexiiva business model
-  const legacyUnitCost = 110000;
-  const totalLegacy = numUnits * legacyUnitCost;
 
-  const nexiivaUnitCost = 5320;
-  const totalNexiiva = numUnits * nexiivaUnitCost;
-  const capexSaved = totalLegacy - totalNexiiva;
-  const percentSaved = Math.round((capexSaved / totalLegacy) * 100);
-
-  // Downtime avoidance value (1 unplanned shutdown avoided per unit per year = $35,000/hr * 12 hrs = $420,000)
-  const downtimeAverted = numUnits * 420000;
 
   return (
     <section id="operational-reality" className="py-24 px-6 lg:px-12 relative bg-[#F8FAFC] border-t border-slate-200">
@@ -131,14 +121,14 @@ export const Section_ComparisonROI: React.FC = () => {
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-4">
                 <div>
                   <h3 className="text-xl font-bold text-[#0B1120] tracking-tight font-sans">
-                    {isRTL ? 'حاسبة العائد الاستثماري لمجلس إدارة المصفاة' : 'Refinery Boardroom ROI Calculator'}
+                    {isRTL ? 'نموذج محاكاة الكفاءة والجاهزية لمجلس الإدارة' : 'Refinery Boardroom Readiness & Value Model'}
                   </h3>
                   <p className="text-xs text-slate-500 mt-0.5">
-                    {isRTL ? 'حدد عدد وحدات التكرير وطاقم المشغلين لحساب الوفر المالي المباشر' : 'Adjust your refinery capacity and operator fleet to see immediate capital and operational savings.'}
+                    {isRTL ? 'حدد سعة منشأتك وطاقم المشغلين لعرض مؤشرات الجاهزية والوفر الاستثماري' : 'Adjust your unit capacity and operator fleet to evaluate shift readiness and capital efficiency.'}
                   </p>
                 </div>
                 <span className="text-xs font-mono px-3 py-1 rounded-full bg-[#ecfdf5] text-[#059669] font-bold border border-[#a7f3d0] shrink-0">
-                  {percentSaved}% CAPEX SAVED
+                  {isRTL ? 'وفر رأسمالي >90%' : '>90% CAPEX EFFICIENCY'}
                 </span>
               </div>
 
@@ -199,28 +189,28 @@ export const Section_ComparisonROI: React.FC = () => {
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 bg-[#F1F5F9] p-4 rounded-xl text-center font-sans">
                 <div>
                   <div className="text-[11px] text-slate-500 uppercase">
-                    {isRTL ? 'تكلفة البائع التقليدي الكبرى:' : 'LEGACY VENDOR CAPEX:'}
+                    {isRTL ? 'زمن النشر والجاهزية:' : 'TARGET READINESS:'}
                   </div>
-                  <div className="text-lg font-bold text-slate-400 line-through mt-0.5 font-mono">
-                    ${totalLegacy.toLocaleString()}
+                  <div className="text-xl font-extrabold text-[#0B1120] mt-0.5 font-mono">
+                    {isRTL ? '~1 أسبوع' : '~1 Week'}
                   </div>
                 </div>
 
                 <div>
                   <div className="text-[11px] text-[#059669] uppercase font-bold">
-                    {isRTL ? 'الوفر الرأسمالي المباشر:' : 'DIRECT CAPITAL SAVED:'}
+                    {isRTL ? 'كفاءة الاستثمار المقدرة:' : 'ESTIMATED EFFICIENCY:'}
                   </div>
                   <div className="text-2xl font-black text-[#059669] mt-0.5 font-mono">
-                    ${capexSaved.toLocaleString()}
+                    &gt;90%
                   </div>
                 </div>
 
                 <div>
                   <div className="text-[11px] text-[#4F46E5] uppercase font-bold">
-                    {isRTL ? 'خطر التوقف المتفادى:' : 'DOWNTIME RISK AVERTED:'}
+                    {isRTL ? 'المرونة التشغيلية:' : 'SHIFT RESILIENCE:'}
                   </div>
-                  <div className="text-lg font-bold text-[#4F46E5] mt-0.5 font-mono">
-                    ${downtimeAverted.toLocaleString()}
+                  <div className="text-xl font-bold text-[#4F46E5] mt-0.5 font-mono">
+                    {isRTL ? 'جاهزية 100%' : '100% Ready'}
                   </div>
                 </div>
               </div>
@@ -232,7 +222,7 @@ export const Section_ComparisonROI: React.FC = () => {
                 }}
                 className="w-full py-3.5 rounded-full bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] hover:opacity-95 text-white font-semibold text-[15px] shadow-[0_8px_25px_-4px_rgba(79,70,229,0.45)] transition-all cursor-pointer flex items-center justify-center space-x-2"
               >
-                <span>{isRTL ? 'طلب مقترح التجربة الميدانية (800$)' : 'Request Boardroom Pilot Proposal ($800)'}</span>
+                <span>{isRTL ? 'طلب مقترح التجربة الميدانية للمنشأة' : 'Request Boardroom Pilot Proposal'}</span>
                 <span className="ml-2">→</span>
               </button>
             </div>

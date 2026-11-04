@@ -451,14 +451,14 @@ export const InteractiveRefineryConsole: React.FC = () => {
                 {/* Economic Loss at Risk (5 Cols) */}
                 <div className="sm:col-span-5 p-2.5 rounded-xl bg-[#070B14] border border-slate-800 flex items-center justify-between">
                   <span className="text-slate-500 text-[11px]">
-                    {isRTL ? 'الخسائر المعرضة للخطر:' : 'FLARING RISK:'}
+                    {isRTL ? 'مستوى احتواء الخطر:' : 'CONTAINMENT RISK:'}
                   </span>
                   <span
                     className={`font-black text-sm ${
                       potentialLoss > 0 ? 'text-rose-400 animate-pulse' : 'text-emerald-400'
                     }`}
                   >
-                    ${potentialLoss.toLocaleString()} USD
+                    {potentialLoss > 0 ? (isRTL ? 'خطر توقف اضطراري' : 'CRITICAL TRIP RISK') : (isRTL ? 'مستقر وآمن 100%' : '100% NOMINAL')}
                   </span>
                 </div>
               </div>
@@ -1016,8 +1016,8 @@ export const InteractiveRefineryConsole: React.FC = () => {
                       </h3>
                       <p className="text-xs font-mono text-emerald-300">
                         {isRTL
-                          ? 'تم الحفاظ على توازن المصفاة وتفادي حرق وتلويث 1,200 كجم هيدروكربونات'
-                          : 'Zero flaring occurred. Estimated plant loss of $2,400,000 USD successfully prevented.'}
+                          ? 'تم الحفاظ على توازن المصفاة وتفادي حرق وتلويث 1,200 كجم هيدروكربونات وتجنب توقف الوحدة'
+                          : 'Zero flaring occurred. Emergency unit trip and production downtime successfully prevented.'}
                       </p>
                     </div>
                   </div>
@@ -1044,9 +1044,9 @@ export const InteractiveRefineryConsole: React.FC = () => {
                     </div>
                   </div>
                   <div className="p-3 rounded-xl bg-black/40 border border-emerald-500/20">
-                    <div className="text-slate-500">LOSS PREVENTED</div>
+                    <div className="text-slate-500">CONTAINMENT</div>
                     <div className="text-emerald-400 font-bold text-sm mt-0.5">
-                      $2,400,000 USD
+                      100% SUCCESS
                     </div>
                   </div>
                 </div>
@@ -1339,8 +1339,8 @@ export const InteractiveRefineryConsole: React.FC = () => {
                   <span className="text-emerald-400 font-bold">0.00 BBLS (PREVENTED)</span>
                 </div>
                 <div className="flex justify-between border-b border-slate-800 pb-2">
-                  <span className="text-slate-500">ESTIMATED LOSS AVOIDED:</span>
-                  <span className="text-emerald-400 font-bold">$2,400,000 USD</span>
+                  <span className="text-slate-500">EMERGENCY TRIP PREVENTED:</span>
+                  <span className="text-emerald-400 font-bold">100% CONTAINED</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-slate-500">FINAL GRADE:</span>

@@ -44,7 +44,7 @@ export const Section_PricingLeadership: React.FC = () => {
           </div>
           <div className="text-right text-xs font-mono text-[#64748B] shrink-0" dir="ltr">
             <div>CONTRACT CODE: B2B-OTS-2026</div>
-            <div>STATUS: 30% LAUNCH DISCOUNT ACTIVE</div>
+            <div>STATUS: ENTERPRISE LICENSING AVAILABLE</div>
           </div>
         </div>
 
@@ -74,7 +74,7 @@ export const Section_PricingLeadership: React.FC = () => {
 
                 <div>
                   <h3 className="text-lg font-bold text-[#0B1120] tracking-tight font-sans">{card.name}</h3>
-                  <div className="text-3xl font-extrabold font-sans text-[#0B1120] mt-2 flex items-baseline gap-1">
+                  <div className="text-xl font-extrabold font-sans text-[#0B1120] mt-2 flex items-baseline gap-1">
                     <span>{card.price}</span>
                   </div>
                   <div className="text-xs text-[#64748B] font-sans mt-0.5 leading-snug">{card.period}</div>

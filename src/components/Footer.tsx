@@ -53,7 +53,7 @@ export const Footer: React.FC = () => {
                 05. {isRTL ? 'خيارات النشر السحابي والمحلي' : 'Flexible Deployment & Validation'}
               </button>
               <button onClick={() => scrollTo('pricing')} className="text-left hover:text-[#4F46E5] transition-colors cursor-pointer">
-                06. {isRTL ? 'التسعير الشفاف والبرنامج التجريبي' : 'Transparent Pricing ($800 Pilot)'}
+                06. {isRTL ? 'نماذج التراخيص والبرنامج التجريبي' : 'Licensing & Pilot Program'}
               </button>
             </div>
           </div>
@@ -74,7 +74,7 @@ export const Footer: React.FC = () => {
                   onClick={() => setPilotDrawerOpen(true)}
                   className="px-5 py-2.5 rounded-full bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] text-white text-xs font-semibold transition-all shadow-[0_8px_25px_-4px_rgba(79,70,229,0.45)] hover:shadow-[0_12px_30px_-4px_rgba(79,70,229,0.6)] cursor-pointer"
                 >
-                  {isRTL ? 'بدء برنامج تجريبي مدفوع ($800) ←' : 'Start a Paid Pilot ($800) →'}
+                  {isRTL ? 'طلب برنامج تجريبي للمنشأة ←' : 'Request a Pilot Program →'}
                 </button>
               </div>
             </div>
