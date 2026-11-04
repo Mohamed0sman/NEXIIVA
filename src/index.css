@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  background-color: #04060E;
+  color: #F1F5F9;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Custom Sleek Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #04060E;
+}
+::-webkit-scrollbar-thumb {
+  background: #1E2548;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #6838F8;
+}
+
+/* Metallic Silver-White Headline Gradient */
+.text-metallic {
+  background: linear-gradient(180deg, #FFFFFF 0%, #E2E8F0 60%, #94A3B8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Primary NEXIIVA Brand Gradient */
+.bg-brand-gradient {
+  background: linear-gradient(135deg, #8E42FE 0%, #6838F8 50%, #3361FC 100%);
+}
+
+.text-brand-gradient {
+  background: linear-gradient(135deg, #8E42FE 0%, #6838F8 50%, #3361FC 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Subtle Pipe Flow Animation */
+@keyframes flowDash {
+  0% {
+    stroke-dashoffset: 60;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-flow-dash {
+  stroke-dasharray: 6 4;
+  animation: flowDash 2.5s linear infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.85;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.03);
+  }
+}
+
+.animate-ambient-glow {
+  animation: pulseGlow 8s ease-in-out infinite;
+}
