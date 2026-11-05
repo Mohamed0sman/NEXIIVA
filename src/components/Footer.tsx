@@ -3,7 +3,7 @@ import { NexiivaLogo } from './NexiivaLogo';
 import { useSimulationJourney } from '../context/SimulationJourneyContext';
 
 export const Footer: React.FC = () => {
-  const { setPilotDrawerOpen, setSimulatorModalOpen, language } = useSimulationJourney();
+  const { setPilotDrawerOpen, language } = useSimulationJourney();
   const isRTL = language === 'AR';
 
   const scrollTo = (id: string) => {
@@ -20,11 +20,11 @@ export const Footer: React.FC = () => {
             <NexiivaLogo height={26} />
             <p className="text-[#777b86] text-xs leading-relaxed max-w-sm">
               {isRTL
-                ? 'المنظومة الصناعية المعتمدة لمحاكاة مشغلي مصافي النفط والغاز. نكسيفا تحول مخططات P&ID إلى نماذج ديناميكية متكاملة في 7 أيام فقط لتأهيل الكفاءات وحماية الأرواح والمنشآت من كوارث الإغلاق غير المخطط له.'
-                : 'Industrial Process Operator Training Simulator (OTS). Built to make plant-specific high-fidelity simulation accessible to every refinery, petrochemical complex, and gas facility in Egypt, the Gulf, and Africa.'}
+                ? 'المنظومة الصناعية المتخصصة لمحاكاة مشغلي مصافي النفط والغاز والبتروكيماويات. تحول نكسيفا مخططات P&ID وفلسفة التحكم إلى توائم رقمية واقعية لتأهيل الكفاءات وحماية المنشآت من كوارث الإغلاق غير المخطط له.'
+                : 'Industrial Process Operator Training Simulator (OTS). Built to make plant-specific high-fidelity dynamic simulation accessible to every refinery, petrochemical complex, and gas facility in Egypt, the Middle East, and worldwide.'}
             </p>
             <div className="text-[#979799] font-mono text-[11px] font-medium">
-              Entrepreneurs Investment Program (EIP) · GEF 2026 Cairo Official Showcase
+              Entrepreneurs Investment Program (EIP) · Official Showcase 2026
             </div>
           </div>
 
@@ -35,25 +35,25 @@ export const Footer: React.FC = () => {
             </div>
             <div className="flex flex-col space-y-2 text-[#64748B] font-sans text-xs">
               <button
-                onClick={() => scrollTo('simulator-stage')}
+                onClick={() => scrollTo('about')}
                 className="text-left hover:text-[#4F46E5] transition-colors cursor-pointer"
               >
-                01. {isRTL ? 'محاكي CDU/VDU الحي' : 'Live CDU/VDU Simulator'}
+                01. {isRTL ? 'عن نكسيفا ورؤيتنا' : 'About Nexiiva & Mission'}
               </button>
               <button onClick={() => scrollTo('operational-reality')} className="text-left hover:text-[#4F46E5] transition-colors cursor-pointer">
-                02. {isRTL ? 'الواقع التشغيلي وبدائل الشركات' : 'The Operational Reality & ROI'}
+                02. {isRTL ? 'الواقع التشغيلي والبدائل' : 'The Operational Reality & ROI'}
               </button>
               <button onClick={() => scrollTo('ots-builder')} className="text-left hover:text-[#4F46E5] transition-colors cursor-pointer">
                 03. {isRTL ? 'منشئ OTS ومكتبة 387 معدة' : 'OTS Builder & 387 Equipment'}
               </button>
-              <button onClick={() => scrollTo('journey')} className="text-left hover:text-[#4F46E5] transition-colors cursor-pointer">
-                04. {isRTL ? 'تجربة المحاكي والشهادات' : 'Simulator Experience & Certification'}
+              <button onClick={() => scrollTo('capabilities')} className="text-left hover:text-[#4F46E5] transition-colors cursor-pointer">
+                04. {isRTL ? 'قدرات المنظومة (المشغل، المدرب، الاعتماد)' : 'Platform Capabilities'}
               </button>
               <button onClick={() => scrollTo('deployment')} className="text-left hover:text-[#4F46E5] transition-colors cursor-pointer">
-                05. {isRTL ? 'خيارات النشر السحابي والمحلي' : 'Flexible Deployment & Validation'}
+                05. {isRTL ? 'الأمان والنشر المعزول' : 'Security Architecture & Deployment'}
               </button>
-              <button onClick={() => scrollTo('pricing')} className="text-left hover:text-[#4F46E5] transition-colors cursor-pointer">
-                06. {isRTL ? 'نماذج التراخيص والبرنامج التجريبي' : 'Licensing & Pilot Program'}
+              <button onClick={() => scrollTo('subscribe')} className="text-left hover:text-[#4F46E5] transition-colors cursor-pointer text-[#4F46E5] font-semibold">
+                06. {isRTL ? 'طريقة الاشتراك ومسار البدء' : 'How to Subscribe & Onboarding'}
               </button>
             </div>
           </div>
@@ -61,7 +61,7 @@ export const Footer: React.FC = () => {
           {/* Leadership & Contact (4 Cols) */}
           <div className="md:col-span-4 space-y-3 text-left">
             <div className="text-xs font-sans font-semibold text-[#0B1120] uppercase tracking-wider">
-              {isRTL ? 'المكتب الفني للمؤسس' : 'Founder & Technical Office'}
+              {isRTL ? 'المكتب الفني والاشتراكات' : 'Technical & Subscription Desk'}
             </div>
             <div className="space-y-1.5 text-[#0B1120]">
               <div className="font-bold text-[#0B1120] text-sm">Eng. Mostafa Adel</div>
@@ -74,7 +74,7 @@ export const Footer: React.FC = () => {
                   onClick={() => setPilotDrawerOpen(true)}
                   className="px-5 py-2.5 rounded-full bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] text-white text-xs font-semibold transition-all shadow-[0_8px_25px_-4px_rgba(79,70,229,0.45)] hover:shadow-[0_12px_30px_-4px_rgba(79,70,229,0.6)] cursor-pointer"
                 >
-                  {isRTL ? 'طلب برنامج تجريبي للمنشأة ←' : 'Request a Pilot Program →'}
+                  {isRTL ? 'الاشتراك وبدء التجربة ←' : 'Subscribe & Start Pilot →'}
                 </button>
               </div>
             </div>

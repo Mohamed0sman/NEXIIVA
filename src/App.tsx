@@ -2,6 +2,7 @@ import React from 'react';
 import { SimulationJourneyProvider, useSimulationJourney } from './context/SimulationJourneyContext';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
+import { Section_AboutCompany } from './components/Section_AboutCompany';
 import { Section_ComparisonROI } from './components/Section_ComparisonROI';
 import { Section_PIDScanner } from './components/Section_PIDScanner';
 import { Section_InteractiveJourney } from './components/Section_InteractiveJourney';
@@ -10,8 +11,6 @@ import { Section_PricingLeadership } from './components/Section_PricingLeadershi
 import { Footer } from './components/Footer';
 import { VideoModal } from './components/VideoModal';
 import { PilotDrawer } from './components/PilotDrawer';
-import { SimulatorModal } from './components/SimulatorModal';
-import { InteractiveFaceplateDrawer } from './components/InteractiveFaceplateDrawer';
 
 const AppContent: React.FC = () => {
   const { language } = useSimulationJourney();
@@ -25,32 +24,33 @@ const AppContent: React.FC = () => {
       {/* 1. Sticky Navbar sitting cleanly at top-0 */}
       <Navbar />
 
-      {/* 3. SECTION 1: Hero Section with Clean Product Showcase */}
+      {/* 2. SECTION 1: Hero Section with Clean Product Showcase */}
       <HeroSection />
 
-      {/* 4. SECTION 2: Boardroom Business Case & Refinery Outage Economics */}
+      {/* 3. SECTION 2: About NEXIIVA, Industrial Mission & Metrics */}
+      <Section_AboutCompany />
+
+      {/* 4. SECTION 3: The Operational Reality & Outage Economics */}
       <Section_ComparisonROI />
 
-      {/* 5. SECTION 3: P&ID Blueprint Ingestion Studio & 387 Equipment Codex */}
+      {/* 5. SECTION 4: P&ID Ingestion Studio & 387 Equipment Codex */}
       <Section_PIDScanner />
 
-      {/* 6. SECTION 4: The 3-Stage Training Lifecycle ("Build. Instruct. Certify.") */}
+      {/* 6. SECTION 5: Platform Capabilities (Practice, Instruct, Certify) */}
       <Section_InteractiveJourney />
 
-      {/* 7. SECTION 5: Purdue Model Industrial Cyber-Security & Air-Gapped OT */}
+      {/* 7. SECTION 6: Industrial Cyber-Security & Air-Gapped OT */}
       <Section_EnterpriseDeployment />
 
-      {/* 8. SECTION 6: Commercial Licensing, Founder Dossier & Fast-Track Pilot */}
+      {/* 8. SECTION 7: How to Subscribe (4-Step Onboarding & Licensing) */}
       <Section_PricingLeadership />
 
       {/* 9. Minimal Editorial Footer */}
       <Footer />
 
-      {/* Modals & Interactive Drawers */}
+      {/* Clean Modals & Drawers */}
       <VideoModal />
       <PilotDrawer />
-      <SimulatorModal />
-      <InteractiveFaceplateDrawer />
     </div>
   );
 };

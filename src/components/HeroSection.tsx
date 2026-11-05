@@ -1,20 +1,28 @@
 import React from 'react';
 import { useSimulationJourney } from '../context/SimulationJourneyContext';
 import { translations } from '../data/translations';
-import { dcsAudio } from '../utils/audio';
-import { Play, ArrowRight, MonitorPlay } from 'lucide-react';
+import { Play, ArrowRight, ShieldCheck, Cpu, Layers } from 'lucide-react';
 
 export const HeroSection: React.FC = () => {
-  const { setVideoModalOpen, setPilotDrawerOpen, setSimulatorModalOpen, language, telemetry } = useSimulationJourney();
+  const { setVideoModalOpen, setPilotDrawerOpen, language } = useSimulationJourney();
   const t = translations[language].hero;
   const isRTL = language === 'AR';
 
+  const scrollToSubscribe = () => {
+    const el = document.getElementById('subscribe');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      setPilotDrawerOpen(true);
+    }
+  };
+
   return (
-    <section className="relative pt-12 pb-24 px-4 sm:px-6 lg:px-12 overflow-hidden bg-white">
-      <div className="max-w-[1240px] mx-auto space-y-10 relative z-10 text-center">
+    <section className="relative pt-12 pb-20 px-4 sm:px-6 lg:px-12 overflow-hidden bg-white">
+      <div className="max-w-[1240px] mx-auto space-y-12 relative z-10 text-center">
         {/* Main Headline with Purple-Blue Brand Gradient Italic Phrase */}
-        <div className="max-w-4xl mx-auto space-y-5">
-          <h1 className="text-4xl sm:text-5xl lg:text-[64px] font-extrabold text-[#0B1120] tracking-tight leading-[1.14] font-sans">
+        <div className="max-w-4xl mx-auto space-y-6">
+          <h1 className="text-4xl sm:text-5xl lg:text-[62px] font-extrabold text-[#0B1120] tracking-tight leading-[1.14] font-sans">
             {t.headlineMain}{' '}
             <span className="italic font-normal bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] bg-clip-text text-transparent">
               {t.headlineItalic}
@@ -28,10 +36,7 @@ export const HeroSection: React.FC = () => {
           {/* Primary CTA Buttons */}
           <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
             <button
-              onClick={() => {
-                dcsAudio.playClick();
-                setPilotDrawerOpen(true);
-              }}
+              onClick={scrollToSubscribe}
               className="px-8 py-3.5 rounded-full bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] hover:opacity-95 text-white font-semibold text-base shadow-[0_8px_25px_-4px_rgba(79,70,229,0.45)] transition-all cursor-pointer flex items-center justify-center space-x-2 space-x-reverse group"
             >
               <span>{t.ctaPrimary}</span>
@@ -39,10 +44,7 @@ export const HeroSection: React.FC = () => {
             </button>
 
             <button
-              onClick={() => {
-                dcsAudio.playClick();
-                setVideoModalOpen(true);
-              }}
+              onClick={() => setVideoModalOpen(true)}
               className="px-7 py-3.5 rounded-full bg-white hover:bg-slate-50 border border-slate-300 hover:border-slate-400 text-[#0B1120] font-semibold text-base shadow-sm transition-all cursor-pointer flex items-center space-x-2 space-x-reverse"
             >
               <Play className="w-4 h-4 fill-current text-[#4F46E5]" />
@@ -51,97 +53,59 @@ export const HeroSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Sleek Interactive Simulator Launch Showcase (Opens Modal on Click) */}
-        <div id="simulator-stage" className="pt-2 max-w-5xl mx-auto">
+        {/* High-Resolution Enterprise Software Showcase (Clean Product Display, No Toy Simulation) */}
+        <div className="pt-2 max-w-5xl mx-auto">
           <div
-            onClick={() => {
-              dcsAudio.playClick();
-              setSimulatorModalOpen(true);
-            }}
-            className="group rounded-3xl bg-gradient-to-b from-[#0B1120] to-[#070B14] border border-slate-800 shadow-[0_24px_60px_-15px_rgba(79,70,229,0.22)] p-6 sm:p-8 text-left transition-all hover:border-[#4F46E5]/70 hover:shadow-[0_30px_70px_-10px_rgba(124,58,237,0.3)] cursor-pointer relative overflow-hidden"
+            className="rounded-3xl bg-[#070B14] border border-slate-800 shadow-[0_24px_60px_-15px_rgba(79,70,229,0.22)] p-3 sm:p-5 text-left relative overflow-hidden"
             dir={isRTL ? 'rtl' : 'ltr'}
           >
             {/* Soft Ambient Radial Glow */}
-            <div className="absolute top-0 right-1/4 w-96 h-96 bg-[radial-gradient(circle,rgba(124,58,237,0.15),transparent_70%)] pointer-events-none" />
+            <div className="absolute top-0 right-1/4 w-96 h-96 bg-[radial-gradient(circle,rgba(124,58,237,0.18),transparent_70%)] pointer-events-none" />
 
-            {/* Top Bar of Showcase */}
-            <div className="flex flex-wrap items-center justify-between pb-4 border-b border-slate-800/80 gap-3 text-xs font-mono relative z-10">
+            {/* Industrial Workstation Frame Header */}
+            <div className="flex flex-wrap items-center justify-between pb-3 px-2 border-b border-slate-800/80 gap-3 text-xs font-mono relative z-10">
               <div className="flex items-center space-x-2.5 space-x-reverse">
                 <span className="w-2.5 h-2.5 rounded-full bg-[#10B981] animate-pulse" />
-                <span className="font-bold text-white tracking-wide">
-                  UNIT: CDU - ATM T23 / VDU - T60 PROCESS FLOW
+                <span className="font-bold text-white tracking-wider text-[11px] sm:text-xs">
+                  NEXIIVA OTS // CDU-VDU DIGITAL TWIN WORKSTATION
                 </span>
-                <span className="hidden sm:inline-block px-2 py-0.5 rounded text-[10px] bg-indigo-950/80 text-indigo-300 border border-indigo-800/60 font-medium">
-                  LEVEL 3 AIR-GAPPED DMZ
+                <span className="hidden md:inline-block px-2 py-0.5 rounded text-[10px] bg-indigo-950/80 text-indigo-300 border border-indigo-800/60 font-medium">
+                  AIR-GAPPED OT ARCHITECTURE
                 </span>
               </div>
 
-              <div className="flex items-center space-x-2 space-x-reverse text-[#7C3AED] group-hover:text-white transition-colors text-xs font-sans font-semibold">
-                <span className="px-3.5 py-1 rounded-full bg-[#4F46E5]/20 group-hover:bg-[#4F46E5] text-indigo-200 group-hover:text-white transition-all flex items-center space-x-1.5 space-x-reverse">
-                  <span>{isRTL ? 'فتح المحاكي بنافذة منبثقة كاملة' : 'Launch Fullscreen Console'}</span>
-                  <span>↗</span>
+              <div className="flex items-center space-x-3 space-x-reverse text-slate-400 text-[11px]">
+                <span className="flex items-center space-x-1.5 space-x-reverse text-emerald-400">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                  <span>EMERSON DELTAV / HONEYWELL EXPERION EMULATION</span>
                 </span>
               </div>
             </div>
 
-            {/* Middle: 3 Live Telemetry Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 py-5 relative z-10">
-              <div className="p-4 rounded-xl bg-white/5 border border-slate-800/90 group-hover:border-slate-700 transition-colors">
-                <div className="text-[11px] font-mono text-slate-400 uppercase tracking-wider">
-                  {isRTL ? 'حرارة أعلى البرج (TI-101)' : 'OVERHEAD TEMP (TI-101)'}
-                </div>
-                <div className="text-2xl font-black font-mono text-white mt-1 flex items-baseline justify-between">
-                  <span>{telemetry.overheadTemp} °C</span>
-                  <span className="text-[10px] font-sans font-medium text-emerald-400 bg-emerald-950/60 border border-emerald-800/40 px-2 py-0.5 rounded">
-                    {isRTL ? 'مستقر' : 'NOMINAL'}
-                  </span>
-                </div>
-              </div>
+            {/* Real Industrial Software Screenshot */}
+            <div className="relative rounded-2xl overflow-hidden mt-3 border border-slate-800/90 shadow-2xl">
+              <img
+                src="/assets/image2.png"
+                alt="NEXIIVA Refinery DCS Simulator Workstation"
+                className="w-full h-auto object-cover"
+              />
 
-              <div className="p-4 rounded-xl bg-white/5 border border-slate-800/90 group-hover:border-slate-700 transition-colors">
-                <div className="text-[11px] font-mono text-slate-400 uppercase tracking-wider">
-                  {isRTL ? 'تدفق الراجع (FIC-102)' : 'REFLUX FLOW (FIC-102)'}
+              {/* Floating Engineering Badges */}
+              <div className="absolute bottom-4 left-4 right-4 flex flex-wrap items-center justify-between gap-2 pointer-events-none">
+                <div className="px-3.5 py-1.5 rounded-full bg-black/75 backdrop-blur-md border border-white/10 text-white text-[11px] font-sans font-medium flex items-center space-x-1.5 space-x-reverse">
+                  <Cpu className="w-3.5 h-3.5 text-[#4F46E5]" />
+                  <span>{t.badges.tag1}</span>
                 </div>
-                <div className="text-2xl font-black font-mono text-white mt-1 flex items-baseline justify-between">
-                  <span>{telemetry.refluxFlow} m³/h</span>
-                  <span className="text-[10px] font-sans font-medium text-cyan-400 bg-cyan-950/60 border border-cyan-800/40 px-2 py-0.5 rounded">
-                    {isRTL ? 'متوازن' : 'STEADY'}
-                  </span>
-                </div>
-              </div>
 
-              <div className="p-4 rounded-xl bg-white/5 border border-slate-800/90 group-hover:border-slate-700 transition-colors">
-                <div className="text-[11px] font-mono text-slate-400 uppercase tracking-wider">
-                  {isRTL ? 'ضغط البرج (PIC-104)' : 'COLUMN PRESSURE (PIC-104)'}
+                <div className="hidden sm:flex px-3.5 py-1.5 rounded-full bg-black/75 backdrop-blur-md border border-white/10 text-white text-[11px] font-sans font-medium items-center space-x-1.5 space-x-reverse">
+                  <Layers className="w-3.5 h-3.5 text-[#06B6D4]" />
+                  <span>{t.badges.tag2}</span>
                 </div>
-                <div className="text-2xl font-black font-mono text-white mt-1 flex items-baseline justify-between">
-                  <span>{telemetry.columnPressure} bar</span>
-                  <span className="text-[10px] font-sans font-medium text-emerald-400 bg-emerald-950/60 border border-emerald-800/40 px-2 py-0.5 rounded">
-                    {isRTL ? 'آمن' : 'SAFE'}
-                  </span>
-                </div>
-              </div>
-            </div>
 
-            {/* Bottom Interactive Launch Banner */}
-            <div className="pt-3 border-t border-slate-800/80 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 relative z-10">
-              <div className="space-y-0.5">
-                <div className="text-sm font-bold text-white font-sans flex items-center space-x-2 space-x-reverse">
-                  <MonitorPlay className="w-4 h-4 text-[#4F46E5]" />
-                  <span>{isRTL ? 'محطة محاكي DCS تفاعلية جاهزة للتشغيل الفوري' : 'Interactive DCS Master Workstation Ready'}</span>
+                <div className="px-3.5 py-1.5 rounded-full bg-black/75 backdrop-blur-md border border-white/10 text-white text-[11px] font-sans font-medium flex items-center space-x-1.5 space-x-reverse">
+                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+                  <span>{t.badges.tag3}</span>
                 </div>
-                <div className="text-xs text-slate-400 font-sans">
-                  {isRTL
-                    ? 'انقر هنا لتشغيل غرفة التحكم الكاملة بشاشات التقطير، راسم الإشارات، وتحدي الطوارئ (35 ثانية)'
-                    : 'Click to launch full-screen DCS control room with distillation PFD, multi-pen strip charts, and crisis drill'}
-                </div>
-              </div>
-
-              <div className="shrink-0">
-                <span className="px-5 py-2.5 rounded-full bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] text-white font-semibold text-xs shadow-md group-hover:shadow-[0_0_25px_rgba(124,58,237,0.6)] transition-all flex items-center space-x-1.5 space-x-reverse">
-                  <span>{isRTL ? 'فتح كونسول المحاكي' : 'Open Fullscreen Console'}</span>
-                  <span>↗</span>
-                </span>
               </div>
             </div>
           </div>
@@ -158,7 +122,7 @@ export const HeroSection: React.FC = () => {
               >
                 <div className="w-2.5 h-2.5 rounded-full bg-[#4F46E5] shrink-0 mt-1.5" />
                 <div className="space-y-0.5">
-                  <div className="font-bold text-sm text-[#0B1120] font-sans">
+                  <div className="text-sm font-bold text-[#0B1120] font-sans">
                     {pill.title}
                   </div>
                   <div className="text-xs text-slate-500 font-sans leading-relaxed">

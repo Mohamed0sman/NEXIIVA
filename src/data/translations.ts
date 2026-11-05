@@ -2,25 +2,31 @@ export const translations = {
   EN: {
     nav: {
       brandTag: 'Process Operator Training Simulator',
-      simulator: 'Simulator',
+      about: 'About Nexiiva',
+      capabilities: 'Capabilities',
       otsBuilder: 'OTS Builder',
-      whyNexiiva: 'Why Nexiiva',
-      deployment: 'Deployment',
-      pricing: 'Licensing',
-      startPilot: 'Request a Pilot',
-      walkthrough: 'Watch Live CDU/VDU Demo',
+      whyNexiiva: 'Operational Reality',
+      deployment: 'Security & Deployment',
+      howToSubscribe: 'How to Subscribe',
+      startPilot: 'Subscribe & Start',
+      walkthrough: 'Watch CDU/VDU Demo',
     },
     hero: {
       headlineMain: 'Rehearse startups, upsets, and emergency shutdowns',
       headlineItalic: 'before touching the live plant.',
       subheadline:
-        'Nexiiva delivers plant-specific Operator Training Simulators (OTS) for refineries, gas processors, petrochemical plants, and training centers. Practice on realistic DCS screens, inject faults from the instructor console, and certify operators automatically—at a fraction of legacy simulator costs.',
-      ctaPrimary: 'Book a 3-Month Pilot',
-      ctaSecondary: 'Watch Live CDU/VDU Demo',
+        'Nexiiva delivers plant-specific Operator Training Simulators (OTS) for refineries, gas processors, petrochemical plants, and training centers. Built on real plant P&IDs and rigorous thermodynamic kinetics, our platform prepares console operators for critical process upsets without risk to live production assets.',
+      ctaPrimary: 'How to Subscribe & Get Started',
+      ctaSecondary: 'Watch Product Walkthrough',
+      badges: {
+        tag1: 'Plant-Specific P&ID Digital Twin',
+        tag2: 'Rigorous Thermodynamics & Kinetics',
+        tag3: '100% Air-Gapped OT Network',
+      },
       pills: [
         {
           title: 'CDU/VDU Unit Live Today',
-          desc: 'Full atmospheric & vacuum distillation simulation running now.',
+          desc: 'Full atmospheric & vacuum distillation digital twin operational.',
         },
         {
           title: '387-Type Equipment Library',
@@ -28,8 +34,24 @@ export const translations = {
         },
         {
           title: 'Automated Scoring & Certification',
-          desc: 'Instant trainee evaluation after every fault scenario.',
+          desc: 'Instant trainee evaluation after every fault and emergency scenario.',
         },
+      ],
+    },
+    about: {
+      eyebrow: 'COMPANY OVERVIEW & MISSION',
+      headingMain: 'Democratizing high-fidelity simulation',
+      headingItalic: 'for every industrial facility.',
+      subheading:
+        'Nexiiva was founded by veteran refinery operations engineers to solve a critical industry failure: 90% of industrial process units operate without dynamic simulators because legacy vendors charge millions and take 18+ months.',
+      storyTitle: 'Built in the Control Room, Not in a Software Vacuum',
+      storyBody:
+        'Traditional Operator Training Simulators from legacy conglomerates (Honeywell, AspenTech, Yokogawa) are so prohibitively expensive and slow to deliver that only the largest greenfield megaprojects can justify them. Everyday refineries, revamps, and petrochemical units are forced to train junior operators through static binders and unpracticed on-shift exposure. Nexiiva replaces this paradigm by automating simulator generation from plant P&IDs, delivering customized, high-fidelity dynamic simulators in days rather than years.',
+      metrics: [
+        { value: '387+', label: 'Equipment Models', sub: 'Standardized industrial codex' },
+        { value: '~1 Wk', label: 'Rapid Build Target', sub: 'From P&ID to running OTS' },
+        { value: '100%', label: 'Air-Gapped Security', sub: 'ISA/IEC 62443 Level 3 compliance' },
+        { value: '10+ Yrs', label: 'Field Operations', sub: 'Frontline refinery experience' },
       ],
     },
     operationalReality: {
@@ -79,11 +101,11 @@ export const translations = {
       headingMain: 'From plant P&IDs to a custom training unit',
       headingItalic: 'at record speed.',
       subheading:
-        'Our internal OTS Builder platform assembles plant-specific training units from a 387-type industrial equipment library—operating online via AI agent (in Arabic and English) or completely offline with no internet required.',
+        'Our proprietary OTS Builder platform assembles plant-specific training units from a 387-type industrial equipment library—operating online via AI agent or completely offline in air-gapped environments with no internet required.',
       features: [
         {
           title: 'AI & Offline Builder Modes',
-          desc: 'Describe your process unit in Arabic or English using the online AI agent, or build deterministically in 100% offline mode for strict plant security.',
+          desc: 'Describe your process unit in Arabic or English using our specialized agent, or build deterministically in 100% offline mode for strict plant security.',
         },
         {
           title: '387-Type Equipment Library',
@@ -96,54 +118,80 @@ export const translations = {
       ],
     },
     experience: {
-      eyebrow: 'LIVE CDU/VDU SIMULATOR',
+      eyebrow: 'PLATFORM CAPABILITIES',
       headingMain: 'Practice. Instruct.',
       headingItalic: 'Certify.',
       subheading:
         'Built for both daily operator readiness at plants and structured 5-day hands-on courses at industrial training centers.',
       pillars: [
         {
-          title: 'Practice (Trainee DCS Console)',
-          desc: 'Realistic DCS-style process flow diagrams (PFD), control valve faceplates, pump & furnace controls, 12-channel live trend charts, and dynamic alarm handling.',
+          title: '01. Practice (Trainee DCS Console)',
+          desc: 'Realistic DCS-style process flow diagrams (PFD), control valve faceplates, pump & furnace controls, 12-channel live trend charts, and dynamic alarm handling matching Emerson DeltaV, Honeywell Experion, and Yokogawa CENTUM VP.',
         },
         {
-          title: 'Instruct (Instructor Console)',
-          desc: 'Mirror any trainee session live, inject realistic process faults (reflux loss, vacuum loss, feed pump trip, heater burner trip), and reset conditions instantly.',
+          title: '02. Instruct (Instructor Command Suite)',
+          desc: 'Mirror any trainee session live, inject 50+ realistic process faults (reflux loss, vacuum loss, feed pump trip, heater flame-out), freeze simulation, and evaluate operator response times under pressure.',
         },
         {
-          title: 'Certify (Automated Evaluation)',
-          desc: 'Every trainee action is logged and scored automatically against safety and stability targets, generating a detailed Certificate of Achievement after each scenario.',
+          title: '03. Certify (Automated Evaluation & Audit)',
+          desc: 'Every trainee action is logged and scored automatically against safety and stability targets, generating a detailed Certificate of Competency with verifiable QR code for compliance and insurance audits.',
         },
       ],
     },
     deployment: {
-      eyebrow: 'FLEXIBLE DEPLOYMENT & FIELD VALIDATION',
+      eyebrow: 'SECURITY ARCHITECTURE & DEPLOYMENT',
       headingMain: 'Cloud or On-Premise deployment,',
       headingItalic: 'including full offline operation.',
       subheading:
-        'Whether you run a national refinery requiring air-gapped on-premise workstations or a training center running multi-trainee cloud sessions, Nexiiva adapts to your infrastructure.',
+        'Whether you run a national refinery requiring air-gapped on-premise workstations or an engineering academy running multi-trainee cloud sessions, Nexiiva adapts to your infrastructure.',
       cards: [
         {
-          title: '3-Month Pilot Program (Validation Included)',
-          desc: 'Start with a structured 3-month pilot. Every pilot includes unit validation against real plant operating data and structured operator feedback.',
+          title: '3-Month Validation Pilot',
+          desc: 'Begin with a structured 3-month pilot. Every pilot includes unit model validation against real plant operating data and operator feedback.',
         },
         {
-          title: 'Managed Cloud OTS',
-          desc: 'Fast setup with multi-user accounts, centralized instructor console, and flexible trainee-hour packs—ideal for immediate rollout.',
+          title: 'Managed Private Cloud',
+          desc: 'Fast setup with multi-user accounts, centralized instructor console, and flexible trainee-hour packs—ideal for immediate multi-site access.',
         },
         {
-          title: 'Air-Gapped On-Premise OTS',
+          title: 'Air-Gapped On-Premise (100% Offline)',
           desc: "Installed directly on your plant's local servers and operator stations with zero internet dependency and perpetual unit licensing.",
         },
       ],
     },
-    pricing: {
-      eyebrow: 'COMMERCIAL LICENSING & ENGAGEMENT',
-      headingMain: 'Flexible engagement models built for',
-      headingItalic: 'every industrial facility.',
+    howToSubscribe: {
+      eyebrow: 'HOW TO SUBSCRIBE & GET STARTED',
+      headingMain: 'A clear, 4-step onboarding journey from P&ID intake',
+      headingItalic: 'to active control room training.',
       subheading:
-        'Structured proposals tailored to your unit count, shift schedule, and deployment topology. Contact our engineering desk for a custom deployment proposal.',
-      cards: [
+        'No multi-year procurement delays or open-ended consulting fees. We follow a transparent, rapid deployment model built specifically for operations teams.',
+      steps: [
+        {
+          number: '01',
+          title: 'Technical Consultation & Unit Scoping',
+          desc: 'A 30-minute discovery session with our senior simulation engineers to map target process units (CDU, VDU, HCU, Gas Plant), tag conventions, and training priorities.',
+          timeline: 'Day 1',
+        },
+        {
+          number: '02',
+          title: 'Mutual NDA & Blueprint Ingestion',
+          desc: 'Execution of bilateral Non-Disclosure Agreement (NDA). Secure handover of unit P&IDs, PFDs, operating heat & material balances, and control philosophy narratives.',
+          timeline: 'Days 2–3',
+        },
+        {
+          number: '03',
+          title: 'Model Assembly & 90-Day Validation Pilot',
+          desc: 'Our OTS Builder rapidly synthesizes the digital twin (~1 week target). Your operations superintendents and console operators validate unit behavior against actual shift data during a dedicated 90-day pilot.',
+          timeline: 'Week 1 to Month 3',
+        },
+        {
+          number: '04',
+          title: 'Control Room Deployment & Operator Certification',
+          desc: 'Rollout across control room training stations (Private Cloud or 100% Air-Gapped On-Premise). On-site instructor onboarding and automated ISA-106 operator competency certification.',
+          timeline: 'Continuous Operations',
+        },
+      ],
+      tracks: [
         {
           name: 'Validation Pilot',
           badge: 'RECOMMENDED ENTRY POINT',
@@ -205,6 +253,13 @@ export const translations = {
           featured: false,
         },
       ],
+      form: {
+        headingMain: 'Request subscription details',
+        headingItalic: '& schedule scoping call.',
+        subheading:
+          'Tell us about your plant or training center, and our engineering desk will schedule a live technical demonstration and provide a tailored proposal.',
+        button: 'Submit Subscription Request & NDA',
+      },
     },
     founder: {
       badge: 'BUILT BY AN OPERATIONS ENGINEER, NOT A GENERIC SOFTWARE AGENCY',
@@ -212,36 +267,35 @@ export const translations = {
       body: 'After ten years operating units across MIDOR Refinery, TCI Sanmar Petrochemicals, Agiba Gas Processing Plant (Western Desert), and Port Harcourt Refinery (Nigeria), I saw firsthand how high simulator prices left operators relying on classroom theory and paper manuals. Nexiiva was built to put realistic, customized OTS training within reach of every plant and engineer.',
       verified: ['MIDOR Refinery', 'TCI Sanmar Petrochemicals', 'Agiba Gas Processing Plant', 'Port Harcourt Refinery'],
     },
-    bottomForm: {
-      headingMain: 'Request an enterprise',
-      headingItalic: '3-month pilot proposal.',
-      subheading:
-        'Tell us about your plant or training center, and our engineering desk will schedule a live demonstration and provide a tailored pilot outline.',
-      button: 'Request Pilot Proposal & NDA',
-    },
   },
   AR: {
     nav: {
       brandTag: 'محاكي تدريب مشغلي العمليات',
-      simulator: 'المحاكي',
+      about: 'عن نكسيفا',
+      capabilities: 'قدرات المنظومة',
       otsBuilder: 'منشئ OTS',
-      whyNexiiva: 'لماذا نكسيفا',
-      deployment: 'طرق النشر',
-      pricing: 'التراخيص',
-      startPilot: 'طلب برنامج تجريبي',
-      walkthrough: 'مشاهدة العرض الحي لوحدة CDU/VDU',
+      whyNexiiva: 'الواقع التشغيلي',
+      deployment: 'طرق النشر والأمان',
+      howToSubscribe: 'طريقة الاشتراك',
+      startPilot: 'الاشتراك والبدء',
+      walkthrough: 'مشاهدة فيديو الشرح',
     },
     hero: {
       headlineMain: 'تدرّب على بدء التشغيل، اضطرابات العمليات، والإغلاق الاضطراري',
       headlineItalic: 'قبل لمس المنشأة الحية.',
       subheadline:
-        'تقدّم نكسيفا محاكيات تدريب مشغلي العمليات (OTS) المخصصة لمصافي التكرير، ومعالجة الغاز، ومصانع البتروكيماويات، ومراكز التدريب. تدرّب على شاشات DCS واقعية، واحقن الأعطال من لوحة تحكم المدرب، واعتمد المشغلين آلياً—بجزء ضئيل من تكلفة المحاكيات التقليدية.',
-      ctaPrimary: 'حجز تجربة 3 أشهر',
-      ctaSecondary: 'مشاهدة العرض الحي لوحدة CDU/VDU',
+        'تقدّم نكسيفا محاكيات تدريب مشغلي العمليات (OTS) المخصصة لمصافي التكرير، ومعالجة الغاز، ومصانع البتروكيماويات، ومراكز التدريب. مبنية على مخططات P&ID الخاصة بمنشأتك وديناميكا حرارية دقيقة، لتأهيل مشغلي غرف التحكم للتعامل مع اضطرابات التشغيل الحرجة دون أي مخاطر على المنشأة الحية.',
+      ctaPrimary: 'طريقة الاشتراك والبدء',
+      ctaSecondary: 'مشاهدة العرض الحي (فيديو)',
+      badges: {
+        tag1: 'توأم رقمي مطابق لمخططات P&ID',
+        tag2: 'ديناميكا حرارية وحركية دقيقة',
+        tag3: 'شبكة صناعية معزولة 100% بدون إنترنت',
+      },
       pills: [
         {
           title: 'وحدة CDU/VDU تعمل اليوم مباشرة',
-          desc: 'محاكاة كاملة للتقطير الجوي والمفرغ قيد التشغيل التفاعلي الآن.',
+          desc: 'توأم رقمي متكامل للتقطير الجوي والمفرغ قيد التشغيل الميداني الآن.',
         },
         {
           title: 'مكتبة تضم 387 نوعاً من المعدات',
@@ -251,6 +305,22 @@ export const translations = {
           title: 'تقييم واعتماد فوري للمشغلين',
           desc: 'تقييم آلي متكامل لكفاءة المشغل بعد كل سيناريو عطل وطوارئ.',
         },
+      ],
+    },
+    about: {
+      eyebrow: 'نبذة عن نكسيفا ورؤيتنا',
+      headingMain: 'تمكين مصافي التكرير والمنشآت البترولية',
+      headingItalic: 'من امتلاك محاكيات تشغيل واقعية ومخصصة.',
+      subheading:
+        'تأسست نكسيفا بأيدي مهندسي تشغيل مصافي ميدانيين لحل مشكلة صناعية حرجة: 90% من وحدات العمليات في العالم العربي والشرق الأوسط تعمل دون محاكيات ديناميكية بسبب التكلفة الملايينية والتعقيد الزمني للبائعين التقليديين.',
+      storyTitle: 'صُممت من داخل غرف التحكم، وليس في فراغ برمجيات تقليدي',
+      storyBody:
+        'محاكيات تدريب المشغلين التقليدية من الشركات الاحتكارية القديمة (Honeywell، AspenTech، Yokogawa) تكلف مبالغ باهظة وتتطلب مشاريع استشارية تمتد لأكثر من 18 شهراً، مما جعلها مقتصرة فقط على المشاريع العملاقة. ظلت معظم المصافي ووحدات الإنتاج تعتمد على تدريب المشغلين الجدد عبر مجلدات ورقية ومراقبة المشغلين الأقدم دون ممارسة حقيقية للحوادث والاضطرابات. تقدم نكسيفا بديلاً جذرياً عبر أتمتة بناء المحاكي مباشرة من مخططات P&ID، لنمنح منشأتك محاكياً دقيقاً ومطابقاً خلال أيام وبجزء ضئيل من التكلفة.',
+      metrics: [
+        { value: '+387', label: 'معدة صناعية قياسية', sub: 'أبراج، أفران، ضواغط، صمامات' },
+        { value: '~1 أسبوع', label: 'الهدف الزمني للبناء', sub: 'من المخطط إلى محاكي يعمل' },
+        { value: '100%', label: 'أمان صناعي معزول', sub: 'مطابقة لمعايير ISA/IEC 62443' },
+        { value: '+10 سنوات', label: 'خبرة تشغيل ميدانية', sub: 'في كبرى مصافي ومجمعات البترول' },
       ],
     },
     operationalReality: {
@@ -296,7 +366,7 @@ export const translations = {
       },
     },
     otsBuilder: {
-      eyebrow: 'منشئ OTS — درة تاج نكسيفا',
+      eyebrow: 'منشئ OTS — تقنية نكسيفا المبتكرة',
       headingMain: 'من مخططات P&ID الخاصة بمنشأتك إلى وحدة تدريب مخصصة',
       headingItalic: 'بسرعة قياسية.',
       subheading:
@@ -317,35 +387,35 @@ export const translations = {
       ],
     },
     experience: {
-      eyebrow: 'محاكي وحدة CDU/VDU المباشر',
+      eyebrow: 'قدرات منظومة نكسيفا',
       headingMain: 'تدرّب. درّب.',
       headingItalic: 'اعتمد الكفاءات.',
       subheading:
         'صُمم لدعم الجاهزية التشغيلية اليومية للمشغلين داخل المنشآت، ولتنفيذ دورات عملية مكثفة لمدة 5 أيام داخل مراكز التدريب البترولية والصناعية.',
       pillars: [
         {
-          title: 'التدرب (شاشة تحكم المشغل DCS)',
-          desc: 'مخططات تدفق العمليات (PFD) بأسلوب أنظمة التحكم الموزعة، واجهات تحكم الصمامات، مضخات وأفران، رسام بياني بـ 12 مساراً، وإدارة حية للإنذارات.',
+          title: '01. التدرب (شاشة تحكم المشغل DCS)',
+          desc: 'مخططات تدفق العمليات (PFD) بأسلوب أنظمة التحكم الموزعة (DeltaV وExperion وCentum)، واجهات تحكم الصمامات والمضخات والأفران، رسام بياني بـ 12 مساراً، وإدارة حية للإنذارات.',
         },
         {
-          title: 'التدريب (لوحة تحكم المدرب)',
-          desc: 'مراقبة جلسات المتدربين لحظياً، حقن أعطال واقعية (فقدان الراجع، هبوط التفريغ، توقف مضخة التغذية، انطفاء شعلة الفرن)، وإعادة ضبط الظروف فورياً.',
+          title: '02. التدريب (لوحة تحكم المدرب وسيناريوهات الطوارئ)',
+          desc: 'مراقبة جلسات المتدربين لحظياً، حقن أكثر من 50 عطلاً واقعياً (فقدان الراجع، هبوط التفريغ، توقف مضخة التغذية، انطفاء شعلة الفرن)، وإعادة ضبط الظروف وتجميد المحاكاة فورياً.',
         },
         {
-          title: 'الاعتماد (التقييم الآلي المعتمد)',
-          desc: 'تسجيل وتقييم كل إجراء يتخذه المتدرب آلياً وفق معايير السلامة واستقرار الوحدة، وإصدار شهادة إنجاز تفصيلية بعد كل سيناريو.',
+          title: '03. الاعتماد (التقييم الآلي المعتمد)',
+          desc: 'تسجيل وتقييم كل إجراء يتخذه المتدرب آلياً وفق معايير ISA-106 وسلامة الوحدة، وإصدار شهادة كفاءة رقمية مع رمز QR للتحقق في تدقيقات السلامة والتأمين.',
         },
       ],
     },
     deployment: {
-      eyebrow: 'مرونة النشر والتحقق الميداني',
+      eyebrow: 'الأمان الصناعي والبنية التحتية',
       headingMain: 'نشر سحابي أو محلي (On-Premise)،',
       headingItalic: 'بما في ذلك التشغيل المعزول تماماً عن الإنترنت.',
       subheading:
         'سواء كنت تدير مصفاة وطنية تشترط محطات عمل محلية معزولة تماماً (Air-Gapped) أو مركز تدريب يدير جلسات سحابية لعدة متدربين، تتكيف نكسيفا مع بنيتك التحتية.',
       cards: [
         {
-          title: 'برنامج تجريبي لـ 3 أشهر (يشمل التحقق الميداني)',
+          title: 'برنامج التحقق التجريبي (90 يوماً)',
           desc: 'ابدأ ببرنامج تجريبي منظم لمدة 3 أشهر. يشمل التحقق من دقة النموذج بمقارنته ببيانات التشغيل الفعلية لمصفاتك وملاحظات المشغلين.',
         },
         {
@@ -358,13 +428,39 @@ export const translations = {
         },
       ],
     },
-    pricing: {
-      eyebrow: 'نماذج التراخيص والتعاقد المؤسسي',
-      headingMain: 'نماذج تعاقد مرنة مصممة لدعم',
-      headingItalic: 'كل منشأة صناعية.',
+    howToSubscribe: {
+      eyebrow: 'طريقة الاشتراك ومراحل البدء',
+      headingMain: 'مسار انضمام منظم من 4 خطوات واضحة',
+      headingItalic: 'من تسليم المخططات إلى التدريب الفعلي بغرفة التحكم.',
       subheading:
-        'مقترحات مخصصة بحسب عدد الوحدات، وجداول الورديات، وطريقة النشر المناسبة لمنشأتك. تواصل مع مكتبنا الهندسي للحصول على مقترح تشغيل متكامل.',
-      cards: [
+        'دون دورات شراء معقدة تمتد لسنوات أو رسوم استشارية غامضة. نتبع نموذج نشر سريع وشفاف مصمم خصيصاً لفرق التشغيل والتدريب في المنشآت الصناعية.',
+      steps: [
+        {
+          number: '01',
+          title: 'الاستشارة الفنية وتحديد نطاق الوحدة',
+          desc: 'جلسة استكشافية لمدة 30 دقيقة مع مهندسي المحاكاة لدينا لتحديد وحدات العمليات المستهدفة (تقطير، تكسير هيدروجيني، معالجة غاز)، وتسميات الوسوم، وأولويات التدريب.',
+          timeline: 'اليوم 1',
+        },
+        {
+          number: '02',
+          title: 'اتفاقية السرية واستلام المخططات (P&ID)',
+          desc: 'توقيع اتفاقية سرية المعلومات (NDA) المتبادلة لضمان أقصى حماية لبياناتكم. استلام مخططات P&ID، وبيانات توازن المادة والحرارة، وكتيبات فلسفة التحكم.',
+          timeline: 'الأيام 2–3',
+        },
+        {
+          number: '03',
+          title: 'تجميع النموذج وبرنامج التحقق (90 يوماً)',
+          desc: 'يقوم منشئ OTS بتجميع التوأم الرقمي في وقت قياسي (~أسبوع واحد). يختبر مهندسو ومشغلو المنشأة سلوك الوحدة بدقة ومقارنتها ببيانات التشغيل الفعلية ضمن برنامج تحقق ممتد لـ 90 يوماً.',
+          timeline: 'الأسبوع 1 حتى الشهر 3',
+        },
+        {
+          number: '04',
+          title: 'النشر الكامل بغرفة التحكم واعتماد المشغلين',
+          desc: 'تثبيت المنظومة على محطات التدريب المعتمدة (سحابياً أو محلياً معزولاً 100% أوفلاين). تدريب المدربين والبدء الفوري في اعتماد المشغلين وفق معايير ISA-106 الدولية.',
+          timeline: 'تشغيل مستمر واعتماد دوري',
+        },
+      ],
+      tracks: [
         {
           name: 'البرنامج التجريبي للمنشأة',
           badge: 'نقطة الانطلاق الموصى بها',
@@ -426,19 +522,19 @@ export const translations = {
           featured: false,
         },
       ],
+      form: {
+        headingMain: 'اطلب تفاصيل الاشتراك',
+        headingItalic: 'واحجز جلسة استشارة فنية.',
+        subheading:
+          'أخبرنا عن منشأتك أو مركز التدريب لديك، وسيقوم مكتبنا الهندسي بتنسيق عرض حي وتقديم مقترح اشتراك مخصص.',
+        button: 'إرسال طلب الاشتراك واتفاقية NDA',
+      },
     },
     founder: {
       badge: 'صُمم بأيدي مهندس تشغيل، وليس وكالة برمجيات عامة',
       title: 'م. مصطفى عادل — المؤسس والمدير التنفيذي (10 سنوات في التكرير والغاز والبتروكيماويات)',
       body: 'بعد عشر سنوات من تشغيل الوحدات في مصفاة ميدور، وشركة TCI Sanmar للبتروكيماويات، ومجمع عجيبة لمعالجة الغاز (الصحراء الغربية)، ومصفاة بورت هاركورت (نيجيريا)، رأيت بنفسي كيف أن تكاليف وتعقيدات المحاكيات الاحتكارية تركت المشغلين يعتمدون على النظريات الورقية والكتالوجات. بنيت نكسيفا لتضع تدريب الـ OTS الواقعي والمخصص في متناول كل منشأة ومهندس.',
       verified: ['مصفاة ميدور (MIDOR)', 'شركة TCI Sanmar للبتروكيماويات', 'مجمع عجيبة لمعالجة الغاز', 'مصفاة بورت هاركورت الدولية'],
-    },
-    bottomForm: {
-      headingMain: 'اطلب مقترح برنامج تجريبي',
-      headingItalic: 'لمدة 3 أشهر.',
-      subheading:
-        'أخبرنا عن منشأتك أو مركز التدريب لديك، وسيقوم مكتبنا الهندسي بتنسيق عرض حي وتقديم خطة تجريبية مخصصة.',
-      button: 'طلب مقترح البرنامج التجريبي واتفاقية NDA',
     },
   },
 };

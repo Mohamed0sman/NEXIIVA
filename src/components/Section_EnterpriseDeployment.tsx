@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useSimulationJourney } from '../context/SimulationJourneyContext';
 import { translations } from '../data/translations';
-import { dcsAudio } from '../utils/audio';
 import { ShieldCheck, Lock, Server, Cloud, Network, CheckCircle2, Terminal, Info, ChevronRight } from 'lucide-react';
 
 export const Section_EnterpriseDeployment: React.FC = () => {
@@ -49,14 +48,14 @@ export const Section_EnterpriseDeployment: React.FC = () => {
 
   return (
     <section id="deployment" className="py-24 px-6 lg:px-12 relative border-t border-slate-200 bg-white">
-      <div className="max-w-[1200px] mx-auto space-y-16">
+      <div className="max-w-[1240px] mx-auto space-y-16">
         {/* Section Header */}
         <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-6 border-b border-slate-200 pb-8 text-left" dir={isRTL ? 'rtl' : 'ltr'}>
           <div className="space-y-3 max-w-3xl">
             <div className="text-xs font-mono font-bold text-[#4F46E5] uppercase tracking-wider">
               {t.eyebrow}
             </div>
-            <h2 className="text-4xl sm:text-5xl font-extrabold text-[#0B1120] tracking-tight leading-[1.2] font-sans">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0B1120] tracking-tight leading-[1.18] font-sans">
               {t.headingMain}{' '}
               <span className="italic font-normal bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] bg-clip-text text-transparent">
                 {t.headingItalic}
@@ -70,11 +69,8 @@ export const Section_EnterpriseDeployment: React.FC = () => {
           {/* Architecture Mode Pill Toggle */}
           <div className="flex items-center bg-[#F1F5F9] p-1 rounded-full self-start lg:self-end shrink-0 border border-slate-200">
             <button
-              onClick={() => {
-                setActiveDeploymentTab('AIR_GAPPED');
-                dcsAudio.playClick();
-              }}
-              className={`flex items-center space-x-2 px-4 py-2 rounded-full text-xs font-sans transition-all cursor-pointer ${
+              onClick={() => setActiveDeploymentTab('AIR_GAPPED')}
+              className={`flex items-center space-x-2 space-x-reverse px-4 py-2 rounded-full text-xs font-sans transition-all cursor-pointer ${
                 activeDeploymentTab === 'AIR_GAPPED'
                   ? 'bg-gradient-to-r from-[#7C3AED] to-[#2563EB] text-white font-semibold shadow-sm'
                   : 'text-slate-600 hover:text-[#0B1120]'
@@ -84,11 +80,8 @@ export const Section_EnterpriseDeployment: React.FC = () => {
               <span>{isRTL ? 'أون-بريميس معزول 100%' : '100% Air-Gapped (On-Prem)'}</span>
             </button>
             <button
-              onClick={() => {
-                setActiveDeploymentTab('PRIVATE_CLOUD');
-                dcsAudio.playClick();
-              }}
-              className={`flex items-center space-x-2 px-4 py-2 rounded-full text-xs font-sans transition-all cursor-pointer ${
+              onClick={() => setActiveDeploymentTab('PRIVATE_CLOUD')}
+              className={`flex items-center space-x-2 space-x-reverse px-4 py-2 rounded-full text-xs font-sans transition-all cursor-pointer ${
                 activeDeploymentTab === 'PRIVATE_CLOUD'
                   ? 'bg-gradient-to-r from-[#7C3AED] to-[#2563EB] text-white font-semibold shadow-sm'
                   : 'text-slate-600 hover:text-[#0B1120]'
@@ -100,28 +93,17 @@ export const Section_EnterpriseDeployment: React.FC = () => {
           </div>
         </div>
 
-        {/* 3 Deployment Cards */}
+        {/* 3 Deployment Pillar Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left" dir={isRTL ? 'rtl' : 'ltr'}>
           {t.cards.map((card, idx) => (
             <div
               key={idx}
-              className={`p-7 rounded-2xl border transition-all space-y-3 shadow-xs ${
-                idx === 0
-                  ? 'bg-gradient-to-b from-purple-500/5 via-indigo-500/5 to-blue-500/5 border-[#4F46E5] ring-2 ring-[#4F46E5]/20 shadow-sm'
-                  : 'bg-[#F8FAFC] border-slate-200/90'
-              }`}
+              className="p-7 rounded-2xl bg-[#F8FAFC] border border-slate-200/90 hover:border-[#4F46E5]/40 transition-all space-y-3 shadow-xs"
             >
-              <div className="flex items-center justify-between">
-                <div className="w-10 h-10 rounded-xl bg-purple-50 border border-purple-200/60 flex items-center justify-center text-[#4F46E5]">
-                  {idx === 0 && <ShieldCheck className="w-5 h-5" />}
-                  {idx === 1 && <Cloud className="w-5 h-5" />}
-                  {idx === 2 && <Server className="w-5 h-5" />}
-                </div>
-                {idx === 0 && (
-                  <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-gradient-to-r from-[#7C3AED] to-[#2563EB] text-white font-bold">
-                    {isRTL ? 'موصى به للبدء' : 'RECOMMENDED'}
-                  </span>
-                )}
+              <div className="w-10 h-10 rounded-xl bg-purple-50 border border-purple-200/60 flex items-center justify-center text-[#4F46E5]">
+                {idx === 0 && <ShieldCheck className="w-5 h-5" />}
+                {idx === 1 && <Cloud className="w-5 h-5" />}
+                {idx === 2 && <Server className="w-5 h-5" />}
               </div>
               <h3 className="text-lg font-bold text-[#0B1120] font-sans">{card.title}</h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-sans">{card.desc}</p>
@@ -129,15 +111,13 @@ export const Section_EnterpriseDeployment: React.FC = () => {
           ))}
         </div>
 
-        {/* The Purdue Model Cyber-Security Blueprint Diagram Artifact */}
-        <div className="rounded-2xl bg-white border border-slate-200 shadow-sm p-6 lg:p-8 relative overflow-hidden text-left" dir={isRTL ? 'rtl' : 'ltr'}>
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-100 text-xs font-sans gap-2">
-            <div className="flex items-center space-x-3 space-x-reverse">
-              <span className="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 font-bold border border-emerald-200 text-[11px] font-mono">
-                ISA/IEC 62443 & PURDUE MODEL // COMPLIANT
-              </span>
-              <span className="text-slate-500 font-mono text-[11px] hidden sm:inline">
-                {activeDeploymentTab === 'AIR_GAPPED' ? 'OFFLINE PHYSICAL APPLIANCE' : 'DEDICATED IPSEC VPN TUNNEL'}
+        {/* Industrial Security Architecture (Purdue Model) */}
+        <div className="rounded-3xl border border-slate-200 bg-white p-6 sm:p-10 shadow-sm text-left" dir={isRTL ? 'rtl' : 'ltr'}>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-slate-100 gap-3">
+            <div className="flex items-center space-x-2.5 space-x-reverse">
+              <ShieldCheck className="w-5 h-5 text-[#4F46E5]" />
+              <span className="font-mono text-xs font-bold text-[#0B1120]">
+                {isRTL ? 'معيار الأمان السيبراني الصناعي ISA/IEC 62443 — نموذج بيردو (Purdue Model)' : 'ISA/IEC 62443 PURDUE MODEL CYBERSECURITY HARDENING'}
               </span>
             </div>
             <div className="flex items-center space-x-1.5 space-x-reverse text-slate-600 font-mono text-[11px]">
@@ -146,14 +126,11 @@ export const Section_EnterpriseDeployment: React.FC = () => {
             </div>
           </div>
 
-          {/* Interactive Purdue Layers Grid */}
+          {/* Purdue Layers Grid */}
           <div className="my-8 grid grid-cols-1 md:grid-cols-4 gap-4 relative">
             {/* Level 4 */}
             <div
-              onClick={() => {
-                setInspectedLevel('LEVEL_4');
-                dcsAudio.playClick();
-              }}
+              onClick={() => setInspectedLevel('LEVEL_4')}
               className={`p-5 rounded-xl border transition-all cursor-pointer space-y-2 ${
                 inspectedLevel === 'LEVEL_4'
                   ? 'bg-purple-50/50 border-[#4F46E5] ring-2 ring-[#4F46E5]/20 shadow-sm'
@@ -175,10 +152,7 @@ export const Section_EnterpriseDeployment: React.FC = () => {
 
             {/* Level 3: Simulation Academy */}
             <div
-              onClick={() => {
-                setInspectedLevel('LEVEL_3');
-                dcsAudio.playClick();
-              }}
+              onClick={() => setInspectedLevel('LEVEL_3')}
               className={`p-6 rounded-xl border-2 transition-all cursor-pointer space-y-3 shadow-sm md:col-span-2 ${
                 inspectedLevel === 'LEVEL_3'
                   ? 'bg-gradient-to-b from-purple-500/10 via-indigo-500/5 to-blue-500/5 border-[#4F46E5] ring-2 ring-[#4F46E5]/30'
@@ -196,7 +170,7 @@ export const Section_EnterpriseDeployment: React.FC = () => {
               </div>
               <div className="text-base font-bold text-[#0B1120] font-sans">
                 {activeDeploymentTab === 'AIR_GAPPED'
-                  ? (isRTL ? 'خادم مركز التدريب المعزول (خادم رئيسي + 3 محطات مشغلين)' : 'Air-Gapped Training Center Server (1 Host + 3 Trainee Stations)')
+                  ? (isRTL ? 'خادم مركز التدريب المعزول (خادم رئيسي + محطات المشغلين)' : 'Air-Gapped Training Center Server (Dedicated Host + Multi-Station LAN)')
                   : (isRTL ? 'سحابة خاصة معزولة مع تشفير كامل بمفاتيح العميل' : 'Isolated Private VPC with Client-Controlled Encryption Keys')}
               </div>
               <p className="text-xs text-slate-600 leading-relaxed font-sans">
@@ -217,10 +191,7 @@ export const Section_EnterpriseDeployment: React.FC = () => {
 
             {/* Level 2 & 1 */}
             <div
-              onClick={() => {
-                setInspectedLevel('LEVEL_1_2');
-                dcsAudio.playClick();
-              }}
+              onClick={() => setInspectedLevel('LEVEL_1_2')}
               className={`p-5 rounded-xl border transition-all cursor-pointer space-y-2 ${
                 inspectedLevel === 'LEVEL_1_2'
                   ? 'bg-rose-50/50 border-rose-400 ring-2 ring-rose-200 shadow-sm'
@@ -268,17 +239,14 @@ export const Section_EnterpriseDeployment: React.FC = () => {
           <div className="mt-8 pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="text-xs text-slate-600 font-sans">
               {isRTL
-                ? 'جاهز لاختبار المحاكي في منشأتك؟ احصل على العرض الفني ودليل التثبيت المعزول.'
-                : 'Need the technical deployment brief and Purdue model architecture packet?'}
+                ? 'جاهز للاشتراك والبدء في منشأتك؟ احصل على العرض الفني ودليل التثبيت المعزول.'
+                : 'Ready to subscribe and evaluate on your plant data? Request the Purdue architecture packet.'}
             </div>
             <button
-              onClick={() => {
-                dcsAudio.playClick();
-                setPilotDrawerOpen(true);
-              }}
+              onClick={() => setPilotDrawerOpen(true)}
               className="px-6 py-3 rounded-full bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] text-white font-semibold text-xs shadow-[0_8px_25px_-4px_rgba(79,70,229,0.45)] hover:shadow-[0_12px_30px_-4px_rgba(79,70,229,0.6)] transition-all cursor-pointer flex items-center space-x-1.5 space-x-reverse"
             >
-              <span>{isRTL ? 'طلب وثيقة الأمان والحزم الهندسية' : 'Request Architecture Whitepaper'}</span>
+              <span>{isRTL ? 'طلب وثيقة الأمان والبدء' : 'Request Architecture Whitepaper & Subscribe'}</span>
               <span>→</span>
             </button>
           </div>

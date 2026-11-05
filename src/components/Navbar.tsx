@@ -2,28 +2,17 @@ import React, { useState } from 'react';
 import { NexiivaLogo } from './NexiivaLogo';
 import { useSimulationJourney } from '../context/SimulationJourneyContext';
 import { translations } from '../data/translations';
-import { dcsAudio } from '../utils/audio';
-import { Play, Menu, X, Volume2, VolumeX } from 'lucide-react';
+import { Play, Menu, X, ArrowRight } from 'lucide-react';
 
 export const Navbar: React.FC = () => {
-  const { setVideoModalOpen, setPilotDrawerOpen, setSimulatorModalOpen, language, setLanguage } = useSimulationJourney();
+  const { setVideoModalOpen, setPilotDrawerOpen, language, setLanguage } = useSimulationJourney();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [isMuted, setIsMuted] = useState(dcsAudio.isMuted());
 
   const t = translations[language].nav;
   const isRTL = language === 'AR';
 
-  const toggleSound = () => {
-    const muted = dcsAudio.toggleMute();
-    setIsMuted(muted);
-    if (!muted) {
-      dcsAudio.playClick();
-    }
-  };
-
   const scrollTo = (id: string) => {
     setMobileMenuOpen(false);
-    dcsAudio.playClick();
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: 'smooth' });
   };
@@ -42,17 +31,20 @@ export const Navbar: React.FC = () => {
         </a>
       </div>
 
-      {/* Navigation Links: Exact Spec */}
-      <div className="hidden lg:flex items-center space-x-8 text-[15px] font-sans font-medium text-slate-700">
+      {/* Navigation Links: Company & Product Focused */}
+      <div className="hidden lg:flex items-center gap-7 text-[14px] font-sans font-medium text-slate-700">
         <button
-          onClick={() => {
-            dcsAudio.playClick();
-            setSimulatorModalOpen(true);
-          }}
-          className="hover:text-[#4F46E5] transition-colors cursor-pointer flex items-center space-x-1.5"
+          onClick={() => scrollTo('about')}
+          className="hover:text-[#4F46E5] transition-colors cursor-pointer"
         >
-          <span>{t.simulator}</span>
-          <span className="text-[10px] px-1.5 py-0.2 rounded bg-purple-50 text-indigo-600 font-mono font-semibold">LIVE</span>
+          {t.about}
+        </button>
+
+        <button
+          onClick={() => scrollTo('capabilities')}
+          className="hover:text-[#4F46E5] transition-colors cursor-pointer"
+        >
+          {t.capabilities}
         </button>
 
         <button
@@ -77,32 +69,20 @@ export const Navbar: React.FC = () => {
         </button>
 
         <button
-          onClick={() => scrollTo('pricing')}
-          className="hover:text-[#4F46E5] transition-colors cursor-pointer"
+          onClick={() => scrollTo('subscribe')}
+          className="text-[#4F46E5] font-semibold hover:text-[#7C3AED] transition-colors cursor-pointer flex items-center space-x-1"
         >
-          {t.pricing}
+          <span>{t.howToSubscribe}</span>
+          <span className="text-xs">↓</span>
         </button>
       </div>
 
-      {/* Right Actions: Language + Audio + Primary CTA Button */}
-      <div className="flex items-center space-x-3 space-x-reverse">
-        {/* Audio Mute/Unmute Toggle */}
-        <button
-          onClick={toggleSound}
-          className="p-2 rounded-full text-slate-500 hover:text-[#0B1120] hover:bg-slate-100 transition-colors cursor-pointer"
-          title={isMuted ? (isRTL ? 'تفعيل المؤثرات الصوتية' : 'Unmute Sound Effects') : (isRTL ? 'كتم المؤثرات الصوتية' : 'Mute Sound Effects')}
-          aria-label="Toggle Sound"
-        >
-          {isMuted ? <VolumeX className="w-4 h-4 text-slate-400" /> : <Volume2 className="w-4 h-4 text-[#4F46E5]" />}
-        </button>
-
+      {/* Right Actions: Language + Primary CTA Button */}
+      <div className="flex items-center gap-3">
         {/* Language Switcher Pill */}
         <div className="flex items-center bg-[#F1F5F9] rounded-full p-0.5 text-xs font-sans border border-slate-200">
           <button
-            onClick={() => {
-              dcsAudio.playClick();
-              setLanguage('EN');
-            }}
+            onClick={() => setLanguage('EN')}
             className={`px-2.5 py-1 rounded-full transition-all cursor-pointer ${
               language === 'EN'
                 ? 'bg-gradient-to-r from-[#7C3AED] to-[#2563EB] text-white font-semibold shadow-sm'
@@ -112,10 +92,7 @@ export const Navbar: React.FC = () => {
             EN
           </button>
           <button
-            onClick={() => {
-              dcsAudio.playClick();
-              setLanguage('AR');
-            }}
+            onClick={() => setLanguage('AR')}
             className={`px-2.5 py-1 rounded-full transition-all cursor-pointer font-sans ${
               language === 'AR'
                 ? 'bg-gradient-to-r from-[#7C3AED] to-[#2563EB] text-white font-semibold shadow-sm'
@@ -126,12 +103,9 @@ export const Navbar: React.FC = () => {
           </button>
         </div>
 
-        {/* Primary CTA Button: Start a Paid Pilot */}
+        {/* Primary CTA Button: Subscribe & Start */}
         <button
-          onClick={() => {
-            dcsAudio.playClick();
-            setPilotDrawerOpen(true);
-          }}
+          onClick={() => setPilotDrawerOpen(true)}
           className="px-6 py-2.5 rounded-full bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] hover:opacity-95 text-white font-medium text-xs shadow-[0_8px_25px_-4px_rgba(79,70,229,0.45)] transition-all cursor-pointer"
         >
           <span>{t.startPilot}</span>
@@ -150,17 +124,16 @@ export const Navbar: React.FC = () => {
       {mobileMenuOpen && (
         <div className="absolute top-20 left-0 w-full bg-white border-b border-slate-200 p-6 flex flex-col space-y-4 lg:hidden shadow-lg z-50 text-left font-sans">
           <button
-            onClick={() => {
-              setMobileMenuOpen(false);
-              dcsAudio.playClick();
-              setSimulatorModalOpen(true);
-            }}
-            className="text-left text-base text-[#0B1120] hover:text-[#4F46E5] py-1 flex items-center justify-between cursor-pointer"
+            onClick={() => scrollTo('about')}
+            className="text-left text-base text-[#0B1120] hover:text-[#4F46E5] py-1"
           >
-            <span>{t.simulator}</span>
-            <span className="text-[10px] px-2 py-0.5 rounded-full bg-purple-100 text-[#4F46E5] font-mono font-bold">
-              LIVE
-            </span>
+            {t.about}
+          </button>
+          <button
+            onClick={() => scrollTo('capabilities')}
+            className="text-left text-base text-[#0B1120] hover:text-[#4F46E5] py-1"
+          >
+            {t.capabilities}
           </button>
           <button
             onClick={() => scrollTo('ots-builder')}
@@ -181,10 +154,10 @@ export const Navbar: React.FC = () => {
             {t.deployment}
           </button>
           <button
-            onClick={() => scrollTo('pricing')}
-            className="text-left text-base text-[#0B1120] hover:text-[#4F46E5] py-1"
+            onClick={() => scrollTo('subscribe')}
+            className="text-left text-base text-[#4F46E5] font-semibold py-1"
           >
-            {t.pricing}
+            {t.howToSubscribe}
           </button>
           <button
             onClick={() => {

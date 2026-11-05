@@ -1,217 +1,210 @@
 import React, { useState } from 'react';
 import { useSimulationJourney } from '../context/SimulationJourneyContext';
 import { translations } from '../data/translations';
-import { dcsAudio } from '../utils/audio';
-import { Check, Shield, User, Building, Mail, Sliders } from 'lucide-react';
+import { Check, Shield, User, Building, Mail, Phone, Sliders, ArrowRight, Calendar, FileText, CheckCircle2 } from 'lucide-react';
 
 export const Section_PricingLeadership: React.FC = () => {
   const { setPilotDrawerOpen, language } = useSimulationJourney();
   const isRTL = language === 'AR';
-  const tPricing = translations[language].pricing;
-  const tFounder = translations[language].founder;
-  const tForm = translations[language].bottomForm;
+  const tSub = translations[language].howToSubscribe;
 
   const [name, setName] = useState('');
   const [company, setCompany] = useState('');
   const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
   const [unit, setUnit] = useState('CDU/VDU (Crude & Vacuum Distillation)');
+  const [deployment, setDeployment] = useState('Air-Gapped On-Premise');
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    dcsAudio.playVictory();
     setSubmitted(true);
   };
 
   return (
-    <section id="pricing" className="py-24 px-6 lg:px-12 relative border-t border-slate-200 bg-[#F8FAFC]">
-      <div className="max-w-[1240px] mx-auto space-y-16">
+    <section id="subscribe" className="py-24 px-6 lg:px-12 relative border-t border-slate-200 bg-white">
+      <div className="max-w-[1240px] mx-auto space-y-20">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-slate-200 pb-8 text-left" dir={isRTL ? 'rtl' : 'ltr'}>
-          <div className="space-y-3 max-w-3xl">
-            <div className="text-xs font-sans text-[#4F46E5] font-bold uppercase tracking-wider">
-              {tPricing.eyebrow}
-            </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0B1120] tracking-tight leading-[1.18] font-sans">
-              {tPricing.headingMain}{' '}
-              <span className="italic font-normal bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] bg-clip-text text-transparent">
-                {tPricing.headingItalic}
-              </span>
-            </h2>
-            <p className="text-base sm:text-lg text-[#64748B] font-sans font-normal leading-relaxed">
-              {tPricing.subheading}
-            </p>
+        <div className="text-center max-w-3xl mx-auto space-y-4">
+          <div className="text-xs font-mono font-bold text-[#4F46E5] uppercase tracking-wider">
+            {tSub.eyebrow}
           </div>
-          <div className="text-right text-xs font-mono text-[#64748B] shrink-0" dir="ltr">
-            <div>CONTRACT CODE: B2B-OTS-2026</div>
-            <div>STATUS: ENTERPRISE LICENSING AVAILABLE</div>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0B1120] tracking-tight leading-[1.18] font-sans">
+            {tSub.headingMain}{' '}
+            <span className="italic font-normal bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] bg-clip-text text-transparent">
+              {tSub.headingItalic}
+            </span>
+          </h2>
+          <p className="text-base sm:text-lg text-slate-600 font-sans font-normal leading-relaxed">
+            {tSub.subheading}
+          </p>
+        </div>
+
+        {/* 1. The 4-Step Onboarding Roadmap */}
+        <div className="space-y-6">
+          <div className="flex items-center justify-between border-b border-slate-200 pb-3" dir={isRTL ? 'rtl' : 'ltr'}>
+            <span className="text-xs font-mono text-slate-400 uppercase tracking-widest font-bold">
+              {isRTL ? 'مراحل الانضمام من اليوم الأول حتى التشغيل الفعلي' : 'ENTERPRISE ONBOARDING PHASES // DAY 1 TO RUNTIME'}
+            </span>
+            <span className="text-xs font-mono text-[#4F46E5] font-semibold">
+              {isRTL ? 'منهجية معتمدة ومجرّبة' : 'STANDARDIZED WORKFLOW'}
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" dir={isRTL ? 'rtl' : 'ltr'}>
+            {tSub.steps.map((step, idx) => (
+              <div
+                key={idx}
+                className="p-6 rounded-2xl bg-[#F8FAFC] border border-slate-200/90 shadow-xs flex flex-col justify-between space-y-4 hover:border-[#4F46E5]/40 transition-colors text-left"
+              >
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="text-2xl font-black font-mono bg-gradient-to-r from-[#7C3AED] to-[#2563EB] bg-clip-text text-transparent">
+                      {step.number}
+                    </span>
+                    <span className="text-[11px] font-mono px-2.5 py-0.5 rounded-full bg-indigo-50 text-[#4F46E5] border border-indigo-100 font-semibold">
+                      {step.timeline}
+                    </span>
+                  </div>
+
+                  <h3 className="text-base font-bold text-[#0B1120] font-sans leading-snug">
+                    {step.title}
+                  </h3>
+
+                  <p className="text-xs text-slate-600 leading-relaxed font-sans">
+                    {step.desc}
+                  </p>
+                </div>
+
+                <div className="pt-3 border-t border-slate-200/60 flex items-center space-x-1.5 space-x-reverse text-[11px] font-medium text-emerald-600">
+                  <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
+                  <span>{isRTL ? 'مخرجات هندسية واضحة' : 'Documented Deliverable'}</span>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
-        {/* 1. 4 Commercial Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch" dir={isRTL ? 'rtl' : 'ltr'}>
-          {tPricing.cards.map((card, idx) => (
-            <div
-              key={idx}
-              className={`p-7 rounded-2xl border transition-all duration-200 flex flex-col justify-between space-y-6 relative text-left ${
-                card.featured
-                  ? 'bg-white border-2 border-[#4F46E5] shadow-[0_20px_45px_-15px_rgba(79,70,229,0.2)]'
-                  : 'bg-white border-slate-200 shadow-sm hover:border-[#4F46E5]/40'
-              }`}
-            >
-              {card.featured && (
-                <div className="absolute -top-3 left-6 bg-gradient-to-r from-[#7C3AED] to-[#2563EB] text-white text-[10px] font-sans font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-md whitespace-nowrap">
-                  {card.badge}
-                </div>
-              )}
+        {/* 2. Commercial Subscription & Licensing Tracks */}
+        <div className="space-y-6">
+          <div className="flex items-center justify-between border-b border-slate-200 pb-3" dir={isRTL ? 'rtl' : 'ltr'}>
+            <span className="text-xs font-mono text-slate-400 uppercase tracking-widest font-bold">
+              {isRTL ? 'مسارات الترخيص والاشتراك المرنة' : 'ENTERPRISE LICENSING & SUBSCRIPTION TRACKS'}
+            </span>
+            <span className="text-xs font-mono text-slate-500">
+              {isRTL ? 'خيارات سحابية ومحلية معزولة' : 'CLOUD & AIR-GAPPED ON-PREM'}
+            </span>
+          </div>
 
-              <div className="space-y-4">
-                {!card.featured && (
-                  <span className="text-[10px] font-sans text-[#64748B] uppercase tracking-widest block font-medium">
-                    {card.badge}
-                  </span>
-                )}
-
-                <div>
-                  <h3 className="text-lg font-bold text-[#0B1120] tracking-tight font-sans">{card.name}</h3>
-                  <div className="text-xl font-extrabold font-sans text-[#0B1120] mt-2 flex items-baseline gap-1">
-                    <span>{card.price}</span>
-                  </div>
-                  <div className="text-xs text-[#64748B] font-sans mt-0.5 leading-snug">{card.period}</div>
-                </div>
-
-                <p className="text-xs text-[#64748B] leading-relaxed border-t border-slate-100 pt-3 font-sans">
-                  {card.desc}
-                </p>
-
-                <div className="space-y-2 pt-2 border-t border-slate-100 text-xs text-[#0B1120]">
-                  {card.bullets.map((bullet, bi) => (
-                    <div key={bi} className="flex items-start space-x-2">
-                      <Check className="w-3.5 h-3.5 text-[#059669] shrink-0 mt-0.5" />
-                      <span className="leading-tight text-[11px] text-[#64748B]">{bullet}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <button
-                onClick={() => {
-                  dcsAudio.playClick();
-                  setPilotDrawerOpen(true);
-                }}
-                className={`w-full py-2.5 rounded-full text-xs font-sans font-semibold transition-all cursor-pointer ${
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch" dir={isRTL ? 'rtl' : 'ltr'}>
+            {tSub.tracks.map((card, idx) => (
+              <div
+                key={idx}
+                className={`p-7 rounded-2xl border transition-all duration-200 flex flex-col justify-between space-y-6 relative text-left ${
                   card.featured
-                    ? 'bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] text-white shadow-[0_8px_25px_-4px_rgba(79,70,229,0.45)] hover:shadow-[0_12px_30px_-4px_rgba(79,70,229,0.6)]'
-                    : 'bg-white text-[#0B1120] border border-slate-300 hover:border-[#4F46E5] hover:text-[#4F46E5]'
+                    ? 'bg-white border-2 border-[#4F46E5] shadow-[0_20px_45px_-15px_rgba(79,70,229,0.2)]'
+                    : 'bg-[#F8FAFC] border-slate-200 shadow-xs hover:border-[#4F46E5]/40 hover:bg-white'
                 }`}
               >
-                {card.cta}
-              </button>
-            </div>
-          ))}
-        </div>
+                {card.featured && (
+                  <div className="absolute -top-3 left-6 bg-gradient-to-r from-[#7C3AED] to-[#2563EB] text-white text-[10px] font-sans font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-md whitespace-nowrap">
+                    {card.badge}
+                  </div>
+                )}
 
-        {/* 2. The Founder Dossier */}
-        <div className="rounded-2xl bg-white border border-slate-200 shadow-sm p-8 sm:p-10 relative overflow-hidden" dir={isRTL ? 'rtl' : 'ltr'}>
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            {/* Founder Avatar & Badge */}
-            <div className="lg:col-span-3 text-center space-y-3">
-              <div className="w-24 h-24 mx-auto rounded-full bg-gradient-to-br from-purple-500/10 to-blue-500/10 border border-purple-500/20 flex flex-col items-center justify-center text-[#4F46E5]">
-                <span className="text-2xl font-bold font-sans">MA</span>
-                <span className="text-[9px] font-sans text-[#4F46E5] uppercase tracking-wider font-semibold">FOUNDER</span>
-              </div>
-              <div>
-                <h4 className="text-lg font-bold text-[#0B1120] font-sans">Eng. Mostafa Adel</h4>
-                <p className="text-xs text-[#64748B] font-sans">Founder & CEO — Lead Process OTS Architect</p>
-              </div>
-            </div>
+                <div className="space-y-4">
+                  {!card.featured && (
+                    <span className="text-[10px] font-sans text-slate-500 uppercase tracking-widest block font-medium">
+                      {card.badge}
+                    </span>
+                  )}
 
-            {/* Field Pedigree Narrative */}
-            <div className={`lg:col-span-9 space-y-4 text-left ${isRTL ? 'lg:border-r border-slate-100 lg:pr-8' : 'lg:border-l border-slate-100 lg:pl-8'}`}>
-              <div className="flex items-center space-x-2 text-xs font-sans text-[#059669] font-semibold">
-                <Shield className="w-4 h-4" />
-                <span>{tFounder.badge}</span>
-              </div>
-              <h3 className="text-xl sm:text-2xl font-bold text-[#0B1120] tracking-tight font-sans">
-                {tFounder.title}
-              </h3>
-              <p className="text-sm text-[#64748B] leading-relaxed font-sans">
-                {tFounder.body}
-              </p>
+                  <div>
+                    <h3 className="text-lg font-bold text-[#0B1120] tracking-tight font-sans">{card.name}</h3>
+                    <div className="text-xl font-extrabold font-sans text-[#0B1120] mt-2 flex items-baseline gap-1">
+                      <span>{card.price}</span>
+                    </div>
+                    <div className="text-xs text-slate-500 font-sans mt-0.5 leading-snug">{card.period}</div>
+                  </div>
 
-              {/* Verified Plants Ribbon */}
-              <div className="pt-2 flex flex-wrap gap-2 text-xs font-sans text-[#64748B]">
-                {tFounder.verified.map((plant, pi) => (
-                  <span
-                    key={pi}
-                    className="px-3 py-1 rounded-full bg-slate-100 text-slate-800 border border-slate-200 font-medium"
-                  >
-                    {plant}
-                  </span>
-                ))}
+                  <p className="text-xs text-slate-600 leading-relaxed border-t border-slate-200/70 pt-3 font-sans">
+                    {card.desc}
+                  </p>
+
+                  <div className="space-y-2 pt-2 border-t border-slate-200/70 text-xs text-[#0B1120]">
+                    {card.bullets.map((bullet, bi) => (
+                      <div key={bi} className="flex items-start space-x-2 space-x-reverse">
+                        <Check className="w-3.5 h-3.5 text-[#059669] shrink-0 mt-0.5" />
+                        <span className="leading-tight text-[11px] text-slate-600">{bullet}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <button
+                  onClick={() => setPilotDrawerOpen(true)}
+                  className={`w-full py-2.5 rounded-full text-xs font-sans font-semibold transition-all cursor-pointer ${
+                    card.featured
+                      ? 'bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] text-white shadow-[0_8px_25px_-4px_rgba(79,70,229,0.45)] hover:shadow-[0_12px_30px_-4px_rgba(79,70,229,0.6)]'
+                      : 'bg-white text-[#0B1120] border border-slate-300 hover:border-[#4F46E5] hover:text-[#4F46E5]'
+                  }`}
+                >
+                  {card.cta}
+                </button>
               </div>
-            </div>
+            ))}
           </div>
         </div>
 
-        {/* 3. Streamlined Fast-Track Pilot Request */}
-        <div className="rounded-2xl bg-white border border-slate-200 shadow-sm p-8 sm:p-12 relative overflow-hidden max-w-3xl mx-auto" dir={isRTL ? 'rtl' : 'ltr'}>
+        {/* 3. Direct Enterprise Subscription Request Form */}
+        <div className="rounded-3xl bg-[#F8FAFC] border border-slate-200 shadow-sm p-8 sm:p-12 relative overflow-hidden max-w-3xl mx-auto" dir={isRTL ? 'rtl' : 'ltr'}>
           <div className="text-center space-y-2 mb-8">
-            <span className="text-xs font-sans text-[#4F46E5] uppercase tracking-widest block font-semibold">
-              {isRTL ? 'حجز اختبار تجريبي خلال 24 ساعة' : '24-HOUR PILOT INTAKE'}
+            <span className="text-xs font-mono text-[#4F46E5] uppercase tracking-widest block font-bold">
+              {isRTL ? 'طلب الاشتراك وحجز الاستشارة الفنية' : 'DIRECT ENTERPRISE SUBSCRIPTION INTAKE'}
             </span>
             <h3 className="text-2xl sm:text-3xl font-bold text-[#0B1120] tracking-tight font-sans">
-              {tForm.headingMain}{' '}
+              {tSub.form.headingMain}{' '}
               <span className="italic font-normal bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] bg-clip-text text-transparent">
-                {tForm.headingItalic}
+                {tSub.form.headingItalic}
               </span>
             </h3>
-            <p className="text-sm text-[#64748B] max-w-xl mx-auto font-sans leading-relaxed">
-              {tForm.subheading}
+            <p className="text-sm text-slate-600 max-w-xl mx-auto font-sans leading-relaxed">
+              {tSub.form.subheading}
             </p>
           </div>
 
           {submitted ? (
-            <div className="p-8 rounded-2xl bg-gradient-to-b from-emerald-500/10 via-teal-500/5 to-transparent border border-emerald-300 text-center space-y-4">
+            <div className="p-8 rounded-2xl bg-white border border-emerald-300 shadow-sm text-center space-y-4">
               <div className="w-14 h-14 mx-auto rounded-full bg-[#059669] text-white flex items-center justify-center font-bold text-2xl shadow-lg">
                 ✓
               </div>
               <h4 className="text-2xl font-bold text-[#0B1120] font-sans">
-                {isRTL ? 'تم استلام طلب المقترح بنجاح' : 'Proposal & Pilot Request Received'}
+                {isRTL ? 'تم استلام طلب الاشتراك بنجاح' : 'Subscription Request Received'}
               </h4>
-              <p className="text-xs sm:text-sm text-[#64748B] max-w-md mx-auto font-sans leading-relaxed">
+              <p className="text-xs sm:text-sm text-slate-600 max-w-md mx-auto font-sans leading-relaxed">
                 {isRTL
-                  ? `شكراً لك ${name || 'باشمهندس'}! تم تسجيل طلب مصفاة/شركة (${company || 'منشأتكم'}). سيتواصل معك م. مصطفى عادل شخصياً خلال 24 ساعة لتنسيق العرض الميداني وتوقيع اتفاقية الـ NDA.`
-                  : `Thank you ${name || 'Engineer'}! Your request for (${company || 'your facility'}) has been logged. Eng. Mostafa Adel will contact you within 24 hours to schedule the live CDU/VDU walkthrough and initiate the mutual NDA.`}
+                  ? `شكراً لك ${name || 'باشمهندس'}! تم تسجيل طلب مصفاة/شركة (${company || 'منشأتكم'}). سيتواصل معك م. مصطفى عادل ومكتبنا الهندسي خلال 24 ساعة لتنسيق جلسة استكشاف النطاق وإرسال مسودة اتفاقية السرية NDA.`
+                  : `Thank you ${name || 'Engineer'}! Your subscription inquiry for (${company || 'your facility'}) has been received. Eng. Mostafa Adel and our simulation desk will contact you within 24 hours to coordinate your technical scoping session and provide the mutual NDA.`}
               </p>
-
-              <div className="pt-2 flex flex-wrap items-center justify-center gap-3">
-                <a
-                  href="#simulator-stage"
-                  onClick={() => dcsAudio.playClick()}
-                  className="px-5 py-2.5 rounded-full bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] text-white font-semibold text-xs shadow-md hover:shadow-lg transition-all"
-                >
-                  {isRTL ? 'جرّب محاكي CDU/VDU الحي الآن ↗' : 'Test Live CDU/VDU Simulator Now ↗'}
-                </a>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setSubmitted(false);
-                    setName('');
-                    setCompany('');
-                    setEmail('');
-                  }}
-                  className="px-4 py-2.5 rounded-full bg-white hover:bg-slate-50 border border-slate-300 text-slate-700 text-xs font-semibold transition-colors cursor-pointer"
-                >
-                  {isRTL ? 'إرسال طلب لمنشأة أخرى' : 'Submit Another Request'}
-                </button>
-              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  setSubmitted(false);
+                  setName('');
+                  setCompany('');
+                  setEmail('');
+                  setPhone('');
+                }}
+                className="px-5 py-2.5 rounded-full bg-white hover:bg-slate-50 border border-slate-300 text-slate-700 text-xs font-semibold transition-colors cursor-pointer"
+              >
+                {isRTL ? 'إرسال طلب لمنشأة أو وحدة أخرى' : 'Submit Another Request'}
+              </button>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4 text-left font-sans">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1.5">
-                  <label className="text-xs text-[#64748B] flex items-center space-x-1.5 font-medium">
+                  <label className="text-xs text-slate-600 flex items-center space-x-1.5 space-x-reverse font-medium">
                     <User className="w-3.5 h-3.5 text-[#4F46E5]" />
                     <span>{isRTL ? 'الاسم الكامل والمنصب الفني' : 'Full Name & Operational Title'}</span>
                   </label>
@@ -220,13 +213,13 @@ export const Section_PricingLeadership: React.FC = () => {
                     required
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    placeholder={isRTL ? 'م. طارق منصور — مشرف غرفة التحكم' : 'Eng. Tarek Mansour — Lead DCS Supervisor'}
-                    className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] border border-slate-200 focus:border-[#4F46E5] text-[#0B1120] text-sm outline-none transition-all placeholder:text-slate-400"
+                    placeholder={isRTL ? 'م. طارق منصور — مدير العمليات' : 'Eng. Tarek Mansour — Operations Superintendent'}
+                    className="w-full px-4 py-3 rounded-xl bg-white border border-slate-200 focus:border-[#4F46E5] text-[#0B1120] text-sm outline-none transition-all placeholder:text-slate-400"
                   />
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs text-[#64748B] flex items-center space-x-1.5 font-medium">
+                  <label className="text-xs text-slate-600 flex items-center space-x-1.5 space-x-reverse font-medium">
                     <Building className="w-3.5 h-3.5 text-[#4F46E5]" />
                     <span>{isRTL ? 'اسم المصفاة أو الشركة' : 'Refinery / Operating Entity'}</span>
                   </label>
@@ -235,15 +228,15 @@ export const Section_PricingLeadership: React.FC = () => {
                     required
                     value={company}
                     onChange={(e) => setCompany(e.target.value)}
-                    placeholder={isRTL ? 'مصفاة الشرق الأوسط (ميدور) / الهيئة العامة للبترول' : 'Middle East Oil Refinery (MIDOR) / EGPC'}
-                    className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] border border-slate-200 focus:border-[#4F46E5] text-[#0B1120] text-sm outline-none transition-all placeholder:text-slate-400"
+                    placeholder={isRTL ? 'مصفاة الشرق الأوسط (ميدور) / أرامكو / سابك' : 'Middle East Oil Refinery (MIDOR) / Aramco / SABIC'}
+                    className="w-full px-4 py-3 rounded-xl bg-white border border-slate-200 focus:border-[#4F46E5] text-[#0B1120] text-sm outline-none transition-all placeholder:text-slate-400"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1.5">
-                  <label className="text-xs text-[#64748B] flex items-center space-x-1.5 font-medium">
+                  <label className="text-xs text-slate-600 flex items-center space-x-1.5 space-x-reverse font-medium">
                     <Mail className="w-3.5 h-3.5 text-[#4F46E5]" />
                     <span>{isRTL ? 'البريد الإلكتروني للعمل' : 'Corporate / Plant Work Email'}</span>
                   </label>
@@ -253,35 +246,70 @@ export const Section_PricingLeadership: React.FC = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="tarek.mansour@refinery.com"
-                    className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] border border-slate-200 focus:border-[#4F46E5] text-[#0B1120] text-sm outline-none transition-all placeholder:text-slate-400"
+                    className="w-full px-4 py-3 rounded-xl bg-white border border-slate-200 focus:border-[#4F46E5] text-[#0B1120] text-sm outline-none transition-all placeholder:text-slate-400"
                   />
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs text-[#64748B] flex items-center space-x-1.5 font-medium">
+                  <label className="text-xs text-slate-600 flex items-center space-x-1.5 space-x-reverse font-medium">
+                    <Phone className="w-3.5 h-3.5 text-[#4F46E5]" />
+                    <span>{isRTL ? 'رقم الهاتف / واتساب' : 'Phone / WhatsApp'}</span>
+                  </label>
+                  <input
+                    type="tel"
+                    required
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    placeholder="+20 100 000 0000"
+                    className="w-full px-4 py-3 rounded-xl bg-white border border-slate-200 focus:border-[#4F46E5] text-[#0B1120] text-sm outline-none transition-all placeholder:text-slate-400"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="space-y-1.5">
+                  <label className="text-xs text-slate-600 flex items-center space-x-1.5 space-x-reverse font-medium">
                     <Sliders className="w-3.5 h-3.5 text-[#4F46E5]" />
-                    <span>{isRTL ? 'الوحدة المستهدفة للاختبار' : 'Target Refinery Unit for Pilot'}</span>
+                    <span>{isRTL ? 'الوحدة المستهدفة للاشتراك' : 'Target Process Unit'}</span>
                   </label>
                   <select
                     value={unit}
                     onChange={(e) => setUnit(e.target.value)}
-                    className="w-full px-4 py-3 rounded-xl bg-[#F8FAFC] border border-slate-200 focus:border-[#4F46E5] text-[#0B1120] text-sm outline-none transition-all cursor-pointer"
+                    className="w-full px-4 py-3 rounded-xl bg-white border border-slate-200 focus:border-[#4F46E5] text-[#0B1120] text-sm outline-none transition-all cursor-pointer"
                   >
                     <option>CDU/VDU (Crude & Vacuum Distillation)</option>
                     <option>Hydrocracker Unit (HCU)</option>
                     <option>Delayed Coker Unit (DCU)</option>
                     <option>Continuous Catalytic Reformer (CCR)</option>
                     <option>Amine Gas Sweetening & Claus SRU</option>
+                    <option>Ethylene / Petrochemical Unit</option>
+                  </select>
+                </div>
+
+                <div className="space-y-1.5">
+                  <label className="text-xs text-slate-600 flex items-center space-x-1.5 space-x-reverse font-medium">
+                    <Shield className="w-3.5 h-3.5 text-[#4F46E5]" />
+                    <span>{isRTL ? 'نموذج النشر المفضل' : 'Deployment Preference'}</span>
+                  </label>
+                  <select
+                    value={deployment}
+                    onChange={(e) => setDeployment(e.target.value)}
+                    className="w-full px-4 py-3 rounded-xl bg-white border border-slate-200 focus:border-[#4F46E5] text-[#0B1120] text-sm outline-none transition-all cursor-pointer"
+                  >
+                    <option>Air-Gapped On-Premise (100% Offline)</option>
+                    <option>Managed Private Cloud</option>
+                    <option>Hybrid On-Prem / Cloud</option>
+                    <option>Training Academy / Multi-Seat</option>
                   </select>
                 </div>
               </div>
 
               <button
                 type="submit"
-                className="w-full py-4 rounded-full text-sm font-semibold mt-3 cursor-pointer bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] text-white shadow-[0_8px_25px_-4px_rgba(79,70,229,0.45)] hover:shadow-[0_12px_30px_-4px_rgba(79,70,229,0.6)] transition-all flex items-center justify-center space-x-2"
+                className="w-full py-4 rounded-full text-sm font-semibold mt-4 cursor-pointer bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] text-white shadow-[0_8px_25px_-4px_rgba(79,70,229,0.45)] hover:shadow-[0_12px_30px_-4px_rgba(79,70,229,0.6)] transition-all flex items-center justify-center space-x-2 space-x-reverse"
               >
-                <span>{tForm.button}</span>
-                <span className="ml-2">→</span>
+                <span>{tSub.form.button}</span>
+                <span>→</span>
               </button>
             </form>
           )}

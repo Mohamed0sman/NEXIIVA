@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useSimulationJourney } from '../context/SimulationJourneyContext';
 import { translations } from '../data/translations';
-import { dcsAudio } from '../utils/audio';
 import { ArrowRight, ShieldAlert, TrendingDown } from 'lucide-react';
 
 export const Section_ComparisonROI: React.FC = () => {
@@ -148,7 +147,6 @@ export const Section_ComparisonROI: React.FC = () => {
                     value={numUnits}
                     onChange={(e) => {
                       setNumUnits(parseInt(e.target.value));
-                      dcsAudio.playClick();
                     }}
                     className="w-full accent-[#4F46E5] bg-slate-300 h-1.5 cursor-pointer rounded-full"
                   />
@@ -173,7 +171,6 @@ export const Section_ComparisonROI: React.FC = () => {
                     value={numOperators}
                     onChange={(e) => {
                       setNumOperators(parseInt(e.target.value));
-                      dcsAudio.playClick();
                     }}
                     className="w-full accent-[#4F46E5] bg-slate-300 h-1.5 cursor-pointer rounded-full"
                   />
@@ -217,7 +214,6 @@ export const Section_ComparisonROI: React.FC = () => {
 
               <button
                 onClick={() => {
-                  dcsAudio.playClick();
                   setPilotDrawerOpen(true);
                 }}
                 className="w-full py-3.5 rounded-full bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] hover:opacity-95 text-white font-semibold text-[15px] shadow-[0_8px_25px_-4px_rgba(79,70,229,0.45)] transition-all cursor-pointer flex items-center justify-center space-x-2"
