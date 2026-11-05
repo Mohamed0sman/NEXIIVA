@@ -69,6 +69,13 @@ export const Footer: React.FC = () => {
               <div className="text-[#94A3B8] text-[11px]">
                 Ex-MIDOR Refinery, Sanmar Chemicals, Agiba Petroleum, Port Harcourt
               </div>
+              <a
+                href="mailto:Mostafa.adel.esmaiel@gmail.com"
+                className="text-[#4F46E5] hover:text-indigo-700 font-mono text-xs flex items-center space-x-1.5 space-x-reverse pt-1 font-medium transition-colors"
+              >
+                <span>✉</span>
+                <span>Mostafa.adel.esmaiel@gmail.com</span>
+              </a>
               <div className="pt-3">
                 <button
                   onClick={() => setPilotDrawerOpen(true)}

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useSimulationJourney } from '../context/SimulationJourneyContext';
 import { translations } from '../data/translations';
-import { Check, Shield, User, Building, Mail, Phone, Sliders, ArrowRight, Calendar, FileText, CheckCircle2, Lock, Sparkles } from 'lucide-react';
+import { Check, Shield, User, Building, Mail, Phone, Sliders, ArrowRight, Calendar, FileText, CheckCircle2, Lock, Sparkles, Send, MessageSquare } from 'lucide-react';
+import { dispatchFormSubmission, RECIPIENT_EMAIL } from '../utils/contactDispatcher';
 
 export const Section_PricingLeadership: React.FC = () => {
   const { setPilotDrawerOpen, language } = useSimulationJourney();
@@ -15,9 +16,23 @@ export const Section_PricingLeadership: React.FC = () => {
   const [unit, setUnit] = useState('CDU/VDU (Crude & Vacuum Distillation)');
   const [deployment, setDeployment] = useState('Air-Gapped On-Premise');
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submissionResult, setSubmissionResult] = useState<{ mailtoUrl: string; whatsappUrl: string; body: string } | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
+    const res = await dispatchFormSubmission({
+      fullName: name,
+      company: company,
+      email: email,
+      phone: phone,
+      targetUnit: unit,
+      deploymentPreference: deployment,
+      source: 'Subscription Form',
+    });
+    setSubmissionResult(res);
+    setIsSubmitting(false);
     setSubmitted(true);
   };
 
@@ -182,31 +197,66 @@ export const Section_PricingLeadership: React.FC = () => {
           </div>
 
           {submitted ? (
-            <div className="p-8 sm:p-10 rounded-2xl bg-white border border-emerald-300 shadow-sm text-center space-y-4">
-              <div className="w-16 h-16 mx-auto rounded-full bg-[#059669] text-white flex items-center justify-center font-bold text-3xl shadow-lg">
+            <div className="p-8 sm:p-10 rounded-3xl bg-white border border-emerald-300 shadow-lg text-center space-y-6">
+              <div className="w-16 h-16 mx-auto rounded-full bg-emerald-500 text-white flex items-center justify-center font-bold text-3xl shadow-lg">
                 ✓
               </div>
-              <h4 className="text-2xl font-bold text-[#0B1120] font-sans">
-                {isRTL ? 'تم استلام طلب الاشتراك بنجاح' : 'Subscription Request Received'}
-              </h4>
-              <p className="text-xs sm:text-sm text-slate-600 max-w-md mx-auto font-sans leading-relaxed">
+              
+              <div className="space-y-2">
+                <h4 className="text-2xl font-bold text-[#0B1120] font-sans">
+                  {isRTL ? 'تم استلام وتوجيه طلبك بنجاح' : 'Request Successfully Routed'}
+                </h4>
+                <div className="inline-flex items-center space-x-2 space-x-reverse px-4 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-mono font-medium">
+                  <Mail className="w-3.5 h-3.5 text-emerald-600" />
+                  <span>{RECIPIENT_EMAIL}</span>
+                </div>
+              </div>
+
+              <p className="text-xs sm:text-sm text-slate-600 max-w-lg mx-auto font-sans leading-relaxed">
                 {isRTL
-                  ? `شكراً لك ${name || 'باشمهندس'}! تم تسجيل طلب مصفاة/شركة (${company || 'منشأتكم'}). سيتواصل معك م. مصطفى عادل ومكتبنا الهندسي خلال 24 ساعة لتنسيق جلسة استكشاف النطاق وإرسال مسودة اتفاقية السرية NDA.`
-                  : `Thank you ${name || 'Engineer'}! Your subscription inquiry for (${company || 'your facility'}) has been received. Eng. Mostafa Adel and our simulation desk will contact you within 24 hours to coordinate your technical scoping session and provide the mutual NDA.`}
+                  ? `شكراً لك ${name || 'باشمهندس'}! تم توجيه كافة تفاصيل الطلب لمصفاة/شركة (${company || 'منشأتكم'}) إلى البريد المباشر لم. مصطفى عادل (${RECIPIENT_EMAIL}). سيتواصل معكم مكتبنا الهندسي خلال 24 ساعة لتنسيق جلسة استكشاف النطاق وإرسال اتفاقية السرية NDA.`
+                  : `Thank you ${name || 'Engineer'}! All inquiry details for (${company || 'your facility'}) have been routed directly to Eng. Mostafa Adel's inbox (${RECIPIENT_EMAIL}). Our engineering desk will contact you within 24 hours to schedule the scoping session and provide the mutual NDA.`}
               </p>
-              <button
-                type="button"
-                onClick={() => {
-                  setSubmitted(false);
-                  setName('');
-                  setCompany('');
-                  setEmail('');
-                  setPhone('');
-                }}
-                className="px-6 py-2.5 rounded-full bg-white hover:bg-slate-50 border border-slate-300 text-slate-700 text-xs font-semibold transition-colors cursor-pointer"
-              >
-                {isRTL ? 'إرسال طلب لمنشأة أو وحدة أخرى' : 'Submit Another Request'}
-              </button>
+
+              {/* Instant Direct Action Buttons */}
+              <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
+                <a
+                  href={submissionResult?.mailtoUrl || `mailto:${RECIPIENT_EMAIL}`}
+                  className="px-6 py-3 rounded-full bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] text-white text-xs font-semibold flex items-center space-x-2 space-x-reverse shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all cursor-pointer"
+                >
+                  <Send className="w-4 h-4" />
+                  <span>{isRTL ? 'فتح تطبيق البريد والتأكيد' : 'Open in Email Client & Confirm'}</span>
+                </a>
+
+                {submissionResult?.whatsappUrl && (
+                  <a
+                    href={submissionResult.whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-6 py-3 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold flex items-center space-x-2 space-x-reverse shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all cursor-pointer"
+                  >
+                    <MessageSquare className="w-4 h-4" />
+                    <span>{isRTL ? 'مراسلة عبر واتساب فوراً' : 'Message on WhatsApp'}</span>
+                  </a>
+                )}
+              </div>
+
+              <div className="pt-2">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSubmitted(false);
+                    setName('');
+                    setCompany('');
+                    setEmail('');
+                    setPhone('');
+                    setSubmissionResult(null);
+                  }}
+                  className="px-6 py-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold transition-colors cursor-pointer"
+                >
+                  {isRTL ? 'إرسال طلب لمنشأة أو وحدة أخرى' : 'Submit Another Request'}
+                </button>
+              </div>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4 text-left font-sans">
