@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSimulationJourney } from '../context/SimulationJourneyContext';
 import { translations } from '../data/translations';
-import { ShieldCheck, Cpu, Layers, Award, Factory, Target, Users, CheckCircle2 } from 'lucide-react';
+import { ShieldCheck, Cpu, Layers, Award, Factory, Target, Users, CheckCircle2, Quote, Sparkles } from 'lucide-react';
 
 export const Section_AboutCompany: React.FC = () => {
   const { language } = useSimulationJourney();
@@ -11,15 +11,20 @@ export const Section_AboutCompany: React.FC = () => {
 
   return (
     <section id="about" className="py-24 px-6 lg:px-12 relative bg-[#F8FAFC] border-t border-slate-200">
-      <div className="max-w-[1240px] mx-auto space-y-16">
+      {/* Precision Background Grid Texture */}
+      <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:32px_32px] opacity-50 pointer-events-none" />
+
+      <div className="max-w-[1240px] mx-auto space-y-16 relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="text-xs font-sans font-bold text-[#4F46E5] uppercase tracking-wider">
-            {t.eyebrow}
+          <div className="inline-flex items-center space-x-1.5 space-x-reverse text-xs font-mono font-bold text-[#4F46E5] uppercase tracking-wider bg-purple-50 px-3.5 py-1 rounded-full border border-purple-200/60">
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>{t.eyebrow}</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0B1120] tracking-tight leading-[1.18] font-sans">
+
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0B1120] tracking-tight leading-[1.2] font-sans">
             {t.headingMain}{' '}
-            <span className="italic font-normal bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] bg-clip-text text-transparent">
+            <span className="italic font-normal bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] bg-clip-text text-transparent inline-block">
               {t.headingItalic}
             </span>
           </h2>
@@ -28,14 +33,17 @@ export const Section_AboutCompany: React.FC = () => {
           </p>
         </div>
 
-        {/* 4 Prominent Company Metrics */}
+        {/* 4 Prominent Company Metrics Cards */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6" dir={isRTL ? 'rtl' : 'ltr'}>
           {t.metrics.map((m, idx) => (
             <div
               key={idx}
-              className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs text-center space-y-1 hover:border-[#4F46E5]/40 transition-colors"
+              className="p-7 rounded-2xl bg-white border border-slate-200 shadow-xs hover:shadow-md hover:border-[#4F46E5]/40 hover:-translate-y-1 transition-all duration-300 text-center space-y-1.5 relative overflow-hidden group"
             >
-              <div className="text-3xl sm:text-4xl font-extrabold font-sans bg-gradient-to-r from-[#7C3AED] to-[#2563EB] bg-clip-text text-transparent">
+              {/* Top Accent Gradient Line */}
+              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#7C3AED] to-[#2563EB] opacity-0 group-hover:opacity-100 transition-opacity" />
+
+              <div className="text-3xl sm:text-4xl font-black font-sans bg-gradient-to-r from-[#7C3AED] to-[#2563EB] bg-clip-text text-transparent">
                 {m.value}
               </div>
               <div className="text-sm font-bold text-[#0B1120] font-sans">
@@ -51,13 +59,13 @@ export const Section_AboutCompany: React.FC = () => {
         {/* Company Narrative & The Industry Gap */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch" dir={isRTL ? 'rtl' : 'ltr'}>
           {/* Card 1: The Problem & Our Mission */}
-          <div className="lg:col-span-7 bg-white rounded-2xl border border-slate-200 p-8 sm:p-10 shadow-xs flex flex-col justify-between space-y-6 text-left">
+          <div className="lg:col-span-7 bg-white rounded-3xl border border-slate-200 p-8 sm:p-10 shadow-sm flex flex-col justify-between space-y-6 text-left relative overflow-hidden">
             <div className="space-y-4">
               <div className="flex items-center space-x-2 space-x-reverse text-[#4F46E5] font-semibold text-xs tracking-wider uppercase font-mono">
                 <Factory className="w-4 h-4" />
                 <span>{isRTL ? 'المهمة والرؤية الصناعية' : 'INDUSTRIAL MISSION & PURPOSE'}</span>
               </div>
-              <h3 className="text-2xl font-bold text-[#0B1120] font-sans tracking-tight">
+              <h3 className="text-2xl sm:text-3xl font-bold text-[#0B1120] font-sans tracking-tight leading-snug">
                 {t.storyTitle}
               </h3>
               <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-sans">
@@ -65,7 +73,7 @@ export const Section_AboutCompany: React.FC = () => {
               </p>
             </div>
 
-            <div className="pt-4 border-t border-slate-100 grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-slate-700 font-medium">
+            <div className="pt-6 border-t border-slate-100 grid grid-cols-1 sm:grid-cols-2 gap-3.5 text-xs text-slate-700 font-medium">
               <div className="flex items-center space-x-2 space-x-reverse">
                 <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
                 <span>{isRTL ? 'مطابقة هندسية لمخططات P&ID' : 'P&ID-accurate digital twins'}</span>
@@ -86,38 +94,46 @@ export const Section_AboutCompany: React.FC = () => {
           </div>
 
           {/* Card 2: Founder & Field Credentials */}
-          <div className="lg:col-span-5 bg-gradient-to-br from-[#0B1120] to-[#070B14] rounded-2xl border border-slate-800 p-8 sm:p-10 shadow-lg text-white flex flex-col justify-between space-y-6 text-left relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-[radial-gradient(circle,rgba(124,58,237,0.18),transparent_70%)] pointer-events-none" />
+          <div className="lg:col-span-5 bg-gradient-to-br from-[#0B1120] to-[#070B14] rounded-3xl border border-slate-800 p-8 sm:p-10 shadow-xl text-white flex flex-col justify-between space-y-6 text-left relative overflow-hidden">
+            {/* Ambient Violet Radial Glow */}
+            <div className="absolute top-0 right-0 w-72 h-72 bg-[radial-gradient(circle,rgba(124,58,237,0.22),transparent_70%)] pointer-events-none" />
 
-            <div className="space-y-4 relative z-10">
+            <div className="space-y-5 relative z-10">
               <div className="flex items-center space-x-2 space-x-reverse text-emerald-400 font-semibold text-xs tracking-wider uppercase font-mono">
                 <ShieldCheck className="w-4 h-4" />
                 <span>{tFounder.badge}</span>
               </div>
 
-              <div className="space-y-1">
-                <h3 className="text-xl font-bold font-sans text-white">
-                  Eng. Mostafa Adel
-                </h3>
-                <div className="text-xs text-indigo-300 font-sans">
-                  {isRTL ? 'المؤسس والمدير التنفيذي — مهندس عمليات وتكرير أول' : 'Founder & CEO — Senior Process Operations Engineer'}
+              {/* Founder Header with Monogram Seal */}
+              <div className="flex items-center space-x-4 space-x-reverse">
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#7C3AED] via-[#4F46E5] to-[#2563EB] text-white flex items-center justify-center font-bold text-lg font-mono shadow-md shrink-0">
+                  MA
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold font-sans text-white">
+                    Eng. Mostafa Adel
+                  </h3>
+                  <div className="text-xs text-indigo-300 font-sans mt-0.5">
+                    {isRTL ? 'المؤسس والمدير التنفيذي — مهندس عمليات وتكرير أول' : 'Founder & CEO — Lead Process Operations Engineer'}
+                  </div>
                 </div>
               </div>
 
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">
-                {tFounder.body}
-              </p>
+              <div className="p-4 rounded-2xl bg-white/5 border border-white/10 text-xs sm:text-[13px] text-slate-300 leading-relaxed font-sans relative">
+                <Quote className="w-5 h-5 text-indigo-400/40 mb-1" />
+                <p>{tFounder.body}</p>
+              </div>
             </div>
 
-            <div className="pt-4 border-t border-slate-800 space-y-2 relative z-10">
+            <div className="pt-4 border-t border-slate-800 space-y-2.5 relative z-10">
               <span className="text-[11px] font-mono text-slate-400 uppercase tracking-wider block">
                 {isRTL ? 'المنشآت والمصافي التي تم العمل بها ميدانياً:' : 'Frontline Plant Operating Pedigree:'}
               </span>
-              <div className="flex flex-wrap gap-1.5">
+              <div className="flex flex-wrap gap-2">
                 {tFounder.verified.map((plant, idx) => (
                   <span
                     key={idx}
-                    className="px-2.5 py-1 rounded bg-white/10 text-slate-200 text-[11px] font-sans font-medium border border-white/5"
+                    className="px-3 py-1 rounded-full bg-white/10 text-slate-200 text-xs font-sans font-medium border border-white/5"
                   >
                     {plant}
                   </span>
