@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useSimulationJourney } from '../context/SimulationJourneyContext';
 import { translations } from '../data/translations';
-import { Monitor, ShieldAlert, Award, CheckCircle2, Sliders, QrCode, FileCheck, Activity, Users, AlertTriangle, Flame, Zap, Gauge } from 'lucide-react';
+import { Monitor, ShieldAlert, Award, CheckCircle2, Sliders, QrCode, FileCheck, Activity, Users, AlertTriangle, Flame, Zap, Gauge, Play } from 'lucide-react';
 
 export const Section_InteractiveJourney: React.FC = () => {
-  const { language } = useSimulationJourney();
+  const { language, setVideoModalOpen } = useSimulationJourney();
   const t = translations[language].experience;
   const isRTL = language === 'AR';
 
@@ -115,12 +115,19 @@ export const Section_InteractiveJourney: React.FC = () => {
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-              <div className="lg:col-span-8 rounded-2xl overflow-hidden border border-slate-200 shadow-lg bg-black">
+              <div className="lg:col-span-8 rounded-2xl overflow-hidden border border-slate-200 shadow-lg bg-black relative group">
                 <img
-                  src="/assets/image2.png"
+                  src="/assets/youtube_demo_thumb.jpg"
                   alt="NEXIIVA Trainee DCS Console Screen"
                   className="w-full h-auto object-cover"
                 />
+                <button
+                  onClick={() => setVideoModalOpen(true)}
+                  className="absolute inset-0 m-auto w-fit h-fit px-5 py-2.5 rounded-full bg-black/75 hover:bg-black/90 backdrop-blur-md border border-white/20 text-white font-sans text-xs font-semibold flex items-center space-x-2 space-x-reverse shadow-xl cursor-pointer group-hover:scale-105 transition-all"
+                >
+                  <Play className="w-3.5 h-3.5 fill-current text-[#4F46E5]" />
+                  <span>{isRTL ? 'مشاهدة واجهات التحكم أثناء التشغيل الحي' : 'Watch Live Control Valves & Trends in Action'}</span>
+                </button>
               </div>
 
               <div className="lg:col-span-4 space-y-4 font-sans text-xs">
