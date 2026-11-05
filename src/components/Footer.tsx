@@ -86,13 +86,24 @@ export const Footer: React.FC = () => {
               <div className="text-[#94A3B8] text-[11px]">
                 Ex-MIDOR Refinery, Sanmar Chemicals, Agiba Petroleum, Port Harcourt
               </div>
-              <a
-                href="mailto:Mostafa.adel.esmaiel@gmail.com"
-                className="text-[#4F46E5] hover:text-indigo-700 font-mono text-xs flex items-center space-x-1.5 space-x-reverse pt-1 font-medium transition-colors"
-              >
-                <span>✉</span>
-                <span className="underline">Mostafa.adel.esmaiel@gmail.com</span>
-              </a>
+              <div className="flex flex-col gap-1.5 pt-1 font-mono text-xs font-medium">
+                <a
+                  href="https://wa.me/201004131154"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-emerald-600 hover:text-emerald-700 flex items-center space-x-1.5 space-x-reverse transition-colors"
+                >
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse inline-block" />
+                  <span>{isRTL ? 'واتساب / هاتف: 01004131154' : 'WhatsApp / Call: +20 100 413 1154'}</span>
+                </a>
+                <a
+                  href="mailto:Mostafa.adel.esmaiel@gmail.com"
+                  className="text-[#4F46E5] hover:text-indigo-700 flex items-center space-x-1.5 space-x-reverse transition-colors"
+                >
+                  <span>✉</span>
+                  <span className="underline">Mostafa.adel.esmaiel@gmail.com</span>
+                </a>
+              </div>
               <div className="pt-3">
                 <button
                   onClick={() => setPilotDrawerOpen(true)}

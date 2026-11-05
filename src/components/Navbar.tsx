@@ -227,16 +227,28 @@ export const Navbar: React.FC = () => {
             </button>
 
             {/* Direct Engineering Desk Contact Note */}
-            <div className="pt-2 border-t border-slate-100 text-center">
-              <span className="text-[11px] text-slate-500">
-                {isRTL ? 'مكتب التواصل المباشر للمهندس مصطفى عادل:' : 'Direct Desk Eng. Mostafa Adel:'}{' '}
-              </span>
-              <a
-                href="mailto:Mostafa.adel.esmaiel@gmail.com"
-                className="text-[11px] font-mono text-[#4F46E5] font-semibold hover:underline block sm:inline mt-0.5"
-              >
-                Mostafa.adel.esmaiel@gmail.com
-              </a>
+            <div className="pt-2.5 border-t border-slate-100 text-center space-y-1">
+              <div className="text-[11px] text-slate-500">
+                {isRTL ? 'مكتب التواصل المباشر للمهندس مصطفى عادل:' : 'Direct Desk Eng. Mostafa Adel:'}
+              </div>
+              <div className="flex items-center justify-center gap-3 text-[11px] font-mono">
+                <a
+                  href="https://wa.me/201004131154"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-emerald-600 font-semibold hover:underline flex items-center space-x-1 space-x-reverse"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                  <span>واتساب: 01004131154</span>
+                </a>
+                <span className="text-slate-300">|</span>
+                <a
+                  href="mailto:Mostafa.adel.esmaiel@gmail.com"
+                  className="text-[#4F46E5] font-semibold hover:underline"
+                >
+                  البريد الإلكتروني
+                </a>
+              </div>
             </div>
           </div>
         </div>

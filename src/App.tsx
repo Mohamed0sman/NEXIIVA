@@ -11,6 +11,7 @@ import { Section_PricingLeadership } from './components/Section_PricingLeadershi
 import { Footer } from './components/Footer';
 import { VideoModal } from './components/VideoModal';
 import { PilotDrawer } from './components/PilotDrawer';
+import { FloatingWhatsAppButton } from './components/FloatingWhatsAppButton';
 
 const AppContent: React.FC = () => {
   const { language } = useSimulationJourney();
@@ -48,9 +49,10 @@ const AppContent: React.FC = () => {
       {/* 9. Minimal Editorial Footer */}
       <Footer />
 
-      {/* Clean Modals & Drawers */}
+      {/* Clean Modals, Drawers & Floating WhatsApp */}
       <VideoModal />
       <PilotDrawer />
+      <FloatingWhatsAppButton />
     </div>
   );
 };

@@ -1,10 +1,14 @@
 /**
  * NEXIIVA Contact & Subscription Request Dispatcher
  * Directly dispatches enterprise intake requests to Eng. Mostafa Adel:
- * Mostafa.adel.esmaiel@gmail.com
+ * Email: Mostafa.adel.esmaiel@gmail.com
+ * WhatsApp: 01004131154 (+201004131154)
  */
 
 export const RECIPIENT_EMAIL = 'Mostafa.adel.esmaiel@gmail.com';
+export const RECIPIENT_WHATSAPP_PHONE = '201004131154'; // 01004131154
+export const RECIPIENT_DISPLAY_PHONE = '01004131154';
+export const RECIPIENT_INTL_PHONE = '+20 100 413 1154';
 
 export interface SubscriptionFormData {
   fullName: string;
@@ -40,10 +44,20 @@ NEXIIVA Process Operator Training Simulator`;
     subject
   )}&body=${encodeURIComponent(body)}`;
 
-  // Clean phone number for WhatsApp message
-  const rawPhone = data.phone.replace(/[^\d+]/g, '');
-  const whatsappText = `مرحباً م. مصطفى عادل، أنا ${data.fullName} من ${data.company}. أود الاستفسار عن محاكي نكسيفا لوحدة ${data.targetUnit}. البريد الإلكتروني: ${data.email} والهاتف: ${data.phone}`;
-  const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(whatsappText)}`;
+  const whatsappText = `مرحباً م. مصطفى عادل، تم تقديم طلب جديد عبر منصة نكسيفا (NEXIIVA):
+----------------------------------------
+*الاسم*: ${data.fullName || 'غير محدد'}
+*الشركة / المصفاة*: ${data.company || 'غير محدد'}
+*البريد الإلكتروني*: ${data.email || 'غير محدد'}
+*الهاتف*: ${data.phone || 'غير محدد'}
+*الوحدة المستهدفة*: ${data.targetUnit}
+*نموذج النشر*: ${data.deploymentPreference}
+*مصدر الطلب*: ${data.source || 'نموذج المنصة'}
+*التاريخ*: ${new Date().toLocaleString('ar-EG')}
+----------------------------------------
+نود التنسيق معكم لمناقشة المتطلبات وتحديد موعد الجلسة الاستكشافية.`;
+
+  const whatsappUrl = `https://wa.me/${RECIPIENT_WHATSAPP_PHONE}?text=${encodeURIComponent(whatsappText)}`;
 
   return {
     subject,
@@ -60,7 +74,7 @@ export async function dispatchFormSubmission(data: SubscriptionFormData): Promis
 }> {
   const { subject, body, mailtoUrl, whatsappUrl } = buildEmailContent(data);
 
-  // Attempt background fetch via FormSubmit to ensure Mostafa receives direct notification
+  // Attempt background fetch via FormSubmit to ensure Mostafa receives direct email notification
   try {
     fetch(`https://formsubmit.co/ajax/${RECIPIENT_EMAIL}`, {
       method: 'POST',
@@ -81,24 +95,19 @@ export async function dispatchFormSubmission(data: SubscriptionFormData): Promis
         message: body,
       }),
     }).catch(() => {
-      // Background catch - mailto and UI guarantee delivery
+      // Background catch
     });
   } catch {
     // Silent catch
   }
 
-  // Trigger mailto immediately in the user's browser so their email client pops open with all pre-filled details
+  // Open WhatsApp directly with pre-filled message directed to 01004131154
   try {
-    const link = document.createElement('a');
-    link.href = mailtoUrl;
-    link.target = '_blank';
-    link.rel = 'noopener noreferrer';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
   } catch {
-    window.location.href = mailtoUrl;
+    // Popup blocker fallback handled by the prominent WhatsApp CTA button
   }
 
   return { mailtoUrl, whatsappUrl, body };
 }
+

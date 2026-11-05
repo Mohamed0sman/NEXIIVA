@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSimulationJourney } from '../context/SimulationJourneyContext';
-import { dispatchFormSubmission, RECIPIENT_EMAIL } from '../utils/contactDispatcher';
+import { dispatchFormSubmission, RECIPIENT_EMAIL, RECIPIENT_DISPLAY_PHONE, RECIPIENT_INTL_PHONE } from '../utils/contactDispatcher';
 import { Mail, Phone, Building, User, Send, MessageSquare, CheckCircle2 } from 'lucide-react';
 
 export const PilotDrawer: React.FC = () => {
@@ -80,43 +80,54 @@ export const PilotDrawer: React.FC = () => {
                 ✓
               </div>
 
-              <div className="space-y-1.5">
+              <div className="space-y-2">
                 <div className="text-2xl font-sans font-bold text-[#0B1120]">
                   {isRTL ? 'تم توجيه طلب البايلوت بنجاح' : 'Pilot Request Routed'}
                 </div>
-                <div className="inline-flex items-center space-x-1.5 space-x-reverse px-3.5 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-mono font-medium">
-                  <Mail className="w-3.5 h-3.5 text-emerald-600" />
-                  <span>{RECIPIENT_EMAIL}</span>
+                <div className="flex flex-wrap items-center justify-center gap-1.5 pt-0.5">
+                  <a
+                    href={submissionResult?.whatsappUrl || `https://wa.me/201004131154`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center space-x-1.5 space-x-reverse px-3 py-1 rounded-full bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 text-emerald-800 text-[11px] font-mono font-medium transition-colors cursor-pointer"
+                  >
+                    <MessageSquare className="w-3.5 h-3.5 text-emerald-600" />
+                    <span>واتساب: {RECIPIENT_DISPLAY_PHONE}</span>
+                  </a>
+                  <div className="inline-flex items-center space-x-1.5 space-x-reverse px-3 py-1 rounded-full bg-indigo-50 border border-indigo-200 text-indigo-900 text-[11px] font-mono font-medium">
+                    <Mail className="w-3.5 h-3.5 text-indigo-600" />
+                    <span>{RECIPIENT_EMAIL}</span>
+                  </div>
                 </div>
               </div>
 
               <p className="text-[#64748B] text-xs sm:text-sm max-w-sm mx-auto leading-relaxed">
                 {isRTL
-                  ? `شكراً لك! تم توجيه كافة تفاصيل الوحدة (${pilotUnit}) مباشرة إلى بريد م. مصطفى عادل (${RECIPIENT_EMAIL}). سيتواصل معكم خلال 24 ساعة لتنسيق تسليم مخططات P&ID وتوقيع اتفاقية السرية NDA.`
-                  : `Thank you! All pilot specs for (${pilotUnit}) have been dispatched directly to Eng. Mostafa Adel (${RECIPIENT_EMAIL}). He will follow up within 24 hours to coordinate P&ID intake and mutual NDA.`}
+                  ? `شكراً لك! تم توجيه كافة تفاصيل الوحدة (${pilotUnit}) مباشرة إلى واتساب م. مصطفى عادل (${RECIPIENT_DISPLAY_PHONE}) وبريده الإلكتروني (${RECIPIENT_EMAIL}). سيتواصل معكم خلال 24 ساعة لتنسيق تسليم مخططات P&ID وتوقيع اتفاقية السرية NDA.`
+                  : `Thank you! All pilot specs for (${pilotUnit}) have been dispatched directly to Eng. Mostafa Adel's WhatsApp (${RECIPIENT_INTL_PHONE}) and inbox (${RECIPIENT_EMAIL}). He will follow up within 24 hours to coordinate P&ID intake and mutual NDA.`}
               </p>
 
               {/* Instant Direct Action Buttons */}
               <div className="flex flex-col gap-2.5 pt-2 max-w-xs mx-auto">
-                <a
-                  href={submissionResult?.mailtoUrl || `mailto:${RECIPIENT_EMAIL}`}
-                  className="w-full min-h-[48px] py-3 rounded-full bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] text-white text-xs font-semibold flex items-center justify-center space-x-2 space-x-reverse shadow-md hover:shadow-lg transition-all cursor-pointer"
-                >
-                  <Send className="w-4 h-4" />
-                  <span>{isRTL ? 'تأكيد الإرسال عبر تطبيق البريد' : 'Confirm via Email Client'}</span>
-                </a>
-
                 {submissionResult?.whatsappUrl && (
                   <a
                     href={submissionResult.whatsappUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full min-h-[48px] py-3 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold flex items-center justify-center space-x-2 space-x-reverse shadow-md transition-all cursor-pointer"
+                    className="w-full min-h-[48px] py-3 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold flex items-center justify-center space-x-2 space-x-reverse shadow-md hover:shadow-lg transition-all cursor-pointer"
                   >
-                    <MessageSquare className="w-4 h-4" />
-                    <span>{isRTL ? 'مراسلة عبر واتساب فوراً' : 'Message on WhatsApp'}</span>
+                    <MessageSquare className="w-4 h-4 text-white" />
+                    <span>{isRTL ? `مراسلة م. مصطفى عبر واتساب (${RECIPIENT_DISPLAY_PHONE})` : `Message on WhatsApp (${RECIPIENT_INTL_PHONE})`}</span>
                   </a>
                 )}
+
+                <a
+                  href={submissionResult?.mailtoUrl || `mailto:${RECIPIENT_EMAIL}`}
+                  className="w-full min-h-[46px] py-2.5 rounded-full bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold flex items-center justify-center space-x-2 space-x-reverse shadow-sm transition-all cursor-pointer"
+                >
+                  <Send className="w-4 h-4" />
+                  <span>{isRTL ? 'تأكيد الإرسال عبر البريد' : 'Confirm via Email Client'}</span>
+                </a>
 
                 <button
                   onClick={() => {

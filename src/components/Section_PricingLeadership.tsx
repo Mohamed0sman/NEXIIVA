@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSimulationJourney } from '../context/SimulationJourneyContext';
 import { translations } from '../data/translations';
 import { Check, Shield, User, Building, Mail, Phone, Sliders, ArrowRight, Calendar, FileText, CheckCircle2, Lock, Sparkles, Send, MessageSquare } from 'lucide-react';
-import { dispatchFormSubmission, RECIPIENT_EMAIL } from '../utils/contactDispatcher';
+import { dispatchFormSubmission, RECIPIENT_EMAIL, RECIPIENT_DISPLAY_PHONE, RECIPIENT_INTL_PHONE } from '../utils/contactDispatcher';
 
 export const Section_PricingLeadership: React.FC = () => {
   const { setPilotDrawerOpen, language } = useSimulationJourney();
@@ -206,39 +206,50 @@ export const Section_PricingLeadership: React.FC = () => {
                 <h4 className="text-2xl font-bold text-[#0B1120] font-sans">
                   {isRTL ? 'تم استلام وتوجيه طلبك بنجاح' : 'Request Successfully Routed'}
                 </h4>
-                <div className="inline-flex items-center space-x-2 space-x-reverse px-4 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-mono font-medium">
-                  <Mail className="w-3.5 h-3.5 text-emerald-600" />
-                  <span>{RECIPIENT_EMAIL}</span>
+                <div className="flex flex-wrap items-center justify-center gap-2 pt-1">
+                  <a
+                    href={submissionResult?.whatsappUrl || `https://wa.me/201004131154`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center space-x-1.5 space-x-reverse px-3.5 py-1 rounded-full bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 text-emerald-800 text-xs font-mono font-medium transition-colors cursor-pointer"
+                  >
+                    <MessageSquare className="w-3.5 h-3.5 text-emerald-600" />
+                    <span>واتساب: {RECIPIENT_DISPLAY_PHONE} ({RECIPIENT_INTL_PHONE})</span>
+                  </a>
+                  <div className="inline-flex items-center space-x-1.5 space-x-reverse px-3.5 py-1 rounded-full bg-indigo-50 border border-indigo-200 text-indigo-900 text-xs font-mono font-medium">
+                    <Mail className="w-3.5 h-3.5 text-indigo-600" />
+                    <span>{RECIPIENT_EMAIL}</span>
+                  </div>
                 </div>
               </div>
 
               <p className="text-xs sm:text-sm text-slate-600 max-w-lg mx-auto font-sans leading-relaxed">
                 {isRTL
-                  ? `شكراً لك ${name || 'باشمهندس'}! تم توجيه كافة تفاصيل الطلب لمصفاة/شركة (${company || 'منشأتكم'}) إلى البريد المباشر لم. مصطفى عادل (${RECIPIENT_EMAIL}). سيتواصل معكم مكتبنا الهندسي خلال 24 ساعة لتنسيق جلسة استكشاف النطاق وإرسال اتفاقية السرية NDA.`
-                  : `Thank you ${name || 'Engineer'}! All inquiry details for (${company || 'your facility'}) have been routed directly to Eng. Mostafa Adel's inbox (${RECIPIENT_EMAIL}). Our engineering desk will contact you within 24 hours to schedule the scoping session and provide the mutual NDA.`}
+                  ? `شكراً لك ${name || 'باشمهندس'}! تم توجيه كافة تفاصيل الطلب لمصفاة/شركة (${company || 'منشأتكم'}) مباشرة إلى واتساب م. مصطفى عادل (${RECIPIENT_DISPLAY_PHONE}) وبريده الإلكتروني (${RECIPIENT_EMAIL}). سيتواصل معكم مكتبنا الهندسي خلال 24 ساعة لتنسيق جلسة استكشاف النطاق وإرسال اتفاقية السرية NDA.`
+                  : `Thank you ${name || 'Engineer'}! All inquiry details for (${company || 'your facility'}) have been routed directly to Eng. Mostafa Adel's WhatsApp (${RECIPIENT_INTL_PHONE}) and inbox (${RECIPIENT_EMAIL}). Our engineering desk will contact you within 24 hours to schedule the scoping session and provide the mutual NDA.`}
               </p>
 
               {/* Instant Direct Action Buttons */}
-              <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
-                <a
-                  href={submissionResult?.mailtoUrl || `mailto:${RECIPIENT_EMAIL}`}
-                  className="px-6 py-3 rounded-full bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] text-white text-xs font-semibold flex items-center space-x-2 space-x-reverse shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all cursor-pointer"
-                >
-                  <Send className="w-4 h-4" />
-                  <span>{isRTL ? 'فتح تطبيق البريد والتأكيد' : 'Open in Email Client & Confirm'}</span>
-                </a>
-
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
                 {submissionResult?.whatsappUrl && (
                   <a
                     href={submissionResult.whatsappUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-6 py-3 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold flex items-center space-x-2 space-x-reverse shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all cursor-pointer"
+                    className="w-full sm:w-auto min-h-[46px] px-7 py-3 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold flex items-center justify-center space-x-2 space-x-reverse shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all cursor-pointer"
                   >
-                    <MessageSquare className="w-4 h-4" />
-                    <span>{isRTL ? 'مراسلة عبر واتساب فوراً' : 'Message on WhatsApp'}</span>
+                    <MessageSquare className="w-4 h-4 text-white" />
+                    <span>{isRTL ? `مراسلة م. مصطفى عبر واتساب (${RECIPIENT_DISPLAY_PHONE})` : `Message on WhatsApp (${RECIPIENT_INTL_PHONE})`}</span>
                   </a>
                 )}
+
+                <a
+                  href={submissionResult?.mailtoUrl || `mailto:${RECIPIENT_EMAIL}`}
+                  className="w-full sm:w-auto min-h-[46px] px-6 py-3 rounded-full bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold flex items-center justify-center space-x-2 space-x-reverse shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all cursor-pointer"
+                >
+                  <Send className="w-4 h-4" />
+                  <span>{isRTL ? 'إرسال نسخة عبر البريد الإلكتروني' : 'Send Copy via Email'}</span>
+                </a>
               </div>
 
               <div className="pt-2">
