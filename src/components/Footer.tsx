@@ -1,5 +1,6 @@
 import React from 'react';
 import { NexiivaLogo } from './NexiivaLogo';
+import { WhatsAppIcon } from './WhatsAppIcon';
 import { useSimulationJourney } from '../context/SimulationJourneyContext';
 
 export const Footer: React.FC = () => {
@@ -44,7 +45,7 @@ export const Footer: React.FC = () => {
                 onClick={() => scrollTo('operational-reality')}
                 className={`w-full py-1 ${isRTL ? 'text-right' : 'text-left'} hover:text-[#4F46E5] transition-colors cursor-pointer`}
               >
-                02. {isRTL ? 'الواقع التشغيلي والبدائل' : 'The Operational Reality & ROI'}
+                02. {isRTL ? 'الواقع التشغيلي الميداني' : 'The Operational Reality'}
               </button>
               <button
                 onClick={() => scrollTo('ots-builder')}
@@ -53,22 +54,16 @@ export const Footer: React.FC = () => {
                 03. {isRTL ? 'منشئ OTS ومكتبة 387 معدة' : 'OTS Builder & 387 Equipment'}
               </button>
               <button
-                onClick={() => scrollTo('capabilities')}
-                className={`w-full py-1 ${isRTL ? 'text-right' : 'text-left'} hover:text-[#4F46E5] transition-colors cursor-pointer`}
-              >
-                04. {isRTL ? 'قدرات المنظومة (المشغل، المدرب، الاعتماد)' : 'Platform Capabilities'}
-              </button>
-              <button
                 onClick={() => scrollTo('deployment')}
                 className={`w-full py-1 ${isRTL ? 'text-right' : 'text-left'} hover:text-[#4F46E5] transition-colors cursor-pointer`}
               >
-                05. {isRTL ? 'الأمان والنشر المعزول' : 'Security Architecture & Deployment'}
+                04. {isRTL ? 'الأمان والنشر المعزول' : 'Security & Air-Gapped OT'}
               </button>
               <button
                 onClick={() => scrollTo('subscribe')}
                 className={`w-full py-1 ${isRTL ? 'text-right' : 'text-left'} hover:text-[#4F46E5] transition-colors cursor-pointer text-[#4F46E5] font-semibold`}
               >
-                06. {isRTL ? 'طريقة الاشتراك ومسار البدء' : 'How to Subscribe & Onboarding'}
+                05. {isRTL ? 'طريقة الاشتراك ومسار البدء' : 'How to Subscribe & Onboarding'}
               </button>
             </div>
           </div>
@@ -93,7 +88,7 @@ export const Footer: React.FC = () => {
                   rel="noopener noreferrer"
                   className="text-emerald-600 hover:text-emerald-700 flex items-center space-x-1.5 space-x-reverse transition-colors"
                 >
-                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse inline-block" />
+                  <WhatsAppIcon className="w-4 h-4 text-[#25D366] shrink-0" />
                   <span>{isRTL ? 'واتساب / هاتف: 01004131154' : 'WhatsApp / Call: +20 100 413 1154'}</span>
                 </a>
                 <a

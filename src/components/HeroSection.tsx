@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSimulationJourney } from '../context/SimulationJourneyContext';
 import { translations } from '../data/translations';
 import {
@@ -8,18 +8,12 @@ import {
   Cpu,
   Layers,
   Activity,
-  Sparkles,
-  Box,
-  Sliders,
-  ExternalLink,
-  Flame,
   CheckCircle2,
-  Video,
+  Sliders,
 } from 'lucide-react';
 
 export const HeroSection: React.FC = () => {
   const { setVideoModalOpen, setPilotDrawerOpen, language } = useSimulationJourney();
-  const [activeTab, setActiveTab] = useState<'3D_TWIN' | 'DCS_CONSOLE'>('3D_TWIN');
   const t = translations[language].hero;
   const isRTL = language === 'AR';
 
@@ -32,35 +26,43 @@ export const HeroSection: React.FC = () => {
     }
   };
 
-  const icons = [Cpu, Layers, ShieldCheck];
-
   return (
-    <section className="relative pt-20 sm:pt-24 lg:pt-28 pb-24 px-4 sm:px-6 lg:px-12 overflow-hidden bg-white">
-      {/* Precision Background Grid Texture */}
-      <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:28px_28px] opacity-70 pointer-events-none" />
+    <section className="relative pt-16 sm:pt-20 lg:pt-24 pb-20 sm:pb-24 px-4 sm:px-6 lg:px-12 overflow-hidden bg-white">
+      {/* Precision Structural Background Grid (Subtle Light Blueprint) */}
+      <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:32px_32px] opacity-60 pointer-events-none" />
 
-      {/* Ambient Top Glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[350px] bg-gradient-to-b from-purple-500/10 via-indigo-500/5 to-transparent blur-3xl pointer-events-none" />
+      {/* Subtle Ambient Radial Wash */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-gradient-to-b from-slate-100 to-transparent pointer-events-none blur-2xl" />
 
-      <div className="max-w-[1240px] mx-auto space-y-12 relative z-10 text-center">
-        {/* Main Headline with Purple-Blue Brand Gradient Italic Phrase */}
-        <div className="max-w-4xl mx-auto space-y-5 sm:space-y-6">
-          <h1 className="text-3xl sm:text-5xl lg:text-[62px] font-extrabold text-[#0B1120] tracking-tight leading-[1.2] sm:leading-[1.16] font-sans">
+      <div className="max-w-[1240px] mx-auto space-y-10 sm:space-y-12 relative z-10 text-center">
+        {/* Main Headline & Calm Subheading */}
+        <div className="max-w-4xl mx-auto space-y-4 sm:space-y-5">
+          {/* Subtle Pill Tag */}
+          <div className="inline-flex items-center space-x-2 space-x-reverse px-3.5 py-1 rounded-full bg-slate-100 border border-slate-200 text-[11px] font-sans font-medium text-slate-700">
+            <span className="w-2 h-2 rounded-full bg-emerald-500" />
+            <span>
+              {isRTL
+                ? 'محاكاة تدريب مشغلي مصافي التكرير (OTS) · اختيار رسمي EIP 2026'
+                : 'Industrial Operator Training Simulation (OTS) · EIP 2026 Selection'}
+            </span>
+          </div>
+
+          <h1 className="text-3xl sm:text-5xl lg:text-[56px] font-extrabold text-slate-900 tracking-tight leading-[1.2] sm:leading-[1.15] font-sans">
             {t.headlineMain}{' '}
-            <span className="italic font-normal bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] bg-clip-text text-transparent inline-block">
+            <span className="italic font-normal bg-gradient-to-r from-indigo-600 to-blue-600 bg-clip-text text-transparent inline-block">
               {t.headlineItalic}
             </span>
           </h1>
 
-          <p className="text-sm sm:text-lg lg:text-[19px] text-slate-600 font-sans font-normal leading-relaxed max-w-3xl mx-auto px-1">
+          <p className="text-sm sm:text-base lg:text-[18px] text-slate-600 font-sans font-normal leading-relaxed max-w-3xl mx-auto px-2">
             {t.subheadline}
           </p>
 
-          {/* Primary CTA Buttons (Full-width touch on mobile, inline on desktop) */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 pt-2 sm:pt-3 w-full max-w-sm mx-auto sm:max-w-none">
+          {/* Primary Action Buttons */}
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 pt-3 w-full max-w-sm mx-auto sm:max-w-none">
             <button
               onClick={scrollToSubscribe}
-              className="w-full sm:w-auto min-h-[50px] px-8 py-3.5 rounded-full bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] hover:opacity-95 text-white font-semibold text-sm sm:text-base shadow-[0_10px_30px_-5px_rgba(79,70,229,0.5)] hover:shadow-[0_15px_35px_-5px_rgba(79,70,229,0.65)] active:scale-[0.99] transition-all cursor-pointer flex items-center justify-center space-x-2 space-x-reverse group"
+              className="min-h-[48px] px-7 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-medium text-sm sm:text-base shadow-sm hover:shadow-md active:scale-[0.99] transition-all cursor-pointer flex items-center justify-center space-x-2 space-x-reverse group"
             >
               <span>{t.ctaPrimary}</span>
               <span className={`group-hover:translate-x-1 transition-transform inline-block ${isRTL ? 'rotate-180' : ''}`}>→</span>
@@ -68,169 +70,90 @@ export const HeroSection: React.FC = () => {
 
             <button
               onClick={() => setVideoModalOpen(true)}
-              className="w-full sm:w-auto min-h-[50px] px-7 py-3.5 rounded-full bg-white hover:bg-slate-50 border border-slate-300 hover:border-slate-400 text-[#0B1120] font-semibold text-sm sm:text-base shadow-xs hover:shadow-sm active:scale-[0.99] transition-all cursor-pointer flex items-center justify-center space-x-2 space-x-reverse"
+              className="min-h-[48px] px-6 py-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-300 hover:border-slate-400 text-slate-800 font-medium text-sm sm:text-base shadow-xs active:scale-[0.99] transition-all cursor-pointer flex items-center justify-center space-x-2 space-x-reverse"
             >
-              <Play className="w-4 h-4 fill-current text-[#4F46E5]" />
+              <Play className="w-4 h-4 fill-current text-indigo-600" />
               <span>{t.ctaSecondary}</span>
             </button>
           </div>
         </div>
 
-        {/* High-Resolution Enterprise Digital Twin Showcase */}
-        <div className="pt-2 sm:pt-4 max-w-5xl mx-auto">
+        {/* Authentic Industrial DCS Digital Twin Workstation Showcase (Calm, High-Definition, Real) */}
+        <div className="pt-2 max-w-5xl mx-auto">
           <div
-            className="rounded-2xl sm:rounded-3xl bg-[#070B14] border border-purple-500/25 shadow-[0_20px_60px_-15px_rgba(79,70,229,0.25)] sm:shadow-[0_30px_90px_-20px_rgba(79,70,229,0.32)] p-2.5 sm:p-5 text-left relative overflow-hidden transition-all"
-            dir={isRTL ? 'rtl' : 'ltr'}
+            className="rounded-2xl bg-slate-950 border border-slate-800 shadow-[0_20px_50px_-15px_rgba(15,23,42,0.18)] p-2 sm:p-4 text-left relative overflow-hidden"
+            dir="ltr"
           >
-            {/* Ambient Purple-Blue Radial Top-Glow */}
-            <div className="absolute top-0 right-1/4 w-[600px] h-[500px] bg-[radial-gradient(circle,rgba(124,58,237,0.25),transparent_70%)] pointer-events-none" />
-
-            {/* Industrial Workstation Console Header with Interactive View Switcher */}
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-3 px-1 sm:px-2 border-b border-slate-800/90 gap-2.5 text-xs font-mono relative z-10">
-              <div className="flex items-center space-x-2.5 space-x-reverse">
-                {/* 3 Console Status Indicators */}
-                <div className="flex items-center space-x-1.5 space-x-reverse">
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#10B981] animate-pulse" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#06B6D4]/60" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#7C3AED]/60" />
-                </div>
-                <span className="font-bold text-white tracking-wider text-[10px] sm:text-xs">
-                  NEXIIVA OTS // INDUSTRIAL DIGITAL TWIN CONSOLE
-                </span>
-                <span className="hidden lg:inline-block px-2.5 py-0.5 rounded text-[10px] bg-indigo-950/80 text-indigo-300 border border-indigo-800/70 font-medium">
-                  AIR-GAPPED OT ARCHITECTURE
+            {/* Console Header Bar */}
+            <div className="flex items-center justify-between pb-3 px-2 border-b border-slate-800 text-xs font-mono text-slate-400">
+              <div className="flex items-center space-x-2">
+                <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
+                <span className="font-bold text-white tracking-wider text-[11px] sm:text-xs">
+                  NEXIIVA OTS // INDUSTRIAL DCS OPERATING WORKSTATION
                 </span>
               </div>
-
-              {/* View Switcher Tabs (2 equal columns on mobile for thumb tap) */}
-              <div className="grid grid-cols-2 sm:flex items-center bg-slate-900/90 p-1 rounded-xl border border-slate-800 w-full sm:w-auto">
-                <button
-                  onClick={() => setActiveTab('3D_TWIN')}
-                  className={`px-2.5 sm:px-3 py-2 sm:py-1.5 rounded-lg text-xs font-medium font-sans flex items-center justify-center space-x-1.5 space-x-reverse transition-all cursor-pointer ${
-                    activeTab === '3D_TWIN'
-                      ? 'bg-gradient-to-r from-[#7C3AED] to-[#4F46E5] text-white shadow-xs'
-                      : 'text-slate-400 hover:text-white'
-                  }`}
-                >
-                  <Box className="w-3.5 h-3.5" />
-                  <span className="truncate">{isRTL ? 'التوأم الرقمي 3D' : '3D Digital Twin'}</span>
-                </button>
-
-                <button
-                  onClick={() => setActiveTab('DCS_CONSOLE')}
-                  className={`px-2.5 sm:px-3 py-2 sm:py-1.5 rounded-lg text-xs font-medium font-sans flex items-center justify-center space-x-1.5 space-x-reverse transition-all cursor-pointer ${
-                    activeTab === 'DCS_CONSOLE'
-                      ? 'bg-gradient-to-r from-[#7C3AED] to-[#4F46E5] text-white shadow-xs'
-                      : 'text-slate-400 hover:text-white'
-                  }`}
-                >
-                  <Sliders className="w-3.5 h-3.5" />
-                  <span className="truncate">{isRTL ? 'واجهات DCS الميدانية' : 'DCS Faceplates'}</span>
-                </button>
+              <div className="hidden sm:flex items-center space-x-3 text-[11px]">
+                <span className="px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-slate-300">
+                  CDU-VDU REFINERY COMPLEX
+                </span>
+                <span className="text-emerald-400 font-semibold">100% AIR-GAPPED OT</span>
               </div>
             </div>
 
-            {/* Showcase Main Content Area */}
-            <div className="relative rounded-2xl overflow-hidden mt-3 border border-slate-800/90 shadow-2xl bg-black group">
-              {activeTab === '3D_TWIN' ? (
-                /* 3D Digital Twin Model View */
-                <div className="relative w-full aspect-video overflow-hidden bg-slate-950 flex items-center justify-center">
-                  <img
-                    src="/assets/digital_twin_hero.jpg"
-                    alt="NEXIIVA Refinery Digital Twin 3D Model"
-                    className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-[1.015]"
-                  />
+            {/* Real Running Software Screenshot with Clean Interactive Trigger */}
+            <div className="relative rounded-xl overflow-hidden mt-2 bg-black aspect-video flex items-center justify-center group">
+              <img
+                src="/assets/youtube_demo_thumb.jpg"
+                alt="NEXIIVA DCS Operator Faceplates and Live Trends"
+                className="w-full h-full object-cover group-hover:scale-[1.01] transition-transform duration-500"
+              />
 
-                  {/* Desktop Only Engineering Specs Overlay (Hidden on Mobile to keep 3D view clean) */}
-                  <div className="hidden sm:flex absolute top-4 left-4 right-4 items-center justify-between gap-3 pointer-events-none">
-                    <div className="px-3.5 py-1.5 rounded-full bg-black/75 backdrop-blur-md border border-white/15 text-white text-[11px] font-mono flex items-center space-x-2 space-x-reverse shadow-lg">
-                      <span className="w-2 h-2 rounded-full bg-[#06B6D4] animate-ping" />
-                      <span>CDU-VDU ATMOSPHERIC & VACUUM COMPLEX</span>
-                    </div>
+              {/* Frosted Play Walkthrough Overlay */}
+              <button
+                onClick={() => setVideoModalOpen(true)}
+                aria-label="Watch Walkthrough Video"
+                className="absolute inset-0 m-auto w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-slate-900/85 hover:bg-indigo-600 text-white border border-white/20 flex items-center justify-center shadow-2xl hover:scale-110 active:scale-95 transition-all cursor-pointer backdrop-blur-md"
+              >
+                <Play className="w-6 h-6 fill-current text-white ml-0.5" />
+              </button>
 
-                    <div className="px-3.5 py-1.5 rounded-full bg-black/75 backdrop-blur-md border border-white/15 text-indigo-300 text-[11px] font-mono items-center space-x-1.5 space-x-reverse shadow-lg">
-                      <span>PENG-ROBINSON EOS // REAL-TIME Δt=100ms</span>
-                    </div>
-                  </div>
-
-                  {/* Desktop Only Capability Badges Overlay */}
-                  <div className="hidden sm:flex absolute bottom-4 left-4 right-4 flex-wrap items-center justify-between gap-2 pointer-events-none">
-                    <div className="px-3.5 py-1.5 rounded-full bg-black/80 backdrop-blur-md border border-white/15 text-white text-[11px] font-sans font-medium flex items-center space-x-1.5 space-x-reverse shadow-lg">
-                      <Cpu className="w-3.5 h-3.5 text-[#4F46E5]" />
-                      <span>{t.badges.tag1}</span>
-                    </div>
-
-                    <div className="px-3.5 py-1.5 rounded-full bg-black/80 backdrop-blur-md border border-white/15 text-white text-[11px] font-sans font-medium items-center space-x-1.5 space-x-reverse shadow-lg">
-                      <Layers className="w-3.5 h-3.5 text-[#06B6D4]" />
-                      <span>{t.badges.tag2}</span>
-                    </div>
-
-                    <div className="px-3.5 py-1.5 rounded-full bg-black/80 backdrop-blur-md border border-white/15 text-white text-[11px] font-sans font-medium flex items-center space-x-1.5 space-x-reverse shadow-lg">
-                      <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-                      <span>{t.badges.tag3}</span>
-                    </div>
-                  </div>
+              {/* Bottom Specs Ribbon */}
+              <div className="hidden sm:flex absolute bottom-3 left-3 right-3 items-center justify-between pointer-events-none text-[11px] font-mono">
+                <div className="px-3 py-1 rounded-lg bg-black/80 backdrop-blur-md border border-white/10 text-slate-300">
+                  Multi-Loop Control Valve Faceplates & Oscilloscope Trends
                 </div>
-              ) : (
-                /* High-Definition DCS Multi-Loop Faceplates View */
-                <div className="relative w-full aspect-video overflow-hidden bg-slate-950 flex items-center justify-center">
-                  <img
-                    src="/assets/youtube_demo_thumb.jpg"
-                    alt="NEXIIVA Control Valve Faceplates and Trends"
-                    className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-[1.01]"
-                  />
-
-                  {/* Clean Central Play Trigger Icon (Non-intrusive on Mobile) */}
-                  <button
-                    onClick={() => setVideoModalOpen(true)}
-                    aria-label="Play Walkthrough Video"
-                    className="absolute inset-0 m-auto w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-r from-[#7C3AED] to-[#2563EB] text-white flex items-center justify-center shadow-2xl hover:scale-110 active:scale-95 transition-all cursor-pointer group/play"
-                  >
-                    <Play className="w-5 h-5 sm:w-6 sm:h-6 fill-current ml-0.5 text-white" />
-                  </button>
-
-                  {/* Desktop Only Top Badge */}
-                  <div className="hidden sm:flex absolute top-4 left-4 right-4 items-center justify-between gap-3 pointer-events-none">
-                    <div className="px-3.5 py-1.5 rounded-full bg-black/80 backdrop-blur-md border border-white/15 text-white text-[11px] font-mono flex items-center space-x-2 space-x-reverse shadow-lg">
-                      <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse" />
-                      <span>12 CONTROL VALVES & MULTI-CHANNEL TRENDS</span>
-                    </div>
-
-                    <div className="px-3.5 py-1.5 rounded-full bg-black/80 backdrop-blur-md border border-white/15 text-indigo-300 text-[11px] font-mono items-center space-x-1.5 space-x-reverse shadow-lg">
-                      <span>EMERSON DELTAV & HONEYWELL EXPERION EMULATION</span>
-                    </div>
-                  </div>
+                <div className="px-3 py-1 rounded-lg bg-black/80 backdrop-blur-md border border-white/10 text-cyan-300">
+                  Peng-Robinson Thermodynamics · Real-Time (Δt=100ms)
                 </div>
-              )}
+              </div>
             </div>
-          </div>
 
-          {/* 3 Status Cards Underneath with Refined Modern Styling */}
-          <div
-            className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-5 pt-4 sm:pt-8 text-left"
-            dir={isRTL ? 'rtl' : 'ltr'}
-          >
-            {t.pills.map((pill, idx) => {
-              const IconComp = icons[idx] || Cpu;
-              return (
-                <div
-                  key={idx}
-                  className="p-3.5 sm:p-5 rounded-xl sm:rounded-2xl bg-white hover:bg-slate-50/80 border border-slate-200/90 hover:border-[#4F46E5]/40 shadow-xs hover:shadow-md transition-all duration-200 flex items-start space-x-3.5 space-x-reverse group"
-                >
-                  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-gradient-to-br from-indigo-50 to-purple-50 border border-indigo-100 flex items-center justify-center text-[#4F46E5] shrink-0 group-hover:scale-105 transition-transform shadow-xs">
-                    <IconComp className="w-4 h-4 sm:w-5 sm:h-5 text-[#4F46E5]" />
-                  </div>
-                  <div className="space-y-0.5 sm:space-y-1 min-w-0">
-                    <div className="text-xs sm:text-sm font-bold text-[#0B1120] font-sans">
-                      {pill.title}
-                    </div>
-                    <div className="text-[11px] sm:text-xs text-slate-600 font-sans leading-relaxed">
-                      {pill.desc}
-                    </div>
-                  </div>
+            {/* Quick 3 Value Highlights Below Console */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-3 px-1 text-left font-sans text-xs">
+              <div className="p-3 rounded-xl bg-slate-900/80 border border-slate-800 flex items-start space-x-2.5">
+                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                <div>
+                  <span className="font-bold text-white block">Plant-Specific P&IDs</span>
+                  <span className="text-slate-400 text-[11px]">Calibrated to your exact columns, pumps, and control loops.</span>
                 </div>
-              );
-            })}
+              </div>
+
+              <div className="p-3 rounded-xl bg-slate-900/80 border border-slate-800 flex items-start space-x-2.5">
+                <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
+                <div>
+                  <span className="font-bold text-white block">~1 Week Rapid Delivery</span>
+                  <span className="text-slate-400 text-[11px]">Synthesized rapidly via our 387-equipment modular OTS Builder.</span>
+                </div>
+              </div>
+
+              <div className="p-3 rounded-xl bg-slate-900/80 border border-slate-800 flex items-start space-x-2.5">
+                <CheckCircle2 className="w-4 h-4 text-indigo-400 shrink-0 mt-0.5" />
+                <div>
+                  <span className="font-bold text-white block">Air-Gapped or Cloud</span>
+                  <span className="text-slate-400 text-[11px]">Runs 100% offline inside plant LAN or secure private cloud.</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

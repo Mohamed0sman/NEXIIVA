@@ -41,10 +41,10 @@ export const Navbar: React.FC = () => {
         </button>
 
         <button
-          onClick={() => scrollTo('capabilities')}
+          onClick={() => scrollTo('operational-reality')}
           className="hover:text-[#4F46E5] transition-colors cursor-pointer"
         >
-          {t.capabilities}
+          {t.whyNexiiva}
         </button>
 
         <button
@@ -52,13 +52,6 @@ export const Navbar: React.FC = () => {
           className="hover:text-[#4F46E5] transition-colors cursor-pointer"
         >
           {t.otsBuilder}
-        </button>
-
-        <button
-          onClick={() => scrollTo('operational-reality')}
-          className="hover:text-[#4F46E5] transition-colors cursor-pointer"
-        >
-          {t.whyNexiiva}
         </button>
 
         <button
@@ -150,12 +143,12 @@ export const Navbar: React.FC = () => {
               </button>
 
               <button
-                onClick={() => scrollTo('capabilities')}
+                onClick={() => scrollTo('operational-reality')}
                 className={`flex items-center justify-between w-full min-h-[46px] px-3.5 rounded-xl hover:bg-slate-50 active:bg-slate-100 ${
                   isRTL ? 'text-right' : 'text-left'
                 } text-[15px] font-medium text-slate-800 transition-colors`}
               >
-                <span>{t.capabilities}</span>
+                <span>{t.whyNexiiva}</span>
                 <span className="text-slate-400 text-xs">{isRTL ? '←' : '→'}</span>
               </button>
 
@@ -166,16 +159,6 @@ export const Navbar: React.FC = () => {
                 } text-[15px] font-medium text-slate-800 transition-colors`}
               >
                 <span>{t.otsBuilder}</span>
-                <span className="text-slate-400 text-xs">{isRTL ? '←' : '→'}</span>
-              </button>
-
-              <button
-                onClick={() => scrollTo('operational-reality')}
-                className={`flex items-center justify-between w-full min-h-[46px] px-3.5 rounded-xl hover:bg-slate-50 active:bg-slate-100 ${
-                  isRTL ? 'text-right' : 'text-left'
-                } text-[15px] font-medium text-slate-800 transition-colors`}
-              >
-                <span>{t.whyNexiiva}</span>
                 <span className="text-slate-400 text-xs">{isRTL ? '←' : '→'}</span>
               </button>
 

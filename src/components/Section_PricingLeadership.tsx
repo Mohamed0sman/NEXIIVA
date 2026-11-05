@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSimulationJourney } from '../context/SimulationJourneyContext';
 import { translations } from '../data/translations';
 import { Check, Shield, User, Building, Mail, Phone, Sliders, ArrowRight, Calendar, FileText, CheckCircle2, Lock, Sparkles, Send, MessageSquare } from 'lucide-react';
+import { WhatsAppIcon } from './WhatsAppIcon';
 import { dispatchFormSubmission, RECIPIENT_EMAIL, RECIPIENT_DISPLAY_PHONE, RECIPIENT_INTL_PHONE } from '../utils/contactDispatcher';
 
 export const Section_PricingLeadership: React.FC = () => {
@@ -213,7 +214,7 @@ export const Section_PricingLeadership: React.FC = () => {
                     rel="noopener noreferrer"
                     className="inline-flex items-center space-x-1.5 space-x-reverse px-3.5 py-1 rounded-full bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 text-emerald-800 text-xs font-mono font-medium transition-colors cursor-pointer"
                   >
-                    <MessageSquare className="w-3.5 h-3.5 text-emerald-600" />
+                    <WhatsAppIcon className="w-3.5 h-3.5 text-emerald-600" />
                     <span>واتساب: {RECIPIENT_DISPLAY_PHONE} ({RECIPIENT_INTL_PHONE})</span>
                   </a>
                   <div className="inline-flex items-center space-x-1.5 space-x-reverse px-3.5 py-1 rounded-full bg-indigo-50 border border-indigo-200 text-indigo-900 text-xs font-mono font-medium">
@@ -238,7 +239,7 @@ export const Section_PricingLeadership: React.FC = () => {
                     rel="noopener noreferrer"
                     className="w-full sm:w-auto min-h-[46px] px-7 py-3 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold flex items-center justify-center space-x-2 space-x-reverse shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all cursor-pointer"
                   >
-                    <MessageSquare className="w-4 h-4 text-white" />
+                    <WhatsAppIcon className="w-4 h-4 text-white" />
                     <span>{isRTL ? `مراسلة م. مصطفى عبر واتساب (${RECIPIENT_DISPLAY_PHONE})` : `Message on WhatsApp (${RECIPIENT_INTL_PHONE})`}</span>
                   </a>
                 )}

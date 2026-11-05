@@ -5,7 +5,6 @@ import { HeroSection } from './components/HeroSection';
 import { Section_AboutCompany } from './components/Section_AboutCompany';
 import { Section_ComparisonROI } from './components/Section_ComparisonROI';
 import { Section_PIDScanner } from './components/Section_PIDScanner';
-import { Section_InteractiveJourney } from './components/Section_InteractiveJourney';
 import { Section_EnterpriseDeployment } from './components/Section_EnterpriseDeployment';
 import { Section_PricingLeadership } from './components/Section_PricingLeadership';
 import { Footer } from './components/Footer';
@@ -37,10 +36,7 @@ const AppContent: React.FC = () => {
       {/* 5. SECTION 4: P&ID Ingestion Studio & 387 Equipment Codex */}
       <Section_PIDScanner />
 
-      {/* 6. SECTION 5: Platform Capabilities (Practice, Instruct, Certify) */}
-      <Section_InteractiveJourney />
-
-      {/* 7. SECTION 6: Industrial Cyber-Security & Air-Gapped OT */}
+      {/* 5. SECTION 5: Industrial Cyber-Security & Air-Gapped OT */}
       <Section_EnterpriseDeployment />
 
       {/* 8. SECTION 7: How to Subscribe (4-Step Onboarding & Licensing) */}
