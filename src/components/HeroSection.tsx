@@ -141,41 +141,26 @@ export const HeroSection: React.FC = () => {
                     className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-[1.015]"
                   />
 
-                  {/* Top Subtle Engineering Specs Overlay */}
-                  <div className="absolute top-4 left-4 right-4 flex items-center justify-between gap-3 pointer-events-none">
+                  {/* Desktop Only Engineering Specs Overlay (Hidden on Mobile to keep 3D view clean) */}
+                  <div className="hidden sm:flex absolute top-4 left-4 right-4 items-center justify-between gap-3 pointer-events-none">
                     <div className="px-3.5 py-1.5 rounded-full bg-black/75 backdrop-blur-md border border-white/15 text-white text-[11px] font-mono flex items-center space-x-2 space-x-reverse shadow-lg">
                       <span className="w-2 h-2 rounded-full bg-[#06B6D4] animate-ping" />
                       <span>CDU-VDU ATMOSPHERIC & VACUUM COMPLEX</span>
                     </div>
 
-                    <div className="hidden sm:flex px-3.5 py-1.5 rounded-full bg-black/75 backdrop-blur-md border border-white/15 text-indigo-300 text-[11px] font-mono items-center space-x-1.5 space-x-reverse shadow-lg">
+                    <div className="px-3.5 py-1.5 rounded-full bg-black/75 backdrop-blur-md border border-white/15 text-indigo-300 text-[11px] font-mono items-center space-x-1.5 space-x-reverse shadow-lg">
                       <span>PENG-ROBINSON EOS // REAL-TIME Δt=100ms</span>
                     </div>
                   </div>
 
-                  {/* Interactive Center Play Pill */}
-                  <button
-                    onClick={() => setVideoModalOpen(true)}
-                    className="absolute inset-0 m-auto w-fit h-fit px-5.5 py-3 rounded-full bg-black/75 hover:bg-black/95 backdrop-blur-md border border-white/25 hover:border-white/50 text-white font-sans text-xs sm:text-sm font-semibold flex items-center space-x-2.5 space-x-reverse shadow-2xl hover:scale-105 transition-all cursor-pointer group/play"
-                  >
-                    <div className="w-7 h-7 rounded-full bg-gradient-to-r from-[#7C3AED] to-[#2563EB] flex items-center justify-center text-white shadow-md group-hover/play:scale-110 transition-transform">
-                      <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
-                    </div>
-                    <span>
-                      {isRTL
-                        ? 'مشاهدة فيديو التشغيل الميداني (15 دقيقة)'
-                        : 'Watch 15-Minute Live Operator Walkthrough'}
-                    </span>
-                  </button>
-
-                  {/* Engineering Capability Badges Overlay */}
-                  <div className="absolute bottom-4 left-4 right-4 flex flex-wrap items-center justify-between gap-2 pointer-events-none">
+                  {/* Desktop Only Capability Badges Overlay */}
+                  <div className="hidden sm:flex absolute bottom-4 left-4 right-4 flex-wrap items-center justify-between gap-2 pointer-events-none">
                     <div className="px-3.5 py-1.5 rounded-full bg-black/80 backdrop-blur-md border border-white/15 text-white text-[11px] font-sans font-medium flex items-center space-x-1.5 space-x-reverse shadow-lg">
                       <Cpu className="w-3.5 h-3.5 text-[#4F46E5]" />
                       <span>{t.badges.tag1}</span>
                     </div>
 
-                    <div className="hidden sm:flex px-3.5 py-1.5 rounded-full bg-black/80 backdrop-blur-md border border-white/15 text-white text-[11px] font-sans font-medium items-center space-x-1.5 space-x-reverse shadow-lg">
+                    <div className="px-3.5 py-1.5 rounded-full bg-black/80 backdrop-blur-md border border-white/15 text-white text-[11px] font-sans font-medium items-center space-x-1.5 space-x-reverse shadow-lg">
                       <Layers className="w-3.5 h-3.5 text-[#06B6D4]" />
                       <span>{t.badges.tag2}</span>
                     </div>
@@ -195,29 +180,23 @@ export const HeroSection: React.FC = () => {
                     className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-[1.01]"
                   />
 
-                  {/* Overlay Play Prompt */}
+                  {/* Clean Central Play Trigger Icon (Non-intrusive on Mobile) */}
                   <button
                     onClick={() => setVideoModalOpen(true)}
-                    className="absolute inset-0 m-auto w-fit h-fit px-5.5 py-3 rounded-full bg-black/80 hover:bg-black/95 backdrop-blur-md border border-white/25 hover:border-white/50 text-white font-sans text-xs sm:text-sm font-semibold flex items-center space-x-2.5 space-x-reverse shadow-2xl hover:scale-105 transition-all cursor-pointer group/play"
+                    aria-label="Play Walkthrough Video"
+                    className="absolute inset-0 m-auto w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-r from-[#7C3AED] to-[#2563EB] text-white flex items-center justify-center shadow-2xl hover:scale-110 active:scale-95 transition-all cursor-pointer group/play"
                   >
-                    <div className="w-7 h-7 rounded-full bg-gradient-to-r from-[#7C3AED] to-[#2563EB] flex items-center justify-center text-white shadow-md group-hover/play:scale-110 transition-transform">
-                      <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
-                    </div>
-                    <span>
-                      {isRTL
-                        ? 'تشغيل فيديو تجربة واجهات التحكم المباشرة'
-                        : 'Watch DCS Multi-Loop Console Video'}
-                    </span>
+                    <Play className="w-5 h-5 sm:w-6 sm:h-6 fill-current ml-0.5 text-white" />
                   </button>
 
-                  {/* Top Badge */}
-                  <div className="absolute top-4 left-4 right-4 flex items-center justify-between gap-3 pointer-events-none">
+                  {/* Desktop Only Top Badge */}
+                  <div className="hidden sm:flex absolute top-4 left-4 right-4 items-center justify-between gap-3 pointer-events-none">
                     <div className="px-3.5 py-1.5 rounded-full bg-black/80 backdrop-blur-md border border-white/15 text-white text-[11px] font-mono flex items-center space-x-2 space-x-reverse shadow-lg">
                       <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse" />
                       <span>12 CONTROL VALVES & MULTI-CHANNEL TRENDS</span>
                     </div>
 
-                    <div className="hidden sm:flex px-3.5 py-1.5 rounded-full bg-black/80 backdrop-blur-md border border-white/15 text-indigo-300 text-[11px] font-mono items-center space-x-1.5 space-x-reverse shadow-lg">
+                    <div className="px-3.5 py-1.5 rounded-full bg-black/80 backdrop-blur-md border border-white/15 text-indigo-300 text-[11px] font-mono items-center space-x-1.5 space-x-reverse shadow-lg">
                       <span>EMERSON DELTAV & HONEYWELL EXPERION EMULATION</span>
                     </div>
                   </div>
@@ -228,7 +207,7 @@ export const HeroSection: React.FC = () => {
 
           {/* 3 Status Cards Underneath with Refined Modern Styling */}
           <div
-            className="grid grid-cols-1 md:grid-cols-3 gap-5 pt-8 text-left"
+            className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-5 pt-4 sm:pt-8 text-left"
             dir={isRTL ? 'rtl' : 'ltr'}
           >
             {t.pills.map((pill, idx) => {
@@ -236,16 +215,16 @@ export const HeroSection: React.FC = () => {
               return (
                 <div
                   key={idx}
-                  className="p-5.5 rounded-2xl bg-white hover:bg-slate-50/80 border border-slate-200/90 hover:border-[#4F46E5]/40 shadow-xs hover:shadow-md hover:-translate-y-0.5 flex items-start space-x-4 space-x-reverse transition-all duration-200 group"
+                  className="p-3.5 sm:p-5 rounded-xl sm:rounded-2xl bg-white hover:bg-slate-50/80 border border-slate-200/90 hover:border-[#4F46E5]/40 shadow-xs hover:shadow-md transition-all duration-200 flex items-start space-x-3.5 space-x-reverse group"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-50 to-purple-50 border border-indigo-100 flex items-center justify-center text-[#4F46E5] shrink-0 group-hover:scale-105 transition-transform shadow-xs">
-                    <IconComp className="w-5 h-5 text-[#4F46E5]" />
+                  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-gradient-to-br from-indigo-50 to-purple-50 border border-indigo-100 flex items-center justify-center text-[#4F46E5] shrink-0 group-hover:scale-105 transition-transform shadow-xs">
+                    <IconComp className="w-4 h-4 sm:w-5 sm:h-5 text-[#4F46E5]" />
                   </div>
-                  <div className="space-y-1">
-                    <div className="text-sm font-bold text-[#0B1120] font-sans">
+                  <div className="space-y-0.5 sm:space-y-1 min-w-0">
+                    <div className="text-xs sm:text-sm font-bold text-[#0B1120] font-sans">
                       {pill.title}
                     </div>
-                    <div className="text-xs text-slate-600 font-sans leading-relaxed">
+                    <div className="text-[11px] sm:text-xs text-slate-600 font-sans leading-relaxed">
                       {pill.desc}
                     </div>
                   </div>

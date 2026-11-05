@@ -47,21 +47,21 @@ export const Section_EnterpriseDeployment: React.FC = () => {
   const currentLevelInfo = levelSecurityDetails[inspectedLevel];
 
   return (
-    <section id="deployment" className="py-24 px-6 lg:px-12 relative border-t border-slate-200 bg-white">
-      <div className="max-w-[1240px] mx-auto space-y-16">
+    <section id="deployment" className="py-12 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 relative border-t border-slate-200 bg-white">
+      <div className="max-w-[1240px] mx-auto space-y-8 sm:space-y-12 lg:space-y-16">
         {/* Section Header */}
-        <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-6 border-b border-slate-200 pb-8 text-left" dir={isRTL ? 'rtl' : 'ltr'}>
-          <div className="space-y-3 max-w-3xl">
+        <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-6 border-b border-slate-200 pb-6 sm:pb-8 text-left" dir={isRTL ? 'rtl' : 'ltr'}>
+          <div className="space-y-2 sm:space-y-3 max-w-3xl">
             <p className="text-xs font-bold text-[#4F46E5] uppercase tracking-widest font-sans">
               {t.eyebrow}
             </p>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0B1120] tracking-tight leading-[1.2] font-sans">
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-[#0B1120] tracking-tight leading-[1.2] font-sans">
               {t.headingMain}{' '}
               <span className="italic font-normal bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] bg-clip-text text-transparent inline-block">
                 {t.headingItalic}
               </span>
             </h2>
-            <p className="text-base sm:text-lg text-slate-600 font-sans font-normal leading-relaxed">
+            <p className="text-sm sm:text-lg text-slate-600 font-sans font-normal leading-relaxed">
               {t.subheading}
             </p>
           </div>
@@ -94,25 +94,25 @@ export const Section_EnterpriseDeployment: React.FC = () => {
         </div>
 
         {/* 3 Deployment Pillar Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left" dir={isRTL ? 'rtl' : 'ltr'}>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5 sm:gap-6 text-left" dir={isRTL ? 'rtl' : 'ltr'}>
           {t.cards.map((card, idx) => (
             <div
               key={idx}
-              className="p-7 rounded-3xl bg-[#F8FAFC] border border-slate-200/90 hover:border-[#4F46E5]/40 hover:-translate-y-1 hover:shadow-md transition-all duration-300 space-y-3.5 shadow-xs"
+              className="p-4 sm:p-7 rounded-2xl sm:rounded-3xl bg-[#F8FAFC] border border-slate-200/90 hover:border-[#4F46E5]/40 hover:-translate-y-1 hover:shadow-md transition-all duration-300 space-y-2 sm:space-y-3.5 shadow-xs"
             >
-              <div className="w-12 h-12 rounded-2xl bg-purple-50 border border-purple-200/60 flex items-center justify-center text-[#4F46E5]">
-                {idx === 0 && <ShieldCheck className="w-6 h-6" />}
-                {idx === 1 && <Cloud className="w-6 h-6" />}
-                {idx === 2 && <Server className="w-6 h-6" />}
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-purple-50 border border-purple-200/60 flex items-center justify-center text-[#4F46E5]">
+                {idx === 0 && <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6" />}
+                {idx === 1 && <Cloud className="w-5 h-5 sm:w-6 sm:h-6" />}
+                {idx === 2 && <Server className="w-5 h-5 sm:w-6 sm:h-6" />}
               </div>
-              <h3 className="text-lg font-bold text-[#0B1120] font-sans">{card.title}</h3>
+              <h3 className="text-base sm:text-lg font-bold text-[#0B1120] font-sans">{card.title}</h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-sans">{card.desc}</p>
             </div>
           ))}
         </div>
 
         {/* Industrial Security Architecture (Purdue Model) */}
-        <div className="rounded-3xl border border-slate-200 bg-white p-6 sm:p-10 shadow-sm text-left" dir={isRTL ? 'rtl' : 'ltr'}>
+        <div className="rounded-2xl sm:rounded-3xl border border-slate-200 bg-white p-4 sm:p-8 lg:p-10 shadow-sm text-left" dir={isRTL ? 'rtl' : 'ltr'}>
           <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-slate-100 gap-3">
             <div className="flex items-center space-x-2.5 space-x-reverse">
               <ShieldCheck className="w-5 h-5 text-[#4F46E5]" />

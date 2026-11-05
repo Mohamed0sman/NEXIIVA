@@ -52,7 +52,7 @@ export const PilotDrawer: React.FC = () => {
     <div className={`fixed inset-0 z-50 flex ${isRTL ? 'justify-start' : 'justify-end'} bg-black/40 backdrop-blur-sm`}>
       <div
         dir={isRTL ? 'rtl' : 'ltr'}
-        className={`w-full max-w-lg bg-white ${isRTL ? 'border-r' : 'border-l'} border-[#ececec] h-full overflow-y-auto flex flex-col justify-between p-6 sm:p-8 text-xs font-sans text-[#17191c] shadow-2xl`}
+        className={`w-full max-w-lg bg-white ${isRTL ? 'border-r' : 'border-l'} border-[#ececec] h-full overflow-y-auto flex flex-col justify-between p-4.5 sm:p-8 text-xs font-sans text-[#17191c] shadow-2xl`}
       >
         <div>
           {/* Header */}

@@ -37,57 +37,57 @@ export const Section_PricingLeadership: React.FC = () => {
   };
 
   return (
-    <section id="subscribe" className="py-24 px-6 lg:px-12 relative border-t border-slate-200 bg-white">
+    <section id="subscribe" className="py-12 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 relative border-t border-slate-200 bg-white">
       {/* Precision Background Grid Texture */}
       <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:28px_28px] opacity-60 pointer-events-none" />
 
-      <div className="max-w-[1240px] mx-auto space-y-20 relative z-10">
+      <div className="max-w-[1240px] mx-auto space-y-10 sm:space-y-14 lg:space-y-16 relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-3">
+        <div className="text-center max-w-3xl mx-auto space-y-2 sm:space-y-3">
           <p className="text-xs font-bold text-[#4F46E5] uppercase tracking-widest font-sans">
             {tSub.eyebrow}
           </p>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0B1120] tracking-tight leading-[1.2] font-sans">
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-[#0B1120] tracking-tight leading-[1.2] font-sans">
             {tSub.headingMain}{' '}
             <span className="italic font-normal bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] bg-clip-text text-transparent inline-block">
               {tSub.headingItalic}
             </span>
           </h2>
-          <p className="text-base sm:text-lg text-slate-600 font-sans font-normal leading-relaxed">
+          <p className="text-sm sm:text-lg text-slate-600 font-sans font-normal leading-relaxed">
             {tSub.subheading}
           </p>
         </div>
 
         {/* 1. The 4-Step Onboarding Roadmap */}
-        <div className="space-y-6">
-          <div className="flex items-center justify-between border-b border-slate-200 pb-3" dir={isRTL ? 'rtl' : 'ltr'}>
-            <span className="text-xs font-mono text-slate-500 uppercase tracking-widest font-bold">
+        <div className="space-y-4 sm:space-y-6">
+          <div className="flex items-center justify-between border-b border-slate-200 pb-2.5 sm:pb-3" dir={isRTL ? 'rtl' : 'ltr'}>
+            <span className="text-[10px] sm:text-xs font-mono text-slate-500 uppercase tracking-widest font-bold">
               {isRTL ? 'مراحل الانضمام من اليوم الأول حتى التشغيل الفعلي' : 'ENTERPRISE ONBOARDING PHASES // DAY 1 TO RUNTIME'}
             </span>
-            <span className="text-xs font-sans text-[#4F46E5] font-semibold bg-purple-50 px-3 py-1 rounded-full border border-purple-100">
-              {isRTL ? 'منهجية معتمدة ومجرّبة' : 'STANDARDIZED WORKFLOW'}
+            <span className="text-[10px] sm:text-xs font-sans text-[#4F46E5] font-semibold bg-purple-50 px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full border border-purple-100">
+              {isRTL ? 'منهجية معتمدة' : 'STANDARDIZED WORKFLOW'}
             </span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" dir={isRTL ? 'rtl' : 'ltr'}>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-6" dir={isRTL ? 'rtl' : 'ltr'}>
             {tSub.steps.map((step, idx) => (
               <div
                 key={idx}
-                className="p-7 rounded-3xl bg-[#F8FAFC] border border-slate-200/90 shadow-xs flex flex-col justify-between space-y-5 hover:border-[#4F46E5]/40 hover:-translate-y-1 hover:shadow-md transition-all duration-300 text-left relative group"
+                className="p-4 sm:p-7 rounded-2xl sm:rounded-3xl bg-[#F8FAFC] border border-slate-200/90 shadow-xs flex flex-col justify-between space-y-3 sm:space-y-5 hover:border-[#4F46E5]/40 hover:-translate-y-1 hover:shadow-md transition-all duration-300 text-left relative group"
               >
                 {/* Step Top Bar */}
-                <div className="space-y-3">
+                <div className="space-y-2 sm:space-y-3">
                   <div className="flex items-center justify-between">
-                    <span className="text-3xl font-black font-mono bg-gradient-to-r from-[#7C3AED] to-[#2563EB] bg-clip-text text-transparent">
+                    <span className="text-2xl sm:text-3xl font-black font-mono bg-gradient-to-r from-[#7C3AED] to-[#2563EB] bg-clip-text text-transparent">
                       {step.number}
                     </span>
-                    <span className="text-xs font-sans px-3 py-1 rounded-full bg-indigo-50/90 text-[#4F46E5] border border-indigo-100 font-semibold shadow-2xs">
+                    <span className="text-[11px] sm:text-xs font-sans px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full bg-indigo-50/90 text-[#4F46E5] border border-indigo-100 font-semibold shadow-2xs">
                       {step.timeline}
                     </span>
                   </div>
 
-                  <h3 className="text-base font-bold text-[#0B1120] font-sans leading-snug">
+                  <h3 className="text-sm sm:text-base font-bold text-[#0B1120] font-sans leading-snug">
                     {step.title}
                   </h3>
 
@@ -96,7 +96,7 @@ export const Section_PricingLeadership: React.FC = () => {
                   </p>
                 </div>
 
-                <div className="pt-3.5 border-t border-slate-200/60 flex items-center space-x-1.5 space-x-reverse text-[11px] font-medium text-emerald-600">
+                <div className="pt-2.5 sm:pt-3.5 border-t border-slate-200/60 flex items-center space-x-1.5 space-x-reverse text-[10px] sm:text-[11px] font-medium text-emerald-600">
                   <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
                   <span>{isRTL ? 'مخرجات هندسية واضحة' : 'Documented Deliverable'}</span>
                 </div>
@@ -106,21 +106,21 @@ export const Section_PricingLeadership: React.FC = () => {
         </div>
 
         {/* 2. Commercial Subscription & Licensing Tracks */}
-        <div className="space-y-6">
-          <div className="flex items-center justify-between border-b border-slate-200 pb-3" dir={isRTL ? 'rtl' : 'ltr'}>
-            <span className="text-xs font-mono text-slate-500 uppercase tracking-widest font-bold">
+        <div className="space-y-4 sm:space-y-6">
+          <div className="flex items-center justify-between border-b border-slate-200 pb-2.5 sm:pb-3" dir={isRTL ? 'rtl' : 'ltr'}>
+            <span className="text-[10px] sm:text-xs font-mono text-slate-500 uppercase tracking-widest font-bold">
               {isRTL ? 'مسارات الترخيص والاشتراك المرنة' : 'ENTERPRISE LICENSING & SUBSCRIPTION TRACKS'}
             </span>
-            <span className="text-xs font-mono text-slate-500">
+            <span className="text-[10px] sm:text-xs font-mono text-slate-500">
               {isRTL ? 'خيارات سحابية ومحلية معزولة' : 'CLOUD & AIR-GAPPED ON-PREM'}
             </span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch" dir={isRTL ? 'rtl' : 'ltr'}>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 items-stretch" dir={isRTL ? 'rtl' : 'ltr'}>
             {tSub.tracks.map((card, idx) => (
               <div
                 key={idx}
-                className={`p-7 rounded-3xl border transition-all duration-300 flex flex-col justify-between space-y-6 relative text-left ${
+                className={`p-4.5 sm:p-7 rounded-2xl sm:rounded-3xl border transition-all duration-300 flex flex-col justify-between space-y-4 sm:space-y-6 relative text-left ${
                   card.featured
                     ? 'bg-white border-2 border-[#4F46E5] shadow-[0_20px_45px_-15px_rgba(79,70,229,0.25)] hover:-translate-y-1'
                     : 'bg-[#F8FAFC] border-slate-200 shadow-xs hover:border-[#4F46E5]/40 hover:bg-white hover:-translate-y-1 hover:shadow-md'
@@ -177,21 +177,21 @@ export const Section_PricingLeadership: React.FC = () => {
         </div>
 
         {/* 3. Direct Enterprise Subscription Request Form */}
-        <div className="rounded-3xl bg-gradient-to-b from-[#F8FAFC] to-white border border-slate-200 shadow-md p-8 sm:p-12 relative overflow-hidden max-w-3xl mx-auto" dir={isRTL ? 'rtl' : 'ltr'}>
+        <div className="rounded-2xl sm:rounded-3xl bg-gradient-to-b from-[#F8FAFC] to-white border border-slate-200 shadow-md p-5 sm:p-10 lg:p-12 relative overflow-hidden max-w-3xl mx-auto" dir={isRTL ? 'rtl' : 'ltr'}>
           {/* Subtle Top Accent */}
           <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB]" />
 
-          <div className="text-center space-y-2 mb-8">
-            <span className="text-xs font-mono text-[#4F46E5] uppercase tracking-widest block font-bold bg-purple-50 inline-block px-3 py-1 rounded-full border border-purple-200/60">
+          <div className="text-center space-y-2 mb-6 sm:mb-8">
+            <span className="text-[10px] sm:text-xs font-mono text-[#4F46E5] uppercase tracking-widest block font-bold bg-purple-50 inline-block px-3 py-1 rounded-full border border-purple-200/60">
               {isRTL ? 'طلب الاشتراك وحجز الاستشارة الفنية' : 'DIRECT ENTERPRISE SUBSCRIPTION INTAKE'}
             </span>
-            <h3 className="text-2xl sm:text-3xl font-bold text-[#0B1120] tracking-tight font-sans">
+            <h3 className="text-xl sm:text-3xl font-bold text-[#0B1120] tracking-tight font-sans">
               {tSub.form.headingMain}{' '}
               <span className="italic font-normal bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] bg-clip-text text-transparent inline-block">
                 {tSub.form.headingItalic}
               </span>
             </h3>
-            <p className="text-sm text-slate-600 max-w-xl mx-auto font-sans leading-relaxed">
+            <p className="text-xs sm:text-sm text-slate-600 max-w-xl mx-auto font-sans leading-relaxed">
               {tSub.form.subheading}
             </p>
           </div>

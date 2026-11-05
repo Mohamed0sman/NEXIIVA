@@ -13,35 +13,35 @@ export const Section_ComparisonROI: React.FC = () => {
   const [numOperators, setNumOperators] = useState(15);
 
   return (
-    <section id="operational-reality" className="py-24 px-6 lg:px-12 relative bg-[#F8FAFC] border-t border-slate-200">
-      <div className="max-w-[1240px] mx-auto space-y-16">
-        <div className="max-w-3xl space-y-3 text-left" dir={isRTL ? 'rtl' : 'ltr'}>
+    <section id="operational-reality" className="py-12 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 relative bg-[#F8FAFC] border-t border-slate-200">
+      <div className="max-w-[1240px] mx-auto space-y-8 sm:space-y-12 lg:space-y-16">
+        <div className="max-w-3xl space-y-2 sm:space-y-3 text-left" dir={isRTL ? 'rtl' : 'ltr'}>
           <p className="text-xs font-bold text-[#4F46E5] uppercase tracking-widest font-sans">
             {t.eyebrow}
           </p>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0B1120] tracking-tight leading-[1.2] font-sans">
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-[#0B1120] tracking-tight leading-[1.2] font-sans">
             {t.headingMain}{' '}
             <span className="italic font-normal bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] bg-clip-text text-transparent inline-block">
               {t.headingItalic}
             </span>
           </h2>
-          <p className="text-base sm:text-lg text-slate-600 font-sans font-normal leading-relaxed">
+          <p className="text-sm sm:text-lg text-slate-600 font-sans font-normal leading-relaxed">
             {t.subheading}
           </p>
         </div>
 
         {/* 2-Column Balanced Editorial Spread */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
           {/* Left Column: Story Card + Outage Cost Breakdown (5 Cols) */}
-          <div className="lg:col-span-5 space-y-6 text-left" dir={isRTL ? 'rtl' : 'ltr'}>
+          <div className="lg:col-span-5 space-y-5 sm:space-y-6 text-left" dir={isRTL ? 'rtl' : 'ltr'}>
             {/* Story Card */}
-            <div className="bg-gradient-to-b from-purple-500/5 via-indigo-500/5 to-blue-500/5 rounded-3xl p-8 sm:p-9 border border-purple-500/20 space-y-5 shadow-sm">
+            <div className="bg-gradient-to-b from-purple-500/5 via-indigo-500/5 to-blue-500/5 rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-purple-500/20 space-y-4 sm:space-y-5 shadow-sm">
               <div className="text-xs font-mono text-[#4F46E5] uppercase tracking-widest font-bold flex items-center space-x-1.5 space-x-reverse">
                 <AlertTriangle className="w-3.5 h-3.5 text-rose-500" />
                 <span>{isRTL ? 'التكلفة الحقيقية لاضطراب واحد بدون تدريب' : 'THE REAL COST OF ONE UNPRACTICED UPSET'}</span>
               </div>
 
-              <div className="text-xl sm:text-2xl font-sans font-bold text-[#0B1120] leading-snug tracking-tight">
+              <div className="text-lg sm:text-2xl font-sans font-bold text-[#0B1120] leading-snug tracking-tight">
                 {t.storyCard.title}
               </div>
 
@@ -49,7 +49,7 @@ export const Section_ComparisonROI: React.FC = () => {
                 {t.storyCard.body}
               </p>
 
-              <div className="pt-4 border-t border-purple-500/10 flex items-center justify-between text-xs font-mono text-slate-600">
+              <div className="pt-3.5 sm:pt-4 border-t border-purple-500/10 flex items-center justify-between text-xs font-mono text-slate-600">
                 <span>{isRTL ? 'الملاحظة الميدانية' : 'FIELD OBSERVATION'}</span>
                 <span className="font-bold text-[#4F46E5]">
                   {t.storyCard.footerStat}
@@ -58,7 +58,7 @@ export const Section_ComparisonROI: React.FC = () => {
             </div>
 
             {/* Outage Breakdown Card */}
-            <div className="bg-white rounded-3xl p-7 border border-slate-200 shadow-sm space-y-4">
+            <div className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-slate-200 shadow-sm space-y-3.5 sm:space-y-4">
               <div className="flex items-center justify-between border-b border-slate-100 pb-3">
                 <span className="text-xs font-mono font-bold text-slate-700 uppercase tracking-wider">
                   {isRTL ? 'تفصيل خسائر الحادثة الواحدة ($150,000+)' : 'TYPICAL SINGLE INCIDENT ANATOMY ($150,000+)'}
@@ -115,14 +115,14 @@ export const Section_ComparisonROI: React.FC = () => {
           </div>
 
           {/* Right Column: Nexiiva vs. Legacy Alternatives + ROI Calculator (7 Cols) */}
-          <div className="lg:col-span-7 space-y-6">
+          <div className="lg:col-span-7 space-y-5 sm:space-y-6">
             {/* Comparison Artifact: Desktop 4-Col Table + Mobile Responsive Cards */}
-            <div className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden text-left" dir={isRTL ? 'rtl' : 'ltr'}>
-              <div className="px-5 sm:px-6 py-4 border-b border-slate-100 flex items-center justify-between">
+            <div className="bg-white rounded-2xl sm:rounded-3xl border border-slate-200 shadow-sm overflow-hidden text-left" dir={isRTL ? 'rtl' : 'ltr'}>
+              <div className="px-4 sm:px-6 py-3.5 sm:py-4 border-b border-slate-100 flex items-center justify-between">
                 <span className="text-xs font-mono font-bold text-slate-700 uppercase tracking-wider">
                   {t.comparison.title}
                 </span>
-                <span className="text-[11px] font-mono text-[#059669] font-bold bg-[#ecfdf5] px-2.5 py-0.5 rounded-full border border-emerald-200">
+                <span className="text-[10px] sm:text-[11px] font-mono text-[#059669] font-bold bg-[#ecfdf5] px-2.5 py-0.5 rounded-full border border-emerald-200">
                   {isRTL ? 'مقارنة دقيقة' : 'VERIFIED DATA'}
                 </span>
               </div>
@@ -197,10 +197,10 @@ export const Section_ComparisonROI: React.FC = () => {
             </div>
 
             {/* Interactive ROI Calculator Card */}
-            <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-5 sm:p-8 space-y-6 text-left" dir={isRTL ? 'rtl' : 'ltr'}>
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-4">
+            <div className="bg-white rounded-2xl sm:rounded-3xl border border-slate-200 shadow-sm p-4 sm:p-7 space-y-5 sm:space-y-6 text-left" dir={isRTL ? 'rtl' : 'ltr'}>
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-3 sm:pb-4">
                 <div>
-                  <h3 className="text-lg sm:text-xl font-bold text-[#0B1120] tracking-tight font-sans">
+                  <h3 className="text-base sm:text-xl font-bold text-[#0B1120] tracking-tight font-sans">
                     {isRTL ? 'نموذج محاكاة الكفاءة والجاهزية لمجلس الإدارة' : 'Refinery Boardroom Readiness & Value Model'}
                   </h3>
                   <p className="text-xs text-slate-500 mt-0.5">

@@ -10,45 +10,45 @@ export const Section_AboutCompany: React.FC = () => {
   const isRTL = language === 'AR';
 
   return (
-    <section id="about" className="py-24 px-6 lg:px-12 relative bg-[#F8FAFC] border-t border-slate-200">
+    <section id="about" className="py-12 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 relative bg-[#F8FAFC] border-t border-slate-200">
       {/* Precision Background Grid Texture */}
       <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:32px_32px] opacity-50 pointer-events-none" />
 
-      <div className="max-w-[1240px] mx-auto space-y-16 relative z-10">
+      <div className="max-w-[1240px] mx-auto space-y-8 sm:space-y-12 lg:space-y-16 relative z-10">
         {/* Section Header with Clean Minimalist Kicker (No AI Pill Bubble) */}
-        <div className="text-center max-w-3xl mx-auto space-y-3">
+        <div className="text-center max-w-3xl mx-auto space-y-2 sm:space-y-3">
           <p className="text-xs font-bold text-[#4F46E5] uppercase tracking-widest font-sans">
             {t.eyebrow}
           </p>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0B1120] tracking-tight leading-[1.2] font-sans">
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-[#0B1120] tracking-tight leading-[1.2] font-sans">
             {t.headingMain}{' '}
             <span className="italic font-normal bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] bg-clip-text text-transparent inline-block">
               {t.headingItalic}
             </span>
           </h2>
-          <p className="text-base sm:text-lg text-slate-600 font-sans font-normal leading-relaxed">
+          <p className="text-sm sm:text-lg text-slate-600 font-sans font-normal leading-relaxed">
             {t.subheading}
           </p>
         </div>
 
         {/* 4 Prominent Company Metrics Cards */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6" dir={isRTL ? 'rtl' : 'ltr'}>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-5" dir={isRTL ? 'rtl' : 'ltr'}>
           {t.metrics.map((m, idx) => (
             <div
               key={idx}
-              className="p-7 rounded-2xl bg-white border border-slate-200 shadow-xs hover:shadow-md hover:border-[#4F46E5]/40 hover:-translate-y-1 transition-all duration-300 text-center space-y-1.5 relative overflow-hidden group"
+              className="p-3.5 sm:p-6 rounded-xl sm:rounded-2xl bg-white border border-slate-200 shadow-xs hover:shadow-md hover:border-[#4F46E5]/40 hover:-translate-y-1 transition-all duration-300 text-center space-y-1 sm:space-y-1.5 relative overflow-hidden group"
             >
               {/* Top Accent Gradient Line */}
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#7C3AED] to-[#2563EB] opacity-0 group-hover:opacity-100 transition-opacity" />
 
-              <div className="text-3xl sm:text-4xl font-black font-sans bg-gradient-to-r from-[#7C3AED] to-[#2563EB] bg-clip-text text-transparent">
+              <div className="text-2xl sm:text-4xl font-black font-sans bg-gradient-to-r from-[#7C3AED] to-[#2563EB] bg-clip-text text-transparent">
                 {m.value}
               </div>
-              <div className="text-sm font-bold text-[#0B1120] font-sans">
+              <div className="text-xs sm:text-sm font-bold text-[#0B1120] font-sans">
                 {m.label}
               </div>
-              <div className="text-xs text-slate-500 font-sans">
+              <div className="text-[11px] sm:text-xs text-slate-500 font-sans">
                 {m.sub}
               </div>
             </div>
@@ -56,23 +56,23 @@ export const Section_AboutCompany: React.FC = () => {
         </div>
 
         {/* Company Narrative & Executive Founder Dossier */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch" dir={isRTL ? 'rtl' : 'ltr'}>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-stretch" dir={isRTL ? 'rtl' : 'ltr'}>
           {/* Card 1: The Problem & Our Mission */}
-          <div className="lg:col-span-6 bg-white rounded-3xl border border-slate-200 p-8 sm:p-10 shadow-sm flex flex-col justify-between space-y-6 text-left relative overflow-hidden">
-            <div className="space-y-4">
+          <div className="lg:col-span-6 bg-white rounded-2xl sm:rounded-3xl border border-slate-200 p-5 sm:p-8 lg:p-10 shadow-sm flex flex-col justify-between space-y-5 sm:space-y-6 text-left relative overflow-hidden">
+            <div className="space-y-3 sm:space-y-4">
               <div className="flex items-center space-x-2 space-x-reverse text-[#4F46E5] font-semibold text-xs tracking-wider uppercase font-sans">
                 <Factory className="w-4 h-4" />
                 <span>{isRTL ? 'المهمة والرؤية الصناعية' : 'INDUSTRIAL MISSION & PURPOSE'}</span>
               </div>
-              <h3 className="text-2xl sm:text-3xl font-bold text-[#0B1120] font-sans tracking-tight leading-snug">
+              <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#0B1120] font-sans tracking-tight leading-snug">
                 {t.storyTitle}
               </h3>
-              <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-sans">
+              <p className="text-xs sm:text-base text-slate-600 leading-relaxed font-sans">
                 {t.storyBody}
               </p>
             </div>
 
-            <div className="pt-6 border-t border-slate-100 grid grid-cols-1 sm:grid-cols-2 gap-3.5 text-xs text-slate-700 font-medium">
+            <div className="pt-4 sm:pt-6 border-t border-slate-100 grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3.5 text-xs text-slate-700 font-medium">
               <div className="flex items-center space-x-2 space-x-reverse">
                 <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
                 <span>{isRTL ? 'مطابقة هندسية لمخططات P&ID' : 'P&ID-accurate digital twins'}</span>
@@ -93,7 +93,7 @@ export const Section_AboutCompany: React.FC = () => {
           </div>
 
           {/* Card 2: Executive Founder & Plant Pedigree (Elevated) */}
-          <div className="lg:col-span-6 bg-gradient-to-br from-[#0B1120] via-[#090E1A] to-[#070B14] rounded-3xl border border-indigo-500/20 p-8 sm:p-10 shadow-xl text-white flex flex-col justify-between space-y-6 text-left relative overflow-hidden">
+          <div className="lg:col-span-6 bg-gradient-to-br from-[#0B1120] via-[#090E1A] to-[#070B14] rounded-2xl sm:rounded-3xl border border-indigo-500/20 p-5 sm:p-8 lg:p-10 shadow-xl text-white flex flex-col justify-between space-y-5 sm:space-y-6 text-left relative overflow-hidden">
             {/* Ambient Radial Top-Right Glow */}
             <div className="absolute top-0 right-0 w-80 h-80 bg-[radial-gradient(circle,rgba(124,58,237,0.2),transparent_70%)] pointer-events-none" />
 
