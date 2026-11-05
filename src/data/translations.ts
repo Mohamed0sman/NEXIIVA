@@ -501,7 +501,7 @@ export const translations = {
           featured: false,
         },
         {
-          name: 'المنظومة المحلية المفصولة (On-Premise)',
+          name: 'منظومة الخوادم المحلية المعزولة (On-Premise)',
           badge: 'ترخيص دائم 100% أوفلاين',
           price: 'ترخيص محلي دائم',
           period: 'تثبيت محلي على خوادم المنشأة',

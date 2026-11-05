@@ -272,7 +272,7 @@ export const Section_PricingLeadership: React.FC = () => {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder={isRTL ? 'م. طارق منصور — مدير العمليات' : 'Eng. Tarek Mansour — Operations Superintendent'}
-                    className="w-full px-4 py-3 rounded-xl bg-white border border-slate-200 focus:border-[#4F46E5] focus:ring-2 focus:ring-[#4F46E5]/15 text-[#0B1120] text-sm outline-none transition-all placeholder:text-slate-400 shadow-2xs"
+                    className="w-full min-h-[46px] px-4 py-3 rounded-xl bg-white border border-slate-200 focus:border-[#4F46E5] focus:ring-2 focus:ring-[#4F46E5]/15 text-[#0B1120] text-base sm:text-sm outline-none transition-all placeholder:text-slate-400 shadow-2xs"
                   />
                 </div>
 
@@ -287,7 +287,7 @@ export const Section_PricingLeadership: React.FC = () => {
                     value={company}
                     onChange={(e) => setCompany(e.target.value)}
                     placeholder={isRTL ? 'مصفاة الشرق الأوسط (ميدور) / أرامكو / سابك' : 'Middle East Oil Refinery (MIDOR) / Aramco / SABIC'}
-                    className="w-full px-4 py-3 rounded-xl bg-white border border-slate-200 focus:border-[#4F46E5] focus:ring-2 focus:ring-[#4F46E5]/15 text-[#0B1120] text-sm outline-none transition-all placeholder:text-slate-400 shadow-2xs"
+                    className="w-full min-h-[46px] px-4 py-3 rounded-xl bg-white border border-slate-200 focus:border-[#4F46E5] focus:ring-2 focus:ring-[#4F46E5]/15 text-[#0B1120] text-base sm:text-sm outline-none transition-all placeholder:text-slate-400 shadow-2xs"
                   />
                 </div>
               </div>
@@ -304,7 +304,7 @@ export const Section_PricingLeadership: React.FC = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="tarek.mansour@refinery.com"
-                    className="w-full px-4 py-3 rounded-xl bg-white border border-slate-200 focus:border-[#4F46E5] focus:ring-2 focus:ring-[#4F46E5]/15 text-[#0B1120] text-sm outline-none transition-all placeholder:text-slate-400 shadow-2xs"
+                    className="w-full min-h-[46px] px-4 py-3 rounded-xl bg-white border border-slate-200 focus:border-[#4F46E5] focus:ring-2 focus:ring-[#4F46E5]/15 text-[#0B1120] text-base sm:text-sm outline-none transition-all placeholder:text-slate-400 shadow-2xs"
                   />
                 </div>
 
@@ -319,7 +319,7 @@ export const Section_PricingLeadership: React.FC = () => {
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     placeholder="+20 100 000 0000"
-                    className="w-full px-4 py-3 rounded-xl bg-white border border-slate-200 focus:border-[#4F46E5] focus:ring-2 focus:ring-[#4F46E5]/15 text-[#0B1120] text-sm outline-none transition-all placeholder:text-slate-400 shadow-2xs"
+                    className="w-full min-h-[46px] px-4 py-3 rounded-xl bg-white border border-slate-200 focus:border-[#4F46E5] focus:ring-2 focus:ring-[#4F46E5]/15 text-[#0B1120] text-base sm:text-sm outline-none transition-all placeholder:text-slate-400 shadow-2xs"
                   />
                 </div>
               </div>
@@ -333,7 +333,7 @@ export const Section_PricingLeadership: React.FC = () => {
                   <select
                     value={unit}
                     onChange={(e) => setUnit(e.target.value)}
-                    className="w-full px-4 py-3 rounded-xl bg-white border border-slate-200 focus:border-[#4F46E5] focus:ring-2 focus:ring-[#4F46E5]/15 text-[#0B1120] text-sm outline-none transition-all cursor-pointer shadow-2xs"
+                    className="w-full min-h-[46px] px-4 py-3 rounded-xl bg-white border border-slate-200 focus:border-[#4F46E5] focus:ring-2 focus:ring-[#4F46E5]/15 text-[#0B1120] text-base sm:text-sm outline-none transition-all cursor-pointer shadow-2xs"
                   >
                     <option>CDU/VDU (Crude & Vacuum Distillation)</option>
                     <option>Hydrocracker Unit (HCU)</option>
@@ -352,7 +352,7 @@ export const Section_PricingLeadership: React.FC = () => {
                   <select
                     value={deployment}
                     onChange={(e) => setDeployment(e.target.value)}
-                    className="w-full px-4 py-3 rounded-xl bg-white border border-slate-200 focus:border-[#4F46E5] focus:ring-2 focus:ring-[#4F46E5]/15 text-[#0B1120] text-sm outline-none transition-all cursor-pointer shadow-2xs"
+                    className="w-full min-h-[46px] px-4 py-3 rounded-xl bg-white border border-slate-200 focus:border-[#4F46E5] focus:ring-2 focus:ring-[#4F46E5]/15 text-[#0B1120] text-base sm:text-sm outline-none transition-all cursor-pointer shadow-2xs"
                   >
                     <option>Air-Gapped On-Premise (100% Offline)</option>
                     <option>Managed Private Cloud</option>
@@ -364,10 +364,10 @@ export const Section_PricingLeadership: React.FC = () => {
 
               <button
                 type="submit"
-                className="w-full py-4 rounded-full text-sm font-semibold mt-4 cursor-pointer bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] text-white shadow-[0_8px_25px_-4px_rgba(79,70,229,0.45)] hover:shadow-[0_12px_30px_-4px_rgba(79,70,229,0.6)] hover:-translate-y-0.5 transition-all flex items-center justify-center space-x-2 space-x-reverse"
+                className="w-full min-h-[50px] py-4 rounded-full text-sm font-semibold mt-4 cursor-pointer bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] text-white shadow-[0_8px_25px_-4px_rgba(79,70,229,0.45)] hover:shadow-[0_12px_30px_-4px_rgba(79,70,229,0.6)] active:scale-[0.99] transition-all flex items-center justify-center space-x-2 space-x-reverse"
               >
                 <span>{tSub.form.button}</span>
-                <span>→</span>
+                <span className={isRTL ? 'rotate-180 inline-block' : 'inline-block'}>→</span>
               </button>
 
               <div className="pt-2 text-center flex items-center justify-center space-x-1.5 space-x-reverse text-xs text-slate-500">

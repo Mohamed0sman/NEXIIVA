@@ -44,31 +44,31 @@ export const HeroSection: React.FC = () => {
 
       <div className="max-w-[1240px] mx-auto space-y-12 relative z-10 text-center">
         {/* Main Headline with Purple-Blue Brand Gradient Italic Phrase */}
-        <div className="max-w-4xl mx-auto space-y-6">
-          <h1 className="text-4xl sm:text-5xl lg:text-[62px] font-extrabold text-[#0B1120] tracking-tight leading-[1.16] font-sans">
+        <div className="max-w-4xl mx-auto space-y-5 sm:space-y-6">
+          <h1 className="text-3xl sm:text-5xl lg:text-[62px] font-extrabold text-[#0B1120] tracking-tight leading-[1.2] sm:leading-[1.16] font-sans">
             {t.headlineMain}{' '}
             <span className="italic font-normal bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] bg-clip-text text-transparent inline-block">
               {t.headlineItalic}
             </span>
           </h1>
 
-          <p className="text-base sm:text-lg lg:text-[19px] text-slate-600 font-sans font-normal leading-relaxed max-w-3xl mx-auto">
+          <p className="text-sm sm:text-lg lg:text-[19px] text-slate-600 font-sans font-normal leading-relaxed max-w-3xl mx-auto px-1">
             {t.subheadline}
           </p>
 
-          {/* Primary CTA Buttons */}
-          <div className="flex flex-wrap items-center justify-center gap-4 pt-3">
+          {/* Primary CTA Buttons (Full-width touch on mobile, inline on desktop) */}
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 pt-2 sm:pt-3 w-full max-w-sm mx-auto sm:max-w-none">
             <button
               onClick={scrollToSubscribe}
-              className="px-8 py-3.5 rounded-full bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] hover:opacity-95 text-white font-semibold text-base shadow-[0_10px_30px_-5px_rgba(79,70,229,0.5)] hover:shadow-[0_15px_35px_-5px_rgba(79,70,229,0.65)] hover:-translate-y-0.5 transition-all cursor-pointer flex items-center justify-center space-x-2 space-x-reverse group"
+              className="w-full sm:w-auto min-h-[50px] px-8 py-3.5 rounded-full bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] hover:opacity-95 text-white font-semibold text-sm sm:text-base shadow-[0_10px_30px_-5px_rgba(79,70,229,0.5)] hover:shadow-[0_15px_35px_-5px_rgba(79,70,229,0.65)] active:scale-[0.99] transition-all cursor-pointer flex items-center justify-center space-x-2 space-x-reverse group"
             >
               <span>{t.ctaPrimary}</span>
-              <span className="group-hover:translate-x-1 transition-transform inline-block">→</span>
+              <span className={`group-hover:translate-x-1 transition-transform inline-block ${isRTL ? 'rotate-180' : ''}`}>→</span>
             </button>
 
             <button
               onClick={() => setVideoModalOpen(true)}
-              className="px-7 py-3.5 rounded-full bg-white hover:bg-slate-50 border border-slate-300 hover:border-slate-400 text-[#0B1120] font-semibold text-base shadow-xs hover:shadow-sm hover:-translate-y-0.5 transition-all cursor-pointer flex items-center space-x-2 space-x-reverse"
+              className="w-full sm:w-auto min-h-[50px] px-7 py-3.5 rounded-full bg-white hover:bg-slate-50 border border-slate-300 hover:border-slate-400 text-[#0B1120] font-semibold text-sm sm:text-base shadow-xs hover:shadow-sm active:scale-[0.99] transition-all cursor-pointer flex items-center justify-center space-x-2 space-x-reverse"
             >
               <Play className="w-4 h-4 fill-current text-[#4F46E5]" />
               <span>{t.ctaSecondary}</span>
@@ -77,24 +77,24 @@ export const HeroSection: React.FC = () => {
         </div>
 
         {/* High-Resolution Enterprise Digital Twin Showcase */}
-        <div className="pt-4 max-w-5xl mx-auto">
+        <div className="pt-2 sm:pt-4 max-w-5xl mx-auto">
           <div
-            className="rounded-3xl bg-[#070B14] border border-purple-500/25 shadow-[0_30px_90px_-20px_rgba(79,70,229,0.32)] p-3.5 sm:p-5 text-left relative overflow-hidden transition-all"
+            className="rounded-2xl sm:rounded-3xl bg-[#070B14] border border-purple-500/25 shadow-[0_20px_60px_-15px_rgba(79,70,229,0.25)] sm:shadow-[0_30px_90px_-20px_rgba(79,70,229,0.32)] p-2.5 sm:p-5 text-left relative overflow-hidden transition-all"
             dir={isRTL ? 'rtl' : 'ltr'}
           >
             {/* Ambient Purple-Blue Radial Top-Glow */}
             <div className="absolute top-0 right-1/4 w-[600px] h-[500px] bg-[radial-gradient(circle,rgba(124,58,237,0.25),transparent_70%)] pointer-events-none" />
 
             {/* Industrial Workstation Console Header with Interactive View Switcher */}
-            <div className="flex flex-wrap items-center justify-between pb-3.5 px-2 border-b border-slate-800/90 gap-3 text-xs font-mono relative z-10">
-              <div className="flex items-center space-x-3 space-x-reverse">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-3 px-1 sm:px-2 border-b border-slate-800/90 gap-2.5 text-xs font-mono relative z-10">
+              <div className="flex items-center space-x-2.5 space-x-reverse">
                 {/* 3 Console Status Indicators */}
                 <div className="flex items-center space-x-1.5 space-x-reverse">
                   <span className="w-2.5 h-2.5 rounded-full bg-[#10B981] animate-pulse" />
                   <span className="w-2.5 h-2.5 rounded-full bg-[#06B6D4]/60" />
                   <span className="w-2.5 h-2.5 rounded-full bg-[#7C3AED]/60" />
                 </div>
-                <span className="font-bold text-white tracking-wider text-[11px] sm:text-xs">
+                <span className="font-bold text-white tracking-wider text-[10px] sm:text-xs">
                   NEXIIVA OTS // INDUSTRIAL DIGITAL TWIN CONSOLE
                 </span>
                 <span className="hidden lg:inline-block px-2.5 py-0.5 rounded text-[10px] bg-indigo-950/80 text-indigo-300 border border-indigo-800/70 font-medium">
@@ -102,30 +102,30 @@ export const HeroSection: React.FC = () => {
                 </span>
               </div>
 
-              {/* View Switcher Tabs */}
-              <div className="flex items-center bg-slate-900/90 p-1 rounded-xl border border-slate-800">
+              {/* View Switcher Tabs (2 equal columns on mobile for thumb tap) */}
+              <div className="grid grid-cols-2 sm:flex items-center bg-slate-900/90 p-1 rounded-xl border border-slate-800 w-full sm:w-auto">
                 <button
                   onClick={() => setActiveTab('3D_TWIN')}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-medium font-sans flex items-center space-x-1.5 space-x-reverse transition-all cursor-pointer ${
+                  className={`px-2.5 sm:px-3 py-2 sm:py-1.5 rounded-lg text-xs font-medium font-sans flex items-center justify-center space-x-1.5 space-x-reverse transition-all cursor-pointer ${
                     activeTab === '3D_TWIN'
                       ? 'bg-gradient-to-r from-[#7C3AED] to-[#4F46E5] text-white shadow-xs'
                       : 'text-slate-400 hover:text-white'
                   }`}
                 >
                   <Box className="w-3.5 h-3.5" />
-                  <span>{isRTL ? 'التوأم الرقمي 3D' : '3D Digital Twin'}</span>
+                  <span className="truncate">{isRTL ? 'التوأم الرقمي 3D' : '3D Digital Twin'}</span>
                 </button>
 
                 <button
                   onClick={() => setActiveTab('DCS_CONSOLE')}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-medium font-sans flex items-center space-x-1.5 space-x-reverse transition-all cursor-pointer ${
+                  className={`px-2.5 sm:px-3 py-2 sm:py-1.5 rounded-lg text-xs font-medium font-sans flex items-center justify-center space-x-1.5 space-x-reverse transition-all cursor-pointer ${
                     activeTab === 'DCS_CONSOLE'
                       ? 'bg-gradient-to-r from-[#7C3AED] to-[#4F46E5] text-white shadow-xs'
                       : 'text-slate-400 hover:text-white'
                   }`}
                 >
                   <Sliders className="w-3.5 h-3.5" />
-                  <span>{isRTL ? 'واجهات DCS الميدانية' : 'DCS Multi-Loop Faceplates'}</span>
+                  <span className="truncate">{isRTL ? 'واجهات DCS الميدانية' : 'DCS Faceplates'}</span>
                 </button>
               </div>
             </div>

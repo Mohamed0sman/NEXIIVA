@@ -236,8 +236,8 @@ export const Section_PIDScanner: React.FC = () => {
               </h3>
             </div>
 
-            {/* Bilingual Unit Selector Pills */}
-            <div className="flex items-center gap-2 bg-slate-900/90 p-1 rounded-2xl border border-slate-800">
+            {/* Bilingual Unit Selector Pills (Grid on mobile, flex on desktop) */}
+            <div className="grid grid-cols-3 sm:flex items-center gap-1.5 sm:gap-2 bg-slate-900/90 p-1 rounded-2xl border border-slate-800 w-full sm:w-auto">
               {(['CDU', 'VDU', 'REFORMER'] as BlueprintPreset[]).map((preset) => (
                 <button
                   key={preset}
@@ -247,17 +247,17 @@ export const Section_PIDScanner: React.FC = () => {
                     if (preset === 'VDU') setActiveTag('C-201');
                     if (preset === 'REFORMER') setActiveTag('R-301');
                   }}
-                  className={`px-4 py-2 rounded-xl text-xs font-sans font-semibold transition-all cursor-pointer ${
+                  className={`px-2 sm:px-4 py-2 rounded-xl text-[11px] sm:text-xs font-sans font-semibold transition-all cursor-pointer text-center truncate ${
                     selectedPreset === preset
                       ? 'bg-gradient-to-r from-[#7C3AED] to-[#2563EB] text-white shadow-sm'
                       : 'text-slate-400 hover:text-white'
                   }`}
                 >
                   {preset === 'CDU'
-                    ? isRTL ? 'التقطير الجوي (CDU)' : 'Atmospheric CDU'
+                    ? isRTL ? 'التقطير الجوي' : 'CDU Unit'
                     : preset === 'VDU'
-                    ? isRTL ? 'التقطير المفرغ (VDU)' : 'Vacuum VDU'
-                    : isRTL ? 'التهذيب الحفزي (CCR)' : 'Catalytic Reformer'}
+                    ? isRTL ? 'التقطير المفرغ' : 'VDU Tower'
+                    : isRTL ? 'التهذيب الحفزي' : 'Reformer'}
                 </button>
               ))}
             </div>

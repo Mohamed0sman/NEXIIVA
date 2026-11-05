@@ -19,7 +19,7 @@ const AppContent: React.FC = () => {
   return (
     <div
       dir={isRTL ? 'rtl' : 'ltr'}
-      className="min-h-screen bg-white text-[#0B1120] flex flex-col selection:bg-purple-100 selection:text-indigo-900 relative"
+      className="min-h-screen bg-white text-[#0B1120] flex flex-col selection:bg-purple-100 selection:text-indigo-900 relative overflow-x-hidden w-full max-w-full"
     >
       {/* 1. Sticky Navbar sitting cleanly at top-0 */}
       <Navbar />

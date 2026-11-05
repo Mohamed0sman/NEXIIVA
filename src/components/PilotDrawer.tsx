@@ -67,14 +67,15 @@ export const PilotDrawer: React.FC = () => {
             </div>
             <button
               onClick={() => setPilotDrawerOpen(false)}
-              className="text-[#64748B] hover:text-[#0B1120] p-2 text-base rounded-full hover:bg-slate-100 transition-colors cursor-pointer"
+              aria-label="Close Pilot Drawer"
+              className="w-11 h-11 flex items-center justify-center text-[#64748B] hover:text-[#0B1120] text-lg rounded-full hover:bg-slate-100 transition-colors cursor-pointer"
             >
               ✕
             </button>
           </div>
 
           {submitted ? (
-            <div className="py-16 text-center space-y-5">
+            <div className="py-12 sm:py-16 text-center space-y-5">
               <div className="w-16 h-16 rounded-full bg-emerald-500 text-white text-3xl flex items-center justify-center mx-auto font-bold shadow-lg">
                 ✓
               </div>
@@ -99,7 +100,7 @@ export const PilotDrawer: React.FC = () => {
               <div className="flex flex-col gap-2.5 pt-2 max-w-xs mx-auto">
                 <a
                   href={submissionResult?.mailtoUrl || `mailto:${RECIPIENT_EMAIL}`}
-                  className="w-full py-3 rounded-full bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] text-white text-xs font-semibold flex items-center justify-center space-x-2 space-x-reverse shadow-md hover:shadow-lg transition-all cursor-pointer"
+                  className="w-full min-h-[48px] py-3 rounded-full bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] text-white text-xs font-semibold flex items-center justify-center space-x-2 space-x-reverse shadow-md hover:shadow-lg transition-all cursor-pointer"
                 >
                   <Send className="w-4 h-4" />
                   <span>{isRTL ? 'تأكيد الإرسال عبر تطبيق البريد' : 'Confirm via Email Client'}</span>
@@ -110,7 +111,7 @@ export const PilotDrawer: React.FC = () => {
                     href={submissionResult.whatsappUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full py-3 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold flex items-center justify-center space-x-2 space-x-reverse shadow-md transition-all cursor-pointer"
+                    className="w-full min-h-[48px] py-3 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold flex items-center justify-center space-x-2 space-x-reverse shadow-md transition-all cursor-pointer"
                   >
                     <MessageSquare className="w-4 h-4" />
                     <span>{isRTL ? 'مراسلة عبر واتساب فوراً' : 'Message on WhatsApp'}</span>
@@ -123,21 +124,21 @@ export const PilotDrawer: React.FC = () => {
                     setPilotDrawerOpen(false);
                     setSubmissionResult(null);
                   }}
-                  className="w-full py-2.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold transition-colors cursor-pointer mt-1"
+                  className="w-full min-h-[44px] py-2.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold transition-colors cursor-pointer mt-1"
                 >
                   {isRTL ? 'إغلاق النافذة' : 'Close Drawer'}
                 </button>
               </div>
             </div>
           ) : (
-            <form onSubmit={handlePilotSubmit} className="py-6 space-y-5">
+            <form onSubmit={handlePilotSubmit} className="py-5 sm:py-6 space-y-4 sm:space-y-5">
               {/* Pilot Summary Box (Cool Indigo Tint) */}
-              <div className="p-4.5 rounded-2xl bg-gradient-to-b from-purple-500/10 via-indigo-500/5 to-blue-500/5 border border-purple-500/20 text-[#0B1120] space-y-2">
+              <div className="p-4 rounded-2xl bg-gradient-to-b from-purple-500/10 via-indigo-500/5 to-blue-500/5 border border-purple-500/20 text-[#0B1120] space-y-2">
                 <div className="flex justify-between items-baseline">
                   <span className="font-semibold text-xs text-[#4F46E5]">
                     {isRTL ? 'نطاق البرنامج التجريبي:' : 'Engagement Scope:'}
                   </span>
-                  <span className="text-sm font-bold font-sans text-[#0B1120]">
+                  <span className="text-xs sm:text-sm font-bold font-sans text-[#0B1120]">
                     {isRTL ? 'برنامج تجريبي مخصص (3 أشهر)' : 'Custom 3-Month Pilot'}
                   </span>
                 </div>
@@ -156,7 +157,7 @@ export const PilotDrawer: React.FC = () => {
                 <select
                   value={pilotUnit}
                   onChange={(e) => setPilotUnit(e.target.value)}
-                  className="w-full p-3 rounded-xl bg-[#F8FAFC] border border-slate-200 text-[#0B1120] text-xs outline-none focus:border-[#4F46E5] transition-colors"
+                  className="w-full min-h-[44px] p-3 rounded-xl bg-[#F8FAFC] border border-slate-200 text-[#0B1120] text-base sm:text-xs outline-none focus:border-[#4F46E5] transition-colors"
                 >
                   <option value="CDU/VDU Atmospheric & Vacuum Distillation">
                     {isRTL ? 'وحدة التقطير الجوي والتفريغي (CDU/VDU)' : 'CDU/VDU Atmospheric & Vacuum Distillation'}
@@ -181,7 +182,7 @@ export const PilotDrawer: React.FC = () => {
                 <label className="text-[#0B1120] font-semibold text-xs">
                   {isRTL ? '2. نموذج وبيئة النشر والتشغيل' : '2. PILOT DEPLOYMENT TOPOLOGY'}
                 </label>
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3">
                   <button
                     type="button"
                     onClick={() => setDeployment('100% Air-Gapped On-Premise')}
@@ -234,12 +235,12 @@ export const PilotDrawer: React.FC = () => {
                   max="8"
                   value={extraStations}
                   onChange={(e) => setExtraStations(parseInt(e.target.value))}
-                  className="w-full accent-[#4F46E5] bg-slate-200 h-1.5 rounded cursor-pointer"
+                  className="w-full accent-[#4F46E5] bg-slate-200 h-2 rounded cursor-pointer"
                 />
               </div>
 
               {/* Step 4: Contact Info */}
-              <div className="space-y-3 pt-3 border-t border-slate-100">
+              <div className="space-y-3 pt-2 sm:pt-3 border-t border-slate-100">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div className="space-y-1">
                     <label className="text-[#64748B] text-xs font-medium flex items-center space-x-1 space-x-reverse">
@@ -250,8 +251,8 @@ export const PilotDrawer: React.FC = () => {
                       type="text"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      placeholder={isRTL ? 'م. مصطفى' : 'Eng. Name'}
-                      className="w-full p-2.5 rounded-xl bg-[#F8FAFC] border border-slate-200 text-[#0B1120] text-xs outline-none focus:border-[#4F46E5] transition-colors"
+                      placeholder={isRTL ? 'م. مصطفى عادل' : 'Eng. Mostafa Adel'}
+                      className="w-full min-h-[44px] px-3 py-2.5 rounded-xl bg-[#F8FAFC] border border-slate-200 text-[#0B1120] text-base sm:text-xs outline-none focus:border-[#4F46E5] transition-colors"
                     />
                   </div>
 
@@ -265,7 +266,7 @@ export const PilotDrawer: React.FC = () => {
                       value={company}
                       onChange={(e) => setCompany(e.target.value)}
                       placeholder={isRTL ? 'ميدور / أرامكو' : 'MIDOR / Plant'}
-                      className="w-full p-2.5 rounded-xl bg-[#F8FAFC] border border-slate-200 text-[#0B1120] text-xs outline-none focus:border-[#4F46E5] transition-colors"
+                      className="w-full min-h-[44px] px-3 py-2.5 rounded-xl bg-[#F8FAFC] border border-slate-200 text-[#0B1120] text-base sm:text-xs outline-none focus:border-[#4F46E5] transition-colors"
                     />
                   </div>
                 </div>
@@ -281,7 +282,7 @@ export const PilotDrawer: React.FC = () => {
                     value={workEmail}
                     onChange={(e) => setWorkEmail(e.target.value)}
                     placeholder="operations@refinery.com"
-                    className="w-full p-2.5 rounded-xl bg-[#F8FAFC] border border-slate-200 text-[#0B1120] text-xs outline-none focus:border-[#4F46E5] transition-colors"
+                    className="w-full min-h-[44px] px-3 py-2.5 rounded-xl bg-[#F8FAFC] border border-slate-200 text-[#0B1120] text-base sm:text-xs outline-none focus:border-[#4F46E5] transition-colors"
                   />
                 </div>
 
@@ -295,7 +296,7 @@ export const PilotDrawer: React.FC = () => {
                     value={workPhone}
                     onChange={(e) => setWorkPhone(e.target.value)}
                     placeholder="+20 100 000 0000"
-                    className="w-full p-2.5 rounded-xl bg-[#F8FAFC] border border-slate-200 text-[#0B1120] text-xs outline-none focus:border-[#4F46E5] transition-colors"
+                    className="w-full min-h-[44px] px-3 py-2.5 rounded-xl bg-[#F8FAFC] border border-slate-200 text-[#0B1120] text-base sm:text-xs outline-none focus:border-[#4F46E5] transition-colors"
                   />
                 </div>
               </div>
@@ -305,14 +306,22 @@ export const PilotDrawer: React.FC = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full py-3.5 rounded-full bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] text-white text-xs font-semibold uppercase tracking-wider shadow-[0_8px_25px_-4px_rgba(79,70,229,0.45)] hover:shadow-[0_12px_30px_-4px_rgba(79,70,229,0.6)] transition-all cursor-pointer flex items-center justify-center space-x-2 space-x-reverse"
+                  className="w-full min-h-[48px] py-3.5 rounded-full bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] text-white text-xs font-semibold uppercase tracking-wider shadow-[0_8px_25px_-4px_rgba(79,70,229,0.45)] hover:shadow-[0_12px_30px_-4px_rgba(79,70,229,0.6)] active:scale-[0.99] transition-all cursor-pointer flex items-center justify-center space-x-2 space-x-reverse"
                 >
                   <span>{isSubmitting ? (isRTL ? 'جاري الإرسال...' : 'Sending...') : (isRTL ? 'تأكيد طلب البرنامج التجريبي للمنشأة ←' : 'Confirm 90-Day Pilot Request →')}</span>
                 </button>
                 <div className="text-[10px] text-center text-[#979799] mt-2">
-                  {isRTL
-                    ? `* يتم إرسال الطلب مباشرة إلى م. مصطفى عادل (${RECIPIENT_EMAIL})`
-                    : `* Request routed directly to Eng. Mostafa Adel (${RECIPIENT_EMAIL})`}
+                  {isRTL ? (
+                    <>
+                      * يتم توجيه الطلب مباشرة إلى بريد المهندس مصطفى عادل (
+                      <span className="font-mono text-[#4F46E5] font-semibold">{RECIPIENT_EMAIL}</span>)
+                    </>
+                  ) : (
+                    <>
+                      * Request routed directly to Eng. Mostafa Adel (
+                      <span className="font-mono text-[#4F46E5] font-semibold">{RECIPIENT_EMAIL}</span>)
+                    </>
+                  )}
                 </div>
               </div>
             </form>

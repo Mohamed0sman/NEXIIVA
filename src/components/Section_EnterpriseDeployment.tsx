@@ -66,29 +66,29 @@ export const Section_EnterpriseDeployment: React.FC = () => {
             </p>
           </div>
 
-          {/* Architecture Mode Pill Toggle */}
-          <div className="flex items-center bg-[#F1F5F9] p-1.5 rounded-full self-start lg:self-end shrink-0 border border-slate-200">
+          {/* Architecture Mode Pill Toggle (Grid on mobile, flex on desktop) */}
+          <div className="grid grid-cols-2 sm:flex items-center bg-[#F1F5F9] p-1 sm:p-1.5 rounded-2xl sm:rounded-full w-full sm:w-auto border border-slate-200">
             <button
               onClick={() => setActiveDeploymentTab('AIR_GAPPED')}
-              className={`flex items-center space-x-2 space-x-reverse px-4 py-2 rounded-full text-xs font-sans transition-all cursor-pointer ${
+              className={`flex items-center justify-center space-x-1.5 space-x-reverse px-2.5 sm:px-4 py-2 rounded-xl sm:rounded-full text-[11px] sm:text-xs font-sans transition-all cursor-pointer ${
                 activeDeploymentTab === 'AIR_GAPPED'
                   ? 'bg-gradient-to-r from-[#7C3AED] to-[#2563EB] text-white font-semibold shadow-sm'
                   : 'text-slate-600 hover:text-[#0B1120]'
               }`}
             >
-              <Server className="w-3.5 h-3.5" />
-              <span>{isRTL ? 'أون-بريميس معزول 100%' : '100% Air-Gapped (On-Prem)'}</span>
+              <Server className="w-3.5 h-3.5 shrink-0" />
+              <span className="truncate">{isRTL ? 'معزول 100%' : '100% Air-Gapped'}</span>
             </button>
             <button
               onClick={() => setActiveDeploymentTab('PRIVATE_CLOUD')}
-              className={`flex items-center space-x-2 space-x-reverse px-4 py-2 rounded-full text-xs font-sans transition-all cursor-pointer ${
+              className={`flex items-center justify-center space-x-1.5 space-x-reverse px-2.5 sm:px-4 py-2 rounded-xl sm:rounded-full text-[11px] sm:text-xs font-sans transition-all cursor-pointer ${
                 activeDeploymentTab === 'PRIVATE_CLOUD'
                   ? 'bg-gradient-to-r from-[#7C3AED] to-[#2563EB] text-white font-semibold shadow-sm'
                   : 'text-slate-600 hover:text-[#0B1120]'
               }`}
             >
-              <Cloud className="w-3.5 h-3.5" />
-              <span>{isRTL ? 'سحابة خاصة معزولة' : 'Isolated Private Cloud'}</span>
+              <Cloud className="w-3.5 h-3.5 shrink-0" />
+              <span className="truncate">{isRTL ? 'سحابة خاصة' : 'Private Cloud'}</span>
             </button>
           </div>
         </div>

@@ -37,37 +37,40 @@ export const Section_InteractiveJourney: React.FC = () => {
             </p>
           </div>
 
-          {/* Pill Tab Switcher */}
-          <div className="flex items-center gap-1.5 bg-[#F1F5F9] p-1.5 rounded-full shrink-0 border border-slate-200">
+          {/* Pill Tab Switcher (Grid on mobile, flex on desktop) */}
+          <div className="grid grid-cols-3 sm:flex items-center gap-1 sm:gap-1.5 bg-[#F1F5F9] p-1 sm:p-1.5 rounded-2xl sm:rounded-full w-full sm:w-auto border border-slate-200">
             <button
               onClick={() => setActiveTab('PRACTICE')}
-              className={`px-5 py-2 rounded-full text-xs font-sans transition-all cursor-pointer ${
+              className={`px-2 sm:px-5 py-2 rounded-xl sm:rounded-full text-[11px] sm:text-xs font-sans transition-all cursor-pointer text-center truncate ${
                 activeTab === 'PRACTICE'
                   ? 'bg-gradient-to-r from-[#7C3AED] to-[#2563EB] text-white font-semibold shadow-sm'
                   : 'text-slate-600 hover:text-[#0B1120]'
               }`}
             >
-              01. {isRTL ? 'التدرب (Trainee DCS)' : 'Practice (DCS Console)'}
+              01. <span className="hidden sm:inline">{isRTL ? 'التدرب (Trainee DCS)' : 'Practice (DCS Console)'}</span>
+              <span className="sm:hidden">{isRTL ? 'التدرب' : 'Practice'}</span>
             </button>
             <button
               onClick={() => setActiveTab('INSTRUCT')}
-              className={`px-5 py-2 rounded-full text-xs font-sans transition-all cursor-pointer ${
+              className={`px-2 sm:px-5 py-2 rounded-xl sm:rounded-full text-[11px] sm:text-xs font-sans transition-all cursor-pointer text-center truncate ${
                 activeTab === 'INSTRUCT'
                   ? 'bg-gradient-to-r from-[#7C3AED] to-[#2563EB] text-white font-semibold shadow-sm'
                   : 'text-slate-600 hover:text-[#0B1120]'
               }`}
             >
-              02. {isRTL ? 'التدريب (Instructor)' : 'Instruct (Command Suite)'}
+              02. <span className="hidden sm:inline">{isRTL ? 'التدريب (Instructor)' : 'Instruct (Command Suite)'}</span>
+              <span className="sm:hidden">{isRTL ? 'التدريب' : 'Instruct'}</span>
             </button>
             <button
               onClick={() => setActiveTab('CERTIFY')}
-              className={`px-5 py-2 rounded-full text-xs font-sans transition-all cursor-pointer ${
+              className={`px-2 sm:px-5 py-2 rounded-xl sm:rounded-full text-[11px] sm:text-xs font-sans transition-all cursor-pointer text-center truncate ${
                 activeTab === 'CERTIFY'
                   ? 'bg-gradient-to-r from-[#7C3AED] to-[#2563EB] text-white font-semibold shadow-sm'
                   : 'text-slate-600 hover:text-[#0B1120]'
               }`}
             >
-              03. {isRTL ? 'الاعتماد (Certify)' : 'Certify (Evaluation)'}
+              03. <span className="hidden sm:inline">{isRTL ? 'الاعتماد (Certify)' : 'Certify (Evaluation)'}</span>
+              <span className="sm:hidden">{isRTL ? 'الاعتماد' : 'Certify'}</span>
             </button>
           </div>
         </div>
