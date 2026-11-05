@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSimulationJourney } from '../context/SimulationJourneyContext';
 import { translations } from '../data/translations';
 import { dcsAudio } from '../utils/audio';
-import { ShieldCheck, Lock, Server, Cloud, Network, CheckCircle2, Terminal } from 'lucide-react';
+import { ShieldCheck, Lock, Server, Cloud, Network, CheckCircle2, Terminal, Info, ChevronRight } from 'lucide-react';
 
 export const Section_EnterpriseDeployment: React.FC = () => {
   const { setPilotDrawerOpen, language } = useSimulationJourney();
@@ -10,6 +10,42 @@ export const Section_EnterpriseDeployment: React.FC = () => {
   const isRTL = language === 'AR';
 
   const [activeDeploymentTab, setActiveDeploymentTab] = useState<'AIR_GAPPED' | 'PRIVATE_CLOUD'>('AIR_GAPPED');
+  const [inspectedLevel, setInspectedLevel] = useState<'LEVEL_4' | 'LEVEL_3' | 'LEVEL_1_2'>('LEVEL_3');
+
+  const levelSecurityDetails = {
+    LEVEL_4: {
+      title: isRTL ? 'المستوى 4 // شبكة المؤسسة وإدارة الموارد (ERP & Business LAN)' : 'LEVEL 4 // ERP & Enterprise Corporate Network',
+      scope: isRTL ? 'إدارة الموارد، تخطيط الإنتاج، البريد المؤسسي، وتكامل الـ SAP' : 'Business logistics, ERP scheduling, corporate email, and management reports',
+      firewall: isRTL ? 'جدار ناري معزول بفصل تام (Stateful Deep Packet Inspection)' : 'Strict DMZ firewall with stateful inspection & zero inbound OT routes',
+      controls: [
+        isRTL ? 'مصادقة موحدة عبر SAML 2.0 / Azure AD / Okta' : 'Corporate SAML 2.0 / Azure AD / Okta SSO integration',
+        isRTL ? 'تشفير كامل لكافة الاتصالات عبر بروتوكول TLS 1.3' : 'End-to-end TLS 1.3 encrypted browser sessions',
+        isRTL ? 'عزل كامل عن شبكات التحكم والتحكم الإشرافي SCADA' : 'Air-tight segmentation preventing enterprise access to plant control',
+      ],
+    },
+    LEVEL_3: {
+      title: isRTL ? 'المستوى 3 // منطقة محاكاة العمليات الآمنة (Simulation DMZ)' : 'LEVEL 3 // Operational Simulation DMZ (NEXIIVA Runtime)',
+      scope: isRTL ? 'خادم تشغيل محاكي نكسيفا، محطات تدريب المشغلين، وكونسول المدرب' : 'Nexiiva real-time dynamic engine, trainee operator consoles, and instructor station',
+      firewall: isRTL ? 'تشغيل أوفلاين 100% دون الحاجة لأي اتصال بالإنترنت' : 'Zero outbound cloud telemetry, 100% air-gapped offline runtime capability',
+      controls: [
+        isRTL ? 'تشفير كامل لقواعد بيانات المصفاة ومخططات P&ID بـ AES-256' : 'AES-256 encrypted local database for proprietary refinery P&ID blueprints',
+        isRTL ? 'فصل فيزيائي وشبكي كامل يمنع أي تأثير على العمليات الحية' : 'Physical or VLAN network isolation ensuring zero disruption to live throughput',
+        isRTL ? 'تسجيل كامل لكافة أحداث التدريب مع بصمة رقمية SHA-256' : 'Tamper-evident audit logging for all emergency drills & certification sessions',
+      ],
+    },
+    LEVEL_1_2: {
+      title: isRTL ? 'المستوى 1 و 2 // منظومة التحكم الميداني الحي (Live DCS & SIS)' : 'LEVEL 1 & 2 // Physical Plant DCS & Safety Instrumented Systems',
+      scope: isRTL ? 'صمامات ومضخات المصفاة الحقيقية، وحدات التحكم PLC، ومنظومة الإغلاق الطارئ ESD' : 'Physical distillation columns, fired heaters, safety interlocks, and live field PLCs',
+      firewall: isRTL ? 'عزل كلفاني وشبكي تام 100% (Galvanic & Network Air-Gap)' : '100% Galvanic and network air-gap; unidirectional data-diode compatible',
+      controls: [
+        isRTL ? 'منع قطعي لأي إشارات تحكم عكسية نحو معدات المصفاة' : 'Zero feedback loop to physical control valves or ESD emergency interlocks',
+        isRTL ? 'سلامة المنشأة مضمونة 100% أثناء كافة سيناريوهات الطوارئ' : 'Zero process safety or production disruption risk during extreme drill scenarios',
+        isRTL ? 'مطابقة كاملة لمعايير ISA/IEC 62443 Security Level 3/4' : 'Full compliance with ISA/IEC 62443 Security Level 3/4 zone requirements',
+      ],
+    },
+  };
+
+  const currentLevelInfo = levelSecurityDetails[inspectedLevel];
 
   return (
     <section id="deployment" className="py-24 px-6 lg:px-12 relative border-t border-slate-200 bg-white">
@@ -95,8 +131,8 @@ export const Section_EnterpriseDeployment: React.FC = () => {
 
         {/* The Purdue Model Cyber-Security Blueprint Diagram Artifact */}
         <div className="rounded-2xl bg-white border border-slate-200 shadow-sm p-6 lg:p-8 relative overflow-hidden text-left" dir={isRTL ? 'rtl' : 'ltr'}>
-          <div className="flex items-center justify-between pb-4 border-b border-slate-100 text-xs font-sans">
-            <div className="flex items-center space-x-3">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-100 text-xs font-sans gap-2">
+            <div className="flex items-center space-x-3 space-x-reverse">
               <span className="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 font-bold border border-emerald-200 text-[11px] font-mono">
                 ISA/IEC 62443 & PURDUE MODEL // COMPLIANT
               </span>
@@ -104,18 +140,31 @@ export const Section_EnterpriseDeployment: React.FC = () => {
                 {activeDeploymentTab === 'AIR_GAPPED' ? 'OFFLINE PHYSICAL APPLIANCE' : 'DEDICATED IPSEC VPN TUNNEL'}
               </span>
             </div>
-            <div className="flex items-center space-x-1.5 text-slate-600 font-mono text-[11px]">
+            <div className="flex items-center space-x-1.5 space-x-reverse text-slate-600 font-mono text-[11px]">
               <Lock className="w-3.5 h-3.5 text-[#0B1120]" />
               <span>ZERO OUTBOUND TELEMETRY</span>
             </div>
           </div>
 
-          {/* Visual Architecture Schematic */}
+          {/* Interactive Purdue Layers Grid */}
           <div className="my-8 grid grid-cols-1 md:grid-cols-4 gap-4 relative">
             {/* Level 4 */}
-            <div className="p-5 rounded-xl bg-[#F8FAFC] border border-slate-200 space-y-2">
-              <div className="text-[10px] font-mono text-slate-500 uppercase tracking-widest font-semibold">
-                LEVEL 4 // ERP & CORP
+            <div
+              onClick={() => {
+                setInspectedLevel('LEVEL_4');
+                dcsAudio.playClick();
+              }}
+              className={`p-5 rounded-xl border transition-all cursor-pointer space-y-2 ${
+                inspectedLevel === 'LEVEL_4'
+                  ? 'bg-purple-50/50 border-[#4F46E5] ring-2 ring-[#4F46E5]/20 shadow-sm'
+                  : 'bg-[#F8FAFC] border-slate-200 hover:border-slate-300'
+              }`}
+            >
+              <div className="flex items-center justify-between">
+                <span className="text-[10px] font-mono text-slate-500 uppercase tracking-widest font-semibold">
+                  LEVEL 4 // ERP & CORP
+                </span>
+                <span className="text-[10px] text-[#4F46E5] font-mono font-bold">INFO ↗</span>
               </div>
               <div className="text-sm font-bold text-[#0B1120]">Corporate Enterprise</div>
               <div className="text-xs text-slate-500 leading-relaxed">
@@ -125,12 +174,22 @@ export const Section_EnterpriseDeployment: React.FC = () => {
             </div>
 
             {/* Level 3: Simulation Academy */}
-            <div className="p-6 rounded-xl bg-gradient-to-b from-purple-500/5 via-indigo-500/5 to-blue-500/5 border-2 border-[#4F46E5] space-y-3 shadow-sm md:col-span-2">
+            <div
+              onClick={() => {
+                setInspectedLevel('LEVEL_3');
+                dcsAudio.playClick();
+              }}
+              className={`p-6 rounded-xl border-2 transition-all cursor-pointer space-y-3 shadow-sm md:col-span-2 ${
+                inspectedLevel === 'LEVEL_3'
+                  ? 'bg-gradient-to-b from-purple-500/10 via-indigo-500/5 to-blue-500/5 border-[#4F46E5] ring-2 ring-[#4F46E5]/30'
+                  : 'bg-gradient-to-b from-purple-500/5 via-indigo-500/5 to-blue-500/5 border-indigo-300 hover:border-[#4F46E5]'
+              }`}
+            >
               <div className="flex items-center justify-between">
                 <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-gradient-to-r from-[#7C3AED] to-[#2563EB] text-white font-bold">
                   LEVEL 3 // SIMULATION DMZ
                 </span>
-                <span className="text-[10px] font-mono text-emerald-600 font-bold flex items-center space-x-1">
+                <span className="text-[10px] font-mono text-emerald-600 font-bold flex items-center space-x-1 space-x-reverse">
                   <CheckCircle2 className="w-3 h-3" />
                   <span>NEXIIVA RUNTIME ENGINE</span>
                 </span>
@@ -157,7 +216,17 @@ export const Section_EnterpriseDeployment: React.FC = () => {
             </div>
 
             {/* Level 2 & 1 */}
-            <div className="p-5 rounded-xl bg-[#F8FAFC] border border-slate-200 space-y-2 opacity-85">
+            <div
+              onClick={() => {
+                setInspectedLevel('LEVEL_1_2');
+                dcsAudio.playClick();
+              }}
+              className={`p-5 rounded-xl border transition-all cursor-pointer space-y-2 ${
+                inspectedLevel === 'LEVEL_1_2'
+                  ? 'bg-rose-50/50 border-rose-400 ring-2 ring-rose-200 shadow-sm'
+                  : 'bg-[#F8FAFC] border-slate-200 hover:border-slate-300'
+              }`}
+            >
               <div className="flex items-center justify-between">
                 <span className="text-[10px] font-mono text-red-600 uppercase tracking-widest font-semibold">
                   LEVEL 1 & 2 // LIVE DCS
@@ -168,10 +237,30 @@ export const Section_EnterpriseDeployment: React.FC = () => {
               <div className="text-xs text-slate-500 leading-relaxed">
                 {isRTL ? 'صمامات ومضخات المصفاة الحقيقية' : 'Physical valves, distillation trays, ESD interlocks'}
               </div>
-              <div className="pt-2 text-[10px] font-mono text-emerald-600 flex items-center space-x-1 font-bold">
+              <div className="pt-2 text-[10px] font-mono text-emerald-600 flex items-center space-x-1 space-x-reverse font-bold">
                 <ShieldCheck className="w-3 h-3" />
                 <span>100% UNTOUCHED // ZERO RISK</span>
               </div>
+            </div>
+          </div>
+
+          {/* Interactive Purdue Security Detail Inspector Box */}
+          <div className="p-5 rounded-xl bg-[#F8FAFC] border border-slate-200 space-y-3 font-sans">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-200/80 pb-2.5">
+              <span className="text-xs font-mono font-bold text-[#0B1120]">
+                {currentLevelInfo.title}
+              </span>
+              <span className="text-[11px] font-mono text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                {currentLevelInfo.firewall}
+              </span>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1 text-xs text-slate-600">
+              {currentLevelInfo.controls.map((ctrl, i) => (
+                <div key={i} className="p-3 rounded-lg bg-white border border-slate-200/90 flex items-start space-x-2 space-x-reverse">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
+                  <span>{ctrl}</span>
+                </div>
+              ))}
             </div>
           </div>
 
@@ -187,10 +276,10 @@ export const Section_EnterpriseDeployment: React.FC = () => {
                 dcsAudio.playClick();
                 setPilotDrawerOpen(true);
               }}
-              className="px-6 py-3 rounded-full bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] text-white font-semibold text-xs shadow-[0_8px_25px_-4px_rgba(79,70,229,0.45)] hover:shadow-[0_12px_30px_-4px_rgba(79,70,229,0.6)] transition-all cursor-pointer flex items-center space-x-1.5"
+              className="px-6 py-3 rounded-full bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] text-white font-semibold text-xs shadow-[0_8px_25px_-4px_rgba(79,70,229,0.45)] hover:shadow-[0_12px_30px_-4px_rgba(79,70,229,0.6)] transition-all cursor-pointer flex items-center space-x-1.5 space-x-reverse"
             >
               <span>{isRTL ? 'طلب وثيقة الأمان والحزم الهندسية' : 'Request Architecture Whitepaper'}</span>
-              <span className="ml-1.5">→</span>
+              <span>→</span>
             </button>
           </div>
         </div>

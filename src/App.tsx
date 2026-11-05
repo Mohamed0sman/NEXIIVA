@@ -11,6 +11,7 @@ import { Footer } from './components/Footer';
 import { VideoModal } from './components/VideoModal';
 import { PilotDrawer } from './components/PilotDrawer';
 import { SimulatorModal } from './components/SimulatorModal';
+import { InteractiveFaceplateDrawer } from './components/InteractiveFaceplateDrawer';
 
 const AppContent: React.FC = () => {
   const { language } = useSimulationJourney();
@@ -49,6 +50,7 @@ const AppContent: React.FC = () => {
       <VideoModal />
       <PilotDrawer />
       <SimulatorModal />
+      <InteractiveFaceplateDrawer />
     </div>
   );
 };

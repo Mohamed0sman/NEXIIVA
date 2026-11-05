@@ -101,3 +101,14 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #a3a6af;
 }
+
+@keyframes flowDash {
+  to {
+    stroke-dashoffset: -24;
+  }
+}
+
+.animate-flow-dash {
+  stroke-dasharray: 8 4;
+  animation: flowDash 1.2s linear infinite;
+}

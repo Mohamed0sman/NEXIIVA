@@ -172,18 +172,40 @@ export const Section_PricingLeadership: React.FC = () => {
           </div>
 
           {submitted ? (
-            <div className="p-8 rounded-2xl bg-[#ecfdf5] border border-[#a7f3d0] text-center space-y-3">
-              <div className="w-12 h-12 mx-auto rounded-full bg-[#059669] text-white flex items-center justify-center font-bold text-2xl">
+            <div className="p-8 rounded-2xl bg-gradient-to-b from-emerald-500/10 via-teal-500/5 to-transparent border border-emerald-300 text-center space-y-4">
+              <div className="w-14 h-14 mx-auto rounded-full bg-[#059669] text-white flex items-center justify-center font-bold text-2xl shadow-lg">
                 ✓
               </div>
-              <h4 className="text-xl font-bold text-[#0B1120] font-sans">
-                {isRTL ? 'تم استلام طلبك بنجاح' : 'Demo & Pilot Request Received'}
+              <h4 className="text-2xl font-bold text-[#0B1120] font-sans">
+                {isRTL ? 'تم استلام طلب المقترح بنجاح' : 'Proposal & Pilot Request Received'}
               </h4>
-              <p className="text-xs text-[#64748B] max-w-md mx-auto font-sans leading-relaxed">
+              <p className="text-xs sm:text-sm text-[#64748B] max-w-md mx-auto font-sans leading-relaxed">
                 {isRTL
-                  ? 'سيتواصل معك م. مصطفى عادل أو الفريق الفني خلال 24 ساعة عبر البريد الإلكتروني لتنسيق العرض الحي ومناقشة تفاصيل الوحدة.'
-                  : 'Eng. Mostafa Adel or our technical team will reach out within 24 hours to schedule the live CDU/VDU walkthrough and discuss your unit specifications.'}
+                  ? `شكراً لك ${name || 'باشمهندس'}! تم تسجيل طلب مصفاة/شركة (${company || 'منشأتكم'}). سيتواصل معك م. مصطفى عادل شخصياً خلال 24 ساعة لتنسيق العرض الميداني وتوقيع اتفاقية الـ NDA.`
+                  : `Thank you ${name || 'Engineer'}! Your request for (${company || 'your facility'}) has been logged. Eng. Mostafa Adel will contact you within 24 hours to schedule the live CDU/VDU walkthrough and initiate the mutual NDA.`}
               </p>
+
+              <div className="pt-2 flex flex-wrap items-center justify-center gap-3">
+                <a
+                  href="#simulator-stage"
+                  onClick={() => dcsAudio.playClick()}
+                  className="px-5 py-2.5 rounded-full bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] text-white font-semibold text-xs shadow-md hover:shadow-lg transition-all"
+                >
+                  {isRTL ? 'جرّب محاكي CDU/VDU الحي الآن ↗' : 'Test Live CDU/VDU Simulator Now ↗'}
+                </a>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSubmitted(false);
+                    setName('');
+                    setCompany('');
+                    setEmail('');
+                  }}
+                  className="px-4 py-2.5 rounded-full bg-white hover:bg-slate-50 border border-slate-300 text-slate-700 text-xs font-semibold transition-colors cursor-pointer"
+                >
+                  {isRTL ? 'إرسال طلب لمنشأة أخرى' : 'Submit Another Request'}
+                </button>
+              </div>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4 text-left font-sans">

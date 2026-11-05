@@ -3,14 +3,23 @@ import { NexiivaLogo } from './NexiivaLogo';
 import { useSimulationJourney } from '../context/SimulationJourneyContext';
 import { translations } from '../data/translations';
 import { dcsAudio } from '../utils/audio';
-import { Play, Menu, X } from 'lucide-react';
+import { Play, Menu, X, Volume2, VolumeX } from 'lucide-react';
 
 export const Navbar: React.FC = () => {
   const { setVideoModalOpen, setPilotDrawerOpen, setSimulatorModalOpen, language, setLanguage } = useSimulationJourney();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isMuted, setIsMuted] = useState(dcsAudio.isMuted());
 
   const t = translations[language].nav;
   const isRTL = language === 'AR';
+
+  const toggleSound = () => {
+    const muted = dcsAudio.toggleMute();
+    setIsMuted(muted);
+    if (!muted) {
+      dcsAudio.playClick();
+    }
+  };
 
   const scrollTo = (id: string) => {
     setMobileMenuOpen(false);
@@ -22,10 +31,10 @@ export const Navbar: React.FC = () => {
   return (
     <nav className="sticky top-0 z-50 h-20 bg-white/95 backdrop-blur-md border-b border-[#ececec]/80 px-6 lg:px-12 flex items-center justify-between">
       {/* Brand Wordmark & Subtle Subtitle */}
-      <div className="flex items-center space-x-4">
-        <a href="#" className="flex items-center space-x-3 group">
+      <div className="flex items-center space-x-4 space-x-reverse">
+        <a href="#" className="flex items-center space-x-3 space-x-reverse group">
           <NexiivaLogo height={24} />
-          <div className="hidden sm:flex flex-col border-l border-[#ececec] pl-3 text-left">
+          <div className={`hidden sm:flex flex-col ${isRTL ? 'border-r pr-3 text-right' : 'border-l pl-3 text-left'} border-[#ececec]`}>
             <span className="text-[11px] font-sans tracking-wide text-slate-500 font-medium">
               {t.brandTag}
             </span>
@@ -75,8 +84,18 @@ export const Navbar: React.FC = () => {
         </button>
       </div>
 
-      {/* Right Actions: Language + Primary CTA Button */}
-      <div className="flex items-center space-x-4">
+      {/* Right Actions: Language + Audio + Primary CTA Button */}
+      <div className="flex items-center space-x-3 space-x-reverse">
+        {/* Audio Mute/Unmute Toggle */}
+        <button
+          onClick={toggleSound}
+          className="p-2 rounded-full text-slate-500 hover:text-[#0B1120] hover:bg-slate-100 transition-colors cursor-pointer"
+          title={isMuted ? (isRTL ? 'تفعيل المؤثرات الصوتية' : 'Unmute Sound Effects') : (isRTL ? 'كتم المؤثرات الصوتية' : 'Mute Sound Effects')}
+          aria-label="Toggle Sound"
+        >
+          {isMuted ? <VolumeX className="w-4 h-4 text-slate-400" /> : <Volume2 className="w-4 h-4 text-[#4F46E5]" />}
+        </button>
+
         {/* Language Switcher Pill */}
         <div className="flex items-center bg-[#F1F5F9] rounded-full p-0.5 text-xs font-sans border border-slate-200">
           <button
