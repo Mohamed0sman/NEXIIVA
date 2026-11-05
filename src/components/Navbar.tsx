@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { NexiivaLogo } from './NexiivaLogo';
 import { useSimulationJourney } from '../context/SimulationJourneyContext';
 import { translations } from '../data/translations';
-import { Play, Menu, X, ArrowRight } from 'lucide-react';
+import { Play, Menu, X, ArrowRight, MessageSquare, Shield } from 'lucide-react';
 
 export const Navbar: React.FC = () => {
   const { setVideoModalOpen, setPilotDrawerOpen, language, setLanguage } = useSimulationJourney();
@@ -18,61 +18,54 @@ export const Navbar: React.FC = () => {
   };
 
   return (
-    <nav className="sticky top-0 z-50 h-20 bg-white/95 backdrop-blur-md border-b border-[#ececec]/80 px-6 lg:px-12 flex items-center justify-between">
-      {/* Brand Wordmark & Subtle Subtitle */}
-      <div className="flex items-center space-x-4 space-x-reverse">
+    <nav className="sticky top-0 z-50 h-20 bg-[#04060E]/85 backdrop-blur-xl border-b border-white/10 px-4 sm:px-6 lg:px-12 flex items-center justify-between transition-colors">
+      {/* Brand Wordmark & Subtle OT Tag */}
+      <div className="flex items-center space-x-3.5 space-x-reverse">
         <a href="#" className="flex items-center space-x-3 space-x-reverse group">
-          <NexiivaLogo height={24} />
-          <div className={`hidden sm:flex flex-col ${isRTL ? 'border-r pr-3 text-right' : 'border-l pl-3 text-left'} border-[#ececec]`}>
-            <span className="text-[11px] font-sans tracking-wide text-slate-500 font-medium">
-              {t.brandTag}
+          <NexiivaLogo height={28} />
+          <div className={`hidden sm:flex flex-col ${isRTL ? 'border-r pr-3 text-right' : 'border-l pl-3 text-left'} border-white/15`}>
+            <span className="text-[10px] font-mono tracking-wider text-slate-400 font-medium uppercase">
+              {isRTL ? 'محاكاة تشغيل المصافي المتقدمة' : 'REFINERY OPERATOR SIMULATION'}
             </span>
           </div>
         </a>
       </div>
 
-      {/* Navigation Links: Company & Product Focused */}
-      <div className="hidden lg:flex items-center gap-7 text-[14px] font-sans font-medium text-slate-700">
+      {/* Navigation Links: Obsidian Styled */}
+      <div className="hidden lg:flex items-center gap-7 text-[13.5px] font-medium text-slate-300">
         <button
-          onClick={() => scrollTo('about')}
-          className="hover:text-[#4F46E5] transition-colors cursor-pointer"
+          onClick={() => scrollTo('hero')}
+          className="hover:text-white transition-colors cursor-pointer"
         >
-          {t.about}
+          {isRTL ? 'المحاكي المباشر' : 'Live DCS Console'}
         </button>
 
         <button
-          onClick={() => scrollTo('capabilities')}
-          className="hover:text-[#4F46E5] transition-colors cursor-pointer"
+          onClick={() => scrollTo('industry-dilemma')}
+          className="hover:text-white transition-colors cursor-pointer"
         >
-          {t.capabilities}
+          {isRTL ? 'معضلة الـ $110K والعائد' : 'The $110K Dilemma'}
         </button>
 
         <button
           onClick={() => scrollTo('ots-builder')}
-          className="hover:text-[#4F46E5] transition-colors cursor-pointer"
+          className="hover:text-white transition-colors cursor-pointer"
         >
-          {t.otsBuilder}
-        </button>
-
-        <button
-          onClick={() => scrollTo('operational-reality')}
-          className="hover:text-[#4F46E5] transition-colors cursor-pointer"
-        >
-          {t.whyNexiiva}
+          {isRTL ? 'استوديو بناء الوحدات' : 'OTS Builder'}
         </button>
 
         <button
           onClick={() => scrollTo('deployment')}
-          className="hover:text-[#4F46E5] transition-colors cursor-pointer"
+          className="hover:text-white transition-colors cursor-pointer"
         >
-          {t.deployment}
+          {isRTL ? 'النشر المعزول والأمان' : 'Air-Gapped Deployment'}
         </button>
 
         <button
-          onClick={() => scrollTo('subscribe')}
-          className="text-[#4F46E5] font-semibold hover:text-[#7C3AED] transition-colors cursor-pointer flex items-center space-x-1"
+          onClick={() => scrollTo('pricing-leadership')}
+          className="text-cyan-400 font-semibold hover:text-cyan-300 transition-colors cursor-pointer flex items-center space-x-1 space-x-reverse"
         >
-          <span>{t.howToSubscribe}</span>
+          <span>{isRTL ? 'مسارات الاشتراك والقيادة' : 'Commercial Tracks'}</span>
           <span className="text-xs">↓</span>
         </button>
       </div>
@@ -80,13 +73,13 @@ export const Navbar: React.FC = () => {
       {/* Right Actions: Language + Primary CTA Button + Mobile Menu Toggle */}
       <div className="flex items-center gap-2 sm:gap-3">
         {/* Language Switcher Pill */}
-        <div className="flex items-center bg-[#F1F5F9] rounded-full p-0.5 text-xs font-sans border border-slate-200">
+        <div className="flex items-center bg-[#0B1124] rounded-xl p-0.5 text-xs font-mono border border-white/10">
           <button
             onClick={() => setLanguage('EN')}
-            className={`px-2.5 py-1 rounded-full transition-all cursor-pointer ${
+            className={`px-2.5 py-1 rounded-lg transition-all cursor-pointer ${
               language === 'EN'
-                ? 'bg-gradient-to-r from-[#7C3AED] to-[#2563EB] text-white font-semibold shadow-sm'
-                : 'text-slate-600 hover:text-[#0B1120]'
+                ? 'bg-gradient-to-r from-[#8E42FE] to-[#3361FC] text-white font-bold shadow-sm'
+                : 'text-slate-400 hover:text-white'
             }`}
             aria-label="Switch to English"
           >
@@ -94,10 +87,10 @@ export const Navbar: React.FC = () => {
           </button>
           <button
             onClick={() => setLanguage('AR')}
-            className={`px-2.5 py-1 rounded-full transition-all cursor-pointer font-sans ${
+            className={`px-2.5 py-1 rounded-lg transition-all cursor-pointer font-sans ${
               language === 'AR'
-                ? 'bg-gradient-to-r from-[#7C3AED] to-[#2563EB] text-white font-semibold shadow-sm'
-                : 'text-slate-600 hover:text-[#0B1120]'
+                ? 'bg-gradient-to-r from-[#8E42FE] to-[#3361FC] text-white font-bold shadow-sm'
+                : 'text-slate-400 hover:text-white'
             }`}
             aria-label="التغيير إلى العربية"
           >
@@ -105,150 +98,113 @@ export const Navbar: React.FC = () => {
           </button>
         </div>
 
-        {/* Primary CTA Button: Subscribe & Start (Visible on tablet & desktop, integrated in drawer on mobile) */}
+        {/* Primary CTA Button: Start 90-Day Pilot */}
         <button
           onClick={() => setPilotDrawerOpen(true)}
-          className="hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] hover:opacity-95 text-white font-medium text-xs shadow-[0_8px_25px_-4px_rgba(79,70,229,0.45)] transition-all cursor-pointer"
+          className="hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#8E42FE] via-[#7B3CFC] to-[#3361FC] hover:shadow-[0_0_25px_rgba(123,60,252,0.6)] text-white font-semibold text-xs transition-all cursor-pointer shadow-md"
         >
-          <span>{t.startPilot}</span>
+          <span>{isRTL ? 'بدء تجربة الـ 90 يوم' : 'Start 90-Day Pilot'}</span>
         </button>
 
         {/* Mobile Menu Trigger (44x44px touch target) */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label={mobileMenuOpen ? 'Close Menu' : 'Open Menu'}
-          className="lg:hidden w-11 h-11 flex items-center justify-center rounded-xl bg-slate-100 hover:bg-slate-200 active:bg-slate-300 text-[#0B1120] transition-colors"
+          className="lg:hidden w-11 h-11 flex items-center justify-center rounded-xl bg-white/5 hover:bg-white/10 active:bg-white/15 text-white border border-white/10 transition-colors"
         >
-          {mobileMenuOpen ? <X className="w-5 h-5 text-[#4F46E5]" /> : <Menu className="w-5 h-5 text-slate-800" />}
+          {mobileMenuOpen ? <X className="w-5 h-5 text-purple-400" /> : <Menu className="w-5 h-5 text-slate-300" />}
         </button>
       </div>
 
-      {/* Elite Mobile Overlay & Sliding Sheet */}
+      {/* Elite Mobile Overlay & Sliding Sheet in Obsidian */}
       {mobileMenuOpen && (
         <div className="fixed inset-0 top-20 z-50 lg:hidden">
           {/* Backdrop Blur */}
           <div
-            className="absolute inset-0 bg-slate-900/50 backdrop-blur-sm transition-opacity"
+            className="absolute inset-0 bg-black/80 backdrop-blur-md transition-opacity"
             onClick={() => setMobileMenuOpen(false)}
           />
 
           {/* Drawer Panel */}
           <div
             dir={isRTL ? 'rtl' : 'ltr'}
-            className="relative bg-white border-b border-slate-200 shadow-2xl max-h-[calc(100vh-5rem)] overflow-y-auto px-6 py-6 flex flex-col space-y-4 animate-in slide-in-from-top-2 duration-200"
+            className="relative bg-[#070B1A]/95 border-b border-white/10 shadow-2xl max-h-[calc(100vh-5rem)] overflow-y-auto px-6 py-6 flex flex-col space-y-4 animate-in slide-in-from-top-2 duration-200"
           >
             {/* Navigation Links */}
             <div className="flex flex-col space-y-1">
               <button
-                onClick={() => scrollTo('about')}
-                className={`flex items-center justify-between w-full min-h-[46px] px-3.5 rounded-xl hover:bg-slate-50 active:bg-slate-100 ${
+                onClick={() => scrollTo('hero')}
+                className={`flex items-center justify-between w-full min-h-[46px] px-3.5 rounded-xl hover:bg-white/5 active:bg-white/10 ${
                   isRTL ? 'text-right' : 'text-left'
-                } text-[15px] font-medium text-slate-800 transition-colors`}
+                } text-[15px] font-medium text-slate-200 transition-colors`}
               >
-                <span>{t.about}</span>
-                <span className="text-slate-400 text-xs">{isRTL ? '←' : '→'}</span>
+                <span>{isRTL ? 'المحاكي المباشر' : 'Live DCS Console'}</span>
+                <span className="text-slate-500 text-xs">{isRTL ? '←' : '→'}</span>
               </button>
 
               <button
-                onClick={() => scrollTo('capabilities')}
-                className={`flex items-center justify-between w-full min-h-[46px] px-3.5 rounded-xl hover:bg-slate-50 active:bg-slate-100 ${
+                onClick={() => scrollTo('industry-dilemma')}
+                className={`flex items-center justify-between w-full min-h-[46px] px-3.5 rounded-xl hover:bg-white/5 active:bg-white/10 ${
                   isRTL ? 'text-right' : 'text-left'
-                } text-[15px] font-medium text-slate-800 transition-colors`}
+                } text-[15px] font-medium text-slate-200 transition-colors`}
               >
-                <span>{t.capabilities}</span>
-                <span className="text-slate-400 text-xs">{isRTL ? '←' : '→'}</span>
+                <span>{isRTL ? 'معضلة الـ $110K والعائد' : 'The $110K Dilemma'}</span>
+                <span className="text-slate-500 text-xs">{isRTL ? '←' : '→'}</span>
               </button>
 
               <button
                 onClick={() => scrollTo('ots-builder')}
-                className={`flex items-center justify-between w-full min-h-[46px] px-3.5 rounded-xl hover:bg-slate-50 active:bg-slate-100 ${
+                className={`flex items-center justify-between w-full min-h-[46px] px-3.5 rounded-xl hover:bg-white/5 active:bg-white/10 ${
                   isRTL ? 'text-right' : 'text-left'
-                } text-[15px] font-medium text-slate-800 transition-colors`}
+                } text-[15px] font-medium text-slate-200 transition-colors`}
               >
-                <span>{t.otsBuilder}</span>
-                <span className="text-slate-400 text-xs">{isRTL ? '←' : '→'}</span>
-              </button>
-
-              <button
-                onClick={() => scrollTo('operational-reality')}
-                className={`flex items-center justify-between w-full min-h-[46px] px-3.5 rounded-xl hover:bg-slate-50 active:bg-slate-100 ${
-                  isRTL ? 'text-right' : 'text-left'
-                } text-[15px] font-medium text-slate-800 transition-colors`}
-              >
-                <span>{t.whyNexiiva}</span>
-                <span className="text-slate-400 text-xs">{isRTL ? '←' : '→'}</span>
+                <span>{isRTL ? 'استوديو بناء الوحدات' : 'OTS Builder'}</span>
+                <span className="text-slate-500 text-xs">{isRTL ? '←' : '→'}</span>
               </button>
 
               <button
                 onClick={() => scrollTo('deployment')}
-                className={`flex items-center justify-between w-full min-h-[46px] px-3.5 rounded-xl hover:bg-slate-50 active:bg-slate-100 ${
+                className={`flex items-center justify-between w-full min-h-[46px] px-3.5 rounded-xl hover:bg-white/5 active:bg-white/10 ${
                   isRTL ? 'text-right' : 'text-left'
-                } text-[15px] font-medium text-slate-800 transition-colors`}
+                } text-[15px] font-medium text-slate-200 transition-colors`}
               >
-                <span>{t.deployment}</span>
-                <span className="text-slate-400 text-xs">{isRTL ? '←' : '→'}</span>
+                <span>{isRTL ? 'النشر المعزول والأمان' : 'Air-Gapped Deployment'}</span>
+                <span className="text-slate-500 text-xs">{isRTL ? '←' : '→'}</span>
               </button>
 
               <button
-                onClick={() => scrollTo('subscribe')}
-                className={`flex items-center justify-between w-full min-h-[46px] px-3.5 rounded-xl bg-indigo-50/70 hover:bg-indigo-100/70 active:bg-indigo-200/50 ${
+                onClick={() => scrollTo('pricing-leadership')}
+                className={`flex items-center justify-between w-full min-h-[46px] px-3.5 rounded-xl hover:bg-white/5 active:bg-white/10 ${
                   isRTL ? 'text-right' : 'text-left'
-                } text-[15px] font-semibold text-[#4F46E5] transition-colors`}
+                } text-[15px] font-medium text-cyan-300 transition-colors`}
               >
-                <span>{t.howToSubscribe}</span>
-                <span className="text-[#4F46E5] text-xs font-bold">↓</span>
+                <span>{isRTL ? 'مسارات الاشتراك والقيادة' : 'Commercial Tracks & Leadership'}</span>
+                <span className="text-slate-500 text-xs">{isRTL ? '←' : '→'}</span>
               </button>
             </div>
 
-            {/* Walkthrough Video Trigger Card */}
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                setVideoModalOpen(true);
-              }}
-              className="w-full min-h-[48px] px-4 rounded-xl bg-slate-900 text-white flex items-center justify-center space-x-2 space-x-reverse font-medium text-xs shadow-md active:scale-[0.99] transition-all cursor-pointer"
-            >
-              <div className="w-5 h-5 rounded-full bg-red-600 flex items-center justify-center text-white">
-                <Play className="w-2.5 h-2.5 fill-current ml-0.5" />
-              </div>
-              <span>{t.walkthrough}</span>
-            </button>
+            {/* Direct Contact Actions in Mobile Menu */}
+            <div className="pt-3 border-t border-white/10 flex flex-col space-y-2.5">
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  setPilotDrawerOpen(true);
+                }}
+                className="w-full min-h-[48px] rounded-xl bg-gradient-to-r from-[#8E42FE] via-[#7B3CFC] to-[#3361FC] text-white font-semibold text-sm flex items-center justify-center space-x-2 space-x-reverse shadow-lg cursor-pointer"
+              >
+                <span>{isRTL ? 'بدء تجربة الـ 90 يوم ($800)' : 'Start 90-Day Pilot ($800)'}</span>
+                <span>{isRTL ? '←' : '→'}</span>
+              </button>
 
-            {/* Mobile Primary Action Button */}
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                setPilotDrawerOpen(true);
-              }}
-              className="w-full min-h-[48px] rounded-xl bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] text-white font-semibold text-sm shadow-[0_8px_25px_-4px_rgba(79,70,229,0.45)] active:scale-[0.99] transition-all flex items-center justify-center space-x-2 space-x-reverse cursor-pointer"
-            >
-              <span>{t.startPilot}</span>
-              <ArrowRight className={`w-4 h-4 ${isRTL ? 'rotate-180' : ''}`} />
-            </button>
-
-            {/* Direct Engineering Desk Contact Note */}
-            <div className="pt-2.5 border-t border-slate-100 text-center space-y-1">
-              <div className="text-[11px] text-slate-500">
-                {isRTL ? 'مكتب التواصل المباشر للمهندس مصطفى عادل:' : 'Direct Desk Eng. Mostafa Adel:'}
-              </div>
-              <div className="flex items-center justify-center gap-3 text-[11px] font-mono">
-                <a
-                  href="https://wa.me/201004131154"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-emerald-600 font-semibold hover:underline flex items-center space-x-1 space-x-reverse"
-                >
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                  <span>واتساب: 01004131154</span>
-                </a>
-                <span className="text-slate-300">|</span>
-                <a
-                  href="mailto:Mostafa.adel.esmaiel@gmail.com"
-                  className="text-[#4F46E5] font-semibold hover:underline"
-                >
-                  البريد الإلكتروني
-                </a>
-              </div>
+              <a
+                href="https://wa.me/201004131154?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D9%85%D9%86%D8%B8%D9%88%D9%85%D8%A9%20NEXIIVA%20OTS%20%D9%84%D9%85%D8%AD%D8%A7%D9%83%D8%A7%D8%A9%20%D9%85%D8%B5%D8%A7%D9%81%D9%8A%20%D8%A7%D9%84%D8%AA%D9%83%D8%B1%D9%8A%D8%B1"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full min-h-[48px] rounded-xl bg-emerald-600/20 hover:bg-emerald-600/30 border border-emerald-500/40 text-emerald-300 font-semibold text-sm flex items-center justify-center space-x-2 space-x-reverse cursor-pointer transition-colors"
+              >
+                <MessageSquare className="w-4 h-4 text-emerald-400" />
+                <span>{isRTL ? 'تواصل واتساب: 01004131154' : 'WhatsApp Direct: +201004131154'}</span>
+              </a>
             </div>
           </div>
         </div>

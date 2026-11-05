@@ -2,10 +2,8 @@ import React from 'react';
 import { SimulationJourneyProvider, useSimulationJourney } from './context/SimulationJourneyContext';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
-import { Section_AboutCompany } from './components/Section_AboutCompany';
 import { Section_ComparisonROI } from './components/Section_ComparisonROI';
 import { Section_PIDScanner } from './components/Section_PIDScanner';
-import { Section_InteractiveJourney } from './components/Section_InteractiveJourney';
 import { Section_EnterpriseDeployment } from './components/Section_EnterpriseDeployment';
 import { Section_PricingLeadership } from './components/Section_PricingLeadership';
 import { Footer } from './components/Footer';
@@ -20,36 +18,30 @@ const AppContent: React.FC = () => {
   return (
     <div
       dir={isRTL ? 'rtl' : 'ltr'}
-      className="min-h-screen bg-white text-[#0B1120] flex flex-col selection:bg-purple-100 selection:text-indigo-900 relative overflow-x-hidden w-full max-w-full"
+      className="min-h-screen bg-[#03050C] text-[#F1F5F9] flex flex-col selection:bg-purple-900 selection:text-white relative overflow-x-hidden w-full max-w-full"
     >
-      {/* 1. Sticky Navbar sitting cleanly at top-0 */}
+      {/* 1. Sleek Glass Navbar */}
       <Navbar />
 
-      {/* 2. SECTION 1: Hero Section with Clean Product Showcase */}
+      {/* 2. STAGE 1: Control-Room Hero + Interactive Live Refinery Digital Twin Console */}
       <HeroSection />
 
-      {/* 3. SECTION 2: About NEXIIVA, Industrial Mission & Metrics */}
-      <Section_AboutCompany />
-
-      {/* 4. SECTION 3: The Operational Reality & Outage Economics */}
+      {/* 3. STAGE 2: The Three Industry Bottlenecks vs The NEXIIVA Breakthrough */}
       <Section_ComparisonROI />
 
-      {/* 5. SECTION 4: P&ID Ingestion Studio & 387 Equipment Codex */}
+      {/* 4. STAGE 3: OTS Builder Workspace — AI Agent & 100% Air-Gapped Offline Modes */}
       <Section_PIDScanner />
 
-      {/* 6. SECTION 5: Platform Capabilities (Practice, Instruct, Certify) */}
-      <Section_InteractiveJourney />
-
-      {/* 7. SECTION 6: Industrial Cyber-Security & Air-Gapped OT */}
+      {/* 5. STAGE 4: Enterprise Deployment & OT/IT Cybersecurity (Air-Gapped vs Cloud) */}
       <Section_EnterpriseDeployment />
 
-      {/* 8. SECTION 7: How to Subscribe (4-Step Onboarding & Licensing) */}
+      {/* 6. STAGE 5: Transparent B2B Commercial Tracks, Leadership Spotlight & Pilot Form */}
       <Section_PricingLeadership />
 
-      {/* 9. Minimal Editorial Footer */}
+      {/* 7. Minimal Dark Editorial Footer */}
       <Footer />
 
-      {/* Clean Modals, Drawers & Floating WhatsApp */}
+      {/* Global Modals, Drawers & Floating WhatsApp in Dark Theme */}
       <VideoModal />
       <PilotDrawer />
       <FloatingWhatsAppButton />

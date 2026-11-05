@@ -1,6 +1,8 @@
 import React from 'react';
 import { NexiivaLogo } from './NexiivaLogo';
 import { useSimulationJourney } from '../context/SimulationJourneyContext';
+import { MessageSquare, Mail, Shield, ExternalLink, ArrowRight } from 'lucide-react';
+import { RECIPIENT_DISPLAY_PHONE, RECIPIENT_INTL_PHONE, RECIPIENT_EMAIL } from '../utils/contactDispatcher';
 
 export const Footer: React.FC = () => {
   const { setPilotDrawerOpen, language } = useSimulationJourney();
@@ -12,122 +14,118 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="bg-[#fafafb] border-t border-[#ececec] py-14 sm:py-16 px-5 sm:px-6 lg:px-10 text-[#777b86] font-sans text-xs">
-      <div className="max-w-6xl mx-auto space-y-12" dir={isRTL ? 'rtl' : 'ltr'}>
+    <footer className="bg-[#03050C] border-t border-white/10 py-14 sm:py-16 px-5 sm:px-6 lg:px-12 text-slate-400 font-sans text-xs relative overflow-hidden">
+      {/* Blueprint grid overlay */}
+      <div className="absolute inset-0 blueprint-grid opacity-30 pointer-events-none" />
+
+      <div className="max-w-[1240px] mx-auto space-y-12 relative z-10" dir={isRTL ? 'rtl' : 'ltr'}>
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 sm:gap-10 items-start">
           {/* Brand Info (5 Cols) */}
           <div className={`md:col-span-5 space-y-4 ${isRTL ? 'text-right' : 'text-left'}`}>
-            <NexiivaLogo height={26} />
-            <p className="text-[#777b86] text-xs leading-relaxed max-w-sm">
+            <NexiivaLogo height={28} />
+            <p className="text-slate-400 text-xs leading-relaxed max-w-sm font-sans">
               {isRTL
                 ? 'المنظومة الصناعية المتخصصة لمحاكاة مشغلي مصافي النفط والغاز والبتروكيماويات. تحول نكسيفا مخططات P&ID وفلسفة التحكم إلى توائم رقمية واقعية لتأهيل الكفاءات وحماية المنشآت من كوارث الإغلاق غير المخطط له.'
                 : 'Industrial Process Operator Training Simulator (OTS). Built to make plant-specific high-fidelity dynamic simulation accessible to every refinery, petrochemical complex, and gas facility in Egypt, the Middle East, and worldwide.'}
             </p>
-            <div className="text-[#979799] font-mono text-[11px] font-medium">
-              Entrepreneurs Investment Program (EIP) · Official Showcase 2026
+            <div className="text-purple-400 font-mono text-[11px] font-bold">
+              Entrepreneurs Investment Program (EIP) · Official Selection 2026
             </div>
           </div>
 
           {/* Quick Links (3 Cols) */}
           <div className={`md:col-span-3 space-y-3 ${isRTL ? 'text-right' : 'text-left'}`}>
-            <div className="text-xs font-sans font-semibold text-[#0B1120] uppercase tracking-wider">
+            <div className="text-xs font-mono font-bold text-white uppercase tracking-wider">
               {isRTL ? 'أقسام المنصة' : 'Platform Navigation'}
             </div>
-            <div className="flex flex-col space-y-1.5 text-[#64748B] font-sans text-xs">
+            <div className="flex flex-col space-y-2 text-slate-400 font-sans text-xs">
               <button
-                onClick={() => scrollTo('about')}
-                className={`w-full py-1 ${isRTL ? 'text-right' : 'text-left'} hover:text-[#4F46E5] transition-colors cursor-pointer`}
+                onClick={() => scrollTo('hero')}
+                className={`w-full ${isRTL ? 'text-right' : 'text-left'} hover:text-white transition-colors cursor-pointer`}
               >
-                01. {isRTL ? 'عن نكسيفا ورؤيتنا' : 'About Nexiiva & Mission'}
+                01. {isRTL ? 'المحاكي المباشر' : 'Live DCS Console'}
               </button>
               <button
-                onClick={() => scrollTo('operational-reality')}
-                className={`w-full py-1 ${isRTL ? 'text-right' : 'text-left'} hover:text-[#4F46E5] transition-colors cursor-pointer`}
+                onClick={() => scrollTo('industry-dilemma')}
+                className={`w-full ${isRTL ? 'text-right' : 'text-left'} hover:text-white transition-colors cursor-pointer`}
               >
-                02. {isRTL ? 'الواقع التشغيلي والبدائل' : 'The Operational Reality & ROI'}
+                02. {isRTL ? 'معضلة الـ $110K والعائد' : 'The $110K Dilemma & ROI'}
               </button>
               <button
                 onClick={() => scrollTo('ots-builder')}
-                className={`w-full py-1 ${isRTL ? 'text-right' : 'text-left'} hover:text-[#4F46E5] transition-colors cursor-pointer`}
+                className={`w-full ${isRTL ? 'text-right' : 'text-left'} hover:text-white transition-colors cursor-pointer`}
               >
-                03. {isRTL ? 'منشئ OTS ومكتبة 387 معدة' : 'OTS Builder & 387 Equipment'}
-              </button>
-              <button
-                onClick={() => scrollTo('capabilities')}
-                className={`w-full py-1 ${isRTL ? 'text-right' : 'text-left'} hover:text-[#4F46E5] transition-colors cursor-pointer`}
-              >
-                04. {isRTL ? 'قدرات المنظومة (المشغل، المدرب، الاعتماد)' : 'Platform Capabilities'}
+                03. {isRTL ? 'استوديو بناء الوحدات OTS' : 'OTS Builder & 387 Equipment'}
               </button>
               <button
                 onClick={() => scrollTo('deployment')}
-                className={`w-full py-1 ${isRTL ? 'text-right' : 'text-left'} hover:text-[#4F46E5] transition-colors cursor-pointer`}
+                className={`w-full ${isRTL ? 'text-right' : 'text-left'} hover:text-white transition-colors cursor-pointer`}
               >
-                05. {isRTL ? 'الأمان والنشر المعزول' : 'Security Architecture & Deployment'}
+                04. {isRTL ? 'النشر المعزول والأمان السيبراني' : 'Air-Gapped Deployment'}
               </button>
               <button
-                onClick={() => scrollTo('subscribe')}
-                className={`w-full py-1 ${isRTL ? 'text-right' : 'text-left'} hover:text-[#4F46E5] transition-colors cursor-pointer text-[#4F46E5] font-semibold`}
+                onClick={() => scrollTo('pricing-leadership')}
+                className={`w-full ${isRTL ? 'text-right' : 'text-left'} text-cyan-400 hover:text-cyan-300 transition-colors cursor-pointer font-bold`}
               >
-                06. {isRTL ? 'طريقة الاشتراك ومسار البدء' : 'How to Subscribe & Onboarding'}
+                05. {isRTL ? 'مسارات الاشتراك والقيادة' : 'Commercial Tracks & Pilot'}
               </button>
             </div>
           </div>
 
-          {/* Leadership & Contact (4 Cols) */}
+          {/* Direct Communication Channels (4 Cols) */}
           <div className={`md:col-span-4 space-y-3 ${isRTL ? 'text-right' : 'text-left'}`}>
-            <div className="text-xs font-sans font-semibold text-[#0B1120] uppercase tracking-wider">
-              {isRTL ? 'المكتب الفني والاشتراكات' : 'Technical & Subscription Desk'}
+            <div className="text-xs font-mono font-bold text-white uppercase tracking-wider">
+              {isRTL ? 'التواصل المباشر والقيادة' : 'Direct Leadership Contact'}
             </div>
-            <div className="space-y-1.5 text-[#0B1120]">
-              <div className="font-bold text-[#0B1120] text-sm">Eng. Mostafa Adel</div>
-              <div className="text-[#64748B] text-xs">
-                {isRTL ? 'المؤسس والرئيس التنفيذي — مهندس أول محاكاة العمليات' : 'Founder & CEO — Lead Process Simulation Architect'}
-              </div>
-              <div className="text-[#94A3B8] text-[11px]">
-                Ex-MIDOR Refinery, Sanmar Chemicals, Agiba Petroleum, Port Harcourt
-              </div>
-              <div className="flex flex-col gap-1.5 pt-1 font-mono text-xs font-medium">
-                <a
-                  href="https://wa.me/201004131154"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-emerald-600 hover:text-emerald-700 flex items-center space-x-1.5 space-x-reverse transition-colors"
-                >
-                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse inline-block" />
-                  <span>{isRTL ? 'واتساب / هاتف: 01004131154' : 'WhatsApp / Call: +20 100 413 1154'}</span>
-                </a>
-                <a
-                  href="mailto:Mostafa.adel.esmaiel@gmail.com"
-                  className="text-[#4F46E5] hover:text-indigo-700 flex items-center space-x-1.5 space-x-reverse transition-colors"
-                >
-                  <span>✉</span>
-                  <span className="underline">Mostafa.adel.esmaiel@gmail.com</span>
-                </a>
-              </div>
-              <div className="pt-3">
-                <button
-                  onClick={() => setPilotDrawerOpen(true)}
-                  className="w-full sm:w-auto min-h-[46px] px-6 py-2.5 rounded-full bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] text-white text-xs font-semibold transition-all shadow-[0_8px_25px_-4px_rgba(79,70,229,0.45)] hover:shadow-[0_12px_30px_-4px_rgba(79,70,229,0.6)] cursor-pointer flex items-center justify-center space-x-2 space-x-reverse"
-                >
-                  <span>{isRTL ? 'الاشتراك وبدء التجربة' : 'Subscribe & Start Pilot'}</span>
-                  <span className={isRTL ? 'rotate-180 inline-block' : 'inline-block'}>→</span>
-                </button>
+            <div className="space-y-2.5 text-xs font-mono text-slate-300">
+              {/* WhatsApp direct card */}
+              <a
+                href={`https://wa.me/${RECIPIENT_INTL_PHONE}?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D9%85%D9%86%D8%B8%D9%88%D9%85%D8%A9%20NEXIIVA%20OTS`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center space-x-2.5 space-x-reverse p-2.5 rounded-xl bg-emerald-950/40 hover:bg-emerald-900/40 border border-emerald-500/40 text-emerald-300 transition-all cursor-pointer group"
+              >
+                <MessageSquare className="w-4 h-4 text-emerald-400 group-hover:scale-110 transition-transform" />
+                <div className="flex flex-col">
+                  <span className="text-[10px] text-emerald-400 uppercase font-bold">
+                    {isRTL ? 'واتساب مباشر للمؤسس' : 'DIRECT WHATSAPP'}
+                  </span>
+                  <span className="text-white font-bold text-xs">{RECIPIENT_DISPLAY_PHONE}</span>
+                </div>
+              </a>
+
+              {/* Email direct */}
+              <a
+                href={`mailto:${RECIPIENT_EMAIL}?subject=NEXIIVA%20Refinery%20Inquiry`}
+                className="flex items-center space-x-2.5 space-x-reverse p-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-200 transition-all cursor-pointer"
+              >
+                <Mail className="w-4 h-4 text-purple-400" />
+                <div className="flex flex-col">
+                  <span className="text-[10px] text-purple-400 uppercase font-bold">FOUNDER EMAIL</span>
+                  <span className="text-white text-xs truncate">{RECIPIENT_EMAIL}</span>
+                </div>
+              </a>
+
+              <div className="pt-2 text-[10px] text-slate-500 font-sans leading-relaxed">
+                {isRTL
+                  ? 'م. مصطفى عادل · مؤسس ورئيس تنفيذي · خبرة تشغيل ميدانية بمصفاة ميدور وسنمار وعجيبة وبورت هاركورت.'
+                  : 'Eng. Mostafa Adel · Founder & CEO · 10 yrs at MIDOR, Sanmar Petrochem, Agiba, & Port Harcourt Refinery.'}
               </div>
             </div>
           </div>
         </div>
 
-        {/* Bottom Legal & Security Notice */}
-        <div className="border-t border-[#ececec] pt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] text-[#979799] gap-3">
+        {/* Bottom Bar: Copyright & Standards */}
+        <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-slate-500 font-mono text-[11px]">
           <div>
-            © 2026 NEXIIVA SIMULATION TECHNOLOGIES. ALL RIGHTS RESERVED.
+            © {new Date().getFullYear()} NEXIIVA Industrial Dynamics. All rights reserved.
           </div>
-          <div className="flex items-center space-x-3 font-mono">
-            <span>100% AIR-GAPPED COMPLIANT</span>
+          <div className="flex items-center space-x-4 space-x-reverse text-slate-400">
+            <span>ISA-88 / ISA-5.1</span>
             <span>·</span>
-            <span>ISA-88 / ISA-106 EMULATION</span>
+            <span>API 520 / 521 / 560</span>
             <span>·</span>
-            <span className="text-[#777b86]">CAIRO, EGYPT</span>
+            <span>IEC 62443 SL-3/4 OT Security</span>
           </div>
         </div>
       </div>

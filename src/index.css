@@ -3,103 +3,120 @@
 @tailwind utilities;
 
 :root {
-  /* Steep Colors */
-  --color-ink-black: #17191c;
-  --color-paper-white: #ffffff;
-  --color-mist-gray: #f2f2f3;
-  --color-fog-white: #fafafb;
-  --color-slate-gray: #777b86;
-  --color-ash-gray: #979799;
-  --color-smoke-gray: #a3a6af;
-  --color-blush-peach: #fbe1d1;
-  --color-sienna-brown: #5d2a1a;
+  /* Obsidian Dark Master Palette */
+  --bg-deep-space: #03050c;
+  --bg-obsidian-surface: #060919;
+  --bg-card-slate: rgba(10, 15, 36, 0.85);
+  --border-glass: rgba(255, 255, 255, 0.08);
+
+  /* Neon Accents */
+  --neon-violet: #8e42fe;
+  --neon-cobalt: #3361fc;
+  --neon-cyan: #38bdf8;
+  --neon-emerald: #10b981;
+  --neon-amber: #f59e0b;
+  --neon-rose: #f43f5e;
 
   /* Typography */
-  --font-serif: 'Newsreader', 'Signifier', Georgia, serif;
-  --font-serif-ar: 'Amiri', 'Newsreader', Georgia, serif;
-  --font-sans: 'Plus Jakarta Sans', Inter, -apple-system, sans-serif;
+  --font-sans: 'Plus Jakarta Sans', Inter, -apple-system, BlinkMacSystemFont, sans-serif;
   --font-sans-ar: 'Cairo', 'Plus Jakarta Sans', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+}
 
-  /* Elevation */
-  --shadow-artifact: 0 0 0 1px rgba(4, 23, 43, 0.05), 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+html {
+  background-color: #03050c;
+  color-scheme: dark;
 }
 
 body {
-  background-color: var(--color-paper-white);
-  color: var(--color-ink-black);
+  background-color: #03050c;
+  color: #f1f5f9;
   font-family: var(--font-sans);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
 
-/* Steep Pill Button Styles */
-.btn-pill-filled {
-  background-color: #17191c;
+/* Structural Blueprint Grid (48px ultra-subtle 1px lines) */
+.blueprint-grid {
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* Metallic Silver-White Gradient Heading */
+.heading-metallic {
+  background: linear-gradient(180deg, #ffffff 0%, #e2e8f0 65%, #94a3b8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Electric Violet to Cobalt Primary Button */
+.btn-cta-primary {
+  background: linear-gradient(135deg, #8e42fe 0%, #7b3cfc 50%, #3361fc 100%);
   color: #ffffff;
-  border: 1px solid #17191c;
-  border-radius: 9999px;
-  padding: 10px 22px;
-  font-size: 15px;
-  font-weight: 500;
-  transition: all 0.15s ease;
+  font-weight: 600;
+  border-radius: 0.75rem;
+  padding: 0.875rem 2rem;
+  box-shadow: 0 0 35px rgba(123, 60, 252, 0.45);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
 }
-.btn-pill-filled:hover {
-  background-color: #2a2d32;
-  border-color: #2a2d32;
+.btn-cta-primary:hover {
+  box-shadow: 0 0 50px rgba(123, 60, 252, 0.65);
+  transform: translateY(-1px);
+}
+.btn-cta-primary:active {
+  transform: translateY(0);
 }
 
-.btn-pill-ghost {
-  background-color: transparent;
-  color: #17191c;
-  border: 1px solid #17191c;
-  border-radius: 9999px;
-  padding: 10px 22px;
-  font-size: 15px;
-  font-weight: 500;
-  transition: all 0.15s ease;
+/* Secondary Frosted Glass Button */
+.btn-cta-secondary {
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(12px);
+  color: #f1f5f9;
+  font-weight: 600;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 0.75rem;
+  padding: 0.875rem 1.75rem;
+  transition: all 0.2s ease;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
 }
-.btn-pill-ghost:hover {
-  background-color: #f2f2f3;
+.btn-cta-secondary:hover {
+  background: rgba(30, 41, 59, 0.8);
+  border-color: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
 }
 
-/* Steep Text Link with Arrow */
-.link-editorial {
-  color: #17191c;
-  font-size: 15px;
-  font-weight: 500;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  transition: all 0.15s ease;
-  cursor: pointer;
-}
-.link-editorial:hover {
-  text-decoration: underline;
+/* Dark Slate Glassmorphic Card */
+.card-glassmorphic {
+  background: rgba(10, 15, 36, 0.82);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
 }
 
-/* Quiet Scrollbar */
+/* Subtle Dark Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #ffffff;
+  background: #03050c;
 }
 ::-webkit-scrollbar-thumb {
-  background: #e2e2e4;
+  background: #1e293b;
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #a3a6af;
+  background: #334155;
 }
 
 @keyframes flowDash {

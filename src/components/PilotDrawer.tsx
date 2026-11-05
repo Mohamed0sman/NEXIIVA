@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSimulationJourney } from '../context/SimulationJourneyContext';
 import { dispatchFormSubmission, RECIPIENT_EMAIL, RECIPIENT_DISPLAY_PHONE, RECIPIENT_INTL_PHONE } from '../utils/contactDispatcher';
-import { Mail, Phone, Building, User, Send, MessageSquare, CheckCircle2 } from 'lucide-react';
+import { Mail, Phone, Building, User, Send, MessageSquare, CheckCircle2, ShieldCheck, X } from 'lucide-react';
 
 export const PilotDrawer: React.FC = () => {
   const { pilotDrawerOpen, setPilotDrawerOpen, selectedUnit, language } = useSimulationJourney();
@@ -35,8 +35,8 @@ export const PilotDrawer: React.FC = () => {
 
     setIsSubmitting(true);
     const res = await dispatchFormSubmission({
-      fullName: name || 'Operations Engineer',
-      company: company || 'Refinery / Plant Facility',
+      fullName: name || 'Refinery Engineer',
+      company: company || 'Petroleum Facility',
       email: workEmail,
       phone: workPhone,
       targetUnit: `${pilotUnit} (${extraStations} Stations)`,
@@ -49,62 +49,62 @@ export const PilotDrawer: React.FC = () => {
   };
 
   return (
-    <div className={`fixed inset-0 z-50 flex ${isRTL ? 'justify-start' : 'justify-end'} bg-black/40 backdrop-blur-sm`}>
+    <div className={`fixed inset-0 z-50 flex ${isRTL ? 'justify-start' : 'justify-end'} bg-black/75 backdrop-blur-md`}>
       <div
         dir={isRTL ? 'rtl' : 'ltr'}
-        className={`w-full max-w-lg bg-white ${isRTL ? 'border-r' : 'border-l'} border-[#ececec] h-full overflow-y-auto flex flex-col justify-between p-4.5 sm:p-8 text-xs font-sans text-[#17191c] shadow-2xl`}
+        className={`w-full max-w-lg bg-[#070B1A]/95 ${isRTL ? 'border-r' : 'border-l'} border-white/10 h-full overflow-y-auto flex flex-col justify-between p-5 sm:p-8 text-xs font-sans text-slate-200 shadow-2xl relative`}
       >
         <div>
           {/* Header */}
-          <div className="flex items-center justify-between border-b border-[#ececec] pb-5">
+          <div className="flex items-center justify-between border-b border-white/10 pb-5">
             <div>
-              <div className="text-[11px] font-mono text-[#4F46E5] font-semibold uppercase tracking-wider">
-                {isRTL ? 'برنامج التحقق التجريبي (90 يوماً)' : '90-DAY REFINERY PILOT PROGRAM'}
+              <div className="text-[10px] font-mono text-purple-400 font-bold uppercase tracking-wider">
+                {isRTL ? 'برنامج التحقق الميداني (90 يوماً · $800)' : '90-DAY REFINERY PILOT ($800)'}
               </div>
-              <div className="text-2xl font-bold font-sans text-[#0B1120] mt-1 tracking-tight">
-                {isRTL ? 'تهيئة برنامج التحقق للمنشأة' : 'Configure Plant Validation'}
+              <div className="text-xl sm:text-2xl font-bold font-sans text-white mt-1 tracking-tight">
+                {isRTL ? 'تهيئة برنامج التحقق للمصفاة' : 'Configure Plant Pilot'}
               </div>
             </div>
             <button
               onClick={() => setPilotDrawerOpen(false)}
               aria-label="Close Pilot Drawer"
-              className="w-11 h-11 flex items-center justify-center text-[#64748B] hover:text-[#0B1120] text-lg rounded-full hover:bg-slate-100 transition-colors cursor-pointer"
+              className="w-10 h-10 flex items-center justify-center text-slate-400 hover:text-white rounded-xl hover:bg-white/10 transition-colors cursor-pointer"
             >
-              ✕
+              <X className="w-5 h-5" />
             </button>
           </div>
 
           {submitted ? (
             <div className="py-12 sm:py-16 text-center space-y-5">
-              <div className="w-16 h-16 rounded-full bg-emerald-500 text-white text-3xl flex items-center justify-center mx-auto font-bold shadow-lg">
+              <div className="w-16 h-16 rounded-full bg-emerald-500/20 border-2 border-emerald-400 text-emerald-300 text-3xl flex items-center justify-center mx-auto font-bold shadow-lg">
                 ✓
               </div>
 
               <div className="space-y-2">
-                <div className="text-2xl font-sans font-bold text-[#0B1120]">
-                  {isRTL ? 'تم توجيه طلب البايلوت بنجاح' : 'Pilot Request Routed'}
+                <div className="text-2xl font-sans font-bold text-white">
+                  {isRTL ? 'تم توجيه طلب البايلوت بنجاح' : 'Pilot Request Dispatched'}
                 </div>
-                <div className="flex flex-wrap items-center justify-center gap-1.5 pt-0.5">
+                <div className="flex flex-wrap items-center justify-center gap-2 pt-1 font-mono text-xs">
                   <a
-                    href={submissionResult?.whatsappUrl || `https://wa.me/201004131154`}
+                    href={submissionResult?.whatsappUrl || `https://wa.me/${RECIPIENT_INTL_PHONE}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center space-x-1.5 space-x-reverse px-3 py-1 rounded-full bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 text-emerald-800 text-[11px] font-mono font-medium transition-colors cursor-pointer"
+                    className="inline-flex items-center space-x-1.5 space-x-reverse px-3 py-1 rounded-full bg-emerald-950/60 border border-emerald-500/50 text-emerald-300 hover:bg-emerald-900/60 transition-colors"
                   >
-                    <MessageSquare className="w-3.5 h-3.5 text-emerald-600" />
-                    <span>واتساب: {RECIPIENT_DISPLAY_PHONE}</span>
+                    <MessageSquare className="w-3.5 h-3.5 text-emerald-400" />
+                    <span>WhatsApp: {RECIPIENT_DISPLAY_PHONE}</span>
                   </a>
-                  <div className="inline-flex items-center space-x-1.5 space-x-reverse px-3 py-1 rounded-full bg-indigo-50 border border-indigo-200 text-indigo-900 text-[11px] font-mono font-medium">
-                    <Mail className="w-3.5 h-3.5 text-indigo-600" />
+                  <div className="inline-flex items-center space-x-1.5 space-x-reverse px-3 py-1 rounded-full bg-purple-950/60 border border-purple-500/50 text-purple-300">
+                    <Mail className="w-3.5 h-3.5 text-purple-400" />
                     <span>{RECIPIENT_EMAIL}</span>
                   </div>
                 </div>
               </div>
 
-              <p className="text-[#64748B] text-xs sm:text-sm max-w-sm mx-auto leading-relaxed">
+              <p className="text-slate-300 text-xs sm:text-sm max-w-sm mx-auto leading-relaxed">
                 {isRTL
-                  ? `شكراً لك! تم توجيه كافة تفاصيل الوحدة (${pilotUnit}) مباشرة إلى واتساب م. مصطفى عادل (${RECIPIENT_DISPLAY_PHONE}) وبريده الإلكتروني (${RECIPIENT_EMAIL}). سيتواصل معكم خلال 24 ساعة لتنسيق تسليم مخططات P&ID وتوقيع اتفاقية السرية NDA.`
-                  : `Thank you! All pilot specs for (${pilotUnit}) have been dispatched directly to Eng. Mostafa Adel's WhatsApp (${RECIPIENT_INTL_PHONE}) and inbox (${RECIPIENT_EMAIL}). He will follow up within 24 hours to coordinate P&ID intake and mutual NDA.`}
+                  ? `شكراً لك! تم توجيه كافة تفاصيل الوحدة (${pilotUnit}) مباشرة إلى م. مصطفى عادل. سيتواصل معكم خلال 24 ساعة لتنسيق استلام مخططات P&ID وتوقيع اتفاقية السرية NDA.`
+                  : `Thank you! Your pilot specs for (${pilotUnit}) have been dispatched directly to Eng. Mostafa Adel. He will follow up promptly to coordinate P&ID intake and mutual NDA.`}
               </p>
 
               {/* Instant Direct Action Buttons */}
@@ -114,7 +114,7 @@ export const PilotDrawer: React.FC = () => {
                     href={submissionResult.whatsappUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full min-h-[48px] py-3 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold flex items-center justify-center space-x-2 space-x-reverse shadow-md hover:shadow-lg transition-all cursor-pointer"
+                    className="w-full min-h-[48px] py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold font-mono uppercase tracking-wider flex items-center justify-center space-x-2 space-x-reverse shadow-lg cursor-pointer transition-all"
                   >
                     <MessageSquare className="w-4 h-4 text-white" />
                     <span>{isRTL ? `مراسلة م. مصطفى عبر واتساب (${RECIPIENT_DISPLAY_PHONE})` : `Message on WhatsApp (${RECIPIENT_INTL_PHONE})`}</span>
@@ -123,7 +123,7 @@ export const PilotDrawer: React.FC = () => {
 
                 <a
                   href={submissionResult?.mailtoUrl || `mailto:${RECIPIENT_EMAIL}`}
-                  className="w-full min-h-[46px] py-2.5 rounded-full bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold flex items-center justify-center space-x-2 space-x-reverse shadow-sm transition-all cursor-pointer"
+                  className="w-full min-h-[46px] py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-mono uppercase tracking-wider border border-white/20 flex items-center justify-center space-x-2 space-x-reverse transition-all cursor-pointer"
                 >
                   <Send className="w-4 h-4" />
                   <span>{isRTL ? 'تأكيد الإرسال عبر البريد' : 'Confirm via Email Client'}</span>
@@ -135,7 +135,7 @@ export const PilotDrawer: React.FC = () => {
                     setPilotDrawerOpen(false);
                     setSubmissionResult(null);
                   }}
-                  className="w-full min-h-[44px] py-2.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold transition-colors cursor-pointer mt-1"
+                  className="w-full min-h-[44px] py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 text-xs font-medium transition-colors cursor-pointer mt-1"
                 >
                   {isRTL ? 'إغلاق النافذة' : 'Close Drawer'}
                 </button>
@@ -143,32 +143,32 @@ export const PilotDrawer: React.FC = () => {
             </div>
           ) : (
             <form onSubmit={handlePilotSubmit} className="py-5 sm:py-6 space-y-4 sm:space-y-5">
-              {/* Pilot Summary Box (Cool Indigo Tint) */}
-              <div className="p-4 rounded-2xl bg-gradient-to-b from-purple-500/10 via-indigo-500/5 to-blue-500/5 border border-purple-500/20 text-[#0B1120] space-y-2">
+              {/* Pilot Summary Box */}
+              <div className="p-4 rounded-xl bg-[#0B1124] border border-purple-500/30 space-y-2">
                 <div className="flex justify-between items-baseline">
-                  <span className="font-semibold text-xs text-[#4F46E5]">
-                    {isRTL ? 'نطاق البرنامج التجريبي:' : 'Engagement Scope:'}
+                  <span className="font-mono text-xs font-bold text-purple-400">
+                    {isRTL ? 'نطاق برنامج التحقق:' : 'PILOT SCOPE:'}
                   </span>
-                  <span className="text-xs sm:text-sm font-bold font-sans text-[#0B1120]">
-                    {isRTL ? 'برنامج تجريبي مخصص (3 أشهر)' : 'Custom 3-Month Pilot'}
+                  <span className="text-xs sm:text-sm font-bold font-mono text-white">
+                    {isRTL ? '90 يوماً وصول كامل ($800)' : '3-Month Dedicated Access ($800)'}
                   </span>
                 </div>
-                <div className="text-[11px] text-[#64748B] leading-relaxed">
+                <div className="text-[11px] text-slate-300 leading-relaxed font-sans">
                   {isRTL
-                    ? 'يشمل 3 أشهر وصول كامل ومخصص، بناء وحدة تكرير خاصة وفق مخططاتكم، وحزمة السيناريوهات الأولى (الاضطرابات والأعطال)، مع مراجعة مهندس العمليات.'
-                    : 'Includes 3 full months of dedicated access, 1 custom refinery unit build, first scenario pack (upsets & trips), and process SME validation.'}
+                    ? 'يشمل 3 أشهر وصول كامل ومخصص، بناء وحدة تكرير خاصة وفق مخططاتكم، وحزمة سيناريوهات الطوارئ الأولى، مع تدريب المشغلين.'
+                    : 'Includes 3 full months of dedicated access, 1 custom refinery unit build from P&IDs, scenario pack, and operator reaction time audits.'}
                 </div>
               </div>
 
               {/* Step 1: Unit Selection */}
               <div className="space-y-1.5">
-                <label className="text-[#0B1120] font-semibold text-xs">
+                <label className="text-white font-mono font-semibold text-xs">
                   {isRTL ? '1. وحدة التكرير والعمليات المستهدفة' : '1. TARGET REFINERY PROCESS UNIT'}
                 </label>
                 <select
                   value={pilotUnit}
                   onChange={(e) => setPilotUnit(e.target.value)}
-                  className="w-full min-h-[44px] p-3 rounded-xl bg-[#F8FAFC] border border-slate-200 text-[#0B1120] text-base sm:text-xs outline-none focus:border-[#4F46E5] transition-colors"
+                  className="w-full min-h-[44px] p-3 rounded-xl bg-[#030612] border border-white/15 text-white text-xs outline-none focus:border-purple-500 transition-colors"
                 >
                   <option value="CDU/VDU Atmospheric & Vacuum Distillation">
                     {isRTL ? 'وحدة التقطير الجوي والتفريغي (CDU/VDU)' : 'CDU/VDU Atmospheric & Vacuum Distillation'}
@@ -190,41 +190,41 @@ export const PilotDrawer: React.FC = () => {
 
               {/* Step 2: Deployment Mode */}
               <div className="space-y-1.5">
-                <label className="text-[#0B1120] font-semibold text-xs">
+                <label className="text-white font-mono font-semibold text-xs">
                   {isRTL ? '2. نموذج وبيئة النشر والتشغيل' : '2. PILOT DEPLOYMENT TOPOLOGY'}
                 </label>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                   <button
                     type="button"
                     onClick={() => setDeployment('100% Air-Gapped On-Premise')}
                     className={`p-3 rounded-xl border text-left cursor-pointer transition-all ${
                       deployment.includes('Air-Gapped')
-                        ? 'border-[#4F46E5] bg-purple-50/50 text-[#4F46E5] font-semibold ring-1 ring-[#4F46E5]'
-                        : 'border-slate-200 bg-[#F8FAFC] text-[#64748B] hover:border-slate-300'
+                        ? 'border-purple-500 bg-purple-950/60 text-white font-bold ring-1 ring-purple-500'
+                        : 'border-white/10 bg-[#030612] text-slate-400 hover:border-white/20'
                     }`}
                   >
-                    <div className="font-sans text-xs">
+                    <div className="font-mono text-xs text-white">
                       {isRTL ? 'تشغيل معزول On-Prem' : 'Air-Gapped On-Prem'}
                     </div>
-                    <div className="text-[10px] text-[#94A3B8] mt-0.5">
-                      {isRTL ? '100% أوفلاين داخل شبكة المنشأة' : '100% Offline inside plant LAN'}
+                    <div className="text-[10px] text-slate-400 mt-0.5">
+                      {isRTL ? '100% أوفلاين داخل شبكة المصفاة' : '100% Offline inside plant LAN'}
                     </div>
                   </button>
 
                   <button
                     type="button"
-                    onClick={() => setDeployment('Private Cloud SaaS')}
+                    onClick={() => setDeployment('Dedicated Private Cloud')}
                     className={`p-3 rounded-xl border text-left cursor-pointer transition-all ${
                       deployment.includes('Private Cloud')
-                        ? 'border-[#4F46E5] bg-purple-50/50 text-[#4F46E5] font-semibold ring-1 ring-[#4F46E5]'
-                        : 'border-slate-200 bg-[#F8FAFC] text-[#64748B] hover:border-slate-300'
+                        ? 'border-cyan-500 bg-cyan-950/60 text-white font-bold ring-1 ring-cyan-500'
+                        : 'border-white/10 bg-[#030612] text-slate-400 hover:border-white/20'
                     }`}
                   >
-                    <div className="font-sans text-xs">
-                      {isRTL ? 'سحابة خاصة Private Cloud' : 'Private Cloud SaaS'}
+                    <div className="font-mono text-xs text-white">
+                      {isRTL ? 'سحابة خاصة Private Cloud' : 'Dedicated Private Cloud'}
                     </div>
-                    <div className="text-[10px] text-[#94A3B8] mt-0.5">
-                      {isRTL ? 'جاهز للمتصفحات ومراكز التدريب' : 'Instant browser multi-seat'}
+                    <div className="text-[10px] text-slate-400 mt-0.5">
+                      {isRTL ? 'جاهز للمتصفحات الفورية' : 'Instant secure browser access'}
                     </div>
                   </button>
                 </div>
@@ -232,11 +232,11 @@ export const PilotDrawer: React.FC = () => {
 
               {/* Step 3: Stations Slider */}
               <div className="space-y-2">
-                <div className="flex justify-between items-center text-xs">
-                  <label className="text-[#0B1120] font-semibold">
+                <div className="flex justify-between items-center text-xs font-mono">
+                  <label className="text-white font-semibold">
                     {isRTL ? '3. عدد شاشات المشغلين المطلوبة' : '3. OPERATOR STATIONS REQUIRED'}
                   </label>
-                  <span className="font-mono font-bold text-[#4F46E5]">
+                  <span className="font-bold text-purple-400">
                     {extraStations} {isRTL ? 'محطات مشغلين' : 'Stations'}
                   </span>
                 </div>
@@ -246,94 +246,88 @@ export const PilotDrawer: React.FC = () => {
                   max="8"
                   value={extraStations}
                   onChange={(e) => setExtraStations(parseInt(e.target.value))}
-                  className="w-full accent-[#4F46E5] bg-slate-200 h-2 rounded cursor-pointer"
+                  className="w-full accent-purple-500 bg-slate-800 h-2 rounded-lg cursor-pointer"
                 />
               </div>
 
               {/* Step 4: Contact Info */}
-              <div className="space-y-3 pt-2 sm:pt-3 border-t border-slate-100">
+              <div className="space-y-3 pt-3 border-t border-white/10 font-sans">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div className="space-y-1">
-                    <label className="text-[#64748B] text-xs font-medium flex items-center space-x-1 space-x-reverse">
-                      <User className="w-3 h-3 text-[#4F46E5]" />
-                      <span>{isRTL ? 'الاسم والمنصب' : 'NAME & TITLE'}</span>
+                    <label className="text-slate-300 text-xs font-mono font-medium flex items-center space-x-1 space-x-reverse">
+                      <User className="w-3 h-3 text-purple-400" />
+                      <span>{isRTL ? 'الاسم والمنصب *' : 'NAME & TITLE *'}</span>
                     </label>
                     <input
                       type="text"
+                      required
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      placeholder={isRTL ? 'م. مصطفى عادل' : 'Eng. Mostafa Adel'}
-                      className="w-full min-h-[44px] px-3 py-2.5 rounded-xl bg-[#F8FAFC] border border-slate-200 text-[#0B1120] text-base sm:text-xs outline-none focus:border-[#4F46E5] transition-colors"
+                      placeholder={isRTL ? 'م. مصطفى كمال' : 'Eng. Lead Operator'}
+                      className="w-full bg-[#030612] border border-white/15 rounded-xl p-2.5 text-xs text-white focus:outline-none focus:border-purple-500"
                     />
                   </div>
 
                   <div className="space-y-1">
-                    <label className="text-[#64748B] text-xs font-medium flex items-center space-x-1 space-x-reverse">
-                      <Building className="w-3 h-3 text-[#4F46E5]" />
-                      <span>{isRTL ? 'اسم المصفاة / المنشأة' : 'REFINERY / PLANT'}</span>
+                    <label className="text-slate-300 text-xs font-mono font-medium flex items-center space-x-1 space-x-reverse">
+                      <Building className="w-3 h-3 text-purple-400" />
+                      <span>{isRTL ? 'المصفاة / المنشأة *' : 'REFINERY / PLANT *'}</span>
                     </label>
                     <input
                       type="text"
+                      required
                       value={company}
                       onChange={(e) => setCompany(e.target.value)}
-                      placeholder={isRTL ? 'ميدور / أرامكو' : 'MIDOR / Plant'}
-                      className="w-full min-h-[44px] px-3 py-2.5 rounded-xl bg-[#F8FAFC] border border-slate-200 text-[#0B1120] text-base sm:text-xs outline-none focus:border-[#4F46E5] transition-colors"
+                      placeholder={isRTL ? 'مصفاة القاهرة للبترول' : 'National Refining Complex'}
+                      className="w-full bg-[#030612] border border-white/15 rounded-xl p-2.5 text-xs text-white focus:outline-none focus:border-purple-500"
                     />
                   </div>
                 </div>
 
-                <div className="space-y-1">
-                  <label className="text-[#64748B] text-xs font-medium flex items-center space-x-1 space-x-reverse">
-                    <Mail className="w-3 h-3 text-[#4F46E5]" />
-                    <span>{isRTL ? 'البريد الإلكتروني للعمل' : 'WORK EMAIL'}</span>
-                  </label>
-                  <input
-                    type="email"
-                    required
-                    value={workEmail}
-                    onChange={(e) => setWorkEmail(e.target.value)}
-                    placeholder="operations@refinery.com"
-                    className="w-full min-h-[44px] px-3 py-2.5 rounded-xl bg-[#F8FAFC] border border-slate-200 text-[#0B1120] text-base sm:text-xs outline-none focus:border-[#4F46E5] transition-colors"
-                  />
-                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div className="space-y-1">
+                    <label className="text-slate-300 text-xs font-mono font-medium flex items-center space-x-1 space-x-reverse">
+                      <Mail className="w-3 h-3 text-purple-400" />
+                      <span>{isRTL ? 'البريد المؤسسي *' : 'WORK EMAIL *'}</span>
+                    </label>
+                    <input
+                      type="email"
+                      required
+                      value={workEmail}
+                      onChange={(e) => setWorkEmail(e.target.value)}
+                      placeholder="engineer@refinery.com"
+                      className="w-full bg-[#030612] border border-white/15 rounded-xl p-2.5 text-xs text-white focus:outline-none focus:border-purple-500"
+                    />
+                  </div>
 
-                <div className="space-y-1">
-                  <label className="text-[#64748B] text-xs font-medium flex items-center space-x-1 space-x-reverse">
-                    <Phone className="w-3 h-3 text-[#4F46E5]" />
-                    <span>{isRTL ? 'الهاتف / واتساب' : 'PHONE / WHATSAPP'}</span>
-                  </label>
-                  <input
-                    type="tel"
-                    value={workPhone}
-                    onChange={(e) => setWorkPhone(e.target.value)}
-                    placeholder="+20 100 000 0000"
-                    className="w-full min-h-[44px] px-3 py-2.5 rounded-xl bg-[#F8FAFC] border border-slate-200 text-[#0B1120] text-base sm:text-xs outline-none focus:border-[#4F46E5] transition-colors"
-                  />
+                  <div className="space-y-1">
+                    <label className="text-slate-300 text-xs font-mono font-medium flex items-center space-x-1 space-x-reverse">
+                      <Phone className="w-3 h-3 text-purple-400" />
+                      <span>{isRTL ? 'واتساب / هاتف مباشر *' : 'WHATSAPP PHONE *'}</span>
+                    </label>
+                    <input
+                      type="tel"
+                      required
+                      value={workPhone}
+                      onChange={(e) => setWorkPhone(e.target.value)}
+                      placeholder="+20 100 000 0000"
+                      className="w-full bg-[#030612] border border-white/15 rounded-xl p-2.5 text-xs text-white focus:outline-none focus:border-purple-500"
+                    />
+                  </div>
                 </div>
               </div>
 
-              {/* Submit Button */}
-              <div className="pt-2">
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full min-h-[48px] py-3.5 rounded-full bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] text-white text-xs font-semibold uppercase tracking-wider shadow-[0_8px_25px_-4px_rgba(79,70,229,0.45)] hover:shadow-[0_12px_30px_-4px_rgba(79,70,229,0.6)] active:scale-[0.99] transition-all cursor-pointer flex items-center justify-center space-x-2 space-x-reverse"
-                >
-                  <span>{isSubmitting ? (isRTL ? 'جاري الإرسال...' : 'Sending...') : (isRTL ? 'تأكيد طلب البرنامج التجريبي للمنشأة ←' : 'Confirm 90-Day Pilot Request →')}</span>
-                </button>
-                <div className="text-[10px] text-center text-[#979799] mt-2">
-                  {isRTL ? (
-                    <>
-                      * يتم توجيه الطلب مباشرة إلى بريد المهندس مصطفى عادل (
-                      <span className="font-mono text-[#4F46E5] font-semibold">{RECIPIENT_EMAIL}</span>)
-                    </>
-                  ) : (
-                    <>
-                      * Request routed directly to Eng. Mostafa Adel (
-                      <span className="font-mono text-[#4F46E5] font-semibold">{RECIPIENT_EMAIL}</span>)
-                    </>
-                  )}
-                </div>
+              {/* Submit CTA */}
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full btn-cta-primary min-h-[48px] text-xs font-mono font-bold tracking-wider uppercase mt-3"
+              >
+                {isSubmitting ? 'DISPATCHING...' : (isRTL ? 'إرسال طلب التحقق ($800)' : 'SUBMIT PILOT SPECIFICATION ($800)')}
+              </button>
+
+              <div className="text-[10px] text-slate-500 font-mono text-center">
+                Direct to Eng. Mostafa Adel: +201004131154 · Mostafa.adel.esmaiel@gmail.com
               </div>
             </form>
           )}
