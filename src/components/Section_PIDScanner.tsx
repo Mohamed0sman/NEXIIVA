@@ -187,11 +187,10 @@ export const Section_PIDScanner: React.FC = () => {
     <section id="ots-builder" className="py-24 px-6 lg:px-12 relative bg-white border-t border-slate-200">
       <div className="max-w-[1240px] mx-auto space-y-16">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center space-x-1.5 space-x-reverse text-xs font-mono font-bold text-[#4F46E5] uppercase tracking-wider bg-purple-50 px-3.5 py-1 rounded-full border border-purple-200/60">
-            <Cpu className="w-3.5 h-3.5" />
-            <span>{t.eyebrow}</span>
-          </div>
+        <div className="text-center max-w-3xl mx-auto space-y-3">
+          <p className="text-xs font-bold text-[#4F46E5] uppercase tracking-widest font-sans">
+            {t.eyebrow}
+          </p>
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0B1120] tracking-tight leading-[1.2] font-sans">
             {t.headingMain}{' '}

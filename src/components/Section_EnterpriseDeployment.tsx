@@ -52,9 +52,9 @@ export const Section_EnterpriseDeployment: React.FC = () => {
         {/* Section Header */}
         <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-6 border-b border-slate-200 pb-8 text-left" dir={isRTL ? 'rtl' : 'ltr'}>
           <div className="space-y-3 max-w-3xl">
-            <div className="text-xs font-mono font-bold text-[#4F46E5] uppercase tracking-wider bg-purple-50 px-3.5 py-1 rounded-full border border-purple-200/60 inline-block">
+            <p className="text-xs font-bold text-[#4F46E5] uppercase tracking-widest font-sans">
               {t.eyebrow}
-            </div>
+            </p>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0B1120] tracking-tight leading-[1.2] font-sans">
               {t.headingMain}{' '}
               <span className="italic font-normal bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] bg-clip-text text-transparent inline-block">

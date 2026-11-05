@@ -35,7 +35,7 @@ export const HeroSection: React.FC = () => {
   const icons = [Cpu, Layers, ShieldCheck];
 
   return (
-    <section className="relative pt-12 pb-24 px-4 sm:px-6 lg:px-12 overflow-hidden bg-white">
+    <section className="relative pt-20 sm:pt-24 lg:pt-28 pb-24 px-4 sm:px-6 lg:px-12 overflow-hidden bg-white">
       {/* Precision Background Grid Texture */}
       <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:28px_28px] opacity-70 pointer-events-none" />
 
@@ -45,15 +45,6 @@ export const HeroSection: React.FC = () => {
       <div className="max-w-[1240px] mx-auto space-y-12 relative z-10 text-center">
         {/* Main Headline with Purple-Blue Brand Gradient Italic Phrase */}
         <div className="max-w-4xl mx-auto space-y-6">
-          <div className="inline-flex items-center space-x-2 space-x-reverse px-4 py-1.5 rounded-full bg-slate-50 border border-slate-200/80 shadow-xs mb-2">
-            <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse" />
-            <span className="text-xs font-mono font-semibold text-slate-700 uppercase tracking-wide">
-              {isRTL
-                ? 'المنظومة الصناعية المعتمدة لمحاكاة مشغلي العمليات'
-                : 'ENTERPRISE OPERATOR TRAINING SIMULATOR (OTS)'}
-            </span>
-          </div>
-
           <h1 className="text-4xl sm:text-5xl lg:text-[62px] font-extrabold text-[#0B1120] tracking-tight leading-[1.16] font-sans">
             {t.headlineMain}{' '}
             <span className="italic font-normal bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] bg-clip-text text-transparent inline-block">

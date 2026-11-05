@@ -262,10 +262,19 @@ export const translations = {
       },
     },
     founder: {
-      badge: 'BUILT BY AN OPERATIONS ENGINEER, NOT A GENERIC SOFTWARE AGENCY',
-      title: 'Mostafa Adel — Founder & CEO (10 Years in Refining, Gas & Petrochemicals)',
-      body: 'After ten years operating units across MIDOR Refinery, TCI Sanmar Petrochemicals, Agiba Gas Processing Plant (Western Desert), and Port Harcourt Refinery (Nigeria), I saw firsthand how high simulator prices left operators relying on classroom theory and paper manuals. Nexiiva was built to put realistic, customized OTS training within reach of every plant and engineer.',
-      verified: ['MIDOR Refinery', 'TCI Sanmar Petrochemicals', 'Agiba Gas Processing Plant', 'Port Harcourt Refinery'],
+      badge: 'FOUNDER & OPERATIONS LEADERSHIP',
+      pedigreeLabel: 'Frontline Plant Operating Pedigree',
+      roleTitle: 'Founder & CEO',
+      roleSub: 'Lead Refinery Operations & Commissioning Engineer',
+      quote:
+        'After ten years operating units across MIDOR Refinery, TCI Sanmar Petrochemicals, Agiba Gas Processing Plant (Western Desert), and Port Harcourt Refinery (Nigeria), I saw firsthand how high simulator prices left operators relying on classroom theory and paper manuals. Nexiiva was built from inside the control room to put realistic, customized OTS training within reach of every plant and engineer.',
+      plants: [
+        { name: 'MIDOR Coastal Refinery', unit: 'Atmospheric & Vacuum Distillation, Hydrocracking', tag: 'Refining' },
+        { name: 'TCI Sanmar Petrochemicals', unit: 'Chlor-Alkali, VCM & PVC Chemical Complexes', tag: 'Petrochemicals' },
+        { name: 'Agiba Gas Processing Plant', unit: 'High-Pressure Gas Separation & Treatment', tag: 'Gas Processing' },
+        { name: 'Port Harcourt Refinery', unit: 'Rehabilitation, Turnaround & Pre-Commissioning', tag: 'International' },
+      ],
+      commitments: ['10+ Years Field Exposure', '0 Lost-Time Safety Incidents', 'ISA-106 Compliant'],
     },
   },
   AR: {
@@ -531,10 +540,19 @@ export const translations = {
       },
     },
     founder: {
-      badge: 'صُمم بأيدي مهندس تشغيل، وليس وكالة برمجيات عامة',
-      title: 'م. مصطفى عادل — المؤسس والمدير التنفيذي (10 سنوات في التكرير والغاز والبتروكيماويات)',
-      body: 'بعد عشر سنوات من تشغيل الوحدات في مصفاة ميدور، وشركة TCI Sanmar للبتروكيماويات، ومجمع عجيبة لمعالجة الغاز (الصحراء الغربية)، ومصفاة بورت هاركورت (نيجيريا)، رأيت بنفسي كيف أن تكاليف وتعقيدات المحاكيات الاحتكارية تركت المشغلين يعتمدون على النظريات الورقية والكتالوجات. بنيت نكسيفا لتضع تدريب الـ OTS الواقعي والمخصص في متناول كل منشأة ومهندس.',
-      verified: ['مصفاة ميدور (MIDOR)', 'شركة TCI Sanmar للبتروكيماويات', 'مجمع عجيبة لمعالجة الغاز', 'مصفاة بورت هاركورت الدولية'],
+      badge: 'القيادة الهندسية والمؤسسية',
+      pedigreeLabel: 'الخبرة التشغيلية الميدانية الموثقة في كبرى المنشآت',
+      roleTitle: 'المؤسس والمدير التنفيذي',
+      roleSub: 'مهندس عمليات وتكرير وتشغيل تجريبي أول (خبرة +10 سنوات)',
+      quote:
+        'بعد عشر سنوات من تشغيل الوحدات في مصفاة ميدور، وشركة TCI Sanmar للبتروكيماويات، ومجمع عجيبة لمعالجة الغاز (الصحراء الغربية)، ومصفاة بورت هاركورت (نيجيريا)، رأيت بنفسي كيف أن تكاليف وتعقيدات المحاكيات الاحتكارية تركت المشغلين يعتمدون على النظريات الورقية والكتالوجات. بنيت نكسيفا من داخل غرفة التحكم لتضع تدريب الـ OTS الواقعي والمخصص في متناول كل منشأة ومهندس.',
+      plants: [
+        { name: 'مصفاة ميدور (MIDOR)', unit: 'التقطير الجوي والمفرغ، التكسير الهيدروجيني', tag: 'تكرير البترول' },
+        { name: 'بتروكيماويات TCI Sanmar', unit: 'مجمعات الكلور والقلويات والـ VCM والـ PVC', tag: 'بتروكيماويات' },
+        { name: 'مجمع عجيبة لمعالجة الغاز', unit: 'فصل ومعالجة الغاز الطبيعي عالي الضغط', tag: 'معالجة الغاز' },
+        { name: 'مصفاة بورت هاركورت الدولية', unit: 'إعادة التأهيل، العمرات الكبرى، والتشغيل الميداني', tag: 'تشغيل دولي' },
+      ],
+      commitments: ['+10 سنوات قيادة تشغيلية', 'سجل أمان تشغيلي معتمد', 'مطابقة لمعايير ISA-106 الدولية'],
     },
   },
 };

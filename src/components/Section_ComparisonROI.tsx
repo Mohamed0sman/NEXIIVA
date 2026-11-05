@@ -15,11 +15,10 @@ export const Section_ComparisonROI: React.FC = () => {
   return (
     <section id="operational-reality" className="py-24 px-6 lg:px-12 relative bg-[#F8FAFC] border-t border-slate-200">
       <div className="max-w-[1240px] mx-auto space-y-16">
-        {/* Section Header: The Operational Reality */}
-        <div className="max-w-3xl space-y-4 text-left" dir={isRTL ? 'rtl' : 'ltr'}>
-          <div className="text-xs font-mono font-bold text-[#4F46E5] tracking-wider uppercase">
+        <div className="max-w-3xl space-y-3 text-left" dir={isRTL ? 'rtl' : 'ltr'}>
+          <p className="text-xs font-bold text-[#4F46E5] uppercase tracking-widest font-sans">
             {t.eyebrow}
-          </div>
+          </p>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0B1120] tracking-tight leading-[1.2] font-sans">
             {t.headingMain}{' '}
             <span className="italic font-normal bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] bg-clip-text text-transparent inline-block">
