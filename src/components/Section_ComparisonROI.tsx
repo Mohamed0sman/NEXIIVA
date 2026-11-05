@@ -1,227 +1,304 @@
 import React, { useState } from 'react';
 import { useSimulationJourney } from '../context/SimulationJourneyContext';
-import {
-  AlertTriangle,
-  XCircle,
-  CheckCircle2,
-  DollarSign,
-  TrendingDown,
-  Clock,
-  ShieldCheck,
-  Zap,
-  ArrowRight,
-} from 'lucide-react';
+import { translations } from '../data/translations';
+import { ArrowRight, ShieldAlert, TrendingDown, DollarSign, AlertTriangle, CheckCircle2 } from 'lucide-react';
 
 export const Section_ComparisonROI: React.FC = () => {
   const { setPilotDrawerOpen, language } = useSimulationJourney();
+  const t = translations[language].operationalReality;
   const isRTL = language === 'AR';
 
+  // Interactive Sliders for Boardroom Simulator
+  const [numUnits, setNumUnits] = useState(2);
+  const [numOperators, setNumOperators] = useState(15);
+
   return (
-    <section
-      id="industry-dilemma"
-      className="py-16 sm:py-24 px-4 sm:px-6 lg:px-12 relative bg-[#040714] border-t border-white/10"
-    >
-      {/* Background Blueprint Grid */}
-      <div className="absolute inset-0 blueprint-grid opacity-50 pointer-events-none" />
-
-      {/* Ambient Glows */}
-      <div className="absolute top-1/2 left-1/3 -translate-y-1/2 w-[600px] h-[350px] bg-[radial-gradient(ellipse_at_center,rgba(142,66,254,0.08),transparent_70%)] pointer-events-none blur-3xl" />
-      <div className="absolute bottom-10 right-1/4 w-[500px] h-[300px] bg-[radial-gradient(ellipse_at_center,rgba(51,97,252,0.08),transparent_70%)] pointer-events-none blur-3xl" />
-
-      <div className="max-w-[1240px] mx-auto space-y-12 sm:space-y-16 relative z-10">
-        {/* Section Header */}
-        <div className="max-w-3xl space-y-3 sm:space-y-4 text-left" dir={isRTL ? 'rtl' : 'ltr'}>
-          <div className="inline-flex items-center space-x-2 space-x-reverse text-xs font-mono font-bold text-purple-400 tracking-widest uppercase">
-            <span>[STAGE 02 // EXECUTIVE BRIEFING]</span>
-            <span className="text-slate-600">|</span>
-            <span>{isRTL ? 'معضلة الـ $110K وحل NEXIIVA' : 'THE $110K DILEMMA'}</span>
-          </div>
-
-          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.2]">
-            <span className="heading-metallic block">
-              {isRTL
-                ? 'لماذا تدرب 80% من المصافي مشغليها'
-                : 'Why 80%+ of Refineries Still Train'}
-            </span>
-            <span className="bg-gradient-to-r from-[#A855F7] via-[#8E42FE] to-[#38BDF8] bg-clip-text text-transparent block mt-1">
-              {isRTL
-                ? 'على عروض باوربوينت نظرية؟'
-                : 'on Passive PowerPoint Slides.'}
+    <section id="operational-reality" className="py-12 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-12 relative bg-[#F8FAFC] border-t border-slate-200">
+      <div className="max-w-[1240px] mx-auto space-y-8 sm:space-y-12 lg:space-y-16">
+        <div className="max-w-3xl space-y-2 sm:space-y-3 text-left" dir={isRTL ? 'rtl' : 'ltr'}>
+          <p className="text-xs font-bold text-[#4F46E5] uppercase tracking-widest font-sans">
+            {t.eyebrow}
+          </p>
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-[#0B1120] tracking-tight leading-[1.2] font-sans">
+            {t.headingMain}{' '}
+            <span className="italic font-normal bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] bg-clip-text text-transparent inline-block">
+              {t.headingItalic}
             </span>
           </h2>
-
-          <p className="text-sm sm:text-lg text-[#94A3B8] font-normal leading-relaxed">
-            {isRTL
-              ? 'الأنظمة التقليدية القديمة تطلب مئات الآلاف وتأخذ 6 أشهر لبناء نموذج عام لا يطابق واقع منشأتك. إليك كيف يُنهي NEXIIVA هذا العجز.'
-              : 'Legacy simulation conglomerates charge $110K+ and take 6+ months for textbook generic units. NEXIIVA delivers plant-specific accuracy in ~1 week at a fraction of the cost.'}
+          <p className="text-sm sm:text-lg text-slate-600 font-sans font-normal leading-relaxed">
+            {t.subheading}
           </p>
         </div>
 
-        {/* 2-Column Executive Briefing */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          {/* Left Column: The $110K Industry Dilemma (6 Cols) */}
-          <div
-            className="lg:col-span-6 space-y-6 text-left"
-            dir={isRTL ? 'rtl' : 'ltr'}
-          >
-            <div className="p-6 sm:p-8 rounded-2xl bg-[#080D1F]/90 border border-rose-500/30 backdrop-blur-xl space-y-6 shadow-xl">
-              <div className="flex items-center justify-between border-b border-white/10 pb-4">
-                <div className="flex items-center space-x-2.5 space-x-reverse text-rose-400 font-mono text-xs font-bold uppercase tracking-wider">
-                  <AlertTriangle className="w-4 h-4 text-rose-400" />
-                  <span>{isRTL ? 'معضلة الصناعة التقليدية' : 'THE $110K INDUSTRY BOTTLENECKS'}</span>
-                </div>
-                <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-rose-950/80 text-rose-300 border border-rose-800">
-                  LEGACY BARRIERS
+        {/* 2-Column Balanced Editorial Spread */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
+          {/* Left Column: Story Card + Outage Cost Breakdown (5 Cols) */}
+          <div className="lg:col-span-5 space-y-5 sm:space-y-6 text-left" dir={isRTL ? 'rtl' : 'ltr'}>
+            {/* Story Card */}
+            <div className="bg-gradient-to-b from-purple-500/5 via-indigo-500/5 to-blue-500/5 rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-purple-500/20 space-y-4 sm:space-y-5 shadow-sm">
+              <div className="text-xs font-mono text-[#4F46E5] uppercase tracking-widest font-bold flex items-center space-x-1.5 space-x-reverse">
+                <AlertTriangle className="w-3.5 h-3.5 text-rose-500" />
+                <span>{isRTL ? 'التكلفة الحقيقية لاضطراب واحد بدون تدريب' : 'THE REAL COST OF ONE UNPRACTICED UPSET'}</span>
+              </div>
+
+              <div className="text-lg sm:text-2xl font-sans font-bold text-[#0B1120] leading-snug tracking-tight">
+                {t.storyCard.title}
+              </div>
+
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-sans">
+                {t.storyCard.body}
+              </p>
+
+              <div className="pt-3.5 sm:pt-4 border-t border-purple-500/10 flex items-center justify-between text-xs font-mono text-slate-600">
+                <span>{isRTL ? 'الملاحظة الميدانية' : 'FIELD OBSERVATION'}</span>
+                <span className="font-bold text-[#4F46E5]">
+                  {t.storyCard.footerStat}
+                </span>
+              </div>
+            </div>
+
+            {/* Outage Breakdown Card */}
+            <div className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-slate-200 shadow-sm space-y-3.5 sm:space-y-4">
+              <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+                <span className="text-xs font-mono font-bold text-slate-700 uppercase tracking-wider">
+                  {isRTL ? 'تفصيل خسائر الحادثة الواحدة ($150,000+)' : 'TYPICAL SINGLE INCIDENT ANATOMY ($150,000+)'}
+                </span>
+                <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-rose-50 text-rose-600 font-bold border border-rose-200">
+                  {isRTL ? 'خسائر يمكن تفاديها' : 'PREVENTABLE'}
                 </span>
               </div>
 
-              {/* 3 Bottlenecks */}
-              <div className="space-y-4">
-                <div className="flex items-start space-x-3.5 space-x-reverse p-4 rounded-xl bg-white/5 border border-white/5">
-                  <XCircle className="w-5 h-5 text-rose-400 flex-shrink-0 mt-0.5" />
-                  <div className="space-y-1">
-                    <div className="font-bold text-white text-sm sm:text-base">
-                      {isRTL ? '1. انعدام هامش الخطأ الميداني' : '1. Zero Room for Live Plant Error'}
+              <div className="space-y-3 font-sans text-xs">
+                <div className="flex items-center justify-between p-3 rounded-xl bg-slate-50 border border-slate-100">
+                  <div>
+                    <div className="font-bold text-[#0B1120]">
+                      {isRTL ? 'توقف الإنتاج وحرق النفط بالمدخنة' : 'Lost Throughput & Emergency Flaring'}
                     </div>
-                    <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
-                      {isRTL
-                        ? 'إجراءات بدء التشغيل (Startup)، الإغلاق الطارئ (ESD)، أو انقطاع طاقة التبريد لا يمكن أبداً التدرّب عليها حياً على مصفاة قيد الإنتاج.'
-                        : 'Critical procedures like unit startup, trip recovery, or cooling water loss cannot be safely practiced on an active production unit.'}
-                    </p>
+                    <div className="text-[11px] text-slate-500">
+                      {isRTL ? 'فقدان معدلات تدفق البرج وتكاليف الشعلة' : 'Unit derating & flare environmental loss'}
+                    </div>
                   </div>
+                  <span className="font-mono font-bold text-rose-600 text-sm">~$70,000</span>
                 </div>
 
-                <div className="flex items-start space-x-3.5 space-x-reverse p-4 rounded-xl bg-white/5 border border-white/5">
-                  <XCircle className="w-5 h-5 text-rose-400 flex-shrink-0 mt-0.5" />
-                  <div className="space-y-1">
-                    <div className="font-bold text-white text-sm sm:text-base">
-                      {isRTL ? '2. التكاليف الاحتكارية الباهظة' : '2. Prohibitive Legacy Capital Cost'}
+                <div className="flex items-center justify-between p-3 rounded-xl bg-slate-50 border border-slate-100">
+                  <div>
+                    <div className="font-bold text-[#0B1120]">
+                      {isRTL ? 'إصلاحات حرارية وميكانيكية للأفران' : 'Furnace Refractory & Tube Repairs'}
                     </div>
-                    <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
-                      {isRTL
-                        ? 'الشركات العالمية الكبرى تفرض قرابة $110,000 لكل وحدة تشغيل، وتطلب رسوم استشارات باهظة تُخرج المحاكاة من ميزانيات أغلب المصافي.'
-                        : 'Global automation conglomerates charge ~$110,000 per unit, putting dynamic high-fidelity simulation out of reach for most plant budgets.'}
-                    </p>
+                    <div className="text-[11px] text-slate-500">
+                      {isRTL ? 'صدمات حرارية للأنابيب وتلف الحشوات' : 'Thermal shock, coil coking & mechanical seals'}
+                    </div>
                   </div>
+                  <span className="font-mono font-bold text-rose-600 text-sm">~$50,000</span>
                 </div>
 
-                <div className="flex items-start space-x-3.5 space-x-reverse p-4 rounded-xl bg-white/5 border border-white/5">
-                  <XCircle className="w-5 h-5 text-rose-400 flex-shrink-0 mt-0.5" />
-                  <div className="space-y-1">
-                    <div className="font-bold text-white text-sm sm:text-base">
-                      {isRTL ? '3. تأخر التسليم لـ 6 أشهر ونماذج عامة' : '3. 6+ Months Delivery of Generic Models'}
+                <div className="flex items-center justify-between p-3 rounded-xl bg-slate-50 border border-slate-100">
+                  <div>
+                    <div className="font-bold text-[#0B1120]">
+                      {isRTL ? 'غرامات تأخير تسليم الشحنات' : 'Off-Spec Product & Contract Penalties'}
                     </div>
-                    <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
-                      {isRTL
-                        ? 'النماذج الجاهزة تتجاهل صمامات ومضخات ومخططات P&ID الفعلية لمنشأتك، مما يفقد المتدرب الثقة في المحاكي عند العودة لغرفة التحكم.'
-                        : 'Generic models ignore your specific P&IDs, instruments, and interlocks, breeding dangerous negative training habits in operators.'}
-                    </p>
+                    <div className="text-[11px] text-slate-500">
+                      {isRTL ? 'عدم مطابقة مواصفات التقطير للعملاء' : 'Demurrage & export contract penalties'}
+                    </div>
                   </div>
+                  <span className="font-mono font-bold text-rose-600 text-sm">~$30,000</span>
                 </div>
               </div>
 
-              {/* Anatomy of 1 Preventable Outage */}
-              <div className="pt-4 border-t border-white/10 flex items-center justify-between font-mono text-xs text-slate-400">
-                <span>{isRTL ? 'متوسط خسائر اضطراب تشغيلي واحد:' : 'Cost of 1 Unpracticed Upset:'}</span>
-                <span className="font-bold text-rose-400 text-sm">$150,000+ (Flaring & Outage)</span>
-              </div>
+              <p className="text-[11px] text-slate-500 leading-relaxed pt-1">
+                {isRTL
+                  ? '* يمكن تفادي هذه الخسائر بالكامل عبر التدريب المسبق للمشغلين على سيناريوهات الطوارئ في محاكي نكسيفا.'
+                  : '* Completely avoidable through deliberate simulation rehearsal of upset recovery sequences.'}
+              </p>
             </div>
           </div>
 
-          {/* Right Column: The NEXIIVA Breakthrough Metrics (6 Cols) */}
-          <div
-            className="lg:col-span-6 space-y-5 text-left"
-            dir={isRTL ? 'rtl' : 'ltr'}
-          >
-            {/* Stat Block 1: 90% Lower Cost */}
-            <div className="p-6 sm:p-7 rounded-2xl bg-[#0A0F24]/85 border-t-2 border-t-[#8E42FE] border-x border-b border-white/10 backdrop-blur-2xl shadow-xl space-y-3 relative overflow-hidden group hover:border-purple-500/40 transition-all">
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-mono text-purple-400 font-bold uppercase tracking-wider">
-                  METRIC 01 // CAPITAL ACCESSIBILITY
+          {/* Right Column: Nexiiva vs. Legacy Alternatives + ROI Calculator (7 Cols) */}
+          <div className="lg:col-span-7 space-y-5 sm:space-y-6">
+            {/* Comparison Artifact: Desktop 4-Col Table + Mobile Responsive Cards */}
+            <div className="bg-white rounded-2xl sm:rounded-3xl border border-slate-200 shadow-sm overflow-hidden text-left" dir={isRTL ? 'rtl' : 'ltr'}>
+              <div className="px-4 sm:px-6 py-3.5 sm:py-4 border-b border-slate-100 flex items-center justify-between">
+                <span className="text-xs font-mono font-bold text-slate-700 uppercase tracking-wider">
+                  {t.comparison.title}
                 </span>
-                <div className="p-2 rounded-lg bg-purple-950/60 border border-purple-800/60 text-purple-300">
-                  <DollarSign className="w-4 h-4" />
+                <span className="text-[10px] sm:text-[11px] font-mono text-[#059669] font-bold bg-[#ecfdf5] px-2.5 py-0.5 rounded-full border border-emerald-200">
+                  {isRTL ? 'مقارنة دقيقة' : 'VERIFIED DATA'}
+                </span>
+              </div>
+
+              {/* Desktop Table View (md and up) */}
+              <div className="hidden md:block overflow-x-auto">
+                <table className="w-full font-sans text-xs border-collapse min-w-[540px]">
+                  <thead>
+                    <tr className="border-b border-slate-100 text-slate-500 text-[11px]">
+                      <th className="p-4 font-semibold">{t.comparison.headers[0]}</th>
+                      <th className="p-4 font-semibold">{t.comparison.headers[1]}</th>
+                      <th className="p-4 font-semibold">{t.comparison.headers[2]}</th>
+                      <th className="p-4 font-bold text-[#4F46E5] bg-purple-500/5">
+                        {t.comparison.headers[3]}
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100 text-[#0B1120] text-xs">
+                    {t.comparison.rows.map((row, idx) => (
+                      <tr key={idx} className="hover:bg-slate-50/70 transition-colors">
+                        <td className="p-4 font-semibold text-[#0B1120]">{row.criteria}</td>
+                        <td className="p-4 text-slate-500">{row.largeVendors}</td>
+                        <td className="p-4 text-slate-500">{row.specialists}</td>
+                        <td className="p-4 font-bold text-[#4F46E5] bg-purple-500/5">
+                          {row.nexiiva}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              {/* Mobile Card Stack View (below md): 100% legible, zero clipping */}
+              <div className="md:hidden divide-y divide-slate-100 p-3 sm:p-4 space-y-3">
+                {t.comparison.rows.map((row, idx) => (
+                  <div key={idx} className="pt-3 first:pt-0 space-y-2.5">
+                    <div className="text-xs font-bold font-sans text-slate-900 flex items-center justify-between">
+                      <span>{row.criteria}</span>
+                      <span className="text-[10px] font-mono text-slate-400">0{idx + 1}</span>
+                    </div>
+
+                    {/* Nexiiva Winner Card */}
+                    <div className="p-3 rounded-xl bg-gradient-to-r from-purple-50 to-indigo-50 border border-purple-200/80 space-y-1 shadow-xs">
+                      <div className="flex items-center justify-between">
+                        <span className="text-[11px] font-mono font-bold text-[#4F46E5] flex items-center space-x-1 space-x-reverse">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 inline shrink-0" />
+                          <span>{t.comparison.headers[3]}</span>
+                        </span>
+                        <span className="text-[10px] font-mono font-bold text-emerald-700 bg-emerald-100/80 px-2 py-0.5 rounded-full">
+                          {isRTL ? 'الأمثل' : 'OPTIMAL'}
+                        </span>
+                      </div>
+                      <div className="text-xs font-bold text-slate-900 font-sans leading-snug">
+                        {row.nexiiva}
+                      </div>
+                    </div>
+
+                    {/* Legacy Alternatives Subdued */}
+                    <div className="grid grid-cols-1 gap-1.5 text-[11px] text-slate-600 pt-0.5">
+                      <div className="flex flex-col sm:flex-row sm:items-start justify-between p-2 rounded-lg bg-slate-50 border border-slate-100 gap-0.5 sm:gap-2">
+                        <span className="text-slate-500 font-medium">{t.comparison.headers[1]}:</span>
+                        <span className="font-semibold text-slate-700">{row.largeVendors}</span>
+                      </div>
+                      <div className="flex flex-col sm:flex-row sm:items-start justify-between p-2 rounded-lg bg-slate-50 border border-slate-100 gap-0.5 sm:gap-2">
+                        <span className="text-slate-500 font-medium">{t.comparison.headers[2]}:</span>
+                        <span className="font-semibold text-slate-700">{row.specialists}</span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Interactive ROI Calculator Card */}
+            <div className="bg-white rounded-2xl sm:rounded-3xl border border-slate-200 shadow-sm p-4 sm:p-7 space-y-5 sm:space-y-6 text-left" dir={isRTL ? 'rtl' : 'ltr'}>
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-3 sm:pb-4">
+                <div>
+                  <h3 className="text-base sm:text-xl font-bold text-[#0B1120] tracking-tight font-sans">
+                    {isRTL ? 'نموذج محاكاة الكفاءة والجاهزية لمجلس الإدارة' : 'Refinery Boardroom Readiness & Value Model'}
+                  </h3>
+                  <p className="text-xs text-slate-500 mt-0.5">
+                    {isRTL ? 'حدد سعة منشأتك وطاقم المشغلين لعرض مؤشرات الجاهزية والوفر الاستثماري' : 'Adjust your unit capacity and operator fleet to evaluate shift readiness and capital efficiency.'}
+                  </p>
+                </div>
+                <span className="text-xs font-mono px-3 py-1 rounded-full bg-[#ecfdf5] text-[#059669] font-bold border border-[#a7f3d0] shrink-0 self-start sm:self-auto">
+                  {isRTL ? 'وفر رأسمالي >90%' : '>90% CAPEX EFFICIENCY'}
+                </span>
+              </div>
+
+              {/* Sliders */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
+                <div className="bg-[#F8FAFC] rounded-2xl p-4 sm:p-4.5 space-y-2.5 border border-slate-200/80">
+                  <div className="flex justify-between text-xs font-sans">
+                    <span className="text-[#0B1120] font-medium">
+                      {isRTL ? 'عدد وحدات التكرير (CDU, VDU, إلخ):' : 'Number of Process Units (CDU, VDU, etc.):'}
+                    </span>
+                    <span className="font-mono text-[#4F46E5] font-bold">
+                      {numUnits} {isRTL ? 'وحدات' : 'Units'}
+                    </span>
+                  </div>
+                  <input
+                    type="range"
+                    min="1"
+                    max="10"
+                    value={numUnits}
+                    onChange={(e) => setNumUnits(parseInt(e.target.value))}
+                    className="w-full accent-[#4F46E5] bg-slate-300 h-2 cursor-pointer rounded-full"
+                  />
+                  <div className="flex justify-between text-[10px] text-slate-500 font-mono">
+                    <span>{isRTL ? '1 وحدة' : '1 Unit'}</span>
+                    <span>{isRTL ? '5 وحدات' : '5 Units'}</span>
+                    <span>{isRTL ? '10 وحدات' : '10 Units'}</span>
+                  </div>
+                </div>
+
+                <div className="bg-[#F8FAFC] rounded-2xl p-4 sm:p-4.5 space-y-2.5 border border-slate-200/80">
+                  <div className="flex justify-between text-xs font-sans">
+                    <span className="text-[#0B1120] font-medium">
+                      {isRTL ? 'عدد مشغلي الورديات المستهدف تدريبهم:' : 'Number of Frontline Shift Operators to Train:'}
+                    </span>
+                    <span className="font-mono text-[#4F46E5] font-bold">
+                      {numOperators} {isRTL ? 'مشغلاً' : 'Operators'}
+                    </span>
+                  </div>
+                  <input
+                    type="range"
+                    min="4"
+                    max="50"
+                    value={numOperators}
+                    onChange={(e) => setNumOperators(parseInt(e.target.value))}
+                    className="w-full accent-[#4F46E5] bg-slate-300 h-2 cursor-pointer rounded-full"
+                  />
+                  <div className="flex justify-between text-[10px] text-slate-500 font-mono">
+                    <span>{isRTL ? '4 ورديات' : '4 Shifts'}</span>
+                    <span>{isRTL ? '25 مشغلاً' : '25 Operators'}</span>
+                    <span>{isRTL ? '50 مشغلاً' : '50 Operators'}</span>
+                  </div>
                 </div>
               </div>
 
-              <div className="flex items-baseline space-x-3 space-x-reverse">
-                <span className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-                  90% Lower Cost
-                </span>
-                <span className="text-xs font-mono text-emerald-400 font-semibold">
-                  (~$5,180 Year 1 vs $110K)
-                </span>
-              </div>
+              {/* Readout Metrics */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 bg-[#F8FAFC] p-4 sm:p-4.5 rounded-2xl text-center font-sans border border-slate-200/80">
+                <div className="p-2 sm:p-0">
+                  <div className="text-[11px] text-slate-500 uppercase">
+                    {isRTL ? 'زمن النشر والجاهزية:' : 'TARGET READINESS:'}
+                  </div>
+                  <div className="text-xl font-extrabold text-[#0B1120] mt-0.5 font-mono">
+                    {isRTL ? '~1 أسبوع' : '~1 Week'}
+                  </div>
+                </div>
 
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">
-                {isRTL
-                  ? 'نموذج اشتراك سنوي مرن يلغي نفقات الـ CapEx الضخمة، ويتيح لكل مصفاة تدريب فريقها التشغيلي بالكامل بنفس ميزانية دورة تدريبية واحدة.'
-                  : 'Flexible annual subscription eradicates massive upfront capital expense, democratizing world-class OTS for independent and state refineries.'}
-              </p>
-            </div>
+                <div className="p-2 sm:p-0 border-t sm:border-t-0 sm:border-x border-slate-200/80">
+                  <div className="text-[11px] text-[#059669] uppercase font-bold">
+                    {isRTL ? 'كفاءة الاستثمار المقدرة:' : 'ESTIMATED EFFICIENCY:'}
+                  </div>
+                  <div className="text-2xl font-black text-[#059669] mt-0.5 font-mono">
+                    &gt;90%
+                  </div>
+                </div>
 
-            {/* Stat Block 2: ~1 Week per Unit */}
-            <div className="p-6 sm:p-7 rounded-2xl bg-[#0A0F24]/85 border-t-2 border-t-[#38BDF8] border-x border-b border-white/10 backdrop-blur-2xl shadow-xl space-y-3 relative overflow-hidden group hover:border-cyan-500/40 transition-all">
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-mono text-cyan-400 font-bold uppercase tracking-wider">
-                  METRIC 02 // RAPID COMMISSIONING
-                </span>
-                <div className="p-2 rounded-lg bg-cyan-950/60 border border-cyan-800/60 text-cyan-300">
-                  <Clock className="w-4 h-4" />
+                <div className="p-2 sm:p-0 border-t sm:border-t-0 border-slate-200/80">
+                  <div className="text-[11px] text-[#4F46E5] uppercase font-bold">
+                    {isRTL ? 'المرونة التشغيلية:' : 'SHIFT RESILIENCE:'}
+                  </div>
+                  <div className="text-xl font-bold text-[#4F46E5] mt-0.5 font-mono">
+                    {isRTL ? 'جاهزية 100%' : '100% Ready'}
+                  </div>
                 </div>
               </div>
 
-              <div className="flex items-baseline space-x-3 space-x-reverse">
-                <span className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-                  ~1 Week per Unit
-                </span>
-                <span className="text-xs font-mono text-cyan-400 font-semibold">
-                  (387-Equipment Library)
-                </span>
-              </div>
-
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">
-                {isRTL
-                  ? 'بناء وحدات مخصصة تطابق مخططات P&ID الحقيقية للمصفاة عبر محرك OTS Builder وقاعدة مكونات معتمدة تضم 387 عنصراً جاهزاً.'
-                  : 'Synthesize custom units matching your plant P&IDs in days using our pre-certified 387-equipment dynamic blocks.'}
-              </p>
-            </div>
-
-            {/* Stat Block 3: 100% Safe Rehearsal */}
-            <div className="p-6 sm:p-7 rounded-2xl bg-[#0A0F24]/85 border-t-2 border-t-[#10B981] border-x border-b border-white/10 backdrop-blur-2xl shadow-xl space-y-3 relative overflow-hidden group hover:border-emerald-500/40 transition-all">
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-mono text-emerald-400 font-bold uppercase tracking-wider">
-                  METRIC 03 // ZERO PLANT RISK
-                </span>
-                <div className="p-2 rounded-lg bg-emerald-950/60 border border-emerald-800/60 text-emerald-300">
-                  <ShieldCheck className="w-4 h-4" />
-                </div>
-              </div>
-
-              <div className="flex items-baseline space-x-3 space-x-reverse">
-                <span className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-                  100% Safe Rehearsal
-                </span>
-                <span className="text-xs font-mono text-emerald-400 font-semibold">
-                  (Zero Flare & Production Loss)
-                </span>
-              </div>
-
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">
-                {isRTL
-                  ? 'تكرار سيناريوهات الطوارئ الخطرة عشرات المرات حتى تتحول استجابة المشغل إلى رد فعل غريزي آمن وموثق دون أي مخاطرة بالمعدات.'
-                  : 'Drill complex high-consequence emergency trips repeatedly until operator muscle memory is 100% verified.'}
-              </p>
-            </div>
-
-            {/* CTA Link to Stage 3 */}
-            <div className="pt-2 flex justify-start">
               <button
                 onClick={() => setPilotDrawerOpen(true)}
-                className="inline-flex items-center space-x-2 space-x-reverse text-xs font-mono text-purple-400 hover:text-purple-300 transition-colors cursor-pointer"
+                className="w-full min-h-[50px] py-3.5 rounded-full bg-gradient-to-r from-[#7C3AED] via-[#4F46E5] to-[#2563EB] hover:opacity-95 active:scale-[0.99] text-white font-semibold text-sm sm:text-[15px] shadow-[0_8px_25px_-4px_rgba(79,70,229,0.45)] hover:shadow-[0_12px_30px_-4px_rgba(79,70,229,0.6)] transition-all cursor-pointer flex items-center justify-center space-x-2 space-x-reverse"
               >
-                <span>{isRTL ? 'استكشف استوديو بناء الوحدات OTS Builder' : 'Explore the OTS Builder Workspace'}</span>
-                <span>{isRTL ? '←' : '→'}</span>
+                <span>{isRTL ? 'طلب مقترح التجربة الميدانية للمنشأة' : 'Request Boardroom Pilot Proposal'}</span>
+                <span className={isRTL ? 'rotate-180 inline-block' : 'inline-block'}>→</span>
               </button>
             </div>
           </div>

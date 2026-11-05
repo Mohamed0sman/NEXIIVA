@@ -68,7 +68,7 @@ export const SimulationJourneyProvider: React.FC<{ children: React.ReactNode }> 
   const [activeScenarioId, setActiveScenarioId] = useState<ScenarioId>('S1');
   const [telemetry, setTelemetry] = useState<TelemetryData>(initialTelemetry);
   const [wizardAnswers, setWizardAnswers] = useState<WizardAnswers>(defaultWizardAnswers);
-  const [language, setLanguage] = useState<'EN' | 'AR'>('AR');
+  const [language, setLanguage] = useState<'EN' | 'AR'>('EN');
   const [videoModalOpen, setVideoModalOpen] = useState(false);
   const [pilotDrawerOpen, setPilotDrawerOpen] = useState(false);
   const [simulatorModalOpen, setSimulatorModalOpen] = useState(false);
